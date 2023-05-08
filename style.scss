@@ -1,0 +1,210 @@
+$crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 22, 23
+
+$color1Repeat: 2;
+$color2Repeat: 3;
+$color3Repeat: 1;
+$color4Repeat: 2;
+$color5Repeat: 13;
+$color1: #C274B3;
+$color2: #4ECDC4;
+$color5: #F7FFF7;
+$color4: #FF6B6B;
+$color3: #FFE66D;
+
+$colorOffset: 0; // if you want to start it in the middle of the previous color
+$rowLengthA: $crochetRowLength;
+$rowLengthB: $crochetRowLength; 
+
+//End pattern variables, on to the implementation
+
+$colorRepeat: $color1Repeat + $color2Repeat + $color3Repeat + $color4Repeat + $color5Repeat;
+
+@for $i from 1 through $color1Repeat {
+  $offset: $colorOffset;
+    .colorRepeater :nth-child(#{$colorRepeat}n + #{$i+ $offset}) {
+      background: $color1;
+    }
+  }
+@for $i from 1 through $color2Repeat {
+  $offset: $colorOffset + $color1Repeat;
+    .colorRepeater :nth-child(#{$colorRepeat}n + #{$i + $offset}) {
+      background: $color2;
+    }
+  }
+@for $i from 1 through $color3Repeat {
+  $offset: $colorOffset + $color1Repeat + $color2Repeat;
+    .colorRepeater :nth-child(#{$colorRepeat}n + #{$i + $offset}) {
+      background: $color3;;
+    }
+  }
+@for $i from 1 through $color4Repeat {
+  $offset: $colorOffset + $color1Repeat + $color2Repeat + $color3Repeat;
+    .colorRepeater :nth-child(#{$colorRepeat}n + #{$i + $offset}) {
+      background: $color4;
+    }
+  }
+@for $i from 1 through $color5Repeat {
+  $offset: $colorOffset + $color1Repeat + $color2Repeat + $color3Repeat + $color4Repeat;
+    .colorRepeater :nth-child(#{$colorRepeat}n + #{$i + $offset}) {
+      background: $color5;;
+    }
+  }
+
+//taken from https://gist.github.com/IngoVals/0efd31cbe56241486fb9adb87ef6fd81
+@mixin snake-rows($rows) {
+  $repeat: $rows*2;
+  @for $i from 1 through $rows {
+    & > :nth-child(#{$repeat}n + #{$rows + $i}) {
+      grid-row: $rows - $i + 1;
+    }
+  }
+}
+@mixin interlaced-snake-rows($rows) {
+  $repeat: $rows*2;
+  @for $i from 1 through $rows {
+    & > :nth-child(#{$repeat}n + #{$rows + $i}) {
+      grid-row: $repeat - 2*$i + 1;
+    }
+  }
+}
+
+// A mixin to include inside container with uniformly sizes columns and rows and a snake wrap
+// usage: .container { @include snake-row-grid(10, 50px, 200px);
+
+@mixin snake-row-grid($rows, $row-height, $column-width) {
+  display: grid;
+  grid-template-rows: repeat($rows, $row-height);
+  grid-auto-columns: $column-width;
+  grid-auto-flow: column dense;
+  @include snake-rows($rows);
+}
+
+@mixin interlaced-snake-row-grid($rows, $row-height, $column-width) {
+  display: grid;
+  grid-template-rows: repeat(2*$rows, $row-height);
+  grid-auto-columns: $column-width;
+  grid-auto-flow: column dense;
+  @include interlaced-snake-rows($rows);
+  :nth-child(n + #{$rows + 1}):nth-child(-n + #{2*$rows}) {
+    grid-column-start: 2;
+  }
+}
+
+.containerA {
+  @include interlaced-snake-row-grid($rowLengthA, 12px, 14px);
+  
+  div {
+    grid-gap:5px;
+    margin: 1px 3px;
+    border: 1px solid black;
+    grid-column-end: span 2;
+  }
+
+
+}
+.containerB {
+  @include snake-row-grid($rowLengthB, 12px, 20px);
+  margin-top: 5px;
+  div {
+    grid-gap:5px;
+    margin: 1px;
+    border: 1px solid black;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
