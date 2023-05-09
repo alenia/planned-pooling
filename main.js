@@ -10,12 +10,20 @@ document.querySelector('#app').innerHTML = `
 <div class="containerA" id="pooler1">
 ${manyDivs}
 </div>
-<div class="containerB colorRepeater" id="pooler2">
+<div class="containerB" id="pooler2">
 ${manyDivs}
 </div>
 `
 
 paintStitches(document.querySelector('#pooler1'), [
+  {color: "#C274B3", length: 2},
+  {color: "#4ECDC4", length: 3},
+  {color: "#FFE66D", length: 1},
+  {color: "#FF6B6B", length: 2},
+  {color: "#F7FFF7", length: 13},
+])
+
+paintStitches(document.querySelector('#pooler2'), [
   {color: "#C274B3", length: 2},
   {color: "#4ECDC4", length: 3},
   {color: "#FFE66D", length: 1},
