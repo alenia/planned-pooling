@@ -1,8 +1,5 @@
 $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 22, 23
 
-$rowLengthA: $crochetRowLength;
-$rowLengthB: $crochetRowLength; 
-
 //taken from https://gist.github.com/IngoVals/0efd31cbe56241486fb9adb87ef6fd81
 @mixin snake-rows($rows) {
   $repeat: $rows*2;
@@ -41,22 +38,49 @@ $rowLengthB: $crochetRowLength;
   :nth-child(n + #{$rows + 1}):nth-child(-n + #{2*$rows}) {
     grid-column-start: 2;
   }
-}
 
-.containerA {
-  @include interlaced-snake-row-grid($rowLengthA, 12px, 14px);
-  
-  div {
-    grid-gap:5px;
-    margin: 1px 3px;
-    border: 1px solid black;
+  > * {
     grid-column-end: span 2;
   }
-
-
 }
-.containerB {
-  @include snake-row-grid($rowLengthB, 12px, 20px);
+
+.moss {
+  @include interlaced-snake-row-grid($crochetRowLength, 12px, 14px);
+  
+  > * {
+    margin: 1px 3px;
+    border: 1px solid black;
+  }
+}
+
+.granny {
+  @include interlaced-snake-row-grid($crochetRowLength, 18px, 18px);
+  
+  > * {
+    margin: 0 7px;
+    border: 1px solid black;
+  }
+}
+
+.v-stitch {
+  @include snake-row-grid($crochetRowLength, 20px, 20px);
+  
+  > * {
+    clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
+  }
+}
+
+.shell {
+  @include interlaced-snake-row-grid($crochetRowLength, 17px, 12px);
+
+  > * {
+    margin: -6px 3px;
+    clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
+  }
+}
+
+.stacked {
+  @include snake-row-grid($crochetRowLength, 12px, 20px);
   margin-top: 5px;
   div {
     grid-gap:5px;
