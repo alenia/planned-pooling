@@ -11,11 +11,6 @@ const colorConfig = [
 const stitchesPerCrow = 11;
 
 
-let manyDivs = ""
-for (var i = 0; i < 440; i++) {
-  manyDivs += (`<div class="stitch"></div>`);
-}
-
 let crowsOfStitches = ""
 for (var i = 0; i < 40; i++) {
   crowsOfStitches += ('<div class="crow">');
@@ -33,20 +28,14 @@ ${crowsOfStitches}
 <div class="swatch flexed shell" id="shell-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch grid shell" id="temp">
-${manyDivs}
-</div>
 <div class="swatch flexed stacked" id="stacked-pooler">
 ${crowsOfStitches}
 </div>
 <div class="swatch flexed moss" id="moss-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch grid granny" id="granny-pooler">
-${manyDivs}
-</div>
-<div class="swatch grid shell" id="shell-pooler">
-${manyDivs}
+<div class="swatch flexed granny" id="granny-pooler">
+${crowsOfStitches}
 </div>
 `
 
@@ -55,4 +44,3 @@ paintStitches(document.querySelector('#moss-pooler'), colorConfig)
 paintStitches(document.querySelector('#granny-pooler'), colorConfig)
 paintStitches(document.querySelector('#vstitch-pooler'), colorConfig)
 paintStitches(document.querySelector('#shell-pooler'), colorConfig)
-paintStitches(document.querySelector('#temp'), colorConfig)

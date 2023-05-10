@@ -75,82 +75,18 @@
   }
 }
 
-$crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 22, 23
-
-//some code adapted from https://gist.github.com/IngoVals/0efd31cbe56241486fb9adb87ef6fd81
-
-@mixin snake-row-grid($rows) {
-  grid-template-rows: repeat($rows, auto);
-
-  $repeat: $rows*2;
-  @for $i from 1 through $rows {
-    & > :nth-child(#{$repeat}n + #{$rows + $i}) {
-      grid-row: $rows - $i + 1;
-    }
+.flexed.granny {
+  $stitchHeight: 20px;
+  $stitchWidth: $stitchHeight;
+  .crow:nth-child(2n) {
+    margin-top: $stitchHeight;
   }
-}
-
-@mixin interlaced-snake-row-grid($rows) {
-  grid-template-rows: repeat(2*$rows, auto);
-
-  $repeat: $rows*2;
-  @for $i from 1 through $rows {
-    & > :nth-child(#{$repeat}n + #{$rows + $i}) {
-      grid-row: $repeat - 2*$i + 1;
-    }
-  }
-
-  :nth-child(n + #{$rows + 1}):nth-child(-n + #{2*$rows}) {
-    grid-column-start: 2;
-  }
-
-  > * {
-    grid-column-end: span 2;
-  }
-}
-
-@mixin snakeskin($row-height, $column-width) {
-  display: grid;
-  grid-auto-columns: $column-width;
-  grid-auto-flow: column dense;
-  > * {
-    height: $row-height;
-  }
-}
-
-.grid.stacked {
-  @include snake-row-grid($crochetRowLength);
-  @include snakeskin(12px, 24px);
-}
-
-.grid.v-stitch {
-  @include snake-row-grid($crochetRowLength);
-  @include snakeskin(20px, 20px);
-}
-.grid.moss {
-  @include interlaced-snake-row-grid($crochetRowLength);
-  @include snakeskin(12px, 14px);
   .stitch {
-    margin: 1px;
+    box-sizing: border-box;
     border: 1px solid black;
-  }
-}
-
-.grid.granny {
-  @include interlaced-snake-row-grid($crochetRowLength);
-  @include snakeskin(18px, 18px);
-  
-  > * {
-    margin: 0 7px;
-    border: 1px solid black;
-  }
-}
-
-.grid.shell {
-  @include interlaced-snake-row-grid($crochetRowLength);
-  @include snakeskin(25px, 10px);
-
-  .stitch {
-    margin: -4px 2px;
+    height: $stitchHeight;
+    width: $stitchWidth;
+    margin-top: $stitchHeight;
+    margin-right: -.2*$stitchWidth;
   }
 }
