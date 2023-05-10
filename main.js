@@ -8,7 +8,9 @@ const colorConfig = [
   {color: "#FF6B6B", length: 2},
   {color: "#EEEEEE", length: 13},
 ]
-const stitchesPerCrow = 11;
+
+//crow means crocheted row
+const stitchesPerCrow = 10;
 
 
 let crowsOfStitches = ""
@@ -21,20 +23,20 @@ for (var i = 0; i < 40; i++) {
 }
 
 document.querySelector('#app').innerHTML = `
-<p>Adjust the variables in the SCSS in order to preview what your planned pooling pattern could look like with different row lengths</p>
-<div class="swatch flexed v-stitch" id="vstitch-pooler">
+<p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
+<div class="swatch v-stitch" id="vstitch-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch flexed shell" id="shell-pooler">
+<div class="swatch shell" id="shell-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch flexed stacked" id="stacked-pooler">
+<div class="swatch stacked" id="stacked-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch flexed moss" id="moss-pooler">
+<div class="swatch moss" id="moss-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch flexed granny" id="granny-pooler">
+<div class="swatch granny" id="granny-pooler">
 ${crowsOfStitches}
 </div>
 `

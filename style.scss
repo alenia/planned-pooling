@@ -1,26 +1,5 @@
 .swatch {
   margin: 5px 0;
-}
-
-.shell .stitch {
-  clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
-}
-
-.v-stitch .stitch {
-  clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
-}
-
-.stacked .stitch {
-  margin: 1px;
-  border: 1px solid black;
-}
-
-.flexed.stacked .stitch {
-  height: 12px;
-  width: 20px;
-}
-
-.flexed {
   display: flex;
   flex-direction: row;
   .crow {
@@ -33,14 +12,22 @@
   }
 }
 
-.flexed.v-stitch {
+.swatch.stacked .stitch {
+  margin: 1px;
+  border: 1px solid black;
+  height: 12px;
+  width: 20px;
+}
+
+.swatch.v-stitch {
   .stitch {
     width: 20px;
     height: 20px;
+    clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
   }
 }
 
-.flexed.shell {
+.swatch.shell {
   $stitchHeight: 25px;
   $stitchWidth: 16px;
   $stitchSpacingVertical: 2px;
@@ -53,10 +40,11 @@
     margin-top: $stitchSpacingVertical;
     margin-bottom: $stitchSpacingVertical;
     margin-right: -.37 * $stitchWidth;
+    clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
   }
 }
 
-.flexed.moss {
+.swatch.moss {
   $stitchHeight: 14px;
   $stitchWidth: 26px;
   $stitchSpacingVertical: 1px;
@@ -75,7 +63,7 @@
   }
 }
 
-.flexed.granny {
+.swatch.granny {
   $stitchHeight: 20px;
   $stitchWidth: $stitchHeight;
   .crow:nth-child(2n) {
