@@ -10,6 +10,16 @@
   clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
 }
 
+.stacked .stitch {
+  margin: 1px;
+  border: 1px solid black;
+}
+
+.flexed.stacked .stitch {
+  height: 12px;
+  width: 20px;
+}
+
 .flexed {
   display: flex;
   flex-direction: row;
@@ -38,6 +48,25 @@
     margin: 2px -3px;
     width: 16px;
     height: 25px;
+  }
+}
+
+.flexed.moss {
+  $stitchHeight: 14px;
+  $stitchWidth: 26px;
+  $stitchSpacingVertical: 1px;
+  .crow:nth-child(2n) {
+    margin-top: $stitchHeight + $stitchSpacingVertical;
+  }
+  .stitch {
+    box-sizing: border-box;
+    border: 1px solid black;
+    height: $stitchHeight;
+    width: $stitchWidth;
+    margin-top: $stitchHeight;
+    margin-right: -1/2*$stitchWidth;
+    margin-bottom: $stitchSpacingVertical * 2;
+    margin-left: 1px;
   }
 }
 
@@ -86,12 +115,7 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
 
 .grid.stacked {
   @include snake-row-grid($crochetRowLength);
-  @include snakeskin(12px, 20px);
-
-  > * {
-    margin: 1px;
-    border: 1px solid black;
-  }
+  @include snakeskin(12px, 24px);
 }
 
 .grid.v-stitch {
@@ -101,9 +125,8 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
 .grid.moss {
   @include interlaced-snake-row-grid($crochetRowLength);
   @include snakeskin(12px, 14px);
-  
-  > * {
-    margin: 1px 3px;
+  .stitch {
+    margin: 1px;
     border: 1px solid black;
   }
 }

@@ -33,13 +33,13 @@ ${crowsOfStitches}
 <div class="swatch flexed shell" id="shell-pooler">
 ${crowsOfStitches}
 </div>
-<div class="swatch grid shell" id="shell-pooler2">
-${manyDivs}
+<div class="swatch flexed stacked" id="stacked-pooler">
+${crowsOfStitches}
 </div>
-<div class="swatch grid stacked" id="stacked-pooler">
-${manyDivs}
+<div class="swatch flexed moss" id="moss-pooler">
+${crowsOfStitches}
 </div>
-<div class="swatch grid moss" id="moss-pooler">
+<div class="swatch grid moss" id="temp">
 ${manyDivs}
 </div>
 <div class="swatch grid granny" id="granny-pooler">
@@ -55,4 +55,4 @@ paintStitches(document.querySelector('#moss-pooler'), colorConfig)
 paintStitches(document.querySelector('#granny-pooler'), colorConfig)
 paintStitches(document.querySelector('#vstitch-pooler'), colorConfig)
 paintStitches(document.querySelector('#shell-pooler'), colorConfig)
-paintStitches(document.querySelector('#shell-pooler2'), colorConfig)
+paintStitches(document.querySelector('#temp'), colorConfig)
