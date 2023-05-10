@@ -41,13 +41,18 @@
 }
 
 .flexed.shell {
+  $stitchHeight: 25px;
+  $stitchWidth: 16px;
+  $stitchSpacingVertical: 2px;
   .crow:nth-child(2n) {
-    margin-top: 15px;
+    margin-top: $stitchHeight/2 + $stitchSpacingVertical;
   }
   .stitch {
-    margin: 2px -3px;
-    width: 16px;
-    height: 25px;
+    height: $stitchHeight;
+    width: $stitchWidth;
+    margin-top: $stitchSpacingVertical;
+    margin-bottom: $stitchSpacingVertical;
+    margin-right: -.37 * $stitchWidth;
   }
 }
 
@@ -63,9 +68,9 @@
     border: 1px solid black;
     height: $stitchHeight;
     width: $stitchWidth;
-    margin-top: $stitchHeight;
+    margin-top: $stitchHeight + $stitchSpacingVertical;
+    margin-bottom: $stitchSpacingVertical;
     margin-right: -1/2*$stitchWidth;
-    margin-bottom: $stitchSpacingVertical * 2;
     margin-left: 1px;
   }
 }

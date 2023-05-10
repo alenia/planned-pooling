@@ -33,14 +33,14 @@ ${crowsOfStitches}
 <div class="swatch flexed shell" id="shell-pooler">
 ${crowsOfStitches}
 </div>
+<div class="swatch grid shell" id="temp">
+${manyDivs}
+</div>
 <div class="swatch flexed stacked" id="stacked-pooler">
 ${crowsOfStitches}
 </div>
 <div class="swatch flexed moss" id="moss-pooler">
 ${crowsOfStitches}
-</div>
-<div class="swatch grid moss" id="temp">
-${manyDivs}
 </div>
 <div class="swatch grid granny" id="granny-pooler">
 ${manyDivs}
