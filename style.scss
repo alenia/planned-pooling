@@ -1,7 +1,10 @@
 $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 22, 23
 
-//taken from https://gist.github.com/IngoVals/0efd31cbe56241486fb9adb87ef6fd81
-@mixin snake-rows($rows) {
+//some code adapted from https://gist.github.com/IngoVals/0efd31cbe56241486fb9adb87ef6fd81
+
+@mixin snake-row-grid($rows) {
+  grid-template-rows: repeat($rows, auto);
+
   $repeat: $rows*2;
   @for $i from 1 through $rows {
     & > :nth-child(#{$repeat}n + #{$rows + $i}) {
@@ -9,27 +12,17 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
     }
   }
 }
-@mixin interlaced-snake-rows($rows) {
+
+@mixin interlaced-snake-row-grid($rows) {
+  grid-template-rows: repeat(2*$rows, auto);
+
   $repeat: $rows*2;
   @for $i from 1 through $rows {
     & > :nth-child(#{$repeat}n + #{$rows + $i}) {
       grid-row: $repeat - 2*$i + 1;
     }
   }
-}
 
-// A mixin to include inside container with uniformly sizes columns and rows and a snake wrap
-// usage: .container { @include snake-row-grid(10, 50px, 200px);
-
-@mixin snake-row-grid($rows) {
-  grid-template-rows: repeat($rows, auto);
-  @include snake-rows($rows);
-}
-
-@mixin interlaced-snake-row-grid($rows) {
-  grid-template-rows: repeat(2*$rows, auto);
-
-  @include interlaced-snake-rows($rows);
   :nth-child(n + #{$rows + 1}):nth-child(-n + #{2*$rows}) {
     grid-column-start: 2;
   }
@@ -52,17 +45,7 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
   margin: 5px 0;
 }
 
-.moss {
-  @include interlaced-snake-row-grid($crochetRowLength);
-  @include snakeskin(12px, 14px);
-  
-  > * {
-    margin: 1px 3px;
-    border: 1px solid black;
-  }
-}
-
-.stacked {
+.grid.stacked {
   @include snake-row-grid($crochetRowLength);
   @include snakeskin(12px, 20px);
 
@@ -72,7 +55,49 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
   }
 }
 
-.granny {
+.grid.v-stitch {
+  @include snake-row-grid($crochetRowLength);
+  @include snakeskin(20px, 20px);
+}
+
+.flexed {
+  display: flex;
+  flex-direction: row;
+  .crow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .crow:nth-child(2n) {
+    flex-direction: column-reverse;
+  }
+
+  .crow .stitch {
+  }
+}
+
+.flexed.v-stitch {
+  .stitch {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.v-stitch .stitch {
+  clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
+}
+
+.grid.moss {
+  @include interlaced-snake-row-grid($crochetRowLength);
+  @include snakeskin(12px, 14px);
+  
+  > * {
+    margin: 1px 3px;
+    border: 1px solid black;
+  }
+}
+
+.grid.granny {
   @include interlaced-snake-row-grid($crochetRowLength);
   @include snakeskin(18px, 18px);
   
@@ -82,21 +107,12 @@ $crochetRowLength: 11; //crochet row, which is grid column. Try 10, 11, 12, 21, 
   }
 }
 
-.v-stitch {
-  @include snake-row-grid($crochetRowLength);
-  @include snakeskin(20px, 20px);
-  
-  > * {
-    clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
-  }
-}
-
-.shell {
+.grid.shell {
   @include interlaced-snake-row-grid($crochetRowLength);
   @include snakeskin(25px, 10px);
+}
 
-  > * {
-    margin: -4px 2px;
-    clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
-  }
+.shell .stitch {
+  margin: -4px 2px;
+  clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
 }

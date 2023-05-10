@@ -1,29 +1,6 @@
 import './style.scss'
 import { paintStitches } from './color.js'
 
-let manyDivs = ""
-for (var i = 0; i <= 500; i++) {
-      manyDivs += (`<div></div>`);
-    }
-document.querySelector('#app').innerHTML = `
-<p>Adjust the variables in the SCSS in order to preview what your planned pooling pattern could look like with different row lengths</p>
-<div class="moss" id="pooler1">
-${manyDivs}
-</div>
-<div class="swatch stacked" id="pooler2">
-${manyDivs}
-</div>
-<div class="swatch granny" id="pooler3">
-${manyDivs}
-</div>
-<div class="swatch v-stitch" id="pooler4">
-${manyDivs}
-</div>
-<div class="swatch shell" id="pooler5">
-${manyDivs}
-</div>
-`
-
 const colorConfig = [
   {color: "#C274B3", length: 2},
   {color: "#4ECDC4", length: 3},
@@ -31,9 +8,44 @@ const colorConfig = [
   {color: "#FF6B6B", length: 2},
   {color: "#EEEEEE", length: 13},
 ]
+const stitchesPerRow = 11;
 
-paintStitches(document.querySelector('#pooler1'), colorConfig)
-paintStitches(document.querySelector('#pooler2'), colorConfig)
-paintStitches(document.querySelector('#pooler3'), colorConfig)
-paintStitches(document.querySelector('#pooler4'), colorConfig)
-paintStitches(document.querySelector('#pooler5'), colorConfig)
+
+let manyDivs = ""
+for (var i = 0; i <= 500; i++) {
+  manyDivs += (`<div class="stitch"></div>`);
+}
+
+let crowsOfStitches = ""
+for (var i = 0; i <= 40; i++) {
+  crowsOfStitches += ('<div class="crow">');
+  for (var j = 0; j < stitchesPerRow; j++ ) {
+    crowsOfStitches += (`<div class="stitch"></div>`);
+  }
+  crowsOfStitches += ('</div>');
+}
+
+document.querySelector('#app').innerHTML = `
+<p>Adjust the variables in the SCSS in order to preview what your planned pooling pattern could look like with different row lengths</p>
+<div class="swatch flexed v-stitch" id="vstitch-pooler">
+${crowsOfStitches}
+</div>
+<div class="swatch grid stacked" id="stacked-pooler">
+${manyDivs}
+</div>
+<div class="swatch grid moss" id="moss-pooler">
+${manyDivs}
+</div>
+<div class="swatch grid granny" id="granny-pooler">
+${manyDivs}
+</div>
+<div class="swatch grid shell" id="shell-pooler">
+${manyDivs}
+</div>
+`
+
+paintStitches(document.querySelector('#stacked-pooler'), colorConfig)
+paintStitches(document.querySelector('#moss-pooler'), colorConfig)
+paintStitches(document.querySelector('#granny-pooler'), colorConfig)
+paintStitches(document.querySelector('#vstitch-pooler'), colorConfig)
+paintStitches(document.querySelector('#shell-pooler'), colorConfig)
