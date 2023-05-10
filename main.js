@@ -24,16 +24,16 @@ for (var i = 0; i < 40; i++) {
 
 document.querySelector('#app').innerHTML = `
 <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
-<div class="swatch v-stitch" id="vstitch-pooler">
-${crowsOfStitches}
-</div>
-<div class="swatch shell" id="shell-pooler">
-${crowsOfStitches}
-</div>
 <div class="swatch stacked" id="stacked-pooler">
 ${crowsOfStitches}
 </div>
 <div class="swatch moss" id="moss-pooler">
+${crowsOfStitches}
+</div>
+<div class="swatch v-stitch" id="vstitch-pooler">
+${crowsOfStitches}
+</div>
+<div class="swatch shell" id="shell-pooler">
 ${crowsOfStitches}
 </div>
 <div class="swatch granny" id="granny-pooler">
