@@ -3,23 +3,23 @@ import { paintStitches } from './color.js'
 
 let manyDivs = ""
 for (var i = 0; i <= 500; i++) {
-      manyDivs += ('<div></div>');
+      manyDivs += (`<div></div>`);
     }
 document.querySelector('#app').innerHTML = `
 <p>Adjust the variables in the SCSS in order to preview what your planned pooling pattern could look like with different row lengths</p>
 <div class="moss" id="pooler1">
 ${manyDivs}
 </div>
-<div class="stacked" id="pooler2">
+<div class="swatch stacked" id="pooler2">
 ${manyDivs}
 </div>
-<div class="granny" id="pooler3">
+<div class="swatch granny" id="pooler3">
 ${manyDivs}
 </div>
-<div class="v-stitch" id="pooler4">
+<div class="swatch v-stitch" id="pooler4">
 ${manyDivs}
 </div>
-<div class="shell" id="pooler5">
+<div class="swatch shell" id="pooler5">
 ${manyDivs}
 </div>
 `
