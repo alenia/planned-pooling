@@ -1,5 +1,5 @@
 import './style.scss'
-import { paintStitches } from './color.js'
+import { buildSwatch } from './swatch.js'
 
 const colorConfig = [
   {color: "#C274B3", length: 2},
@@ -13,36 +13,17 @@ const colorConfig = [
 const stitchesPerCrow = 10;
 
 
-let crowsOfStitches = ""
-for (var i = 0; i < 40; i++) {
-  crowsOfStitches += ('<div class="crow">');
-  for (var j = 0; j < stitchesPerCrow; j++ ) {
-    crowsOfStitches += (`<div class="stitch"></div>`);
-  }
-  crowsOfStitches += ('</div>');
-}
-
 document.querySelector('#app').innerHTML = `
 <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
-<div class="swatch stacked" id="stacked-pooler">
-${crowsOfStitches}
-</div>
-<div class="swatch moss" id="moss-pooler">
-${crowsOfStitches}
-</div>
-<div class="swatch v-stitch" id="vstitch-pooler">
-${crowsOfStitches}
-</div>
-<div class="swatch shell" id="shell-pooler">
-${crowsOfStitches}
-</div>
-<div class="swatch granny" id="granny-pooler">
-${crowsOfStitches}
-</div>
+<div id="stacked-pooler"></div>
+<div id="moss-pooler"></div>
+<div id="vstitch-pooler"></div>
+<div id="shell-pooler"></div>
+<div id="granny-pooler"></div>
 `
 
-paintStitches(document.querySelector('#stacked-pooler'), colorConfig)
-paintStitches(document.querySelector('#moss-pooler'), colorConfig)
-paintStitches(document.querySelector('#granny-pooler'), colorConfig)
-paintStitches(document.querySelector('#vstitch-pooler'), colorConfig)
-paintStitches(document.querySelector('#shell-pooler'), colorConfig)
+buildSwatch(document.querySelector('#stacked-pooler'), { colorConfig, stitchesPerCrow, stitchPattern: 'stacked'})
+buildSwatch(document.querySelector('#moss-pooler'), { colorConfig, stitchesPerCrow, stitchPattern: 'moss'})
+buildSwatch(document.querySelector('#granny-pooler'), { colorConfig, stitchesPerCrow, stitchPattern: 'granny'})
+buildSwatch(document.querySelector('#vstitch-pooler'), { colorConfig, stitchesPerCrow, stitchPattern: 'v-stitch'})
+buildSwatch(document.querySelector('#shell-pooler'), { colorConfig, stitchesPerCrow, stitchPattern: 'shell'})
