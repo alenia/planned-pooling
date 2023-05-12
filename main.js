@@ -5,11 +5,13 @@ document.querySelector('#app').innerHTML = `
 <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
 <div id="sc-hat"></div>
 <div id="shell-hat"></div>
+<div id="shell-hat2" class="vertical"></div>
 <div id="rmr1"></div>
-<div id="rmr2" style="transform: rotate(90deg) translate(413px, 435px)"></div>
-<div id="moss-pooler"></div>
+<div id="rmr2" class="vertical"></div>
 <div id="vstitch-pooler"></div>
+<div id="vstitch-pooler2" class="vertical"></div>
 <div id="granny-pooler"></div>
+<div id="granny-pooler2" class="vertical"></div>
 `
 
 const orange = "#fcd67c";
@@ -59,8 +61,10 @@ const colorConfig = [
 
 buildSwatch(document.querySelector('#sc-hat'), { colorConfig: colorConfigHatSC, stitchesPerCrow: 29, stitchPattern: 'stacked'})
 buildSwatch(document.querySelector('#shell-hat'), { colorConfig: colorConfigHatShell, stitchesPerCrow: 11, stitchPattern: 'shell'})
+buildSwatch(document.querySelector('#shell-hat2'), { colorConfig: colorConfigHatShell, stitchesPerCrow: 11, stitchPattern: 'shell'})
 buildSwatch(document.querySelector('#rmr1'), { colorConfig: colorConfigScarf1, stitchesPerCrow: 25, crows: 36, stitchPattern: 'moss'})
 buildSwatch(document.querySelector('#rmr2'), { colorConfig: colorConfigScarf2, stitchesPerCrow: 18, stitchPattern: 'moss'})
-buildSwatch(document.querySelector('#moss-pooler'), { colorConfig, stitchesPerCrow: 10, stitchPattern: 'moss'})
 buildSwatch(document.querySelector('#granny-pooler'), { colorConfig, stitchesPerCrow: 10, stitchPattern: 'granny'})
+buildSwatch(document.querySelector('#granny-pooler2'), { colorConfig, stitchesPerCrow: 10, stitchPattern: 'granny'})
 buildSwatch(document.querySelector('#vstitch-pooler'), { colorConfig, stitchesPerCrow: 10, stitchPattern: 'v-stitch'})
+buildSwatch(document.querySelector('#vstitch-pooler2'), { colorConfig, stitchesPerCrow: 10, stitchPattern: 'v-stitch'})

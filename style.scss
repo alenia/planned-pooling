@@ -12,11 +12,30 @@
   }
 }
 
-.swatch.stacked .stitch {
-  margin: 1px;
-  border: 1px solid black;
-  height: 12px;
-  width: 20px;
+.swatch.vertical {
+  width: fit-content;
+  flex-direction: column;
+  .crow {
+    flex-direction: row;
+  }
+  .crow:nth-child(2n) {
+    flex-direction: row-reverse;
+  }
+}
+
+.swatch.stacked {
+  .stitch {
+    margin: 1px;
+    border: 1px solid black;
+    height: 12px;
+    width: 20px;
+  }
+  &.vertical {
+    .stitch {
+      width: 12px;
+      height: 20px;
+    }
+  }
 }
 
 .swatch.v-stitch {
@@ -25,56 +44,94 @@
     height: 20px;
     clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
   }
+  &.vertical .stitch {
+    clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
+  }
 }
 
 .swatch.shell {
-  $stitchHeight: 25px;
-  $stitchWidth: 16px;
-  $stitchSpacingVertical: 2px;
+  $stitchWidth: 35px;
+  $stitchHeight: 20px;
+  $stitchSpacing: 2px;
   .crow:nth-child(2n) {
-    margin-top: $stitchHeight/2 + $stitchSpacingVertical;
+    margin: $stitchWidth/2 + $stitchSpacing 0 0 0;
   }
   .stitch {
-    height: $stitchHeight;
-    width: $stitchWidth;
-    margin-top: $stitchSpacingVertical;
-    margin-bottom: $stitchSpacingVertical;
-    margin-right: -.37 * $stitchWidth;
+    height: $stitchWidth;
+    width: $stitchHeight;
+    margin-top: $stitchSpacing;
+    margin-bottom: $stitchSpacing;
+    margin-right: -.37 * $stitchHeight;
     clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
+  }
+  &.vertical {
+    .crow:nth-child(2n) {
+      margin: 0 0 0 $stitchWidth/2 + $stitchSpacing;
+    }
+    .stitch {
+      width: $stitchWidth;
+      height: $stitchHeight;
+      margin-left: $stitchSpacing;
+      margin-right: $stitchSpacing;
+      margin-top: -.37 * $stitchHeight;
+      margin-bottom: 0;
+      clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
+    }
   }
 }
 
 .swatch.moss {
-  $stitchHeight: 14px;
-  $stitchWidth: 28px;
-  $stitchSpacingVertical: 1px;
+  $stitchHeight: 28px;
+  $stitchWidth: 14px;
+  $spacing: 1px;
   .crow:nth-child(2n) {
-    margin-top: $stitchHeight + $stitchSpacingVertical;
+    margin: $stitchWidth + $spacing 0 0 0;
   }
   .stitch {
     box-sizing: border-box;
     border: 1px solid black;
-    height: $stitchHeight;
-    width: $stitchWidth;
-    margin-top: $stitchHeight + $stitchSpacingVertical;
-    margin-bottom: $stitchSpacingVertical;
-    margin-right: -1/2*$stitchWidth;
-    margin-left: 1px;
+    height: $stitchWidth;
+    width: $stitchHeight;
+    margin-top: $stitchWidth + $spacing;
+    margin-bottom: $spacing;
+    margin-right: -1/2*$stitchHeight;
+    margin-left: $spacing;
+  }
+  &.vertical {
+    .crow:nth-child(2n) {
+      margin: 0 0 0 $stitchWidth + $spacing;
+    }
+    .stitch {
+      width: $stitchWidth;
+      height: $stitchHeight;
+      margin-left: $stitchWidth + $spacing;
+      margin-right: $spacing;
+      margin-bottom: -1/2*$stitchHeight;
+      margin-top: $spacing;
+    }
   }
 }
 
 .swatch.granny {
   $stitchHeight: 20px;
-  $stitchWidth: $stitchHeight;
   .crow:nth-child(2n) {
-    margin-top: $stitchHeight;
+    margin: $stitchHeight 0 0 0;
   }
   .stitch {
     box-sizing: border-box;
     border: 1px solid black;
     height: $stitchHeight;
-    width: $stitchWidth;
+    width: $stitchHeight;
     margin-top: $stitchHeight;
-    margin-right: -.2*$stitchWidth;
+    margin-right: -.2*$stitchHeight;
+  }
+
+  &.vertical {
+    .crow:nth-child(2n) {
+      margin: 0 0 0 $stitchHeight;
+    }
+    .stitch {
+      margin: 0 $stitchHeight -.2*$stitchHeight 0;
+    }
   }
 }
