@@ -23,7 +23,7 @@
   }
 }
 
-.swatch.stacked {
+.swatch.stacked, .swatch.ripple {
   .stitch {
     margin: 1px;
     border: 1px solid black;
@@ -111,6 +111,47 @@
         transform: rotate(60deg);
         transform-origin: bottom center;
       }
+    }
+  }
+}
+
+.swatch.ripple {
+  $rot: 20deg;
+  &.vertical {
+    .crow:nth-child(2n) .cluster {
+      flex-direction: row-reverse;
+    }
+    .cluster {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  .crow:nth-child(2n) .cluster {
+    flex-direction: column-reverse;
+  }
+
+  .cluster {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
+    transform: rotate($rot);
+    .stitch:first-child {
+      transform: rotate(-1 * $rot);
+    }
+    .stitch:last-child {
+      transform: rotate(-1 * $rot);
+    }
+  }
+
+  .crow:nth-child(2n) .cluster:nth-last-child(2n), .crow:nth-child(2n+1) .cluster:nth-child(2n) {
+    transform: rotate(-1 * $rot);
+    .stitch:first-child {
+      transform: rotate($rot);
+    }
+    .stitch:last-child {
+      transform: rotate($rot);
     }
   }
 }

@@ -14,6 +14,9 @@ document.querySelector('#app').innerHTML = `
 <div id="granny-pooler2" class="vertical"></div>
 <div id="jasmine-pooler"></div>
 <div id="jasmine-pooler2" class="vertical"></div>
+<div id="ripple-pooler"></div>
+<div id="ripple-pooler2"></div>
+<div id="ripple-pooler3" class="vertical"></div>
 `
 
 const orange = "#fcd67c";
@@ -72,3 +75,6 @@ buildSwatch(document.querySelector('#vstitch-pooler'), { colorConfig, crowLength
 buildSwatch(document.querySelector('#vstitch-pooler2'), { colorConfig, crowLength: 10, stitchPattern: 'v-stitch'})
 buildSwatch(document.querySelector('#jasmine-pooler'), { colorConfig, crowLength: 11, stitchPattern: 'jasmine' })
 buildSwatch(document.querySelector('#jasmine-pooler2'), { colorConfig, crowLength: 11, stitchPattern: 'jasmine' })
+buildSwatch(document.querySelector('#ripple-pooler'), { colorConfig, crowLength: 3, stitchPattern: 'ripple' })
+buildSwatch(document.querySelector('#ripple-pooler2'), { colorConfig, crowLength: 4, stitchPattern: 'ripple' })
+buildSwatch(document.querySelector('#ripple-pooler3'), { colorConfig, crowLength: 4, stitchPattern: 'ripple' })

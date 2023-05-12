@@ -1,12 +1,14 @@
 import { paintStitches } from './color.js'
-const clusterMap = { jasmine: 3}
+const clusterMap = { jasmine: 3, ripple: 5}
 export function buildSwatch(swatch, { colorConfig, crowLength, stitchPattern, crows = 40 }) {
   let cont = ""
   const clusterLength = clusterMap[stitchPattern];
   if(clusterLength) {
     for (var i = 0; i < crows; i++) {
       cont += ('<div class="crow">');
-      cont += '<div class="cluster"><div class="stitch"></div></div>'; //TODO: this is just for Jasmine
+      if(stitchPattern === "jasmine") { //TODO: move this to config
+        cont += '<div class="cluster"><div class="stitch"></div></div>';
+      }
       cont += `<div class="cluster">${('<div class="stitch"></div>').repeat(clusterLength)}</div>`.repeat(crowLength);
       cont += ('</div>');
     }
