@@ -48,6 +48,72 @@
     clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
   }
 }
+.swatch.jasmine {
+  $stitchHeight: 30px;
+  .stitch {
+    width: 10px;
+    height: $stitchHeight;
+    border: 1px solid black;
+    border-radius: 40%;
+    position: absolute;
+  }
+
+  .cluster {
+    position: relative;
+    width: $stitchHeight;
+    height: $stitchHeight;
+  }
+  &.vertical {
+    .stitch {
+      width: $stitchHeight;
+      height: 10px;
+    }
+    .crow:nth-child(2n) {
+      margin-left: $stitchHeight/2;
+      .stitch:nth-child(3n+1) {
+        transform: rotate(-60deg);
+        transform-origin: center right;
+      }
+      .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(60deg);
+        transform-origin: center left;
+      }
+    }
+    .crow:nth-child(2n+1) {
+      .stitch:nth-child(3n+1) {
+        transform: rotate(60deg);
+        transform-origin: center left;
+      }
+      .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(-60deg);
+        transform-origin: center right;
+      }
+    }
+  }
+  &:not(.vertical) {
+    .crow:nth-child(2n) {
+      margin-top: $stitchHeight/2;
+      .stitch:nth-child(3n+1) {
+        transform: rotate(60deg);
+        transform-origin: bottom center;
+      }
+      .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(-60deg);
+        transform-origin: top center;
+      }
+    }
+    .crow:nth-child(2n+1) {
+      .stitch:nth-child(3n+1) {
+        transform: rotate(-60deg);
+        transform-origin: top center;
+      }
+      .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(60deg);
+        transform-origin: bottom center;
+      }
+    }
+  }
+}
 
 .swatch.shell {
   $stitchWidth: 35px;
