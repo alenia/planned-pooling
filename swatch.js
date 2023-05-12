@@ -1,8 +1,8 @@
 import { paintStitches } from './color.js'
 
-export function buildSwatch(swatch, { colorConfig, stitchesPerCrow, stitchPattern }) {
+export function buildSwatch(swatch, { colorConfig, stitchesPerCrow, stitchPattern, crows = 40 }) {
   let crowsOfStitches = ""
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < crows; i++) {
     crowsOfStitches += ('<div class="crow">');
     for (var j = 0; j < stitchesPerCrow; j++ ) {
       crowsOfStitches += (`<div class="stitch"></div>`);
