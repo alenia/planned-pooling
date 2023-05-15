@@ -23,9 +23,8 @@
   }
 }
 
-.swatch.stacked, .swatch.ripple, .swatch.vstitchCluster {
+.swatch {
   .stitch {
-    margin: 1px;
     border: 1px solid black;
     height: 12px;
     width: 20px;
@@ -38,10 +37,17 @@
   }
 }
 
+.swatch.stacked, .swatch.ripple, .swatch.vstitchCluster {
+  .stitch {
+    margin: 1px;
+  }
+}
+
 .swatch.v-stitch {
   .stitch {
     width: 20px;
     height: 20px;
+    border: 0;
     clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
   }
   &.vertical .stitch {
@@ -173,6 +179,7 @@
     margin-top: $stitchSpacing;
     margin-bottom: $stitchSpacing;
     margin-right: -.37 * $stitchHeight;
+    border: 0;
     clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
   }
   &.vertical {
