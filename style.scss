@@ -23,7 +23,7 @@
   }
 }
 
-.swatch.stacked, .swatch.ripple {
+.swatch.stacked, .swatch.ripple, .swatch.vstitchCluster {
   .stitch {
     margin: 1px;
     border: 1px solid black;
@@ -115,8 +115,12 @@
   }
 }
 
-.swatch.ripple {
-  $rot: 20deg;
+.swatch.ripple, .swatch.vstitchCluster {
+  .cluster {
+    display: flex;
+    flex-direction: column;
+  }
+
   &.vertical {
     .crow:nth-child(2n) .cluster {
       flex-direction: row-reverse;
@@ -126,15 +130,15 @@
       flex-direction: row;
     }
   }
+
   .crow:nth-child(2n) .cluster {
     flex-direction: column-reverse;
   }
 
-  .cluster {
-    display: flex;
-    flex-direction: column;
-  }
+}
 
+.swatch.ripple {
+  $rot: 20deg;
   .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
     transform: rotate($rot);
     .stitch:first-child {
@@ -240,5 +244,19 @@
     .stitch {
       margin: 0 $stitchHeight -.2*$stitchHeight 0;
     }
+  }
+}
+
+.vstitchCluster {
+  $rot: 30deg;
+  .cluster .stitch:first-child, .crow:nth-child(2n) .cluster .stitch:last-child {
+    transform: rotate(-1* $rot);
+    transform-origin: bottom center;
+  }
+  .cluster .stitch:last-child, .crow:nth-child(2n) .cluster .stitch:first-child {
+    transform: rotate($rot);
+  }
+  .cluster .stitch:only-child {
+    transform: rotate(0) !important;
   }
 }
