@@ -121,7 +121,7 @@
   }
 }
 
-.swatch.ripple, .swatch.vstitchCluster {
+.swatch.clustered {
   .cluster {
     display: flex;
     flex-direction: column;
@@ -267,3 +267,36 @@
     transform: rotate(0) !important;
   }
 }
+
+.ablockCluster {
+  $clusterHeight: 45px;
+  $rot: 45deg;
+
+  .stitch, &.vertical .stitch {
+    height: auto;
+    width: auto;
+    flex-grow: 1;
+  }
+  .crow:nth-child(2n) {
+    margin: .7 * $clusterHeight -.3 * $clusterHeight 0;
+    .cluster {
+      transform: rotate(-1 * $rot);
+    }
+  }
+  .cluster {
+    height: $clusterHeight;
+    width: $clusterHeight;
+    margin-top: .4 * $clusterHeight;
+    transform: rotate($rot);
+  }
+
+  &.vertical {
+    .crow:nth-child(2n) {
+      margin: -.3 * $clusterHeight 0 -.3 * $clusterHeight .7 * $clusterHeight;
+    }
+    .cluster {
+      margin: 0 .4 * $clusterHeight 0 0;
+    }
+  }
+}
+
