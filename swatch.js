@@ -1,6 +1,10 @@
 import { paintStitches } from './color.js'
 const clusterMap = { jasmine: 3, ripple: 5, vstitchCluster: 2, ablockCluster: 4}
-export function buildSwatch(swatch, { colorConfig, crowLength, stitchPattern, crows = 40 }) {
+export function buildSwatch(swatch, { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0 }) {
+  if(!swatch) {
+    console.warn(`no swatch for ${stitchPattern}`);
+    return;
+  }
   let cont = ""
   const clusterLength = clusterMap[stitchPattern];
   if(clusterLength) {
@@ -26,5 +30,5 @@ export function buildSwatch(swatch, { colorConfig, crowLength, stitchPattern, cr
     swatch.classList.add('clustered');
   }
   swatch.innerHTML = cont;
-  paintStitches(swatch, colorConfig);
+  paintStitches(swatch, colorConfig, { colorShift } );
 }
