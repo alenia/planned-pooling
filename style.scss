@@ -21,6 +21,17 @@
   .crow:nth-child(2n) {
     flex-direction: row-reverse;
   }
+
+  &.swap {
+    transform: rotateY(180deg) ;
+    margin-left: -20px;
+    /*.crow:nth-child(2n) {*/
+      /*flex-direction: row;*/
+    /*}*/
+    /*.crow:nth-child(2n + 1) {*/
+      /*flex-direction: row-reverse;*/
+    /*}*/
+  }
 }
 
 .swatch {
@@ -291,6 +302,12 @@
   }
 
   &.vertical {
+    &.overlapping {
+      margin-bottom: -20px;
+      .crow:nth-child(2n) {
+        margin: -.42 * $clusterHeight 0 -.42 * $clusterHeight .82 * $clusterHeight;
+      }
+    }
     .crow:nth-child(2n) {
       margin: -.3 * $clusterHeight 0 -.3 * $clusterHeight .7 * $clusterHeight;
     }
