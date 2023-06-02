@@ -1,9 +1,13 @@
 import './style.scss'
 import { buildSwatch } from './swatch.js'
 
+// <div id="sc-hat"></div>
 document.querySelector('#app').innerHTML = `
 <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
-<div id="sc-hat"></div>
+<div id="hdc-hat" class="vertical"></div>
+<div id="hdc-hat2" class="vertical"></div>
+<div id="hdc-hat3" class="vertical"></div>
+<div id="hdc-hat4" class="vertical"></div>
 <div id="shell-hat"></div>
 <div id="shell-hat2" class="vertical"></div>
 <div id="rmr1"></div>
@@ -32,6 +36,14 @@ const colorConfigHatSC = [
   {color: blue, length: 5},
   {color: cream, length: 4},
   {color: blue, length: 5},
+]
+const colorConfigHatHDC = [
+  {color: orange, length: 4},
+  {color: cream, length: 3},
+  {color: orange, length: 4},
+  {color: blue, length: 3},
+  {color: cream, length: 3},
+  {color: blue, length: 3},
 ]
 const colorConfigHatShell = [
   {color: orange, length: 1},
@@ -68,6 +80,10 @@ const colorConfig = [
 ]
 
 buildSwatch(document.querySelector('#sc-hat'), { colorConfig: colorConfigHatSC, crowLength: 29, stitchPattern: 'stacked'})
+buildSwatch(document.querySelector('#hdc-hat'), { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 6, staggerLengths: true, stitchPattern: 'hdc'})
+buildSwatch(document.querySelector('#hdc-hat2'), { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 10, staggerLengths: true, stitchPattern: 'hdc'})
+buildSwatch(document.querySelector('#hdc-hat3'), { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 8, staggerLengths: true, stitchPattern: 'hdc'})
+buildSwatch(document.querySelector('#hdc-hat4'), { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 18, staggerLengths: true, stitchPattern: 'hdc'})
 buildSwatch(document.querySelector('#shell-hat'), { colorConfig: colorConfigHatShell, crowLength: 11, stitchPattern: 'shell'})
 buildSwatch(document.querySelector('#shell-hat2'), { colorConfig: colorConfigHatShell, crowLength: 11, stitchPattern: 'shell'})
 buildSwatch(document.querySelector('#rmr1'), { colorConfig: colorConfigScarf1, crowLength: 25, crows: 36, stitchPattern: 'moss'})
