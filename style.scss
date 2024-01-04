@@ -203,7 +203,7 @@
   $stitchWidth: 14px;
   $spacing: 1px;
   .crow:nth-child(2n) {
-    margin: $stitchWidth + $spacing 0 0 0;
+    margin: $stitchWidth + $spacing 0;
   }
   .stitch {
     box-sizing: border-box;
