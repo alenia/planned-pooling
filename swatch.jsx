@@ -43,25 +43,27 @@ export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40
     return color;
   }
 
+  const buildStitch = (props={}) => <Stitch {...props} color={nextColor()}/>
+
   if(clusterLength) {
       return [...Array(crows)].map((e, i) => (
         <Crow key={i}>
         {
-          clusterConfig.prepend ?  <Cluster><Stitch color={nextColor()}/></Cluster> : ''
+          clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
         {
           [...Array(crowLength)].map((f,j) => (
             <Cluster key={j}>
             {
           [...Array(clusterLength)].map((f,k) => (
-            <Stitch key={k} color={nextColor()}/>)
+            buildStitch({key: k}))
                                     )
             }
             </Cluster>
           ))
         }
         {
-          clusterConfig.append ?  <Cluster><Stitch color={nextColor()}/></Cluster> : ''
+          clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
         </Crow>
       ))
@@ -71,7 +73,7 @@ export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40
       const repeatLength = i % 2 === 1 ? crowLength : crowLength + 1;
       return (<Crow key={i}>
       {
-        [...Array(repeatLength)].map((f,j) => <Stitch key={j} color={nextColor()}/>)
+        [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
       }
       </Crow>)
     })
@@ -79,7 +81,7 @@ export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40
   return [...Array(crows)].map((e, i) => (
     <Crow key={i}>
     {
-      [...Array(crowLength)].map((f,j) => <Stitch key={j} color={nextColor()}/>)
+      [...Array(crowLength)].map((f,j) => buildStitch({key: j}))
     }
     </Crow>
   ))
