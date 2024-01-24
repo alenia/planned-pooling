@@ -1,10 +1,31 @@
 import React from 'react';
 import { nextStitchColorByIndex } from './color.js'
-const clusterMap = { jasmine: 3, ripple: 5, vstitchCluster: 2, ablockCluster: 4}
+
+const clusterConfiguration = { //Todo: make this a class of some sort?
+  jasmine: {
+    stitchCount: 3,
+    prepend: true
+  },
+  ripple: {
+    stitchCount: 5,
+  },
+  vstitchCluster: {
+    stitchCount: 2,
+    prepend: true,
+    append: true
+  },
+  ablockCluster: {
+    stitchCount: 4
+  }
+}
+
 
 
 function Crow (props) {
   return <div className="crow">{props.children}</div>
+}
+function Cluster (props) {
+  return <div className="cluster">{props.children}</div>
 }
 
 function Stitch ({color}) {
@@ -12,8 +33,8 @@ function Stitch ({color}) {
 }
 
 export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
-  let cont = ""
-  const clusterLength = clusterMap[stitchPattern];
+  const clusterConfig = clusterConfiguration[stitchPattern] || {};
+  const clusterLength = clusterConfig.stitchCount;
 
   let stitchIndex = 0;
   const nextColor = () => {
@@ -22,50 +43,52 @@ export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40
     return color;
   }
 
+  if(clusterLength) {
+      return [...Array(crows)].map((e, i) => (
+        <Crow key={i}>
+        {
+          clusterConfig.prepend ?  <Cluster><Stitch color={nextColor()}/></Cluster> : ''
+        }
+        {
+          [...Array(crowLength)].map((f,j) => (
+            <Cluster key={j}>
+            {
+          [...Array(clusterLength)].map((f,k) => (
+            <Stitch key={k} color={nextColor()}/>)
+                                    )
+            }
+            </Cluster>
+          ))
+        }
+        {
+          clusterConfig.append ?  <Cluster><Stitch color={nextColor()}/></Cluster> : ''
+        }
+        </Crow>
+      ))
+  }
+  if(staggerLengths) {
+    return [...Array(crows)].map((e, i) => {
+      const repeatLength = i % 2 === 1 ? crowLength : crowLength + 1;
+      return (<Crow key={i}>
+      {
+        [...Array(repeatLength)].map((f,j) => <Stitch key={j} color={nextColor()}/>)
+      }
+      </Crow>)
+    })
+  }
   return [...Array(crows)].map((e, i) => (
     <Crow key={i}>
     {
       [...Array(crowLength)].map((f,j) => <Stitch key={j} color={nextColor()}/>)
     }
-    </Crow>)
-   )
-//
-   // Make clusters when there are clusters
-   // stagger lengths when they are staggered
-   //
-  //if(clusterLength) {
-    //for (var i = 0; i < crows; i++) {
-      //cont += ('<div class="crow">');
-      //if(stitchPattern === "jasmine" || stitchPattern === "vstitchCluster") { //TODO: move this to config
-        //cont += '<div class="cluster"><div class="stitch"></div></div>';
-      //}
-      //cont += `<div class="cluster">${('<div class="stitch"></div>').repeat(clusterLength)}</div>`.repeat(crowLength);
-      //if(stitchPattern === "vstitchCluster") { //TODO: move this to config
-        //cont += '<div class="cluster"><div class="stitch"></div></div>';
-      //}
-      //cont += ('</div>');
-    //}
-  //}
-  //else {
-    //if(staggerLengths) {
-      //for (var i = 0; i < crows; i++) {
-        //let repeatLength = (i % 2 === 1) ? crowLength : crowLength + 1;
-        //cont += ('<div class="crow">');
-        //cont += (`<div class="stitch"></div>`).repeat(repeatLength);
-        //cont += ('</div>');
-      //}
-    //} else {
-      //cont = `<div class="crow">${(`<div class="stitch"></div>`).repeat(crowLength)}</div>`.repeat(crows)
-    //}
-  //}
-  //return cont
+    </Crow>
+  ))
 }
 
 
-function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}) {
-  const clusterLength = clusterMap[stitchPattern];
-  console.log('clusterLength', clusterLength, 'stitchPattern', stitchPattern);
-  const swatch = (<div className={`${className} swatch ${stitchPattern} ${clusterLength ? 'clustered' : ''}`}>
+function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className, id}) {
+  const clusterConfig = clusterConfiguration[stitchPattern];
+  const swatch = (<div id={id} className={`${className} swatch ${stitchPattern} ${clusterConfig ? 'clustered' : ''}`}>
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
                  console.log(swatch)
