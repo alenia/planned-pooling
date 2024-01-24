@@ -1,5 +1,5 @@
 import React from 'react';
-import { paintStitches } from './color.js'
+import { nextStitchColorByIndex } from './color.js'
 const clusterMap = { jasmine: 3, ripple: 5, vstitchCluster: 2, ablockCluster: 4}
 
 
@@ -15,10 +15,17 @@ export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40
   let cont = ""
   const clusterLength = clusterMap[stitchPattern];
 
+  let stitchIndex = 0;
+  const nextColor = () => {
+    const color = nextStitchColorByIndex(stitchIndex, colorConfig, {colorShift})
+    stitchIndex++;
+    return color;
+  }
+
   return [...Array(crows)].map((e, i) => (
     <Crow key={i}>
     {
-      [...Array(crowLength)].map((f,j) => <Stitch key={j}/>)
+      [...Array(crowLength)].map((f,j) => <Stitch key={j} color={nextColor()}/>)
     }
     </Crow>)
    )
@@ -62,8 +69,6 @@ function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
                  console.log(swatch)
-                 //TODO: Paint these stitches. Filter out my nodes so it's just the Stitches
-  //paintStitches(swatch, colorConfig, { colorShift } );
   return swatch
 }
 
