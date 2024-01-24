@@ -93,7 +93,6 @@ function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift
   const swatch = (<div id={id} className={`${className ? className : ''} swatch ${stitchPattern} ${clusterConfig ? 'clustered' : ''}`}>
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
-                 console.log(swatch)
   return swatch
 }
 
