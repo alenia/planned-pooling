@@ -55,6 +55,9 @@ const colorConfig = [
   {color: "#EEEEEE", length: 13},
 ]
 
+const scHatProps = { colorConfig: colorConfigHatSC, crowLength: 29, stitchPattern: 'stacked'}
+const hdcHatProps = { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 6, staggerLengths: true, stitchPattern: 'hdc'}
+const hdcHat2Props = { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 10, staggerLengths: true, stitchPattern: 'hdc'}
 const hdcHat3Props = { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 8, staggerLengths: true, stitchPattern: 'hdc'}
 const hdcHat4Props = { colorConfig: colorConfigHatHDC, crowLength: 39, crows: 12, colorShift: 18, staggerLengths: true, stitchPattern: 'hdc'}
 const shellHatProps = { colorConfig: colorConfigHatShell, crowLength: 11, stitchPattern: 'shell'}
@@ -77,9 +80,9 @@ const angledBlockCluster2Props = { colorConfig, crowLength: 3, stitchPattern: 'a
 const root = createRoot(document.getElementById('app'));
 root.render(
   <div>
-  <p>Hello Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
-  <Swatch id="hdc-hat" className="vertical" colorConfig={colorConfigHatSC} crowLength={29} stitchPattern='stacked'/>
-  <Swatch id="hdc-hat2" className="vertical" colorConfig={colorConfigHatHDC} crowLength={39} crows={12} colorShift={6} staggerLengths={true} stitchPattern='hdc'/>
+  <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
+  <Swatch id="hdc-hat" className="vertical" {...hdcHatProps}/>
+  <Swatch id="hdc-hat2" className="vertical" {...hdcHat2Props}/>
   <Swatch id="hdc-hat3" className="vertical" {...hdcHat3Props}/>
   <Swatch id="hdc-hat4" className="vertical" {...hdcHat4Props}/>
   <Swatch id="shell-hat" {...shellHatProps}/>
