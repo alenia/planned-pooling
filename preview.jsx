@@ -21,7 +21,6 @@ const colorConfig = [
 const basicProps = { colorConfig, crowLength: 10}
 const hdcHatProps = { colorConfig, crowLength: 10, crows: 12, colorShift: 6, stitchPattern: 'hdc'}
 const shellHatProps = { colorConfig, crowLength: 10, stitchPattern: 'shell'}
-const rmr1Props = { colorConfig, crowLength: 10, crows: 36, stitchPattern: 'moss'}
 const rmr2Props = { colorConfig, crowLength: 10, stitchPattern: 'moss'}
 const grannyPoolerProps = { colorConfig, crowLength: 10, stitchPattern: 'granny'}
 const vstitchPoolerProps = { colorConfig, crowLength: 10, stitchPattern: 'v-stitch'}
@@ -50,7 +49,9 @@ function StitchPatternPreview({stitchPattern, notes, title}) {
 
 export default () => (
   <div>
-    <h4>No stitch pattern</h4>
+    <h4>Testing color shift and crows</h4>
+    <Swatch {...basicProps} crows={8}/>
+    <Swatch {...basicProps} crows={8} colorShift={1}/>
     <StitchPatternPreview title="no stitch pattern"/>
     <StitchPatternPreview stitchPattern="moss"/>
     <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
