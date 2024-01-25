@@ -171,7 +171,7 @@
   $stitchHeight: 20px;
   $stitchSpacing: 2px;
   .crow:nth-child(2n) {
-    margin: $stitchWidth/2 + $stitchSpacing 0 0 0;
+    margin: $stitchWidth/2 + $stitchSpacing 0;
   }
   .stitch {
     height: $stitchWidth;
@@ -184,7 +184,7 @@
   }
   &.vertical {
     .crow:nth-child(2n) {
-      margin: 0 0 0 $stitchWidth/2 + $stitchSpacing;
+      margin: 0 $stitchWidth/2 + $stitchSpacing;
     }
     .stitch {
       width: $stitchWidth;
@@ -198,7 +198,7 @@
   }
 }
 
-.swatch.moss {
+.swatch.moss, .swatch.hdc {
   $stitchHeight: 28px;
   $stitchWidth: 14px;
   $spacing: 1px;
@@ -232,33 +232,12 @@
 
 .swatch.hdc {
   $stitchHeight: 28px;
-  $stitchWidth: 14px;
-  $spacing: 1px;
-  .crow:nth-child(2n) {
-    margin: $stitchWidth + $spacing 0 0 0;
-  }
   .stitch {
-    box-sizing: border-box;
-    border: 1px solid black;
-    height: $stitchWidth;
-    width: $stitchHeight;
-    margin-top: $stitchWidth + $spacing;
-    margin-bottom: $spacing;
-    margin-right: -1/2*$stitchHeight;
-    margin-left: $spacing;
+    margin-right: -.3*$stitchHeight;
   }
   &.vertical {
-    .crow:nth-child(2n) {
-      margin: 0 $stitchWidth + $spacing;
-      //TODO: this is only true when staggered I think?
-    }
     .stitch {
-      width: $stitchWidth;
-      height: $stitchHeight;
-      margin-left: $stitchWidth + $spacing;
-      margin-right: $spacing;
       margin-bottom: -.3*$stitchHeight;
-      margin-top: $spacing;
     }
   }
 }
@@ -266,7 +245,7 @@
 .swatch.granny {
   $stitchHeight: 20px;
   .crow:nth-child(2n) {
-    margin: $stitchHeight 0 0 0;
+    margin: $stitchHeight 0;
   }
   .stitch {
     box-sizing: border-box;
@@ -279,7 +258,7 @@
 
   &.vertical {
     .crow:nth-child(2n) {
-      margin: 0 0 0 $stitchHeight;
+      margin: 0 $stitchHeight;
     }
     .stitch {
       margin: 0 $stitchHeight -.2*$stitchHeight 0;

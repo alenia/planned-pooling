@@ -55,15 +55,9 @@ export default () => (
     <StitchPatternPreview title="no stitch pattern"/>
     <StitchPatternPreview stitchPattern="moss"/>
     <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
-    <h4>granny</h4>
-    <Swatch {...basicProps} stitchPattern="granny"/>
-    <Swatch {...basicProps} className="vertical" stitchPattern="granny"/>
-    <h4>shell</h4>
-    <Swatch id="shell-hat" {...shellHatProps}/>
-    <Swatch id="shell-hat2" className="vertical" {...shellHatProps}/>
-    <h4>v-stitch</h4>
-    <Swatch id="vstitch-pooler" {...vstitchPoolerProps}/>
-    <Swatch id="vstitch-pooler2" className="vertical" {...vstitchPoolerProps}/>
+    <StitchPatternPreview stitchPattern="granny"/>
+    <StitchPatternPreview stitchPattern="shell"/>
+    <StitchPatternPreview stitchPattern="v-stitch"/>
     <h4>jasmine</h4>
     <Swatch id="jasmine-pooler" {...jasminePoolerProps}/>
     <Swatch id="jasmine-pooler2" className="vertical" {...jasminePoolerProps}/>
