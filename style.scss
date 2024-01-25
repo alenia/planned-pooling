@@ -75,7 +75,7 @@
       height: 10px;
     }
     .crow:nth-child(2n) {
-      margin-left: $stitchHeight/2;
+      margin-left: 0.5*$stitchHeight;
       .stitch:nth-child(3n+1) {
         transform: rotate(-60deg);
         transform-origin: center right;
@@ -98,7 +98,7 @@
   }
   &:not(.vertical) {
     .crow:nth-child(2n) {
-      margin-top: $stitchHeight/2;
+      margin-top: 0.5*$stitchHeight;
       .stitch:nth-child(3n+1) {
         transform: rotate(60deg);
         transform-origin: bottom center;
@@ -171,7 +171,7 @@
   $stitchHeight: 20px;
   $stitchSpacing: 2px;
   .crow:nth-child(2n) {
-    margin: $stitchWidth/2 + $stitchSpacing 0;
+    margin: 0.5*$stitchWidth + $stitchSpacing 0;
   }
   .stitch {
     height: $stitchWidth;
@@ -184,7 +184,7 @@
   }
   &.vertical {
     .crow:nth-child(2n) {
-      margin: 0 $stitchWidth/2 + $stitchSpacing;
+      margin: 0 0.5*$stitchWidth + $stitchSpacing;
     }
     .stitch {
       width: $stitchWidth;
@@ -212,7 +212,7 @@
     width: $stitchHeight;
     margin-top: $stitchWidth + $spacing;
     margin-bottom: $spacing;
-    margin-right: -1/2*$stitchHeight;
+    margin-right: -0.5*$stitchHeight;
     margin-left: $spacing;
   }
   &.vertical {
@@ -224,7 +224,7 @@
       height: $stitchHeight;
       margin-left: $stitchWidth + $spacing;
       margin-right: $spacing;
-      margin-bottom: -1/2*$stitchHeight;
+      margin-bottom: -0.5*$stitchHeight;
       margin-top: $spacing;
     }
   }
