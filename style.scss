@@ -217,7 +217,7 @@
   }
   &.vertical {
     .crow:nth-child(2n) {
-      margin: 0 0 0 $stitchWidth + $spacing;
+      margin: 0 $stitchWidth + $spacing;
     }
     .stitch {
       width: $stitchWidth;
