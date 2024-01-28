@@ -6,14 +6,6 @@ import { createRoot } from 'react-dom/client';
 const orange = "#fcd67c";
 const cream = "#fcf7eb";
 const blue = "#cff7fc";
-const colorConfigHatSC = [
-  {color: orange, length: 5},
-  {color: cream, length: 4},
-  {color: orange, length: 5},
-  {color: blue, length: 5},
-  {color: cream, length: 4},
-  {color: blue, length: 5},
-]
 const colorConfigHatHDC = [
   {color: orange, length: 4},
   {color: cream, length: 3},
