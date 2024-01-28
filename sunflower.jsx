@@ -26,13 +26,13 @@ const colorConfigOld = [
 function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB}) {
   const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: 'ablockCluster' }
   return (
-    <div>
-      <Swatch className="vertical overlapping" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical overlapping mirrored" {...clusterProps} colorShift={colorShiftB}/>
-      <Swatch className="vertical overlapping" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical overlapping mirrored" {...clusterProps} colorShift={colorShiftB}/>
-      <Swatch className="vertical overlapping" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical overlapping mirrored" {...clusterProps} colorShift={colorShiftB}/>
+    <div className="overlapping-container">
+      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
+      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
+      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
     </div>
   )
 }

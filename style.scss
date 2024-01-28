@@ -309,15 +309,20 @@
     .cluster {
       margin: 0 .4 * $clusterHeight 0 0;
     }
-    &.overlapping {
-      margin-bottom: -20px;
-      .crow:nth-child(2n) {
-        margin: -.42 * $clusterHeight 0 -.42 * $clusterHeight .82 * $clusterHeight;
-      }
+  }
+}
+.overlapping-container {
+  display: flex;
+  flex-direction: column-reverse;
+  .ablockCluster.vertical {
+    $clusterHeight: 45px;
+    margin-bottom: -24px;
+    .crow:nth-child(2n) {
+      margin: -.42 * $clusterHeight 0 -.42 * $clusterHeight .82 * $clusterHeight;
     }
     &.mirrored {
       transform: rotateY(180deg) ;
-      margin-left: -20px;
+      margin-left: -18px;
     }
   }
 }
