@@ -13,12 +13,6 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   };
 
-  const onSubmit = () => {
-    // debugger
-    console.log("formData:")
-    console.log(formData)
-  };
-
   return (
     <form
       onSubmit={(e) => {
@@ -66,8 +60,6 @@ const Form = ({ formData, setFormData }) => {
         id="stitchPattern"
         value={stitchPattern}
       />
-
-      <input type="submit" value="See it" className="button" />
     </form>
   );
 }
