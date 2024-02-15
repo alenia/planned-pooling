@@ -21,7 +21,7 @@ function App() {
       {color: ltblue, length: 2},
     ],
     crowLength: 18,
-    crows: 12,
+    crows: 40,
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: 'moss',
