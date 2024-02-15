@@ -1,8 +1,5 @@
-import './styles/form.scss'
-import './styles/swatch.scss'
-import Swatch, { buildSwatch } from './swatch.jsx';
-import Preview from './preview.jsx';
-import Form from './form.jsx';
+import Swatch from './Swatch.jsx';
+import Form from './Form.jsx';
 import React, { useState } from "react";
 
 const red = "#ff001d";

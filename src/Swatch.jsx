@@ -1,5 +1,6 @@
 import React from 'react';
 import { nextStitchColorByIndex } from './color.js'
+import './Swatch.scss'
 
 const clusterConfiguration = { //Todo: make this a class of some sort?
   jasmine: {

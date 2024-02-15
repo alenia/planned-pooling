@@ -1,3 +1,5 @@
+import './Form.scss'
+
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern } = formData;
 
