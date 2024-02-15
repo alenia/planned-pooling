@@ -1,4 +1,5 @@
-// import "./App.css";
+import './styles/form.scss'
+import './styles/swatch.scss'
 import Swatch, { buildSwatch } from './swatch.jsx';
 import Preview from './preview.jsx';
 import Form from './form.jsx';
