@@ -13,3 +13,7 @@ a planned pooling crochet and knitting tool with support for displaying multiple
 # To run locally
 
 `yarn dev`
+
+# To run eslint
+
+`yarn lint`
