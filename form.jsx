@@ -1,13 +1,13 @@
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern } = formData;
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     const newFormData = { ...formData };
     newFormData[e.target.name] = e.target.value;
     setFormData(newFormData);
   };
 
-  const onChangeNumber = (e) => {
+  const handleChangeNumber = (e) => {
     const newFormData = { ...formData };
     newFormData[e.target.name] = parseInt( e.target.value );
     setFormData(newFormData);
@@ -25,7 +25,7 @@ const Form = ({ formData, setFormData }) => {
           Stitches per row:
         </label>
         <input
-          onChange={onChangeNumber}
+          onChange={handleChangeNumber}
           type="number"
           inputMode="numeric"
           pattern="[0-9]*"
@@ -47,7 +47,7 @@ const Form = ({ formData, setFormData }) => {
           Color shift:
         </label>
         <input
-          onChange={onChangeNumber}
+          onChange={handleChangeNumber}
           type="number"
           inputMode="numeric"
           pattern="[0-9]*"
