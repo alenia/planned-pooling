@@ -5,23 +5,24 @@ import Preview from './preview.jsx';
 import Form from './form.jsx';
 import React, { useState } from "react";
 
-const orange = "#fcd67c";
+const red = "#ff001d";
 const cream = "#fcf7eb";
-const blue = "#cff7fc";
+const ltblue = "#8dd0f2";
+const navy = "#0e0e66";
 
 function App() {
   const [formData, setFormData] = useState({
     colorConfig: [
-      {color: orange, length: 4},
-      {color: cream, length: 3},
-      {color: orange, length: 4},
-      {color: blue, length: 3},
-      {color: cream, length: 3},
-      {color: blue, length: 3},
+      {color: navy, length: 3},
+      {color: red, length: 3},
+      {color: navy, length: 3},
+      {color: ltblue, length: 2},
+      {color: cream, length: 5},
+      {color: ltblue, length: 2},
     ],
-    crowLength: 39,
+    crowLength: 18,
     crows: 12,
-    colorShift: 6,
+    colorShift: 0,
     staggerLengths: false,
     stitchPattern: 'moss',
   })
