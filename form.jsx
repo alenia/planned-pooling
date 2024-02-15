@@ -20,18 +20,20 @@ const Form = ({ formData, setFormData }) => {
         onSubmit();
       }}
     >
-      <label htmlFor="crowLength" title="The number of stitches in one row">
-        Stitches per row:
-      </label>
-      <input
-        onChange={onChangeNumber}
-        type="number"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        name="crowLength"
-        id="crowLength"
-        value={crowLength}
-      />
+      <div>
+        <label htmlFor="crowLength" title="The number of stitches in one row">
+          Stitches per row:
+        </label>
+        <input
+          onChange={onChangeNumber}
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          name="crowLength"
+          id="crowLength"
+          value={crowLength}
+        />
+      </div>
 
       <input
         type="hidden"
@@ -40,12 +42,20 @@ const Form = ({ formData, setFormData }) => {
         value={crows}
       />
 
-      <input
-        type="hidden"
-        name="colorShift"
-        id="colorShift"
-        value={colorShift}
-      />
+      <div>
+        <label htmlFor="colorShift" title="Start the swatch this many stitches into your color sequence">
+          Color shift:
+        </label>
+        <input
+          onChange={onChangeNumber}
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          name="colorShift"
+          id="colorShift"
+          value={colorShift}
+        />
+      </div>
 
       <input
         type="hidden"
