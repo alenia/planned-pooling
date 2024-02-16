@@ -56,6 +56,7 @@ export default function Preview() {
       <Swatch {...basicProps} crows={8}/>
       <Swatch {...basicProps} crows={8} colorShift={1}/>
       <StitchPatternPreview title="no stitch pattern"/>
+      <StitchPatternPreview stitchPattern="stacked"/>
       <StitchPatternPreview stitchPattern="moss"/>
       <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
       <StitchPatternPreview stitchPattern="granny"/>
