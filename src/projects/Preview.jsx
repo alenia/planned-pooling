@@ -19,11 +19,6 @@ const colorConfig = [
 ]
 
 const basicProps = { colorConfig, crowLength: 10}
-const hdcHatProps = { colorConfig, crowLength: 10, crows: 12, colorShift: 6, stitchPattern: 'hdc'}
-const shellHatProps = { colorConfig, crowLength: 10, stitchPattern: 'shell'}
-const rmr2Props = { colorConfig, crowLength: 10, stitchPattern: 'moss'}
-const grannyPoolerProps = { colorConfig, crowLength: 10, stitchPattern: 'granny'}
-const vstitchPoolerProps = { colorConfig, crowLength: 10, stitchPattern: 'v-stitch'}
 const jasminePoolerProps = { colorConfig, crowLength: 11, stitchPattern: 'jasmine' }
 const ripplePoolerProps = { colorConfig, crowLength: 3, stitchPattern: 'ripple' }
 const ripplePooler2Props = { colorConfig, crowLength: 4, stitchPattern: 'ripple' }
