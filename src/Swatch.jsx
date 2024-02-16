@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from "prop-types";
 import { nextStitchColorByIndex } from './color.js'
 import './Swatch.scss'
 
@@ -25,15 +25,25 @@ const clusterConfiguration = { //Todo: make this a class of some sort?
 function Crow (props) {
   return <div className="crow">{props.children}</div>
 }
+Crow.propTypes = {
+  children: PropTypes.node
+}
 function Cluster (props) {
   return <div className="cluster">{props.children}</div>
+}
+Cluster.propTypes = {
+  children: PropTypes.node
 }
 
 function Stitch ({color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
+Stitch.propTypes = {
+  color: PropTypes.string //TODO: see if there's a color type
+}
 
-export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
+
+function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
   const clusterConfig = clusterConfiguration[stitchPattern] || {};
   const clusterLength = clusterConfig.stitchCount;
 
@@ -95,6 +105,20 @@ function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch
+}
+
+Swatch.propTypes = {
+  colorConfig: PropTypes.arrayOf(PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    length: PropTypes.number.isRequired
+  })).isRequired,
+  stitchPattern: PropTypes.string, //TODO: Make this an enum
+  crowLength: PropTypes.number.isRequired,
+  crows: PropTypes.number,
+  colorShift: PropTypes.number,
+  staggerLengths: PropTypes.bool,
+  className: PropTypes.string, //This just passes through, not needed in form or anything
+  id: PropTypes.string, //TODO: this is here for backwards compatibility with my react refactor, remove this prop
 }
 
 export default Swatch

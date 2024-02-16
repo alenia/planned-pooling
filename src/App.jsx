@@ -1,6 +1,6 @@
 import Swatch from './Swatch.jsx';
 import Form from './Form.jsx';
-import React, { useState } from "react";
+import { useState } from "react";
 
 const red = "#ff001d";
 const cream = "#fcf7eb";
