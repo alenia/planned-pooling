@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
+import ExtraPropTypes from "../extraPropTypes.js"
 import Swatch from '../Swatch.jsx'
 
 const purple = "#C274B3";
@@ -39,10 +40,7 @@ function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB}) {
 }
 
 OverlappingShawlPreview.propTypes = {
-  colorConfig: PropTypes.arrayOf(PropTypes.shape({
-    color: PropTypes.string,
-    length: PropTypes.number
-  })),
+  colorConfig: ExtraPropTypes.colorConfig,
   colorShiftA: PropTypes.number,
   colorShiftB: PropTypes.number,
 }
