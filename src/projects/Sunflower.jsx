@@ -1,4 +1,5 @@
-import Swatch from './swatch.jsx'
+import PropTypes from "prop-types";
+import Swatch from '../Swatch.jsx'
 
 const purple = "#C274B3";
 const teal = "#4ECDC4";
@@ -36,6 +37,16 @@ function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB}) {
     </div>
   )
 }
+
+OverlappingShawlPreview.propTypes = {
+  colorConfig: PropTypes.arrayOf(PropTypes.shape({
+    color: PropTypes.string,
+    length: PropTypes.number
+  })),
+  colorShiftA: PropTypes.number,
+  colorShiftB: PropTypes.number,
+}
+
 function OverlappingPreviewMultishift({colorConfig}) {
   const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: 'ablockCluster' }
   return (
@@ -50,6 +61,13 @@ function OverlappingPreviewMultishift({colorConfig}) {
       <Swatch className="vertical mirrored" {...clusterProps} colorShift={2}/>
     </div>
   )
+}
+
+OverlappingPreviewMultishift.propTypes = {
+  colorConfig: PropTypes.arrayOf(PropTypes.shape({
+    color: PropTypes.string,
+    length: PropTypes.number
+  })),
 }
 
 const newShawlConfig = { colorConfig: colorConfigNew, colorShiftA: 10, colorShiftB: 2}

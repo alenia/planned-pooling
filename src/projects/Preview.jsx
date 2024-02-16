@@ -1,4 +1,5 @@
-import Swatch from './swatch.jsx'
+import PropTypes from "prop-types";
+import Swatch from '../Swatch.jsx'
 
 const yellow = "#faf619";
 const red = "#fa1933";
@@ -40,6 +41,12 @@ function StitchPatternPreview({stitchPattern, notes, title}) {
       <Swatch {...basicProps} className="vertical" stitchPattern={stitchPattern} staggerLengths={true}/>
     </div>
   )
+}
+
+StitchPatternPreview.propTypes = {
+  stitchPattern: PropTypes.string, //TODO kinda a enum but I should move that enum into a different type file
+  notes: PropTypes.string,
+  title: PropTypes.string,
 }
 
 export default function Preview() {
