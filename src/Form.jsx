@@ -9,17 +9,28 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   };
 
-  const handleChangeNumber = (e) => {
+  const handleChangeNumber = (name, value) => {
     const newFormData = { ...formData };
-    newFormData[e.target.name] = parseInt( e.target.value );
+    newFormData[name] = parseInt(value);
     setFormData(newFormData);
   };
+
+  const handleChangePositiveInteger = (e) => {
+    let value = parseInt(e.target.value)
+    if (isNaN(parseInt(value)) || value < 0) { value = 0 }
+    handleChangeNumber(e.target.name, value);
+  }
+
+  const handleChangeInteger = (e) => {
+    let value = parseInt(e.target.value)
+    if (isNaN(parseInt(value))) { value = 0 }
+    handleChangeNumber(e.target.name, value);
+  }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
       }}
     >
       <div>
@@ -27,7 +38,7 @@ const Form = ({ formData, setFormData }) => {
           Stitches per row:
         </label>
         <input
-          onChange={handleChangeNumber}
+          onChange={handleChangePositiveInteger}
           type="number"
           inputMode="numeric"
           pattern="[0-9]*"
@@ -49,7 +60,7 @@ const Form = ({ formData, setFormData }) => {
           Color shift:
         </label>
         <input
-          onChange={handleChangeNumber}
+          onChange={handleChangeInteger}
           type="number"
           inputMode="numeric"
           pattern="[0-9]*"
