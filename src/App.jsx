@@ -32,7 +32,6 @@ function App() {
       setFormData={setFormData} 
     />
     <Swatch
-      id="hdc-hat"
       className="vertical"
       colorConfig={formData.colorConfig}
       crowLength={formData.crowLength}

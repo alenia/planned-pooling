@@ -63,17 +63,17 @@ export default function Preview() {
       <StitchPatternPreview stitchPattern="shell"/>
       <StitchPatternPreview stitchPattern="v-stitch"/>
       <h4>jasmine</h4>
-      <Swatch id="jasmine-pooler" {...jasminePoolerProps}/>
-      <Swatch id="jasmine-pooler2" className="vertical" {...jasminePoolerProps}/>
+      <Swatch {...jasminePoolerProps}/>
+      <Swatch className="vertical" {...jasminePoolerProps}/>
       <h4>ripple</h4>
-      <Swatch id="ripple-pooler" {...ripplePoolerProps}/>
-      <Swatch id="ripple-pooler2" {...ripplePooler2Props}/>
-      <Swatch id="ripple-pooler3" className="vertical" {...ripplePooler2Props}/>
+      <Swatch {...ripplePoolerProps}/>
+      <Swatch {...ripplePooler2Props}/>
+      <Swatch className="vertical" {...ripplePooler2Props}/>
       <h4>vstitch cluster</h4>
-      <Swatch id="vstitch-cluster" {...vstitchClusterProps}/>
+      <Swatch {...vstitchClusterProps}/>
       <h4>angled block cluster</h4>
-      <Swatch id="angled-block-cluster" {...angledBlockClusterProps}/>
-      <Swatch id="angled-block-cluster2" className="vertical" {...angledBlockClusterProps}/>
+      <Swatch {...angledBlockClusterProps}/>
+      <Swatch className="vertical" {...angledBlockClusterProps}/>
     </div>
   )
 }

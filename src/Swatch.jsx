@@ -99,9 +99,9 @@ function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, color
 }
 
 
-function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className, id}) {
+function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}) {
   const clusterConfig = clusterConfiguration[stitchPattern];
-  const swatch = (<div id={id} className={`${className ? className : ''} swatch ${stitchPattern} ${clusterConfig ? 'clustered' : ''}`}>
+  const swatch = (<div className={`${className ? className : ''} swatch ${stitchPattern} ${clusterConfig ? 'clustered' : ''}`}>
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch
@@ -118,7 +118,6 @@ Swatch.propTypes = {
   colorShift: PropTypes.number,
   staggerLengths: PropTypes.bool,
   className: PropTypes.string, //This just passes through, not needed in form or anything
-  id: PropTypes.string, //TODO: this is here for backwards compatibility with my react refactor, remove this prop
 }
 
 export default Swatch
