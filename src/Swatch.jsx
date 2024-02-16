@@ -1,4 +1,3 @@
-import React from 'react';
 import { nextStitchColorByIndex } from './color.js'
 import './Swatch.scss'
 
@@ -33,7 +32,7 @@ function Stitch ({color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
-export function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
+function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
   const clusterConfig = clusterConfiguration[stitchPattern] || {};
   const clusterLength = clusterConfig.stitchCount;
 

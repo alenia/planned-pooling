@@ -1,4 +1,4 @@
-import Swatch, { buildSwatch } from './swatch.jsx'
+import Swatch from './swatch.jsx'
 
 const yellow = "#faf619";
 const red = "#fa1933";
@@ -47,30 +47,32 @@ function StitchPatternPreview({stitchPattern, notes, title}) {
   )
 }
 
-export default () => (
-  <div>
-    <h4>Testing color shift and crows</h4>
-    <Swatch {...basicProps} crows={8}/>
-    <Swatch {...basicProps} crows={8} colorShift={1}/>
-    <StitchPatternPreview title="no stitch pattern"/>
-    <StitchPatternPreview stitchPattern="moss"/>
-    <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
-    <StitchPatternPreview stitchPattern="granny"/>
-    <StitchPatternPreview stitchPattern="shell"/>
-    <StitchPatternPreview stitchPattern="v-stitch"/>
-    <h4>jasmine</h4>
-    <Swatch id="jasmine-pooler" {...jasminePoolerProps}/>
-    <Swatch id="jasmine-pooler2" className="vertical" {...jasminePoolerProps}/>
-    <h4>ripple</h4>
-    <Swatch id="ripple-pooler" {...ripplePoolerProps}/>
-    <Swatch id="ripple-pooler2" {...ripplePooler2Props}/>
-    <Swatch id="ripple-pooler3" className="vertical" {...ripplePooler2Props}/>
-    <h4>vstitch cluster</h4>
-    <Swatch id="vstitch-cluster" {...vstitchClusterProps}/>
-    <h4>angled block cluster</h4>
-    <Swatch id="angled-block-cluster" {...angledBlockClusterProps}/>
-    <Swatch id="angled-block-cluster2" className="vertical" {...angledBlockClusterProps}/>
-  </div>
-)
+export default function Preview() {
+  return (
+    <div>
+      <h4>Testing color shift and crows</h4>
+      <Swatch {...basicProps} crows={8}/>
+      <Swatch {...basicProps} crows={8} colorShift={1}/>
+      <StitchPatternPreview title="no stitch pattern"/>
+      <StitchPatternPreview stitchPattern="moss"/>
+      <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
+      <StitchPatternPreview stitchPattern="granny"/>
+      <StitchPatternPreview stitchPattern="shell"/>
+      <StitchPatternPreview stitchPattern="v-stitch"/>
+      <h4>jasmine</h4>
+      <Swatch id="jasmine-pooler" {...jasminePoolerProps}/>
+      <Swatch id="jasmine-pooler2" className="vertical" {...jasminePoolerProps}/>
+      <h4>ripple</h4>
+      <Swatch id="ripple-pooler" {...ripplePoolerProps}/>
+      <Swatch id="ripple-pooler2" {...ripplePooler2Props}/>
+      <Swatch id="ripple-pooler3" className="vertical" {...ripplePooler2Props}/>
+      <h4>vstitch cluster</h4>
+      <Swatch id="vstitch-cluster" {...vstitchClusterProps}/>
+      <h4>angled block cluster</h4>
+      <Swatch id="angled-block-cluster" {...angledBlockClusterProps}/>
+      <Swatch id="angled-block-cluster2" className="vertical" {...angledBlockClusterProps}/>
+    </div>
+  )
+}
 
 
