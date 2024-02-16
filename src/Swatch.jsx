@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { nextStitchColorByIndex } from './color.js'
+import ExtraPropTypes from './extraPropTypes.js'
 import './Swatch.scss'
 
 const clusterConfiguration = { //Todo: make this a class of some sort?
@@ -108,10 +109,7 @@ function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift
 }
 
 Swatch.propTypes = {
-  colorConfig: PropTypes.arrayOf(PropTypes.shape({
-    color: PropTypes.string.isRequired,
-    length: PropTypes.number.isRequired
-  })).isRequired,
+  colorConfig: ExtraPropTypes.colorConfig.isRequired,
   stitchPattern: PropTypes.string, //TODO: Make this an enum
   crowLength: PropTypes.number.isRequired,
   crows: PropTypes.number,
