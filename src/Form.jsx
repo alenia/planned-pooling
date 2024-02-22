@@ -38,6 +38,22 @@ const Form = ({ formData, setFormData }) => {
     return result;
   }
 
+  const printColorSequenceLength = () => {
+    let result = 0;
+    for (const i in colorConfig) {
+      result += parseInt(colorConfig[i].length);
+    }
+    return result;
+  }
+
+  const printColorSequenceLength = () => {
+    let result = 0;
+    for (const i in colorConfig) {
+      result += parseInt(colorConfig[i].length);
+    }
+    return result;
+  }
+
   return (
     <form
       onSubmit={(e) => {
@@ -45,7 +61,13 @@ const Form = ({ formData, setFormData }) => {
       }}
     >
       <div>
-        {printColorConfig()}
+        <p>{printColorConfig()}</p>
+      </div>
+
+      <div>
+        <p>
+          Total stitches in color sequence: {printColorSequenceLength()}
+        </p>
       </div>
 
       <div>
