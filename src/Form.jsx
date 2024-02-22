@@ -1,4 +1,6 @@
 import './Form.scss'
+import PropTypes from "prop-types";
+import ExtraPropTypes from './extraPropTypes.js'
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern } = formData;
@@ -9,7 +11,7 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   };
 
-  const handleChangeNumber = (name, value) => {
+  const changeNumber = (name, value) => {
     const newFormData = { ...formData };
     newFormData[name] = parseInt(value);
     setFormData(newFormData);
@@ -18,13 +20,22 @@ const Form = ({ formData, setFormData }) => {
   const handleChangePositiveInteger = (e) => {
     let value = parseInt(e.target.value)
     if (isNaN(parseInt(value)) || value < 0) { value = 0 }
-    handleChangeNumber(e.target.name, value);
+    changeNumber(e.target.name, value);
   }
 
   const handleChangeInteger = (e) => {
     let value = parseInt(e.target.value)
     if (isNaN(parseInt(value))) { value = 0 }
-    handleChangeNumber(e.target.name, value);
+    changeNumber(e.target.name, value);
+  }
+
+  const printColorConfig = () => {
+    let result = "";
+    for (const i in colorConfig) {
+      result += "Color: " + colorConfig[i].color + " Length: " + colorConfig[i].length;
+      result += " / "
+    }
+    return result;
   }
 
   return (
@@ -33,6 +44,10 @@ const Form = ({ formData, setFormData }) => {
         e.preventDefault();
       }}
     >
+      <div>
+        {printColorConfig()}
+      </div>
+
       <div>
         <label htmlFor="crowLength" title="The number of stitches in one row">
           Stitches per row:
@@ -85,6 +100,24 @@ const Form = ({ formData, setFormData }) => {
       />
     </form>
   );
+}
+
+Form.formData.propTypes = {
+  colorConfig: ExtraPropTypes.colorConfig.isRequired,
+  stitchPattern: PropTypes.string, //TODO: Make this an enum
+  crowLength: PropTypes.number.isRequired,
+  crows: PropTypes.number,
+  colorShift: PropTypes.number,
+  staggerLengths: PropTypes.bool,
+}
+
+Form.setFormData.propTypes = {
+  colorConfig: ExtraPropTypes.colorConfig.isRequired,
+  stitchPattern: PropTypes.string, //TODO: Make this an enum
+  crowLength: PropTypes.number.isRequired,
+  crows: PropTypes.number,
+  colorShift: PropTypes.number,
+  staggerLengths: PropTypes.bool,
 }
 
 export default Form;
