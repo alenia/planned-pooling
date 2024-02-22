@@ -99,6 +99,21 @@ const Form = ({ formData, setFormData }) => {
         />
       </div>
 
+      <div>
+        <label htmlFor="crows" title="The number of rows displayed">
+          Number of rows:
+        </label>
+        <input
+          onChange={handleChangePositiveInteger}
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          name="crows"
+          id="crows"
+          value={crows}
+        />
+      </div>
+
       <input
         type="hidden"
         name="staggerLengths"
