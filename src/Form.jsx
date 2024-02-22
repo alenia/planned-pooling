@@ -102,22 +102,16 @@ const Form = ({ formData, setFormData }) => {
   );
 }
 
-Form.formData.propTypes = {
-  colorConfig: ExtraPropTypes.colorConfig.isRequired,
-  stitchPattern: PropTypes.string, //TODO: Make this an enum
-  crowLength: PropTypes.number.isRequired,
-  crows: PropTypes.number,
-  colorShift: PropTypes.number,
-  staggerLengths: PropTypes.bool,
-}
-
-Form.setFormData.propTypes = {
-  colorConfig: ExtraPropTypes.colorConfig.isRequired,
-  stitchPattern: PropTypes.string, //TODO: Make this an enum
-  crowLength: PropTypes.number.isRequired,
-  crows: PropTypes.number,
-  colorShift: PropTypes.number,
-  staggerLengths: PropTypes.bool,
+Form.propTypes = {
+  formData: PropTypes.shape({
+    colorConfig: ExtraPropTypes.colorConfig.isRequired,
+    stitchPattern: PropTypes.string, //TODO: Make this an enum
+    crowLength: PropTypes.number.isRequired,
+    crows: PropTypes.number,
+    colorShift: PropTypes.number,
+    staggerLengths: PropTypes.bool,
+  }),
+  setFormData: PropTypes.func,
 }
 
 export default Form;
