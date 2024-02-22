@@ -75,22 +75,22 @@
       height: 10px;
     }
     .crow:nth-child(2n) {
-      margin-left: 0.5*$stitchHeight;
-      .stitch:nth-child(3n+1) {
-        transform: rotate(-60deg);
-        transform-origin: center right;
-      }
+      margin-left: 50px; //this is a weird artifact of the fact that the prepended cluster takes up a ton of room
       .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(120deg);
+        transform-origin: center left;
+      }
+      .stitch:nth-child(3n+2) {
         transform: rotate(60deg);
         transform-origin: center left;
       }
     }
     .crow:nth-child(2n+1) {
-      .stitch:nth-child(3n+1) {
-        transform: rotate(60deg);
-        transform-origin: center left;
-      }
       .stitch:nth-child(3n), .stitch:only-child {
+        transform: rotate(-120deg);
+        transform-origin: center right;
+      }
+      .stitch:nth-child(3n+2) {
         transform: rotate(-60deg);
         transform-origin: center right;
       }
