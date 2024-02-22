@@ -46,14 +46,6 @@ const Form = ({ formData, setFormData }) => {
     return result;
   }
 
-  const printColorSequenceLength = () => {
-    let result = 0;
-    for (const i in colorConfig) {
-      result += parseInt(colorConfig[i].length);
-    }
-    return result;
-  }
-
   return (
     <form
       onSubmit={(e) => {
