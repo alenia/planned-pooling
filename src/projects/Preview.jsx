@@ -31,9 +31,9 @@ function StitchPatternPreview({stitchPattern, notes, title}) {
     <div>
       <h4>{title || stitchPattern}</h4>
       {notes ? <p>{notes}</p> : ''}
-      <Swatch {...basicProps} stitchPattern={stitchPattern}/>
+      <Swatch className="numbered" {...basicProps} stitchPattern={stitchPattern}/>
       <h5>staggered</h5>
-      <Swatch {...basicProps} stitchPattern={stitchPattern} staggerLengths={true}/>
+      <Swatch className="numbered" {...basicProps} stitchPattern={stitchPattern} staggerLengths={true}/>
     </div>
   )
 }
@@ -58,7 +58,7 @@ export default function Preview() {
       <StitchPatternPreview stitchPattern="shell"/>
       <StitchPatternPreview stitchPattern="v-stitch"/>
       <h4>jasmine</h4>
-      <Swatch {...jasminePoolerProps}/>
+      <Swatch className="numbered" {...jasminePoolerProps}/>
       <h4>ripple</h4>
       <Swatch {...ripplePoolerProps}/>
       <Swatch {...ripplePooler2Props}/>
