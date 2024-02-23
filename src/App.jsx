@@ -1,6 +1,4 @@
-import Swatch from './Swatch.jsx';
-import Form from './Form.jsx';
-import { useState } from "react";
+import SwatchWithForm from './SwatchWithForm.jsx';
 
 const red = "#ff001d";
 const cream = "#fcf7eb";
@@ -8,7 +6,7 @@ const ltblue = "#8dd0f2";
 const navy = "#0e0e66";
 
 function App() {
-  const [formData, setFormData] = useState({
+  const config = {
     colorConfig: [
       {color: navy, length: 3},
       {color: red, length: 3},
@@ -22,23 +20,12 @@ function App() {
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: 'moss',
-  })
+  }
 
   return (
   <div className="container">
     <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
-    <Form
-      formData={formData}
-      setFormData={setFormData} 
-    />
-    <Swatch
-      colorConfig={formData.colorConfig}
-      crowLength={formData.crowLength}
-      crows={formData.crows}
-      colorShift={formData.colorShift}
-      staggerLengths={formData.staggerLengths}
-      stitchPattern={formData.stitchPattern}
-    />
+    <SwatchWithForm {...config} />
   </div>
   );
 }
