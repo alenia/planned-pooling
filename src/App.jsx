@@ -32,7 +32,6 @@ function App() {
       setFormData={setFormData} 
     />
     <Swatch
-      className="vertical"
       colorConfig={formData.colorConfig}
       crowLength={formData.crowLength}
       crows={formData.crows}

@@ -29,12 +29,12 @@ function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB}) {
   const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: 'ablockCluster' }
   return (
     <div className="overlapping-container">
-      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
-      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
-      <Swatch className="vertical" {...clusterProps} colorShift={colorShiftA}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={colorShiftB}/>
+      <Swatch {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={colorShiftB}/>
+      <Swatch {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={colorShiftB}/>
+      <Swatch {...clusterProps} colorShift={colorShiftA}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={colorShiftB}/>
     </div>
   )
 }
@@ -49,14 +49,14 @@ function OverlappingPreviewMultishift({colorConfig}) {
   const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: 'ablockCluster' }
   return (
     <div className="overlapping-container">
-      <Swatch className="vertical" {...clusterProps} colorShift={11}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={1}/>
-      <Swatch className="vertical" {...clusterProps} colorShift={10}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={2}/>
-      <Swatch className="vertical" {...clusterProps} colorShift={11}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={1}/>
-      <Swatch className="vertical" {...clusterProps} colorShift={10}/>
-      <Swatch className="vertical mirrored" {...clusterProps} colorShift={2}/>
+      <Swatch {...clusterProps} colorShift={11}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={1}/>
+      <Swatch {...clusterProps} colorShift={10}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={2}/>
+      <Swatch {...clusterProps} colorShift={11}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={1}/>
+      <Swatch {...clusterProps} colorShift={10}/>
+      <Swatch className="mirrored" {...clusterProps} colorShift={2}/>
     </div>
   )
 }
@@ -77,27 +77,27 @@ export default function Sunflower() {
     <div>
       <div>
         <h4>Color Shift 10 (better)</h4>
-        <Swatch className="vertical" {...clusterProps} colorShift={10}/>
+        <Swatch {...clusterProps} colorShift={10}/>
         <h4>Color Shift 11</h4>
-        <Swatch className="vertical" {...clusterProps} colorShift={11}/>
+        <Swatch {...clusterProps} colorShift={11}/>
         <h4>Color Shift 2 (better)</h4>
-        <Swatch className="vertical" {...clusterProps} colorShift={2}/>
+        <Swatch {...clusterProps} colorShift={2}/>
         <h4>Color Shift 1</h4>
-        <Swatch className="vertical" {...clusterProps} colorShift={1}/>
+        <Swatch {...clusterProps} colorShift={1}/>
       </div>
       <OverlappingPreviewMultishift colorConfig={colorConfigNew}/>
       <h3>new yarn</h3>
       <div>
-        <Swatch className="vertical" {...clusterProps} colorShift={10}/>
+        <Swatch {...clusterProps} colorShift={10}/>
         <br/>
-        <Swatch className="vertical" {...clusterProps} colorShift={2}/>
+        <Swatch {...clusterProps} colorShift={2}/>
       </div>
       <OverlappingShawlPreview {...newShawlConfig}/>
       <br/>
       <h3>old yarn</h3>
-        <Swatch className="vertical" {...oldClusterProps} colorShift={10}/>
+        <Swatch {...oldClusterProps} colorShift={10}/>
         <br/>
-        <Swatch className="vertical" {...oldClusterProps} colorShift={2}/>
+        <Swatch {...oldClusterProps} colorShift={2}/>
       <OverlappingShawlPreview {...oldShawlConfig}/>
     </div>
   )

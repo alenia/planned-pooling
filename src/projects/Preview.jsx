@@ -31,14 +31,9 @@ function StitchPatternPreview({stitchPattern, notes, title}) {
     <div>
       <h4>{title || stitchPattern}</h4>
       {notes ? <p>{notes}</p> : ''}
-      <h5>horizontal</h5>
       <Swatch {...basicProps} stitchPattern={stitchPattern}/>
-      <h5>horizontal and staggered</h5>
+      <h5>staggered</h5>
       <Swatch {...basicProps} stitchPattern={stitchPattern} staggerLengths={true}/>
-      <h5>vertical</h5>
-      <Swatch {...basicProps} className="vertical" stitchPattern={stitchPattern}/>
-      <h5>vertical and staggered</h5>
-      <Swatch {...basicProps} className="vertical" stitchPattern={stitchPattern} staggerLengths={true}/>
     </div>
   )
 }
@@ -58,23 +53,19 @@ export default function Preview() {
       <StitchPatternPreview title="no stitch pattern"/>
       <StitchPatternPreview stitchPattern="stacked"/>
       <StitchPatternPreview stitchPattern="moss"/>
-      <StitchPatternPreview stitchPattern="hdc" notes="only working for vertical. Probably needs a rename, called hdc based on the amian hat"/>
+      <StitchPatternPreview stitchPattern="hdc" notes="Probably needs a rename, called hdc based on the amian hat"/>
       <StitchPatternPreview stitchPattern="granny"/>
       <StitchPatternPreview stitchPattern="shell"/>
       <StitchPatternPreview stitchPattern="v-stitch"/>
       <h4>jasmine</h4>
       <Swatch {...jasminePoolerProps}/>
-      <Swatch className="vertical" {...jasminePoolerProps}/>
       <h4>ripple</h4>
       <Swatch {...ripplePoolerProps}/>
       <Swatch {...ripplePooler2Props}/>
-      <Swatch className="vertical" {...ripplePooler2Props}/>
       <h4>vstitch cluster</h4>
       <Swatch {...vstitchClusterProps}/>
-      <Swatch className="vertical" {...vstitchClusterProps}/>
       <h4>angled block cluster</h4>
       <Swatch {...angledBlockClusterProps}/>
-      <Swatch className="vertical" {...angledBlockClusterProps}/>
     </div>
   )
 }
