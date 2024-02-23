@@ -270,7 +270,6 @@
   $rot: 30deg;
   .cluster .stitch:first-child, .crow:nth-child(2n) .cluster .stitch:last-child {
     transform: rotate(-1* $rot);
-    transform-origin: bottom center;
   }
   .cluster .stitch:last-child, .crow:nth-child(2n) .cluster .stitch:first-child {
     transform: rotate($rot);

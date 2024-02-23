@@ -71,6 +71,7 @@ export default function Preview() {
       <Swatch className="vertical" {...ripplePooler2Props}/>
       <h4>vstitch cluster</h4>
       <Swatch {...vstitchClusterProps}/>
+      <Swatch className="vertical" {...vstitchClusterProps}/>
       <h4>angled block cluster</h4>
       <Swatch {...angledBlockClusterProps}/>
       <Swatch className="vertical" {...angledBlockClusterProps}/>
