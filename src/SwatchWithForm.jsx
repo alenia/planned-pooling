@@ -18,14 +18,7 @@ function SwatchWithForm({ colorConfig, crowLength, stitchPattern, crows, colorSh
       formData={formData}
       setFormData={setFormData} 
     />
-    <Swatch
-      colorConfig={formData.colorConfig}
-      crowLength={formData.crowLength}
-      crows={formData.crows}
-      colorShift={formData.colorShift}
-      staggerLengths={formData.staggerLengths}
-      stitchPattern={formData.stitchPattern}
-    />
+    <Swatch {...formData} />
   </div>
   );
 }
