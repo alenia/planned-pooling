@@ -6,34 +6,26 @@ import CheckboxInput from './inputs/Checkbox.jsx'
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
-  const handleChange = (e) => {
+  const changeValue = (name, value) => {
     const newFormData = { ...formData };
-    newFormData[e.target.name] = e.target.value;
+    newFormData[name] = value;
     setFormData(newFormData);
-  };
+  }
 
   const handleChangeCheckbox = (e) => {
-    const newFormData = { ...formData };
-    newFormData[e.target.name] = e.target.checked;
-    setFormData(newFormData);
-  };
-
-  const changeNumber = (name, value) => {
-    const newFormData = { ...formData };
-    newFormData[name] = parseInt(value);
-    setFormData(newFormData);
+    changeValue(e.target.name, e.target.checked);
   };
 
   const handleChangePositiveInteger = (e) => {
     let value = parseInt(e.target.value)
-    if (isNaN(parseInt(value)) || value < 0) { value = 0 }
-    changeNumber(e.target.name, value);
+    if (isNaN(value) || value < 0) { value = 0 }
+    changeValue(e.target.name, value);
   }
 
   const handleChangeInteger = (e) => {
     let value = parseInt(e.target.value)
-    if (isNaN(parseInt(value))) { value = 0 }
-    changeNumber(e.target.name, value);
+    if (isNaN(value)) { value = 0 }
+    changeValue(e.target.name, value);
   }
 
   const printColorConfig = () => {
