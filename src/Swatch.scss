@@ -1,3 +1,16 @@
+.swatch.numbered {
+  counter-reset: crows 0;
+  .crow {
+    counter-increment: crows 1;
+  }
+  .crow::before {
+    content: counter(crows);
+    color: #aaaaaa;
+    font-size: 12px;
+    position: absolute;
+    margin: 0 -20px;
+  }
+}
 .swatch {
   margin: 5px 0;
   width: fit-content;
