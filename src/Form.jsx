@@ -2,6 +2,8 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
+import { ChromePicker } from 'react-color';
+import React from 'react'
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
@@ -60,7 +62,12 @@ const Form = ({ formData, setFormData }) => {
       }}
     >
       <div>
-        <p>{printColorConfig()}</p>
+        {colorConfig.map((obj, index) => (
+          <React.Fragment key={index + 1}>
+            Color {(index + 1)}: <ChromePicker color={obj.color} /> Length: {obj.length}
+            <br />
+          </React.Fragment>
+        ))}
       </div>
 
       <div>
