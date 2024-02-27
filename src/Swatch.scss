@@ -1,23 +1,26 @@
-.swatch {
-  margin: 5px 0;
-  display: flex;
-  flex-direction: row;
+.swatch.numbered {
+  counter-reset: crows 0;
   .crow {
-    display: flex;
-    flex-direction: column;
+    counter-increment: crows 1;
   }
-
-  .crow:nth-child(2n) {
-    flex-direction: column-reverse;
+  .crow::before {
+    content: counter(crows);
+    color: #aaaaaa;
+    font-size: 12px;
+    position: absolute;
+    margin: 0 -20px;
   }
 }
-
-.swatch.vertical {
+.swatch {
+  margin: 5px 0;
   width: fit-content;
+  display: flex;
   flex-direction: column-reverse;
   .crow {
+    display: flex;
     flex-direction: row;
   }
+
   .crow:nth-child(2n) {
     flex-direction: row-reverse;
   }
@@ -26,14 +29,8 @@
 .swatch {
   .stitch {
     border: 1px solid black;
-    height: 12px;
-    width: 20px;
-  }
-  &.vertical {
-    .stitch {
-      width: 12px;
-      height: 20px;
-    }
+    width: 12px;
+    height: 20px;
   }
 }
 
@@ -48,17 +45,14 @@
     width: 20px;
     height: 20px;
     border: 0;
-    clip-path: polygon(100% 0, 100% 25%, 50% 50%, 100% 75%, 100% 100%, 0 50%);
-  }
-  &.vertical .stitch {
     clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
   }
 }
 .swatch.jasmine {
-  $stitchHeight: 30px;
+  $puffSize: 30px;
   .stitch {
-    width: 10px;
-    height: $stitchHeight;
+    width: $puffSize;
+    height: 10px;
     border: 1px solid black;
     border-radius: 40%;
     position: absolute;
@@ -66,57 +60,28 @@
 
   .cluster {
     position: relative;
-    width: $stitchHeight;
-    height: $stitchHeight;
+    width: $puffSize;
+    height: $puffSize;
   }
-  &.vertical {
-    .stitch {
-      width: $stitchHeight;
-      height: 10px;
+  .crow:nth-child(2n) {
+    margin-left: 50px; //this is a weird artifact of the fact that the prepended cluster takes up a ton of room
+    .stitch:nth-child(3n), .stitch:only-child {
+      transform: rotate(120deg);
+      transform-origin: center left;
     }
-    .crow:nth-child(2n) {
-      margin-left: 0.5*$stitchHeight;
-      .stitch:nth-child(3n+1) {
-        transform: rotate(-60deg);
-        transform-origin: center right;
-      }
-      .stitch:nth-child(3n), .stitch:only-child {
-        transform: rotate(60deg);
-        transform-origin: center left;
-      }
-    }
-    .crow:nth-child(2n+1) {
-      .stitch:nth-child(3n+1) {
-        transform: rotate(60deg);
-        transform-origin: center left;
-      }
-      .stitch:nth-child(3n), .stitch:only-child {
-        transform: rotate(-60deg);
-        transform-origin: center right;
-      }
+    .stitch:nth-child(3n+2) {
+      transform: rotate(60deg);
+      transform-origin: center left;
     }
   }
-  &:not(.vertical) {
-    .crow:nth-child(2n) {
-      margin-top: 0.5*$stitchHeight;
-      .stitch:nth-child(3n+1) {
-        transform: rotate(60deg);
-        transform-origin: bottom center;
-      }
-      .stitch:nth-child(3n), .stitch:only-child {
-        transform: rotate(-60deg);
-        transform-origin: top center;
-      }
+  .crow:nth-child(2n+1) {
+    .stitch:nth-child(3n), .stitch:only-child {
+      transform: rotate(-120deg);
+      transform-origin: center right;
     }
-    .crow:nth-child(2n+1) {
-      .stitch:nth-child(3n+1) {
-        transform: rotate(-60deg);
-        transform-origin: top center;
-      }
-      .stitch:nth-child(3n), .stitch:only-child {
-        transform: rotate(60deg);
-        transform-origin: bottom center;
-      }
+    .stitch:nth-child(3n+2) {
+      transform: rotate(-60deg);
+      transform-origin: center right;
     }
   }
 }
@@ -124,23 +89,12 @@
 .swatch.clustered {
   .cluster {
     display: flex;
-    flex-direction: column;
-  }
-
-  &.vertical {
-    .crow:nth-child(2n) .cluster {
-      flex-direction: row-reverse;
-    }
-    .cluster {
-      display: flex;
-      flex-direction: row;
-    }
+    flex-direction: row;
   }
 
   .crow:nth-child(2n) .cluster {
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
   }
-
 }
 
 .swatch.ripple {
@@ -171,98 +125,58 @@
   $stitchHeight: 20px;
   $stitchSpacing: 2px;
   .crow:nth-child(2n) {
-    margin: 0.5*$stitchWidth + $stitchSpacing 0;
+    margin: 0 0.5*$stitchWidth + $stitchSpacing;
   }
   .stitch {
-    height: $stitchWidth;
-    width: $stitchHeight;
-    margin-top: $stitchSpacing;
-    margin-bottom: $stitchSpacing;
-    margin-right: -.37 * $stitchHeight;
+    width: $stitchWidth;
+    height: $stitchHeight;
+    margin-left: $stitchSpacing;
+    margin-right: $stitchSpacing;
+    margin-top: -.37 * $stitchHeight;
+    margin-bottom: 0;
     border: 0;
-    clip-path: polygon(60% 0, 85% 20%, 100% 50%, 85% 80%, 60% 100%, 0 50%);
-  }
-  &.vertical {
-    .crow:nth-child(2n) {
-      margin: 0 0.5*$stitchWidth + $stitchSpacing;
-    }
-    .stitch {
-      width: $stitchWidth;
-      height: $stitchHeight;
-      margin-left: $stitchSpacing;
-      margin-right: $stitchSpacing;
-      margin-top: -.37 * $stitchHeight;
-      margin-bottom: 0;
-      clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
-    }
+    clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
   }
 }
 
+$basicStitchHeight: 28px;
 .swatch.moss, .swatch.hdc {
-  $stitchHeight: 28px;
+  $stitchHeight: $basicStitchHeight;
   $stitchWidth: 14px;
   $spacing: 1px;
   .crow:nth-child(2n) {
-    margin: $stitchWidth + $spacing 0;
+    margin: 0 $stitchWidth + $spacing;
   }
   .stitch {
     box-sizing: border-box;
     border: 1px solid black;
-    height: $stitchWidth;
-    width: $stitchHeight;
-    margin-top: $stitchWidth + $spacing;
-    margin-bottom: $spacing;
-    margin-right: -0.5*$stitchHeight;
-    margin-left: $spacing;
-  }
-  &.vertical {
-    .crow:nth-child(2n) {
-      margin: 0 $stitchWidth + $spacing;
-    }
-    .stitch {
-      width: $stitchWidth;
-      height: $stitchHeight;
-      margin-left: $stitchWidth + $spacing;
-      margin-right: $spacing;
-      margin-bottom: -0.5*$stitchHeight;
-      margin-top: $spacing;
-    }
+    width: $stitchWidth;
+    height: $stitchHeight;
+    margin-left: $stitchWidth + $spacing;
+    margin-right: $spacing;
+    margin-top: $spacing;
   }
 }
 
-.swatch.hdc {
-  $stitchHeight: 28px;
-  .stitch {
-    margin-right: -.3*$stitchHeight;
-  }
-  &.vertical {
-    .stitch {
-      margin-bottom: -.3*$stitchHeight;
-    }
-  }
+.swatch.moss .stitch {
+  margin-bottom: -0.5*$basicStitchHeight;
+}
+
+.swatch.hdc .stitch {
+  margin-bottom: -.3*$basicStitchHeight;
 }
 
 .swatch.granny {
   $stitchHeight: 20px;
   .crow:nth-child(2n) {
-    margin: $stitchHeight 0;
+    margin: 0 $stitchHeight;
   }
   .stitch {
     box-sizing: border-box;
     border: 1px solid black;
     height: $stitchHeight;
     width: $stitchHeight;
-    margin-top: $stitchHeight;
-    margin-right: -.2*$stitchHeight;
-  }
-
-  &.vertical {
-    .crow:nth-child(2n) {
-      margin: 0 $stitchHeight;
-    }
-    .stitch {
-      margin: 0 $stitchHeight -.2*$stitchHeight 0;
-    }
+    margin: 0 $stitchHeight -.2*$stitchHeight 0;
   }
 }
 
@@ -270,7 +184,6 @@
   $rot: 30deg;
   .cluster .stitch:first-child, .crow:nth-child(2n) .cluster .stitch:last-child {
     transform: rotate(-1* $rot);
-    transform-origin: bottom center;
   }
   .cluster .stitch:last-child, .crow:nth-child(2n) .cluster .stitch:first-child {
     transform: rotate($rot);
@@ -284,13 +197,13 @@
   $clusterHeight: 45px;
   $rot: 45deg;
 
-  .stitch, &.vertical .stitch {
+  .stitch {
     height: auto;
     width: auto;
     flex-grow: 1;
   }
   .crow:nth-child(2n) {
-    margin: .7 * $clusterHeight -.3 * $clusterHeight 0;
+    margin: -.3 * $clusterHeight 0 -.3 * $clusterHeight .7 * $clusterHeight;
     .cluster {
       transform: rotate(-1 * $rot);
     }
@@ -298,23 +211,14 @@
   .cluster {
     height: $clusterHeight;
     width: $clusterHeight;
-    margin-top: .4 * $clusterHeight;
+    margin: 0 .4 * $clusterHeight 0 0;
     transform: rotate($rot);
-  }
-
-  &.vertical {
-    .crow:nth-child(2n) {
-      margin: -.3 * $clusterHeight 0 -.3 * $clusterHeight .7 * $clusterHeight;
-    }
-    .cluster {
-      margin: 0 .4 * $clusterHeight 0 0;
-    }
   }
 }
 .overlapping-container {
   display: flex;
   flex-direction: column-reverse;
-  .ablockCluster.vertical {
+  .ablockCluster {
     $clusterHeight: 45px;
     margin-bottom: -24px;
     .crow:nth-child(2n) {

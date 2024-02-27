@@ -1,13 +1,20 @@
 import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
+import CheckboxInput from './inputs/Checkbox.jsx'
 
 const Form = ({ formData, setFormData }) => {
-  const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern } = formData;
+  const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
   const handleChange = (e) => {
     const newFormData = { ...formData };
     newFormData[e.target.name] = e.target.value;
+    setFormData(newFormData);
+  };
+
+  const handleChangeCheckbox = (e) => {
+    const newFormData = { ...formData };
+    newFormData[e.target.name] = e.target.checked;
     setFormData(newFormData);
   };
 
@@ -99,6 +106,30 @@ const Form = ({ formData, setFormData }) => {
         />
       </div>
 
+      <div>
+        <label htmlFor="crows" title="The number of rows displayed">
+          Number of rows:
+        </label>
+        <input
+          onChange={handleChangePositiveInteger}
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          name="crows"
+          id="crows"
+          value={crows}
+        />
+      </div>
+
+      <CheckboxInput
+        label="Show Row Numbers"
+        title="Show Row Numbers"
+        name="showRowNumbers"
+        value={showRowNumbers}
+        onChange={handleChangeCheckbox}
+        />
+
+
       <input
         type="hidden"
         name="staggerLengths"
@@ -124,6 +155,7 @@ Form.propTypes = {
     crows: PropTypes.number,
     colorShift: PropTypes.number,
     staggerLengths: PropTypes.bool,
+    showRowNumbers: PropTypes.bool,
   }),
   setFormData: PropTypes.func,
 }
