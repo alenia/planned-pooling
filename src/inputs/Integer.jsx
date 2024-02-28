@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const NumberInput = ({ value, name, label, title, onChange}) => {
+const IntegerInput = ({ value, name, label, title, onChange}) => {
       return (
           <div>
             <label htmlFor={name} title={title}>
@@ -19,7 +19,7 @@ const NumberInput = ({ value, name, label, title, onChange}) => {
       )
 };
 
-NumberInput.propTypes = {
+IntegerInput.propTypes = {
   value: PropTypes.number,
   name: PropTypes.string,
   label: PropTypes.string,
@@ -27,5 +27,5 @@ NumberInput.propTypes = {
   onChange: PropTypes.func,
 }
 
-export default NumberInput;
+export default IntegerInput;
 

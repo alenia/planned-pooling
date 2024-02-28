@@ -2,7 +2,7 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
-import NumberInput from './inputs/Number.jsx'
+import IntegerInput from './inputs/Integer.jsx'
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
@@ -62,7 +62,7 @@ const Form = ({ formData, setFormData }) => {
         </p>
       </div>
 
-      <NumberInput
+      <IntegerInput
         label="Stitches per row:"
         title="The number of stitches in one row"
         name="crowLength"
@@ -70,7 +70,7 @@ const Form = ({ formData, setFormData }) => {
         onChange={handleChangePositiveInteger}
         />
 
-      <NumberInput
+      <IntegerInput
         label="Color shift:"
         title="Start the swatch this many stitches into your color sequence"
         name="colorShift"
@@ -78,7 +78,7 @@ const Form = ({ formData, setFormData }) => {
         onChange={handleChangeInteger}
         />
 
-      <NumberInput
+      <IntegerInput
         label="Number of rows:"
         title="The number of rows displayed"
         name="crows"
