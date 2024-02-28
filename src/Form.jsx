@@ -7,26 +7,10 @@ import IntegerInput from './inputs/Integer.jsx'
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
-  const changeValue = (name, value) => {
+  const setValue = (name, value) => {
     const newFormData = { ...formData };
     newFormData[name] = value;
     setFormData(newFormData);
-  }
-
-  const handleChangeCheckbox = (e) => {
-    changeValue(e.target.name, e.target.checked);
-  };
-
-  const handleChangePositiveInteger = (e) => {
-    let value = parseInt(e.target.value)
-    if (isNaN(value) || value < 0) { value = 0 }
-    changeValue(e.target.name, value);
-  }
-
-  const handleChangeInteger = (e) => {
-    let value = parseInt(e.target.value)
-    if (isNaN(value)) { value = 0 }
-    changeValue(e.target.name, value);
   }
 
   const printColorConfig = () => {
@@ -67,7 +51,8 @@ const Form = ({ formData, setFormData }) => {
         title="The number of stitches in one row"
         name="crowLength"
         value={crowLength}
-        onChange={handleChangePositiveInteger}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
         />
 
       <IntegerInput
@@ -75,7 +60,7 @@ const Form = ({ formData, setFormData }) => {
         title="Start the swatch this many stitches into your color sequence"
         name="colorShift"
         value={colorShift}
-        onChange={handleChangeInteger}
+        setValue={setValue}
         />
 
       <IntegerInput
@@ -83,7 +68,8 @@ const Form = ({ formData, setFormData }) => {
         title="The number of rows displayed"
         name="crows"
         value={crows}
-        onChange={handleChangePositiveInteger}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
         />
 
       <CheckboxInput
@@ -91,7 +77,7 @@ const Form = ({ formData, setFormData }) => {
         title="Show Row Numbers"
         name="showRowNumbers"
         value={showRowNumbers}
-        onChange={handleChangeCheckbox}
+        setValue={setValue}
         />
 
 
