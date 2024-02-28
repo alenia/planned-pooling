@@ -2,6 +2,7 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
+import NumberInput from './inputs/Number.jsx'
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
@@ -61,57 +62,29 @@ const Form = ({ formData, setFormData }) => {
         </p>
       </div>
 
-      <div>
-        <label htmlFor="crowLength" title="The number of stitches in one row">
-          Stitches per row:
-        </label>
-        <input
-          onChange={handleChangePositiveInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="crowLength"
-          id="crowLength"
-          value={crowLength}
+      <NumberInput
+        label="Stitches per row:"
+        title="The number of stitches in one row"
+        name="crowLength"
+        value={crowLength}
+        onChange={handleChangePositiveInteger}
         />
-      </div>
 
-      <input
-        type="hidden"
+      <NumberInput
+        label="Color shift:"
+        title="Start the swatch this many stitches into your color sequence"
+        name="colorShift"
+        value={colorShift}
+        onChange={handleChangeInteger}
+        />
+
+      <NumberInput
+        label="Number of rows:"
+        title="The number of rows displayed"
         name="crows"
-        id="crows"
         value={crows}
-      />
-
-      <div>
-        <label htmlFor="colorShift" title="Start the swatch this many stitches into your color sequence">
-          Color shift:
-        </label>
-        <input
-          onChange={handleChangeInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="colorShift"
-          id="colorShift"
-          value={colorShift}
+        onChange={handleChangePositiveInteger}
         />
-      </div>
-
-      <div>
-        <label htmlFor="crows" title="The number of rows displayed">
-          Number of rows:
-        </label>
-        <input
-          onChange={handleChangePositiveInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="crows"
-          id="crows"
-          value={crows}
-        />
-      </div>
 
       <CheckboxInput
         label="Show Row Numbers"
