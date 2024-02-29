@@ -44,14 +44,14 @@ const Form = ({ formData, setFormData }) => {
       <div>
         {colorConfig.map((obj, index) => (
           <React.Fragment key={index + 1}>
-            Color {(index + 1)}:
+            <label>Color {(index + 1)}:</label>
             <ChromePicker
               color={colorConfig[index].color}
               disableAlpha={true}
               onChangeComplete={(color) => setColorConfigColorValue(color, index)}
             /> 
             <IntegerInput
-              label="Length: "
+              label="Length:"
               title="The number of stitches in this color segment"
               name={`${index}`}
               value={colorConfig[index].length}
