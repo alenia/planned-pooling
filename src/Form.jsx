@@ -4,38 +4,15 @@ import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
 import { ChromePicker } from 'react-color';
 import React from 'react'
+import IntegerInput from './inputs/Integer.jsx'
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
-  const handleChange = (e) => {
+  const setValue = (name, value) => {
     const newFormData = { ...formData };
-    newFormData[e.target.name] = e.target.value;
+    newFormData[name] = value;
     setFormData(newFormData);
-  };
-
-  const handleChangeCheckbox = (e) => {
-    const newFormData = { ...formData };
-    newFormData[e.target.name] = e.target.checked;
-    setFormData(newFormData);
-  };
-
-  const changeNumber = (name, value) => {
-    const newFormData = { ...formData };
-    newFormData[name] = parseInt(value);
-    setFormData(newFormData);
-  };
-
-  const handleChangePositiveInteger = (e) => {
-    let value = parseInt(e.target.value)
-    if (isNaN(parseInt(value)) || value < 0) { value = 0 }
-    changeNumber(e.target.name, value);
-  }
-
-  const handleChangeInteger = (e) => {
-    let value = parseInt(e.target.value)
-    if (isNaN(parseInt(value))) { value = 0 }
-    changeNumber(e.target.name, value);
   }
 
   const handleColorChangeComplete = (color, index) => {
@@ -80,64 +57,38 @@ const Form = ({ formData, setFormData }) => {
         </p>
       </div>
 
-      <div>
-        <label htmlFor="crowLength" title="The number of stitches in one row">
-          Stitches per row:
-        </label>
-        <input
-          onChange={handleChangePositiveInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="crowLength"
-          id="crowLength"
-          value={crowLength}
+      <IntegerInput
+        label="Stitches per row:"
+        title="The number of stitches in one row"
+        name="crowLength"
+        value={crowLength}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
         />
-      </div>
 
-      <input
-        type="hidden"
+      <IntegerInput
+        label="Color shift:"
+        title="Start the swatch this many stitches into your color sequence"
+        name="colorShift"
+        value={colorShift}
+        setValue={setValue}
+        />
+
+      <IntegerInput
+        label="Number of rows:"
+        title="The number of rows displayed"
         name="crows"
-        id="crows"
         value={crows}
-      />
-
-      <div>
-        <label htmlFor="colorShift" title="Start the swatch this many stitches into your color sequence">
-          Color shift:
-        </label>
-        <input
-          onChange={handleChangeInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="colorShift"
-          id="colorShift"
-          value={colorShift}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
         />
-      </div>
-
-      <div>
-        <label htmlFor="crows" title="The number of rows displayed">
-          Number of rows:
-        </label>
-        <input
-          onChange={handleChangePositiveInteger}
-          type="number"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          name="crows"
-          id="crows"
-          value={crows}
-        />
-      </div>
 
       <CheckboxInput
         label="Show Row Numbers"
         title="Show Row Numbers"
         name="showRowNumbers"
         value={showRowNumbers}
-        onChange={handleChangeCheckbox}
+        setValue={setValue}
         />
 
 
