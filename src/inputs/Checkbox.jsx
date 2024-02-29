@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
+import React from 'react'
 
 const Checkbox = ({ value, name, label, title, setValue}) => {
   const handleChange = (e) => {
     setValue(e.target.name, e.target.checked);
   }
   return (
-      <div>
+      <React.Fragment>
         <input
           type="checkbox"
           onChange={handleChange}
@@ -16,7 +17,7 @@ const Checkbox = ({ value, name, label, title, setValue}) => {
         <label htmlFor={name} title={title}>
         {label}
         </label>
-      </div>
+      </React.Fragment>
   )
 };
 
