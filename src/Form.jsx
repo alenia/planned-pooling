@@ -35,7 +35,6 @@ const Form = ({ formData, setFormData }) => {
   const removeColorFromConfig = (index) => {
     const newFormData = { ...formData };
     newFormData['colorConfig'].splice(index, 1);
-    console.log(newFormData);
     setFormData(newFormData);
   }
 
