@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
 import { ChromePicker } from 'react-color';
-import React from 'react'
 import IntegerInput from './inputs/Integer.jsx'
 
 const Form = ({ formData, setFormData }) => {
@@ -43,7 +42,7 @@ const Form = ({ formData, setFormData }) => {
     >
       <div>
         {colorConfig.map((obj, index) => (
-          <React.Fragment key={index + 1}>
+          <div key={index + 1}>
             <label>Color {(index + 1)}:</label>
             <ChromePicker
               color={colorConfig[index].color}
@@ -58,8 +57,7 @@ const Form = ({ formData, setFormData }) => {
               setValue={setColorConfigLengthValue}
               validator={IntegerInput.validators.nonNegative}
             />
-            <br />
-          </React.Fragment>
+          </div>
         ))}
       </div>
 
