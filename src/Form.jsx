@@ -2,7 +2,7 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
-import { ChromePicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 import IntegerInput from './inputs/Integer.jsx'
 
 const Form = ({ formData, setFormData }) => {
@@ -34,6 +34,8 @@ const Form = ({ formData, setFormData }) => {
     return result;
   }
 
+  const presetColors = [...new Set(colorConfig.map((c) => c.color))];
+
   return (
     <form
       onSubmit={(e) => {
@@ -44,10 +46,11 @@ const Form = ({ formData, setFormData }) => {
         {colorConfig.map((obj, index) => (
           <div key={index + 1}>
             <label>Color {(index + 1)}:</label>
-            <ChromePicker
+            <SketchPicker
               color={colorConfig[index].color}
               disableAlpha={true}
               onChangeComplete={(color) => setColorConfigColorValue(color, index)}
+              presetColors={presetColors}
             /> 
             <IntegerInput
               label="Length:"
