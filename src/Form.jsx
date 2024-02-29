@@ -64,7 +64,7 @@ const Form = ({ formData, setFormData }) => {
       <div>
         {colorConfig.map((obj, index) => (
           <React.Fragment key={index + 1}>
-            Color {(index + 1)}: <ChromePicker color={obj.color} /> Length: {obj.length}
+            Color {(index + 1)}: <ChromePicker color={obj.color} disableAlpha={true} /> Length: {obj.length}
             <br />
           </React.Fragment>
         ))}
