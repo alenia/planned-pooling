@@ -15,8 +15,7 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
-  const handleColorChangeComplete = (color, index) => {
-    console.log(color);
+  const setColorConfigColorValue = (color, index) => {
     const newFormData = {...formData};
     newFormData['colorConfig'][index]['color'] = color.hex;
     setFormData(newFormData);
@@ -43,7 +42,7 @@ const Form = ({ formData, setFormData }) => {
             <ChromePicker
               color={colorConfig[index].color}
               disableAlpha={true}
-              onChangeComplete={(color) => handleColorChangeComplete(color, index)}
+              onChangeComplete={(color) => setColorConfigColorValue(color, index)}
             /> 
             Length: {colorConfig[index].length}
             <br />
