@@ -1,3 +1,16 @@
 input {
   margin-bottom: 1em;
 }
+
+label {
+  margin-right: 0.5em;
+}
+
+.chrome-picker {
+  display: inline-block;
+  margin-bottom: 1em;
+
+  label {
+    margin: unset;
+  }
+}

@@ -2,6 +2,7 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
+import { ChromePicker } from 'react-color';
 import IntegerInput from './inputs/Integer.jsx'
 
 const Form = ({ formData, setFormData }) => {
@@ -13,14 +14,17 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
-  const printColorConfig = () => {
-    let result = "";
-    for (const i in colorConfig) {
-      result += "Color: " + colorConfig[i].color + " Length: " + colorConfig[i].length;
-      result += " / "
-    }
-    return result;
+  const setColorConfigLengthValue = (index, value) => {
+    const newFormData = { ...formData };
+    newFormData['colorConfig'][index]['length'] = value;
+    setFormData(newFormData);
   }
+
+  const setColorConfigColorValue = (color, index) => {
+    const newFormData = {...formData};
+    newFormData['colorConfig'][index]['color'] = color.hex;
+    setFormData(newFormData);
+  };
 
   const printColorSequenceLength = () => {
     let result = 0;
@@ -37,7 +41,24 @@ const Form = ({ formData, setFormData }) => {
       }}
     >
       <div>
-        <p>{printColorConfig()}</p>
+        {colorConfig.map((obj, index) => (
+          <div key={index + 1}>
+            <label>Color {(index + 1)}:</label>
+            <ChromePicker
+              color={colorConfig[index].color}
+              disableAlpha={true}
+              onChangeComplete={(color) => setColorConfigColorValue(color, index)}
+            /> 
+            <IntegerInput
+              label="Length:"
+              title="The number of stitches in this color segment"
+              name={`${index}`}
+              value={colorConfig[index].length}
+              setValue={setColorConfigLengthValue}
+              validator={IntegerInput.validators.nonNegative}
+            />
+          </div>
+        ))}
       </div>
 
       <div>
