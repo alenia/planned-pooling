@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from 'react'
 
 const IntegerInput = ({ value, name, label, title, setValue, validator = () => true}) => {
   const handleChange = (e) => {
@@ -8,7 +7,7 @@ const IntegerInput = ({ value, name, label, title, setValue, validator = () => t
     setValue(e.target.name, value);
   }
   return (
-      <React.Fragment>
+      <div>
         <label htmlFor={name} title={title}>
           {label}
         </label>
@@ -21,7 +20,7 @@ const IntegerInput = ({ value, name, label, title, setValue, validator = () => t
           id={name}
           value={value}
         />
-      </React.Fragment>
+      </div>
   )
 };
 

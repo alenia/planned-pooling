@@ -69,45 +69,40 @@ const Form = ({ formData, setFormData }) => {
         </p>
       </div>
 
-      <div>
-        <IntegerInput
-          label="Stitches per row:"
-          title="The number of stitches in one row"
-          name="crowLength"
-          value={crowLength}
-          setValue={setValue}
-          validator={IntegerInput.validators.nonNegative}
-        />
-      </div>
-
-      <div>
-        <IntegerInput
-          label="Color shift:"
-          title="Start the swatch this many stitches into your color sequence"
-          name="colorShift"
-          value={colorShift}
-          setValue={setValue}
-        />
-      </div>
-
-      <div>
-        <IntegerInput
-          label="Number of rows:"
-          title="The number of rows displayed"
-          name="crows"
-          value={crows}
-          setValue={setValue}
-          validator={IntegerInput.validators.nonNegative}
+      <IntegerInput
+        label="Stitches per row:"
+        title="The number of stitches in one row"
+        name="crowLength"
+        value={crowLength}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
         />
 
-        <CheckboxInput
-          label="Show Row Numbers"
-          title="Show Row Numbers"
-          name="showRowNumbers"
-          value={showRowNumbers}
-          setValue={setValue}
+      <IntegerInput
+        label="Color shift:"
+        title="Start the swatch this many stitches into your color sequence"
+        name="colorShift"
+        value={colorShift}
+        setValue={setValue}
         />
-      </div>
+
+      <IntegerInput
+        label="Number of rows:"
+        title="The number of rows displayed"
+        name="crows"
+        value={crows}
+        setValue={setValue}
+        validator={IntegerInput.validators.nonNegative}
+        />
+
+      <CheckboxInput
+        label="Show Row Numbers"
+        title="Show Row Numbers"
+        name="showRowNumbers"
+        value={showRowNumbers}
+        setValue={setValue}
+        />
+
 
       <input
         type="hidden"
