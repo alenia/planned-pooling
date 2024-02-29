@@ -26,6 +26,12 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   };
 
+  const addColorToConfig = () => {
+    const newFormData = { ...formData };
+    newFormData['colorConfig'].push({color: '#000', length: 0});
+    setFormData(newFormData);
+  }
+
   const printColorSequenceLength = () => {
     let result = 0;
     for (const i in colorConfig) {
@@ -59,6 +65,9 @@ const Form = ({ formData, setFormData }) => {
             />
           </div>
         ))}
+        <div>
+          <button onClick={addColorToConfig}>Add a color</button>
+        </div>
       </div>
 
       <div>
