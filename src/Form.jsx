@@ -38,14 +38,12 @@ const Form = ({ formData, setFormData }) => {
     changeNumber(e.target.name, value);
   }
 
-  const printColorConfig = () => {
-    let result = "";
-    for (const i in colorConfig) {
-      result += "Color: " + colorConfig[i].color + " Length: " + colorConfig[i].length;
-      result += " / "
-    }
-    return result;
-  }
+  const handleColorChangeComplete = (color, index) => {
+    console.log(color);
+    const newFormData = {...formData};
+    newFormData['colorConfig'][index]['color'] = color.hex;
+    setFormData(newFormData);
+  };
 
   const printColorSequenceLength = () => {
     let result = 0;
@@ -64,7 +62,13 @@ const Form = ({ formData, setFormData }) => {
       <div>
         {colorConfig.map((obj, index) => (
           <React.Fragment key={index + 1}>
-            Color {(index + 1)}: <ChromePicker color={obj.color} disableAlpha={true} /> Length: {obj.length}
+            Color {(index + 1)}:
+            <ChromePicker
+              color={colorConfig[index].color}
+              disableAlpha={true}
+              onChangeComplete={(color) => handleColorChangeComplete(color, index)}
+            /> 
+            Length: {colorConfig[index].length}
             <br />
           </React.Fragment>
         ))}
