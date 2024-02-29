@@ -32,6 +32,13 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
+  const removeColorFromConfig = (index) => {
+    const newFormData = { ...formData };
+    newFormData['colorConfig'].splice(index, 1);
+    console.log(newFormData);
+    setFormData(newFormData);
+  }
+
   const printColorSequenceLength = () => {
     let result = 0;
     for (const i in colorConfig) {
@@ -63,6 +70,7 @@ const Form = ({ formData, setFormData }) => {
               setValue={setColorConfigLengthValue}
               validator={IntegerInput.validators.nonNegative}
             />
+            <button onClick={(e) => removeColorFromConfig(index)}>Remove color</button>
           </div>
         ))}
         <div>
