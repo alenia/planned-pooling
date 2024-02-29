@@ -15,6 +15,12 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
+  const setColorConfigLengthValue = (index, value) => {
+    const newFormData = { ...formData };
+    newFormData['colorConfig'][index]['length'] = value;
+    setFormData(newFormData);
+  }
+
   const setColorConfigColorValue = (color, index) => {
     const newFormData = {...formData};
     newFormData['colorConfig'][index]['color'] = color.hex;
@@ -44,7 +50,14 @@ const Form = ({ formData, setFormData }) => {
               disableAlpha={true}
               onChangeComplete={(color) => setColorConfigColorValue(color, index)}
             /> 
-            Length: {colorConfig[index].length}
+            <IntegerInput
+              label="Length: "
+              title="The number of stitches in this color segment"
+              name={`${index}`}
+              value={colorConfig[index].length}
+              setValue={setColorConfigLengthValue}
+              validator={IntegerInput.validators.nonNegative}
+            />
             <br />
           </React.Fragment>
         ))}
