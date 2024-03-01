@@ -4,6 +4,7 @@ import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
 import { ChromePicker } from 'react-color';
 import IntegerInput from './inputs/Integer.jsx'
+import fontColorContrast from 'font-color-contrast';
 
 const Form = ({ formData, setFormData }) => {
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
@@ -61,6 +62,15 @@ const Form = ({ formData, setFormData }) => {
               disableAlpha={true}
               onChangeComplete={(color) => setColorConfigColorValue(color, index)}
             /> 
+            <span
+              className='color-preview'
+              style={ {
+                background: colorConfig[index].color,
+                color: fontColorContrast(colorConfig[index].color),
+              }}
+            >
+              {colorConfig[index].color}
+            </span>
             <IntegerInput
               label="Length:"
               title="The number of stitches in this color segment"
