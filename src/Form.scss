@@ -1,17 +1,17 @@
 input {
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
 }
 
 .input-group {
   label {
     display: inline-block;
-    min-width: 120px;
+    // min-width: 120px;
   }
 }
 
 .number-spinner {
   display: inline-block;
-  margin-left: 1em;
+  // margin-left: 1em;
   input {
     width: 3em;
     &::-webkit-outer-spin-button,
@@ -26,11 +26,48 @@ label {
   margin-right: 0.5em;
 }
 
-.chrome-picker {
-  display: inline-block;
-  margin-bottom: 1em;
-
+.chrome-picker,
+.sketch-picker {
   label {
     margin: unset;
   }
+}
+
+.color-segment {
+  display: flex;
+  position: relative;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  height: 2em;
+  align-items: center;
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.color-preview {
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 4em;
+  line-height: 1.5em;
+  letter-spacing: 1px;
+}
+
+.popover {
+  position: absolute;
+  z-index: 2;
+  top: 2em;
+  left: 4.25em;
+}
+
+.cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
