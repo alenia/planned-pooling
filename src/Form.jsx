@@ -28,7 +28,7 @@ const Form = ({ formData, setFormData }) => {
 
   const addColorToConfig = () => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'].push({color: '#000', length: 0});
+    newFormData['colorConfig'].push({color: '#000', length: 3});
     setFormData(newFormData);
   }
 
