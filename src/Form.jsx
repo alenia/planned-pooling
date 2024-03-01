@@ -111,18 +111,19 @@ const Form = ({ formData, setFormData }) => {
 
       <CheckboxInput
         label="Show Row Numbers"
-        title="Show Row Numbers"
+        title="Display row numbers at the beginning of each row."
         name="showRowNumbers"
         value={showRowNumbers}
         setValue={setValue}
         />
 
 
-      <input
-        type="hidden"
+      <CheckboxInput
+        title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${crowLength+1} stitches long`}
+        label="Alternate row lengths (advanced)"
         name="staggerLengths"
-        id="staggerLengths"
         value={staggerLengths}
+        setValue={setValue}
       />
 
       <input
