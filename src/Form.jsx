@@ -150,7 +150,7 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
 
       <CheckboxInput
         title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${crowLength+1} stitches long`}
-        label="Alternate row lengths (advanced)"
+        label="Alternate row lengths (does not work with row numbers yet, bug fixed soon)"
         name="staggerLengths"
         value={staggerLengths}
         setValue={setValue}
