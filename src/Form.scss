@@ -1,17 +1,41 @@
-input {
-  // margin-bottom: 1em;
+form {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  grid-gap: 0.5em;
+}
+
+fieldset {
+  width: max-content;
+}
+
+.color-fields,
+.spec-fields {
+  & > div {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+    height: 2em;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+input[type=checkbox] {
+  margin: 0;
 }
 
 .input-group {
   label {
     display: inline-block;
-    // min-width: 120px;
   }
 }
 
 .number-spinner {
   display: inline-block;
-  // margin-left: 1em;
   input {
     width: 3em;
     &::-webkit-outer-spin-button,
@@ -35,6 +59,7 @@ label {
 
 .color-segment {
   display: flex;
+  width: 420px;
   position: relative;
   gap: 0.5em;
   margin-bottom: 0.5em;
