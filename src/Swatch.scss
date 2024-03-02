@@ -1,3 +1,10 @@
+/* ATTENTION: When touching this file, make sure you look at preview component (mounted at /preview)
+If you make any big refactoring changes to this file,
+open preview and export a pdf to visually diff, or visually diff against the production
+version of preview. Hopefully there will be a test of this diff at some point*/
+
+
+/*Numbering*/
 .swatch.numbered {
   counter-reset: crows 0;
   .crow {
@@ -18,6 +25,8 @@
     }
   }
 }
+
+/*Shared swatch styling including row-reverse layout*/
 .swatch {
   margin: 5px 0;
   width: fit-content;
@@ -31,9 +40,7 @@
   .crow:nth-child(2n) {
     flex-direction: row-reverse;
   }
-}
 
-.swatch {
   .stitch {
     border: 1px solid black;
     width: 12px;
@@ -41,111 +48,15 @@
   }
 }
 
+/*Just visual stuff shared with some swatch types*/
 .swatch.stacked, .swatch.ripple, .swatch.vstitchCluster {
   .stitch {
     margin: 1px;
   }
 }
 
-.swatch.v-stitch {
-  .stitch {
-    width: 20px;
-    height: 20px;
-    border: 0;
-    clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
-  }
-}
-.swatch.jasmine {
-  $puffSize: 30px;
-  .stitch {
-    width: $puffSize;
-    height: 10px;
-    border: 1px solid black;
-    border-radius: 40%;
-    position: absolute;
-  }
 
-  .cluster {
-    position: relative;
-    width: $puffSize;
-    height: $puffSize;
-  }
-  .crow:nth-child(2n) {
-    margin-left: 50px; //this is a weird artifact of the fact that the prepended cluster takes up a ton of room
-    .stitch:nth-child(3n), .stitch:only-child {
-      transform: rotate(120deg);
-      transform-origin: center left;
-    }
-    .stitch:nth-child(3n+2) {
-      transform: rotate(60deg);
-      transform-origin: center left;
-    }
-  }
-  .crow:nth-child(2n+1) {
-    .stitch:nth-child(3n), .stitch:only-child {
-      transform: rotate(-120deg);
-      transform-origin: center right;
-    }
-    .stitch:nth-child(3n+2) {
-      transform: rotate(-60deg);
-      transform-origin: center right;
-    }
-  }
-}
-
-.swatch.clustered {
-  .cluster {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .crow:nth-child(2n) .cluster {
-    flex-direction: row-reverse;
-  }
-}
-
-.swatch.ripple {
-  $rot: 20deg;
-  .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
-    transform: rotate($rot);
-    .stitch:first-child {
-      transform: rotate(-1 * $rot);
-    }
-    .stitch:last-child {
-      transform: rotate(-1 * $rot);
-    }
-  }
-
-  .crow:nth-child(2n) .cluster:nth-last-child(2n), .crow:nth-child(2n+1) .cluster:nth-child(2n) {
-    transform: rotate(-1 * $rot);
-    .stitch:first-child {
-      transform: rotate($rot);
-    }
-    .stitch:last-child {
-      transform: rotate($rot);
-    }
-  }
-}
-
-.swatch.shell {
-  $stitchWidth: 35px;
-  $stitchHeight: 20px;
-  $stitchSpacing: 2px;
-  .crow:nth-child(2n) {
-    margin: 0 0.5*$stitchWidth + $stitchSpacing;
-  }
-  .stitch {
-    width: $stitchWidth;
-    height: $stitchHeight;
-    margin-left: $stitchSpacing;
-    margin-right: $stitchSpacing;
-    margin-top: -.37 * $stitchHeight;
-    margin-bottom: 0;
-    border: 0;
-    clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
-  }
-}
-
+/*Basic layout swatches: moss, hdc, granny, shell, v-stitch*/
 $basicStitchHeight: 28px;
 .swatch.moss, .swatch.hdc {
   $stitchHeight: $basicStitchHeight;
@@ -197,6 +108,109 @@ $basicStitchHeight: 28px;
   }
 }
 
+.swatch.shell {
+  $stitchWidth: 35px;
+  $stitchHeight: 20px;
+  $stitchSpacing: 2px;
+  .crow:nth-child(2n) {
+    margin: 0 0.5*$stitchWidth + $stitchSpacing;
+  }
+  .stitch {
+    width: $stitchWidth;
+    height: $stitchHeight;
+    margin-left: $stitchSpacing;
+    margin-right: $stitchSpacing;
+    margin-top: -.37 * $stitchHeight;
+    margin-bottom: 0;
+    border: 0;
+    clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
+  }
+}
+
+.swatch.v-stitch {
+  .stitch {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
+  }
+}
+/* End basic layout swatches */
+
+/*Clustered swatches: Jasmine, vstitchCluster, ripple, ablockCluster*/
+/*These are layed out differently compared to the basic ones because the stitches are in groups called clusters*/
+.swatch.clustered {
+  .cluster {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .crow:nth-child(2n) .cluster {
+    flex-direction: row-reverse;
+  }
+}
+
+.swatch.jasmine {
+  $puffSize: 30px;
+  .stitch {
+    width: $puffSize;
+    height: 10px;
+    border: 1px solid black;
+    border-radius: 40%;
+    position: absolute;
+  }
+
+  .cluster {
+    position: relative;
+    width: $puffSize;
+    height: $puffSize;
+  }
+  .crow:nth-child(2n) {
+    margin-left: 50px; //this is a weird artifact of the fact that the prepended cluster takes up a ton of room
+    .stitch:nth-child(3n), .stitch:only-child {
+      transform: rotate(120deg);
+      transform-origin: center left;
+    }
+    .stitch:nth-child(3n+2) {
+      transform: rotate(60deg);
+      transform-origin: center left;
+    }
+  }
+  .crow:nth-child(2n+1) {
+    .stitch:nth-child(3n), .stitch:only-child {
+      transform: rotate(-120deg);
+      transform-origin: center right;
+    }
+    .stitch:nth-child(3n+2) {
+      transform: rotate(-60deg);
+      transform-origin: center right;
+    }
+  }
+}
+
+.swatch.ripple {
+  $rot: 20deg;
+  .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
+    transform: rotate($rot);
+    .stitch:first-child {
+      transform: rotate(-1 * $rot);
+    }
+    .stitch:last-child {
+      transform: rotate(-1 * $rot);
+    }
+  }
+
+  .crow:nth-child(2n) .cluster:nth-last-child(2n), .crow:nth-child(2n+1) .cluster:nth-child(2n) {
+    transform: rotate(-1 * $rot);
+    .stitch:first-child {
+      transform: rotate($rot);
+    }
+    .stitch:last-child {
+      transform: rotate($rot);
+    }
+  }
+}
+
 .vstitchCluster {
   $rot: 30deg;
   .cluster .stitch:first-child, .crow:nth-child(2n) .cluster .stitch:last-child {
@@ -232,6 +246,10 @@ $basicStitchHeight: 28px;
     transform: rotate($rot);
   }
 }
+/* End clustered swatches */
+
+/*Some extra stuff used for specific designs. Can generalize later. (this is all in /sunflower)*/
+
 .overlapping-container {
   display: flex;
   flex-direction: column-reverse;
@@ -247,5 +265,3 @@ $basicStitchHeight: 28px;
     }
   }
 }
-
-
