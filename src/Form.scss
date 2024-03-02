@@ -24,6 +24,11 @@ fieldset {
     align-items: center;
   }
 
+  .checkbox-container {
+    justify-content: flex-start;
+  }
+}
+
 input[type=checkbox] {
   margin: 0;
 }
@@ -61,15 +66,6 @@ label {
   display: flex;
   width: 420px;
   position: relative;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
-  height: 2em;
-  align-items: center;
-
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .color-preview {

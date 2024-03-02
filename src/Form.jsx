@@ -139,6 +139,7 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
           />
 
         <CheckboxInput
+          className="checkbox-container"
           label="Show Row Numbers"
           title="Show Row Numbers"
           name="showRowNumbers"
