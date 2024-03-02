@@ -8,7 +8,7 @@
     color: #aaaaaa;
     font-size: 12px;
     position: absolute;
-    margin: 0 -20px;
+    margin: 5px -15px;
   }
 }
 .swatch {
@@ -152,8 +152,8 @@ $basicStitchHeight: 28px;
     border: 1px solid black;
     width: $stitchWidth;
     height: $stitchHeight;
-    margin-left: $stitchWidth + $spacing;
-    margin-right: $spacing;
+    margin-right: $stitchWidth + $spacing;
+    margin-left: $spacing;
     margin-top: $spacing;
   }
 }
