@@ -158,6 +158,23 @@ $basicStitchHeight: 28px;
   }
 }
 
+.swatch.moss {
+  /* NOTE: Margins based on variables above, */
+  /* but these layouts are not shared with .hdc */
+  /* so these must be adjusted manually! */
+  .crow:nth-child(2n + 1) {
+    margin-left: 15px;
+
+    &::before {
+      margin: 5px -30px;
+    }
+  }
+
+  .crow:nth-child(2n) {
+    margin-left: 0px;
+  }
+}
+
 .swatch.moss .stitch {
   margin-bottom: -0.5*$basicStitchHeight;
 }
