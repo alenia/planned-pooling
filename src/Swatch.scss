@@ -10,6 +10,13 @@
     position: absolute;
     margin: 5px -15px;
   }
+  &.moss:not(.staggered), &.hdc:not(.staggered) {
+    .crow:nth-child(2n + 1) {
+      &::before {
+        margin: 5px -30px;
+      }
+    }
+  }
 }
 .swatch {
   margin: 5px 0;
@@ -144,8 +151,18 @@ $basicStitchHeight: 28px;
   $stitchHeight: $basicStitchHeight;
   $stitchWidth: 14px;
   $spacing: 1px;
-  .crow:nth-child(2n) {
-    margin: 0 $stitchWidth + $spacing;
+  &.staggered {
+    .crow:nth-child(2n) {
+      margin: 0 $stitchWidth + $spacing;
+    }
+  }
+  &:not(.staggered) {
+    .crow:nth-child(2n) {
+      margin-right: $stitchWidth + $spacing;
+    }
+    .crow:nth-child(2n + 1) {
+      margin-left: $stitchWidth + $spacing;
+    }
   }
   .stitch {
     box-sizing: border-box;
