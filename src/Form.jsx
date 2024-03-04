@@ -61,7 +61,7 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
         e.preventDefault();
       }}
     >
-      <div>
+      <fieldset className='color-fields'>
         {colorConfig.map((obj, index) => (
           <div className='color-segment' key={index + 1}>
             <label>
@@ -105,63 +105,64 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
         <div>
           <button onClick={addColorToConfig}>Add a color</button>
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <p>
+      <fieldset className='spec-fields'>
+        <div>
           Total stitches in color sequence: {printColorSequenceLength()}
-        </p>
-      </div>
+        </div>
 
-      <IntegerInput
-        label="Stitches per row:"
-        title="The number of stitches in one row"
-        name="crowLength"
-        value={crowLength}
-        setValue={setValue}
-        validator={IntegerInput.validators.nonNegative}
+        <IntegerInput
+          label="Stitches per row:"
+          title="The number of stitches in one row"
+          name="crowLength"
+          value={crowLength}
+          setValue={setValue}
+          validator={IntegerInput.validators.nonNegative}
+          />
+
+        <IntegerInput
+          label="Color shift:"
+          title="Start the swatch this many stitches into your color sequence"
+          name="colorShift"
+          value={colorShift}
+          setValue={setValue}
+          />
+
+        <IntegerInput
+          label="Number of rows:"
+          title="The number of rows displayed"
+          name="crows"
+          value={crows}
+          setValue={setValue}
+          validator={IntegerInput.validators.nonNegative}
+          />
+
+        <CheckboxInput
+          className="checkbox-container"
+          label="Show Row Numbers"
+          title="Display row numbers at the beginning of each row."
+          name="showRowNumbers"
+          value={showRowNumbers}
+          setValue={setValue}
+          />
+
+        <CheckboxInput
+          className="checkbox-container"
+          title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${crowLength+1} stitches long`}
+          label="Alternate row lengths"
+          name="staggerLengths"
+          value={staggerLengths}
+          setValue={setValue}
         />
 
-      <IntegerInput
-        label="Color shift:"
-        title="Start the swatch this many stitches into your color sequence"
-        name="colorShift"
-        value={colorShift}
-        setValue={setValue}
+        <input
+          type="hidden"
+          name="stitchPattern"
+          id="stitchPattern"
+          value={stitchPattern}
         />
-
-      <IntegerInput
-        label="Number of rows:"
-        title="The number of rows displayed"
-        name="crows"
-        value={crows}
-        setValue={setValue}
-        validator={IntegerInput.validators.nonNegative}
-        />
-
-      <CheckboxInput
-        label="Show Row Numbers"
-        title="Display row numbers at the beginning of each row."
-        name="showRowNumbers"
-        value={showRowNumbers}
-        setValue={setValue}
-        />
-
-
-      <CheckboxInput
-        title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${crowLength+1} stitches long`}
-        label="Alternate row lengths"
-        name="staggerLengths"
-        value={staggerLengths}
-        setValue={setValue}
-      />
-
-      <input
-        type="hidden"
-        name="stitchPattern"
-        id="stitchPattern"
-        value={stitchPattern}
-      />
+      </fieldset>
     </form>
   );
 }

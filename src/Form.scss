@@ -1,17 +1,48 @@
-input {
-  // margin-bottom: 1em;
+form {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  grid-gap: 0.5em;
+}
+
+fieldset {
+  width: max-content;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.color-fields,
+.spec-fields {
+  & > div {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+    height: 2em;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-container {
+    justify-content: flex-start;
+  }
+}
+
+input[type=checkbox] {
+  margin: 0;
 }
 
 .input-group {
   label {
     display: inline-block;
-    // min-width: 120px;
   }
 }
 
 .number-spinner {
   display: inline-block;
-  // margin-left: 1em;
   input {
     width: 3em;
     &::-webkit-outer-spin-button,
@@ -35,16 +66,8 @@ label {
 
 .color-segment {
   display: flex;
+  width: 420px;
   position: relative;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
-  height: 2em;
-  align-items: center;
-
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .color-preview {
@@ -59,7 +82,7 @@ label {
 
 .popover {
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   top: 2em;
   left: 4.25em;
 }
@@ -70,4 +93,17 @@ label {
   right: 0px;
   bottom: 0px;
   left: 0px;
+  z-index: -1;
+}
+
+@media (max-width: 775px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5em;
+  }
+
+  fieldset {
+    width: inherit;
+  }
 }

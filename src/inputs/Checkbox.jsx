@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-const Checkbox = ({ value, name, label, title, setValue}) => {
+const Checkbox = ({ className, value, name, label, title, setValue}) => {
   const handleChange = (e) => {
     setValue(e.target.name, e.target.checked);
   }
   return (
-      <div>
+      <div className={className}>
         <input
           type="checkbox"
           onChange={handleChange}
