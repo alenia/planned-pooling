@@ -54,7 +54,17 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
     return result;
   }
 
-  const presetColors = [...new Set(colorConfig.map((c) => c.color))];
+  const defaultColors = [
+    "#d9073a",
+    "#f57605",
+    "#fcdc4d",
+    "#a1c349",
+    "#1c40b8",
+    "#7b0f9a",
+    "#542e0f",
+    "#fdf0d5"
+  ]
+  const presetColors = [...new Set([...defaultColors, ...colorConfig.map((c) => c.color)])];
 
   return (
     <form
