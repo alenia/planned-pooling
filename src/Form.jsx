@@ -109,7 +109,9 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
 
       <fieldset className='spec-fields'>
         <div>
-          Total stitches in color sequence: {printColorSequenceLength()}
+          <em>
+            Total stitches in color sequence: {printColorSequenceLength()}
+          </em>
         </div>
 
         <IntegerInput
@@ -122,14 +124,6 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
           />
 
         <IntegerInput
-          label="Color shift:"
-          title="Start the swatch this many stitches into your color sequence"
-          name="colorShift"
-          value={colorShift}
-          setValue={setValue}
-          />
-
-        <IntegerInput
           label="Number of rows:"
           title="The number of rows displayed"
           name="crows"
@@ -138,12 +132,18 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
           validator={IntegerInput.validators.nonNegative}
           />
 
-        <CheckboxInput
-          className="checkbox-container"
-          label="Show Row Numbers"
-          title="Display row numbers at the beginning of each row."
-          name="showRowNumbers"
-          value={showRowNumbers}
+        <input
+          type="hidden"
+          name="stitchPattern"
+          id="stitchPattern"
+          value={stitchPattern}
+        />
+
+        <IntegerInput
+          label="Color shift:"
+          title="Start the swatch this many stitches into your color sequence"
+          name="colorShift"
+          value={colorShift}
           setValue={setValue}
           />
 
@@ -155,14 +155,16 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
           value={staggerLengths}
           setValue={setValue}
         />
-
-        <input
-          type="hidden"
-          name="stitchPattern"
-          id="stitchPattern"
-          value={stitchPattern}
-        />
       </fieldset>
+
+      <CheckboxInput
+        className="checkbox-container"
+        label="Show Row Numbers"
+        title="Display row numbers at the beginning of each row."
+        name="showRowNumbers"
+        value={showRowNumbers}
+        setValue={setValue}
+      />
     </form>
   );
 }

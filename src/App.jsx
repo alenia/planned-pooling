@@ -24,7 +24,6 @@ function App() {
 
   return (
   <div className="container">
-    <p>Adjust the variables in order to preview what your planned pooling pattern could look like with different row lengths</p>
     <SwatchWithForm {...config} />
   </div>
   );
