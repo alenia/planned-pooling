@@ -29,7 +29,7 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
 
   const addColorToConfig = () => {
     const newFormData = { ...formData };
-    const randomColor = Math.floor(Math.random()*16777214).toString(16);
+    const randomColor = Math.floor(Math.random()*16777214).toString(16).padStart(6,"0");
     newFormData['colorConfig'].push({color: `#${randomColor}`, length: 3});
     setFormData(newFormData);
   }
