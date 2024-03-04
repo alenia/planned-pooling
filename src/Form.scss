@@ -95,3 +95,15 @@ label {
   left: 0px;
   z-index: -1;
 }
+
+@media (max-width: 775px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5em;
+  }
+
+  fieldset {
+    width: inherit;
+  }
+}
