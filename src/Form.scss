@@ -82,7 +82,7 @@ label {
 
 .popover {
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   top: 2em;
   left: 4.25em;
 }
@@ -93,4 +93,5 @@ label {
   right: 0px;
   bottom: 0px;
   left: 0px;
+  z-index: -1;
 }
