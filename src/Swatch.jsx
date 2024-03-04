@@ -102,7 +102,14 @@ function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, color
 
 function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}) {
   const clusterConfig = clusterConfiguration[stitchPattern];
-  const swatch = (<div className={`${className ? className : ''} swatch ${stitchPattern} ${clusterConfig ? 'clustered' : ''}`}>
+  const classNames = [
+    className,
+    'swatch',
+    stitchPattern,
+    clusterConfig ? 'clustered' : '',
+    staggerLengths ? 'staggered' : ''
+  ]
+  const swatch = (<div className={classNames.join(' ')}>
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch

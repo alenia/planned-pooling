@@ -1,3 +1,10 @@
+/* ATTENTION: When touching this file, make sure you look at preview component (mounted at /preview)
+If you make any big refactoring changes to this file,
+open preview and export a pdf to visually diff, or visually diff against the production
+version of preview. Hopefully there will be a test of this diff at some point*/
+
+
+/*Numbering*/
 .swatch.numbered {
   counter-reset: crows 0;
   .crow {
@@ -10,7 +17,16 @@
     position: absolute;
     margin: 5px -15px;
   }
+  &.moss:not(.staggered), &.hdc:not(.staggered) {
+    .crow:nth-child(2n + 1) {
+      &::before {
+        margin: 5px -30px;
+      }
+    }
+  }
 }
+
+/*Shared swatch styling including row-reverse layout*/
 .swatch {
   margin: 5px 0;
   width: fit-content;
@@ -24,9 +40,7 @@
   .crow:nth-child(2n) {
     flex-direction: row-reverse;
   }
-}
 
-.swatch {
   .stitch {
     border: 1px solid black;
     width: 12px;
@@ -34,9 +48,82 @@
   }
 }
 
+/*Just visual stuff shared with some swatch types*/
 .swatch.stacked, .swatch.ripple, .swatch.vstitchCluster {
   .stitch {
     margin: 1px;
+  }
+}
+
+
+/*Basic layout swatches: moss, hdc, granny, shell, v-stitch*/
+$basicStitchHeight: 28px;
+.swatch.moss, .swatch.hdc {
+  $stitchHeight: $basicStitchHeight;
+  $stitchWidth: 14px;
+  $spacing: 1px;
+  &.staggered {
+    .crow:nth-child(2n) {
+      margin: 0 $stitchWidth + $spacing;
+    }
+  }
+  &:not(.staggered) {
+    .crow:nth-child(2n) {
+      margin-right: $stitchWidth + $spacing;
+    }
+    .crow:nth-child(2n + 1) {
+      margin-left: $stitchWidth + $spacing;
+    }
+  }
+  .stitch {
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: $stitchWidth;
+    height: $stitchHeight;
+    margin-right: $stitchWidth + $spacing;
+    margin-left: $spacing;
+    margin-top: $spacing;
+  }
+}
+
+.swatch.moss .stitch {
+  margin-bottom: -0.5*$basicStitchHeight;
+}
+
+.swatch.hdc .stitch {
+  margin-bottom: -.3*$basicStitchHeight;
+}
+
+.swatch.granny {
+  $stitchHeight: 20px;
+  .crow:nth-child(2n) {
+    margin: 0 $stitchHeight;
+  }
+  .stitch {
+    box-sizing: border-box;
+    border: 1px solid black;
+    height: $stitchHeight;
+    width: $stitchHeight;
+    margin: 0 $stitchHeight -.2*$stitchHeight 0;
+  }
+}
+
+.swatch.shell {
+  $stitchWidth: 35px;
+  $stitchHeight: 20px;
+  $stitchSpacing: 2px;
+  .crow:nth-child(2n) {
+    margin: 0 0.5*$stitchWidth + $stitchSpacing;
+  }
+  .stitch {
+    width: $stitchWidth;
+    height: $stitchHeight;
+    margin-left: $stitchSpacing;
+    margin-right: $stitchSpacing;
+    margin-top: -.37 * $stitchHeight;
+    margin-bottom: 0;
+    border: 0;
+    clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
   }
 }
 
@@ -48,6 +135,21 @@
     clip-path: polygon(0 0, 25% 0, 50% 50%, 75% 0, 100% 0, 50% 100%);
   }
 }
+/* End basic layout swatches */
+
+/*Clustered swatches: Jasmine, vstitchCluster, ripple, ablockCluster*/
+/*These are layed out differently compared to the basic ones because the stitches are in groups called clusters*/
+.swatch.clustered {
+  .cluster {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .crow:nth-child(2n) .cluster {
+    flex-direction: row-reverse;
+  }
+}
+
 .swatch.jasmine {
   $puffSize: 30px;
   .stitch {
@@ -86,17 +188,6 @@
   }
 }
 
-.swatch.clustered {
-  .cluster {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .crow:nth-child(2n) .cluster {
-    flex-direction: row-reverse;
-  }
-}
-
 .swatch.ripple {
   $rot: 20deg;
   .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
@@ -117,66 +208,6 @@
     .stitch:last-child {
       transform: rotate($rot);
     }
-  }
-}
-
-.swatch.shell {
-  $stitchWidth: 35px;
-  $stitchHeight: 20px;
-  $stitchSpacing: 2px;
-  .crow:nth-child(2n) {
-    margin: 0 0.5*$stitchWidth + $stitchSpacing;
-  }
-  .stitch {
-    width: $stitchWidth;
-    height: $stitchHeight;
-    margin-left: $stitchSpacing;
-    margin-right: $stitchSpacing;
-    margin-top: -.37 * $stitchHeight;
-    margin-bottom: 0;
-    border: 0;
-    clip-path: polygon(0 40%, 20% 15%, 50% 0, 80% 15%, 100% 40%, 50% 100%);
-  }
-}
-
-$basicStitchHeight: 28px;
-.swatch.moss, .swatch.hdc {
-  $stitchHeight: $basicStitchHeight;
-  $stitchWidth: 14px;
-  $spacing: 1px;
-  .crow:nth-child(2n) {
-    margin: 0 $stitchWidth + $spacing;
-  }
-  .stitch {
-    box-sizing: border-box;
-    border: 1px solid black;
-    width: $stitchWidth;
-    height: $stitchHeight;
-    margin-right: $stitchWidth + $spacing;
-    margin-left: $spacing;
-    margin-top: $spacing;
-  }
-}
-
-.swatch.moss .stitch {
-  margin-bottom: -0.5*$basicStitchHeight;
-}
-
-.swatch.hdc .stitch {
-  margin-bottom: -.3*$basicStitchHeight;
-}
-
-.swatch.granny {
-  $stitchHeight: 20px;
-  .crow:nth-child(2n) {
-    margin: 0 $stitchHeight;
-  }
-  .stitch {
-    box-sizing: border-box;
-    border: 1px solid black;
-    height: $stitchHeight;
-    width: $stitchHeight;
-    margin: 0 $stitchHeight -.2*$stitchHeight 0;
   }
 }
 
@@ -215,6 +246,10 @@ $basicStitchHeight: 28px;
     transform: rotate($rot);
   }
 }
+/* End clustered swatches */
+
+/*Some extra stuff used for specific designs. Can generalize later. (this is all in /sunflower)*/
+
 .overlapping-container {
   display: flex;
   flex-direction: column-reverse;
@@ -230,5 +265,3 @@ $basicStitchHeight: 28px;
     }
   }
 }
-
-
