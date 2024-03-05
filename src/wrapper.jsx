@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import Preview from './projects/Preview.jsx'
+import Preview from './projects/Preview.tsx'
 import Sunflower from './projects/Sunflower.jsx'
 import Doodle from './projects/Doodle.jsx'
 import './index.scss'

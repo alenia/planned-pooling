@@ -1,19 +1,7 @@
 import { ReactNode } from 'react'
-import { nextStitchColorByIndex, Color, ColorConfigArray } from './color'
+import { nextStitchColorByIndex } from './color'
+import { StitchPattern, Color, ColorConfigArray } from './types'
 import './Swatch.scss'
-
-enum StitchPattern {
-  moss = "moss",
-  stacked = "stacked",
-  granny = "granny",
-  hdc = "hdc",
-  shell = "shell",
-  vStitch = "v-stitch",
-  jasmine = "jasmine",
-  ripple = "ripple",
-  vstitchCluster = "vstitchCluster",
-  ablockCluster = "ablockCluster",
-}
 
 interface ClusterConfiguration {
     stitchCount?: number,
@@ -22,6 +10,7 @@ interface ClusterConfiguration {
 }
 const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Todo: make this a class of some sort?
   moss: {},
+  unstyled: {},
   stacked: {},
   granny: {},
   hdc: {},
@@ -44,8 +33,6 @@ const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Tod
   }
 }
 
-
-
 function Crow (props: { children : ReactNode }) {
   return <div className="crow">{props.children}</div>
 }
@@ -64,9 +51,9 @@ function buildSwatch(
     colorConfig: ColorConfigArray,
     crowLength: number,
     stitchPattern: StitchPattern,
-    crows: number,
-    colorShift: number,
-    staggerLengths: boolean,
+    crows?: number,
+    colorShift?: number,
+    staggerLengths?: boolean,
 
   }
 ) {
@@ -131,10 +118,10 @@ function Swatch(
     colorConfig: ColorConfigArray,
     crowLength: number,
     stitchPattern: StitchPattern,
-    crows: number,
-    colorShift: number,
-    staggerLengths: boolean,
-    className: string
+    crows?: number,
+    colorShift?: number,
+    staggerLengths?: boolean,
+    className?: string
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
