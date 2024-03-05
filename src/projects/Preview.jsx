@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Swatch from '../Swatch.jsx'
+import Swatch from '../Swatch.tsx'
 
 const yellow = "#faf619";
 const red = "#fa1933";

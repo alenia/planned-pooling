@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Swatch from './Swatch.jsx';
+import Swatch from './Swatch.tsx';
 import Form from './Form.jsx';
 import { useState } from "react";
 

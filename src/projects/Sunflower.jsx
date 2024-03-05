@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import ExtraPropTypes from "../extraPropTypes.js"
-import Swatch from '../Swatch.jsx'
+import Swatch from '../Swatch.tsx'
 
 const purple = "#C274B3";
 const teal = "#4ECDC4";

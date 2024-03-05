@@ -1,9 +1,32 @@
-import PropTypes from "prop-types";
-import { nextStitchColorByIndex } from './color.ts'
-import ExtraPropTypes from './extraPropTypes.js'
+import { ReactNode } from 'react'
+import { nextStitchColorByIndex, Color, ColorConfigArray } from './color'
 import './Swatch.scss'
 
-const clusterConfiguration = { //Todo: make this a class of some sort?
+enum StitchPattern {
+  moss = "moss",
+  stacked = "stacked",
+  granny = "granny",
+  hdc = "hdc",
+  shell = "shell",
+  vStitch = "v-stitch",
+  jasmine = "jasmine",
+  ripple = "ripple",
+  vstitchCluster = "vstitchCluster",
+  ablockCluster = "ablockCluster",
+}
+
+interface ClusterConfiguration {
+    stitchCount?: number,
+    prepend?: boolean ,
+    append?: boolean,
+}
+const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Todo: make this a class of some sort?
+  moss: {},
+  stacked: {},
+  granny: {},
+  hdc: {},
+  shell: {},
+  'v-stitch': {},
   jasmine: {
     stitchCount: 3,
     prepend: true
@@ -23,29 +46,31 @@ const clusterConfiguration = { //Todo: make this a class of some sort?
 
 
 
-function Crow (props) {
+function Crow (props: { children : ReactNode }) {
   return <div className="crow">{props.children}</div>
 }
-Crow.propTypes = {
-  children: PropTypes.node
-}
-function Cluster (props) {
+
+function Cluster (props: { children : ReactNode}) {
   return <div className="cluster">{props.children}</div>
 }
-Cluster.propTypes = {
-  children: PropTypes.node
-}
 
-function Stitch ({color}) {
+function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
-Stitch.propTypes = {
-  color: PropTypes.string //TODO: see if there's a color type
-}
 
+function buildSwatch(
+  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
+  : {
+    colorConfig: ColorConfigArray,
+    crowLength: number,
+    stitchPattern: StitchPattern,
+    crows: number,
+    colorShift: number,
+    staggerLengths: boolean,
 
-function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}) {
-  const clusterConfig = clusterConfiguration[stitchPattern] || {};
+  }
+) {
+  const clusterConfig = clusterConfiguration[stitchPattern];
   const clusterLength = clusterConfig.stitchCount;
 
   let stitchIndex = 0;
@@ -100,7 +125,18 @@ function buildSwatch({ colorConfig, crowLength, stitchPattern, crows = 40, color
 }
 
 
-function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}) {
+function Swatch(
+  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
+  : {
+    colorConfig: ColorConfigArray,
+    crowLength: number,
+    stitchPattern: StitchPattern,
+    crows: number,
+    colorShift: number,
+    staggerLengths: boolean,
+    className: string
+  }
+) {
   const clusterConfig = clusterConfiguration[stitchPattern];
   const classNames = [
     className,
@@ -113,16 +149,6 @@ function Swatch({ colorConfig, crowLength, stitchPattern, crows = 40, colorShift
                   {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch
-}
-
-Swatch.propTypes = {
-  colorConfig: ExtraPropTypes.colorConfig.isRequired,
-  stitchPattern: PropTypes.string, //TODO: Make this an enum
-  crowLength: PropTypes.number.isRequired,
-  crows: PropTypes.number,
-  colorShift: PropTypes.number,
-  staggerLengths: PropTypes.bool,
-  className: PropTypes.string, //This just passes through, not needed in form or anything
 }
 
 export default Swatch
