@@ -10,11 +10,6 @@ const Form = ({ formData, setFormData }) => {
 
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
-  const defaultPickerState = colorConfig.map(() => {return false});
-
-  const [displayColorPicker, setDisplayColorPicker] = useState({ defaultPickerState })
-
-
   const setValue = (name, value) => {
     const newFormData = { ...formData };
     newFormData[name] = value;
@@ -45,12 +40,6 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
-  const togglePickerDisplay = (index) => {
-    const newPickerDisplay = { ...displayColorPicker };
-    newPickerDisplay[index] = !(displayColorPicker[index])
-    setDisplayColorPicker(newPickerDisplay);
-  }
-
   const printColorSequenceLength = () => {
     let result = 0;
     for (const i in colorConfig) {
@@ -76,8 +65,6 @@ const Form = ({ formData, setFormData }) => {
             <TogglableColorPicker
               value = {colorConfig[index].color}
               setValue={(color) => setColorConfigColorValue(color, index)}
-              togglePicker={() => togglePickerDisplay(index)}
-              showPicker = {displayColorPicker[index]}
               presetColors = { presetColors }
               />
             <IntegerInput

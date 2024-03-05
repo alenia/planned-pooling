@@ -4,8 +4,9 @@ import fontColorContrast from 'font-color-contrast';
 import { SketchPicker } from 'react-color';
 import { useState } from "react";
 
-const TogglableColorPicker = ({ value, setValue, presetColors, togglePicker, showPicker }) => {
+const TogglableColorPicker = ({ value, setValue, presetColors }) => {
   const [pickerColor, setPickerColor] = useState(value)
+  const [displayPicker, setDisplayPicker] = useState(false)
 
   return (
     <Fragment>
@@ -15,15 +16,15 @@ const TogglableColorPicker = ({ value, setValue, presetColors, togglePicker, sho
           background: value,
           color: fontColorContrast(value),
         }}
-        onClick={togglePicker}
+        onClick={() => setDisplayPicker(true)}
       >
         {value}
       </span>
       {
-        showPicker ?
+        displayPicker ?
           (
             <div className='popover'>
-              <div className='cover' onClick={togglePicker} />
+              <div className='cover' onClick={() => setDisplayPicker(false)} />
               <SketchPicker
                 color={pickerColor || value}
                 disableAlpha={true}
@@ -42,8 +43,6 @@ TogglableColorPicker.propTypes = {
   value: PropTypes.string, // color string
   presetColors: PropTypes.arrayOf(PropTypes.string),
   setValue: PropTypes.func,
-  togglePicker: PropTypes.func,
-  showPicker: PropTypes.bool
 }
 
 export default TogglableColorPicker
