@@ -1,7 +1,7 @@
 import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
-import CheckboxInput from './inputs/Checkbox.jsx'
+import CheckboxInput from './inputs/Checkbox.tsx'
 import TogglableColorPicker from './inputs/TogglableColorPicker.jsx'
 import IntegerInput from './inputs/Integer.jsx'
 import { useState } from "react";
