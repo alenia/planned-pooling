@@ -5,9 +5,16 @@ import CheckboxInput from './inputs/Checkbox.jsx'
 import { SketchPicker } from 'react-color';
 import IntegerInput from './inputs/Integer.jsx'
 import fontColorContrast from 'font-color-contrast';
+import { useState } from "react";
 
-const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker }) => {
+const Form = ({ formData, setFormData }) => {
+
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+
+  const defaultPickerState = colorConfig.map(() => {return false});
+
+  const [displayColorPicker, setDisplayColorPicker] = useState({ defaultPickerState })
+
 
   const setValue = (name, value) => {
     const newFormData = { ...formData };
