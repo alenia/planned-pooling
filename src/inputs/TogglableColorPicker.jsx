@@ -2,8 +2,15 @@ import { Fragment } from 'react'
 import PropTypes from "prop-types";
 import fontColorContrast from 'font-color-contrast';
 import { SketchPicker } from 'react-color';
+import { useState, useEffect } from "react";
 
 const TogglableColorPicker = ({ value, setValue, presetColors, togglePicker, showPicker }) => {
+  const [pickerColor, setPickerColor] = useState({ value })
+
+  useEffect(() => {
+    setPickerColor(value)
+  }, [value])
+
   return (
     <Fragment>
       <span
@@ -22,8 +29,9 @@ const TogglableColorPicker = ({ value, setValue, presetColors, togglePicker, sho
             <div className='popover'>
               <div className='cover' onClick={togglePicker} />
               <SketchPicker
-                color={value}
+                color={pickerColor || value}
                 disableAlpha={true}
+                onChange={setPickerColor}
                 onChangeComplete={setValue}
                 presetColors={presetColors}
               /> 
