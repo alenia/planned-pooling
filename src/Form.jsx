@@ -2,11 +2,12 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.jsx'
-import { SketchPicker } from 'react-color';
+import TogglableColorPicker from './inputs/TogglableColorPicker.jsx'
 import IntegerInput from './inputs/Integer.jsx'
-import fontColorContrast from 'font-color-contrast';
+import { useState } from "react";
 
-const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker }) => {
+const Form = ({ formData, setFormData }) => {
+
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
   const setValue = (name, value) => {
@@ -39,12 +40,6 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
     setFormData(newFormData);
   }
 
-  const togglePickerDisplay = (index) => {
-    const newPickerDisplay = { ...displayColorPicker };
-    newPickerDisplay[index] = !(displayColorPicker[index])
-    setDisplayColorPicker(newPickerDisplay);
-  }
-
   const printColorSequenceLength = () => {
     let result = 0;
     for (const i in colorConfig) {
@@ -67,30 +62,11 @@ const Form = ({ formData, setFormData, displayColorPicker, setDisplayColorPicker
             <label>
               Color {(index + 1)}:
             </label>
-            <span
-              className='color-preview'
-              style={ {
-                background: colorConfig[index].color,
-                color: fontColorContrast(colorConfig[index].color),
-              }}
-              onClick={(e) => togglePickerDisplay(index)}
-            >
-              {colorConfig[index].color}
-            </span>
-            {
-              displayColorPicker[index] ?
-                (
-                  <div className='popover'>
-                    <div className='cover' onClick={(e) => togglePickerDisplay(index)} />
-                    <SketchPicker
-                      color={colorConfig[index].color}
-                      disableAlpha={true}
-                      onChangeComplete={(color) => setColorConfigColorValue(color, index)}
-                      presetColors={presetColors}
-                    /> 
-                  </div>
-                ) : null
-            }
+            <TogglableColorPicker
+              value = {colorConfig[index].color}
+              setValue={(color) => setColorConfigColorValue(color, index)}
+              presetColors = { presetColors }
+              />
             <IntegerInput
               label="Length:"
               title="The number of stitches in this color segment"

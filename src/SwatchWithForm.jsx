@@ -14,17 +14,11 @@ function SwatchWithForm({ colorConfig, crowLength, stitchPattern, crows, colorSh
     showRowNumbers,
   })
 
-  const defaultPickerState = colorConfig.map(() => {return false});
-
-  const [displayColorPicker, setDisplayColorPicker] = useState({ defaultPickerState })
-
   return (
   <div>
     <Form
       formData={formData}
       setFormData={setFormData} 
-      displayColorPicker={displayColorPicker}
-      setDisplayColorPicker={setDisplayColorPicker}
     />
     <Swatch 
     className={formData.showRowNumbers ? "numbered" : ""}
