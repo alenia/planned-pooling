@@ -2,14 +2,10 @@ import { Fragment } from 'react'
 import PropTypes from "prop-types";
 import fontColorContrast from 'font-color-contrast';
 import { SketchPicker } from 'react-color';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const TogglableColorPicker = ({ value, setValue, presetColors, togglePicker, showPicker }) => {
-  const [pickerColor, setPickerColor] = useState({ value })
-
-  useEffect(() => {
-    setPickerColor(value)
-  }, [value])
+  const [pickerColor, setPickerColor] = useState(value)
 
   return (
     <Fragment>
