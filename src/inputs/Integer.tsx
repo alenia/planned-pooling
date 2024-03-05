@@ -5,7 +5,7 @@ enum Direction {
 
 const IntegerInput = (
   { value, name, label, title, setValue, validator = () => true}
-  : { value: number, name: string, label: string, title: string, setValue: (name: string, value: number) => void, validator: (value: number) => boolean}
+  : { value: number, name: string, label: string, title: string, setValue: (value: number) => void, validator?: (value: number) => boolean}
 ) => {
   const handleButtonChange = (direction : Direction) : void => {
     let v = value;
@@ -16,12 +16,12 @@ const IntegerInput = (
       v += 1
     }
     if(!validator(v)) { return }
-    setValue(name, v)
+    setValue(v)
   }
   const setValueFromForm = (formValue: string) : void => {
     let v = parseInt(formValue)
     if (isNaN(v) || !validator(v)) { v = 0 }
-    setValue(name, v);
+    setValue(v);
   }
   return (
       <div className="input-group integer-input">
