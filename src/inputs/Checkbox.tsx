@@ -1,5 +1,3 @@
-import { FormEvent } from 'react'
-
 function Checkbox(
   { className, value, name, label, title, setValue}
   : { className: string, value: boolean, name: string, label: string, title: string, setValue: (name: string, value: boolean) => void}

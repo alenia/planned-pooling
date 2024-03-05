@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.tsx'
 import TogglableColorPicker from './inputs/TogglableColorPicker.jsx'
-import IntegerInput from './inputs/Integer.jsx'
+import IntegerInput from './inputs/Integer.tsx'
 import { useState } from "react";
 
 const Form = ({ formData, setFormData }) => {
