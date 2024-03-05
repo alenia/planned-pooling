@@ -2,7 +2,7 @@ import './Form.scss'
 import PropTypes from "prop-types";
 import ExtraPropTypes from './extraPropTypes.js'
 import CheckboxInput from './inputs/Checkbox.tsx'
-import TogglableColorPicker from './inputs/TogglableColorPicker.jsx'
+import TogglableColorPicker from './inputs/TogglableColorPicker.tsx'
 import IntegerInput from './inputs/Integer.tsx'
 import { useState } from "react";
 
@@ -24,7 +24,7 @@ const Form = ({ formData, setFormData }) => {
 
   const setColorConfigColorValue = (color, index) => {
     const newFormData = {...formData};
-    newFormData['colorConfig'][index]['color'] = color.hex;
+    newFormData['colorConfig'][index]['color'] = color;
     setFormData(newFormData);
   };
 

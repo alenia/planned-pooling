@@ -1,10 +1,12 @@
 import { Fragment } from 'react'
-import PropTypes from "prop-types";
 import fontColorContrast from 'font-color-contrast';
-import { SketchPicker } from 'react-color';
+import { ColorResult, SketchPicker } from 'react-color';
 import { useState } from "react";
 
-const TogglableColorPicker = ({ value, setValue, presetColors }) => {
+const TogglableColorPicker = (
+  { value, setValue, presetColors }
+  : { value: string, setValue: (color: string) => void, presetColors: Array<string> }
+) => {
   const [pickerColor, setPickerColor] = useState(value)
   const [displayPicker, setDisplayPicker] = useState(false)
 
@@ -28,8 +30,8 @@ const TogglableColorPicker = ({ value, setValue, presetColors }) => {
               <SketchPicker
                 color={pickerColor || value}
                 disableAlpha={true}
-                onChange={setPickerColor}
-                onChangeComplete={setValue}
+                onChange={(colorResult: ColorResult) => { setPickerColor(colorResult.hex) }}
+                onChangeComplete={(colorResult: ColorResult) => {setValue(colorResult.hex) }}
                 presetColors={presetColors}
               /> 
             </div>
@@ -38,11 +40,5 @@ const TogglableColorPicker = ({ value, setValue, presetColors }) => {
     </Fragment>
   )
 };
-
-TogglableColorPicker.propTypes = {
-  value: PropTypes.string, // color string
-  presetColors: PropTypes.arrayOf(PropTypes.string),
-  setValue: PropTypes.func,
-}
 
 export default TogglableColorPicker
