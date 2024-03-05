@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { nextStitchColorByIndex } from './color.js'
+import { nextStitchColorByIndex } from './color.ts'
 import ExtraPropTypes from './extraPropTypes.js'
 import './Swatch.scss'
 
