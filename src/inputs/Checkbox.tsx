@@ -20,6 +20,6 @@ function Checkbox(
         </label>
       </div>
   )
-};
+}
 
 export default Checkbox;

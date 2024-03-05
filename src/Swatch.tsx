@@ -3,7 +3,7 @@ import { nextStitchColorByIndex } from './color'
 import { StitchPattern, Color, ColorConfigArray } from './types'
 import './Swatch.scss'
 
-interface ClusterConfiguration {
+type ClusterConfiguration = {
     stitchCount?: number,
     prepend?: boolean ,
     append?: boolean,
