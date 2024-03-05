@@ -30,7 +30,8 @@ const Form = ({ formData, setFormData }) => {
 
   const addColorToConfig = () => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'].push({color: '#000', length: 3});
+    const randomColor = Math.floor(Math.random()*16777214).toString(16).padStart(6,"0");
+    newFormData['colorConfig'].push({color: `#${randomColor}`, length: 3});
     setFormData(newFormData);
   }
 
@@ -48,7 +49,17 @@ const Form = ({ formData, setFormData }) => {
     return result;
   }
 
-  const presetColors = [...new Set(colorConfig.map((c) => c.color))];
+  const defaultColors = [
+    "#d9073a",
+    "#f57605",
+    "#fcdc4d",
+    "#a1c349",
+    "#1c40b8",
+    "#7b0f9a",
+    "#542e0f",
+    "#fdf0d5"
+  ]
+  const presetColors = [...new Set([...defaultColors, ...colorConfig.map((c) => c.color)])];
 
   return (
     <form
