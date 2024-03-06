@@ -12,7 +12,7 @@ export enum StitchPattern {
   ablockCluster = "ablockCluster",
 }
 
-export type Color = string; //`#${string}`;
+export type Color = `#${string}`;
 
 export type ColorConfig = {
   color: Color,

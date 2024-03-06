@@ -5,6 +5,14 @@ import { Color } from '../types'
 import { useState } from "react";
 
 
+const forceColorType = (colorString : string) : Color => {
+  if ((/#\w+/).test(colorString)) {
+    return colorString as Color
+  } else {
+    return `#${colorString}`
+  }
+}
+
 const TogglableColorPicker = (
   { value, setValue, presetColors }
   : { value: Color, setValue: (color: Color) => void, presetColors: Array<string> }
@@ -32,8 +40,8 @@ const TogglableColorPicker = (
               <SketchPicker
                 color={pickerColor || value}
                 disableAlpha={true}
-                onChange={(colorResult: ColorResult) => { setPickerColor(colorResult.hex) }}
-                onChangeComplete={(colorResult: ColorResult) => {setValue(colorResult.hex) }}
+                onChange={(colorResult: ColorResult) => { setPickerColor(forceColorType(colorResult.hex)) }}
+                onChangeComplete={(colorResult: ColorResult) => {setValue(forceColorType(colorResult.hex)) }}
                 presetColors={presetColors}
               /> 
             </div>
