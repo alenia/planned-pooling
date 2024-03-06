@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Swatch from './Swatch.tsx';
-import Form from './Form.jsx';
+import Form from './Form.tsx';
 import { useState } from "react";
 
 function SwatchWithForm({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths, showRowNumbers = false}) {

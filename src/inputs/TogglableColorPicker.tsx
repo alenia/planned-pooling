@@ -1,11 +1,13 @@
 import { Fragment } from 'react'
 import fontColorContrast from 'font-color-contrast';
 import { ColorResult, SketchPicker } from 'react-color';
+import { Color } from '../types'
 import { useState } from "react";
+
 
 const TogglableColorPicker = (
   { value, setValue, presetColors }
-  : { value: string, setValue: (color: string) => void, presetColors: Array<string> }
+  : { value: Color, setValue: (color: Color) => void, presetColors: Array<string> }
 ) => {
   const [pickerColor, setPickerColor] = useState(value)
   const [displayPicker, setDisplayPicker] = useState(false)

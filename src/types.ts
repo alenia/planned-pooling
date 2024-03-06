@@ -12,11 +12,7 @@ export enum StitchPattern {
   ablockCluster = "ablockCluster",
 }
 
-type RGB = `rgb(${number}, ${number}, ${number})`;
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
-type HEX = `#${string}`;
-
-export type Color = RGB | RGBA | HEX;
+export type Color = string; //`#${string}`;
 
 export type ColorConfig = {
   color: Color,
