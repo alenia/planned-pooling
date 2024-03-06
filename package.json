@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "type-check": "tsc",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "tsc && vitest"
   },
   "dependencies": {
     "font-color-contrast": "^11.1.0",
@@ -18,14 +19,15 @@
     "react-dom": "^18.2.0",
     "sass": "^1.62.1",
     "serve": "^14.2.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1"
   },
   "devDependencies": {
+    "@types/react": "^18.2.63",
     "@types/react-color": "^3.0.12",
+    "@types/react-dom": "^18.2.20",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
-    "@types/react": "^18.2.63",
-    "@types/react-dom": "^18.2.20",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
