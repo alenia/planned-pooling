@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { nextStitchColorByIndex } from './color'
-import { Color, ColorConfig, ColorConfigArray } from './types'
+import { ColorConfigArray } from './types'
 
 describe('nextStitchByColorIndex', () => {
   it('gives the next stitch color in the sequence', () => {
