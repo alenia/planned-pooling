@@ -4,6 +4,7 @@ import App from './App'
 import Preview from './projects/Preview'
 import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
+import LogoOption from './projects/LogoOption'
 import './index.scss'
 
 const router = () => {
@@ -14,6 +15,8 @@ const router = () => {
       return Sunflower;
     case "/doodle":
       return Doodle;
+    case "/branding-ideas":
+      return LogoOption;
     default:
     return App;
   }
