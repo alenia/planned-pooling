@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Preview from './projects/Preview.tsx'
 import Sunflower from './projects/Sunflower.tsx'
-import Doodle from './projects/Doodle.jsx'
+import Doodle from './projects/Doodle.tsx'
 import './index.scss'
 
 const router = () => {

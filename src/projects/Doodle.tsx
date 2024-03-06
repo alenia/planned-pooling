@@ -1,7 +1,8 @@
 //This file is a copy of App.jsx but with my specific color config for what I'm working on and advanced stitch patterns
 //Eventually I just want to load the data from specific JSON for my personal projects
 //But for now I'll do this
-import SwatchWithForm from '../SwatchWithForm.tsx';
+import SwatchWithForm from '../SwatchWithForm';
+import { StitchPattern } from '../types'
 
 const grey = "#4f4d4d";
 const dark = "#30221a";
@@ -22,7 +23,8 @@ function Doodle() {
     crows: 9,
     colorShift: 1,
     staggerLengths: false,
-    stitchPattern: 'jasmine',
+    stitchPattern: StitchPattern.jasmine,
+    showRowNumbers: false,
   }
 
   return (
