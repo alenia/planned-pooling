@@ -1,30 +1,44 @@
 import './Form.scss'
-import PropTypes from "prop-types";
-import ExtraPropTypes from './extraPropTypes.js'
-import CheckboxInput from './inputs/Checkbox.jsx'
-import TogglableColorPicker from './inputs/TogglableColorPicker.jsx'
-import IntegerInput from './inputs/Integer.jsx'
-import { useState } from "react";
+import CheckboxInput from './inputs/Checkbox'
+import TogglableColorPicker from './inputs/TogglableColorPicker'
+import IntegerInput from './inputs/Integer'
+import { StitchPattern, Color, ColorConfigArray } from './types'
 
-const Form = ({ formData, setFormData }) => {
+type SwatchConfigurationData = {
+  colorConfig: ColorConfigArray,
+  crowLength: number,
+  stitchPattern: StitchPattern,
+  crows: number,
+  colorShift: number,
+  staggerLengths: boolean,
+  showRowNumbers: boolean
+}
+
+type FormValue = keyof(SwatchConfigurationData)
+
+const Form = (
+  { formData, setFormData } : 
+  {
+    formData: SwatchConfigurationData,
+    setFormData: (data: SwatchConfigurationData) => void
+  }
+) => {
 
   const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
-  const setValue = (name, value) => {
-    const newFormData = { ...formData };
-    newFormData[name] = value;
-    setFormData(newFormData);
+  const setFormValue = (name: FormValue, value : string | number | boolean) => {
+    setFormData({ ...formData, [name]: value});
   }
 
-  const setColorConfigLengthValue = (index, value) => {
+  const setColorConfigLengthValue = (index : number, value : number) => {
     const newFormData = { ...formData };
     newFormData['colorConfig'][index]['length'] = value;
     setFormData(newFormData);
   }
 
-  const setColorConfigColorValue = (color, index) => {
+  const setColorConfigColorValue = (color : Color, index : number) => {
     const newFormData = {...formData};
-    newFormData['colorConfig'][index]['color'] = color.hex;
+    newFormData['colorConfig'][index]['color'] = color;
     setFormData(newFormData);
   };
 
@@ -35,7 +49,7 @@ const Form = ({ formData, setFormData }) => {
     setFormData(newFormData);
   }
 
-  const removeColorFromConfig = (index) => {
+  const removeColorFromConfig = (index: number) => {
     const newFormData = { ...formData };
     newFormData['colorConfig'].splice(index, 1);
     setFormData(newFormData);
@@ -44,7 +58,7 @@ const Form = ({ formData, setFormData }) => {
   const printColorSequenceLength = () => {
     let result = 0;
     for (const i in colorConfig) {
-      result += parseInt(colorConfig[i].length);
+      result += colorConfig[i].length;
     }
     return result;
   }
@@ -83,10 +97,10 @@ const Form = ({ formData, setFormData }) => {
               title="The number of stitches in this color segment"
               name={`${index}`}
               value={colorConfig[index].length}
-              setValue={setColorConfigLengthValue}
+              setValue={(v: number) => setColorConfigLengthValue(index, v)}
               validator={IntegerInput.validators.nonNegative}
             />
-            <button onClick={(e) => removeColorFromConfig(index)}>Remove color</button>
+            <button onClick={() => removeColorFromConfig(index)}>Remove color</button>
           </div>
         ))}
         <div>
@@ -106,7 +120,7 @@ const Form = ({ formData, setFormData }) => {
           title="The number of stitches in one row"
           name="crowLength"
           value={crowLength}
-          setValue={setValue}
+          setValue={(v : number) => setFormValue('crowLength', v)}
           validator={IntegerInput.validators.nonNegative}
           />
 
@@ -115,7 +129,7 @@ const Form = ({ formData, setFormData }) => {
           title="The number of rows displayed"
           name="crows"
           value={crows}
-          setValue={setValue}
+          setValue={(v: number) => setFormValue('crows', v)}
           validator={IntegerInput.validators.nonNegative}
           />
 
@@ -131,7 +145,7 @@ const Form = ({ formData, setFormData }) => {
           title="Start the swatch this many stitches into your color sequence"
           name="colorShift"
           value={colorShift}
-          setValue={setValue}
+          setValue={(v : number) => setFormValue('colorShift', v)}
           />
 
         <CheckboxInput
@@ -140,7 +154,7 @@ const Form = ({ formData, setFormData }) => {
           label="Alternate row lengths"
           name="staggerLengths"
           value={staggerLengths}
-          setValue={setValue}
+          setValue={(v: boolean) => setFormValue('staggerLengths', v)}
         />
       </fieldset>
 
@@ -150,23 +164,10 @@ const Form = ({ formData, setFormData }) => {
         title="Display row numbers at the beginning of each row."
         name="showRowNumbers"
         value={showRowNumbers}
-        setValue={setValue}
+        setValue={(v: boolean) => setFormValue('showRowNumbers', v)}
       />
     </form>
   );
-}
-
-Form.propTypes = {
-  formData: PropTypes.shape({
-    colorConfig: ExtraPropTypes.colorConfig.isRequired,
-    stitchPattern: PropTypes.string, //TODO: Make this an enum
-    crowLength: PropTypes.number.isRequired,
-    crows: PropTypes.number,
-    colorShift: PropTypes.number,
-    staggerLengths: PropTypes.bool,
-    showRowNumbers: PropTypes.bool,
-  }),
-  setFormData: PropTypes.func,
 }
 
 export default Form;

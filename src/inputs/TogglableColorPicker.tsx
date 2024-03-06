@@ -1,10 +1,23 @@
 import { Fragment } from 'react'
-import PropTypes from "prop-types";
 import fontColorContrast from 'font-color-contrast';
-import { SketchPicker } from 'react-color';
+import { ColorResult, SketchPicker } from 'react-color';
+import { Color } from '../types'
 import { useState } from "react";
 
-const TogglableColorPicker = ({ value, setValue, presetColors }) => {
+
+const forceColorType = (colorString : string) : Color => {
+  if ((/#\w+/).test(colorString)) {
+    return colorString as Color
+  } else {
+    console.warn(`${colorString} does not match color string regex. This is unexpected behavior`)
+    return `#${colorString}`
+  }
+}
+
+const TogglableColorPicker = (
+  { value, setValue, presetColors }
+  : { value: Color, setValue: (color: Color) => void, presetColors: Array<string> }
+) => {
   const [pickerColor, setPickerColor] = useState(value)
   const [displayPicker, setDisplayPicker] = useState(false)
 
@@ -28,8 +41,8 @@ const TogglableColorPicker = ({ value, setValue, presetColors }) => {
               <SketchPicker
                 color={pickerColor || value}
                 disableAlpha={true}
-                onChange={setPickerColor}
-                onChangeComplete={setValue}
+                onChange={(colorResult: ColorResult) => { setPickerColor(forceColorType(colorResult.hex)) }}
+                onChangeComplete={(colorResult: ColorResult) => {setValue(forceColorType(colorResult.hex)) }}
                 presetColors={presetColors}
               /> 
             </div>
@@ -38,11 +51,5 @@ const TogglableColorPicker = ({ value, setValue, presetColors }) => {
     </Fragment>
   )
 };
-
-TogglableColorPicker.propTypes = {
-  value: PropTypes.string, // color string
-  presetColors: PropTypes.arrayOf(PropTypes.string),
-  setValue: PropTypes.func,
-}
 
 export default TogglableColorPicker

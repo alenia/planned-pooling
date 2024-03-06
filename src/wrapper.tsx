@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import Preview from './projects/Preview.jsx'
-import Sunflower from './projects/Sunflower.jsx'
-import Doodle from './projects/Doodle.jsx'
+import App from './App'
+import Preview from './projects/Preview'
+import Sunflower from './projects/Sunflower'
+import Doodle from './projects/Doodle'
 import './index.scss'
 
 const router = () => {
@@ -21,7 +21,7 @@ const router = () => {
 
 const Main = router();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Main />
   </React.StrictMode>,
