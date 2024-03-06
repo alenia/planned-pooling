@@ -1,4 +1,5 @@
-import SwatchWithForm from './SwatchWithForm.tsx';
+import SwatchWithForm from './SwatchWithForm';
+import { StitchPattern } from './types'
 
 const red = "#ff001d";
 const cream = "#fcf7eb";
@@ -19,7 +20,8 @@ function App() {
     crows: 40,
     colorShift: 0,
     staggerLengths: false,
-    stitchPattern: 'moss',
+    stitchPattern: StitchPattern.moss,
+    showRowNumbers: false
   }
 
   return (
