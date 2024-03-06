@@ -9,6 +9,7 @@ const forceColorType = (colorString : string) : Color => {
   if ((/#\w+/).test(colorString)) {
     return colorString as Color
   } else {
+    console.warn(`${colorString} does not match color string regex. This is unexpected behavior`)
     return `#${colorString}`
   }
 }
