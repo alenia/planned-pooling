@@ -1,10 +1,10 @@
 import SwatchWithForm from './SwatchWithForm';
-import { StitchPattern } from './types'
+import { StitchPattern, Color } from './types'
 
-const red = "#ff001d";
-const cream = "#fcf7eb";
-const ltblue = "#8dd0f2";
-const navy = "#0e0e66";
+const red = "#ff001d" as Color;
+const cream = "#fcf7eb" as Color;
+const ltblue = "#8dd0f2" as Color;
+const navy = "#0e0e66" as Color;
 
 function App() {
   const config = {

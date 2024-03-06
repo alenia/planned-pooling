@@ -18,6 +18,11 @@ a planned pooling crochet and knitting tool with support for displaying multiple
 
 `yarn lint`
 
+# Before you PR
+
+Make sure this passes type check and lint:
+`yarn type-check && yarn lint`
+
 # Deploying
 
 I deploy this on digital ocean, and I have an app set up to track changes to the `release` branch. Here's what I do to deploy:
