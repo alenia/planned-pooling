@@ -29,7 +29,10 @@ const IntegerInput = (
           {label}
         </label>
         <div className="number-spinner">
-          <button onClick={() => handleButtonChange(Direction.DOWN)}>-</button>
+          <button
+            type="button"
+            onClick={() => handleButtonChange(Direction.DOWN)}
+          >-</button>
           <input
             type="number"
             inputMode="numeric"
@@ -39,7 +42,10 @@ const IntegerInput = (
             id={name}
             value={value}
           />
-          <button onClick={() => handleButtonChange(Direction.UP)}>+</button>
+          <button
+            type="button"
+            onClick={() => handleButtonChange(Direction.UP)}
+          >+</button>
         </div>
       </div>
   )

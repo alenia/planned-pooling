@@ -100,11 +100,11 @@ const Form = (
               setValue={(v: number) => setColorConfigLengthValue(index, v)}
               validator={IntegerInput.validators.nonNegative}
             />
-            <button onClick={() => removeColorFromConfig(index)}>Remove color</button>
+            <button type="button" onClick={() => removeColorFromConfig(index)}>Remove color</button>
           </div>
         ))}
         <div>
-          <button onClick={addColorToConfig}>Add a color</button>
+          <button type="button" onClick={addColorToConfig}>Add a color</button>
         </div>
       </fieldset>
 
