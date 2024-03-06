@@ -1,4 +1,4 @@
-import SwatchWithForm from './SwatchWithForm.jsx';
+import SwatchWithForm from './SwatchWithForm.tsx';
 
 const red = "#ff001d";
 const cream = "#fcf7eb";

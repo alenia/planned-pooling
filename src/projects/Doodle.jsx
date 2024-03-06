@@ -1,7 +1,7 @@
 //This file is a copy of App.jsx but with my specific color config for what I'm working on and advanced stitch patterns
 //Eventually I just want to load the data from specific JSON for my personal projects
 //But for now I'll do this
-import SwatchWithForm from '../SwatchWithForm.jsx';
+import SwatchWithForm from '../SwatchWithForm.tsx';
 
 const grey = "#4f4d4d";
 const dark = "#30221a";
