@@ -27,9 +27,7 @@ function LogoOption() {
   }
 
   return (
-  <div className="container">
     <SwatchWithForm {...config} />
-  </div>
   );
 }
 

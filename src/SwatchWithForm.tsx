@@ -27,7 +27,7 @@ function SwatchWithForm(
   })
 
   return (
-  <div className='container'>
+  <div>
     <Form
       formData={formData}
       setFormData={setFormData} 

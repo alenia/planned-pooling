@@ -28,7 +28,7 @@ function Doodle() {
   }
 
   return (
-  <div className="container">
+  <div>
     <p>This displays what the Zen Garden 500g ball looks like in Jasmine Stitch</p>
     <SwatchWithForm {...config} />
   </div>
