@@ -25,9 +25,7 @@ function App() {
   }
 
   return (
-  <div className="container">
     <SwatchWithForm {...config} />
-  </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import Footer from './Footer';
 import Preview from './projects/Preview'
 import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
@@ -26,6 +27,9 @@ const Main = router();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Main />
+    <div className="container">
+      <Main />
+    </div>
+    <Footer />
   </React.StrictMode>,
 )
