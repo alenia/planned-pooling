@@ -1,4 +1,5 @@
 import SwatchWithForm from './SwatchWithForm';
+import Footer from './Footer';
 import { StitchPattern, Color } from './types'
 
 const red = "#ff001d" as Color;
@@ -28,6 +29,7 @@ function App() {
   <div className="container">
     <SwatchWithForm {...config} />
   </div>
+    <Footer />
   );
 }
 
