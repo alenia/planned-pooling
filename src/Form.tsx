@@ -159,7 +159,7 @@ const Form = (
       </fieldset>
 
       <CheckboxInput
-        className="checkbox-container"
+        className="checkbox-container unwrapped-input"
         label="Show Row Numbers"
         title="Display row numbers at the beginning of each row."
         name="showRowNumbers"
