@@ -13,22 +13,19 @@ fieldset {
 .color-fields,
 .spec-fields {
   & > div {
-    display: flex;
-    gap: 0.5em;
     margin-bottom: 0.5em;
     height: 2em;
-    align-items: center;
-    justify-content: space-between;
   }
 
-  .input-group {
+  .input-group, .color-segment {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
   }
-
-  .checkbox-container {
-    justify-content: flex-start;
-  }
+}
+.checkbox-container {
+  label { margin-left: 0.5em;}
 }
 
 input[type=checkbox] {
