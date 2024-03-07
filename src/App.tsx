@@ -1,6 +1,7 @@
 import SwatchWithForm from './SwatchWithForm';
 import Footer from './Footer';
 import { StitchPattern, Color } from './types'
+import React from 'react'
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -26,10 +27,10 @@ function App() {
   }
 
   return (
-  <div className="container">
+  <React.Fragment>
     <SwatchWithForm {...config} />
-  </div>
     <Footer />
+  </React.Fragment>
   );
 }
 
