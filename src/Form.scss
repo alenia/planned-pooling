@@ -1,6 +1,6 @@
 form {
   display: grid;
-  grid-template-columns: 450px 1fr;
+  grid-template-columns: max-content max-content;
   grid-gap: 0.5em;
 }
 
@@ -66,7 +66,6 @@ label {
 
 .color-segment {
   display: flex;
-  width: 420px;
   position: relative;
 }
 
