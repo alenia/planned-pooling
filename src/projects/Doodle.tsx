@@ -3,6 +3,7 @@
 //But for now I'll do this
 import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern, Color } from '../types'
+import { useState } from "react";
 
 const grey = "#4f4d4d" as Color;
 const dark = "#30221a" as Color;
@@ -10,7 +11,7 @@ const orange = "#d66127" as Color;
 const yellow = "#f5b638" as Color;
 
 function Doodle() {
-  const config = {
+  const [swatchParams, setSwatchParams] = useState({
     colorConfig: [
       {color: dark, length: 1},
       {color: grey, length: 2},
@@ -25,12 +26,12 @@ function Doodle() {
     staggerLengths: false,
     stitchPattern: StitchPattern.jasmine,
     showRowNumbers: false,
-  }
+  })
 
   return (
   <div>
     <p>This displays what the Zen Garden 500g ball looks like in Jasmine Stitch</p>
-    <SwatchWithForm {...config} />
+    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
   </div>
   );
 }

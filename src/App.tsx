@@ -1,5 +1,6 @@
 import SwatchWithForm from './SwatchWithForm';
 import { StitchPattern, Color } from './types'
+import { useState } from "react";
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -7,7 +8,7 @@ const ltblue = "#8dd0f2" as Color;
 const navy = "#0e0e66" as Color;
 
 function App() {
-  const config = {
+  const [swatchParams, setSwatchParams] = useState({
     colorConfig: [
       {color: navy, length: 3},
       {color: red, length: 3},
@@ -22,10 +23,10 @@ function App() {
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
     showRowNumbers: false
-  }
+  })
 
   return (
-    <SwatchWithForm {...config} />
+    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
   );
 }
 

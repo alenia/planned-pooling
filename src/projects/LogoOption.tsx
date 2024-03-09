@@ -3,6 +3,7 @@
 //But for now I'll do this
 import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern, Color } from '../types'
+import { useState } from "react";
 
 const coral = "#e26654" as Color;
 const teal = "#317781" as Color;
@@ -10,7 +11,7 @@ const cream = "#fefbec" as Color;
 const lightTeal = "#70afb7" as Color;
 
 function LogoOption() {
-  const config = {
+  const [swatchParams, setSwatchParams] = useState({
     colorConfig: [
       {color: coral, length: 2},
       {color: teal, length: 5},
@@ -24,10 +25,10 @@ function LogoOption() {
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
     showRowNumbers: false,
-  }
+  })
 
   return (
-    <SwatchWithForm {...config} />
+    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
   );
 }
 
