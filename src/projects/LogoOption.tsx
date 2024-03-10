@@ -11,7 +11,7 @@ const cream = "#fefbec" as Color;
 const lightTeal = "#70afb7" as Color;
 
 function LogoOption() {
-  const [swatchParams, setSwatchParams] = useState({
+  const [swatchConfig, setSwatchConfig] = useState({
     colorConfig: [
       {color: coral, length: 2},
       {color: teal, length: 5},
@@ -28,7 +28,7 @@ function LogoOption() {
   })
 
   return (
-    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
+    <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} />
   );
 }
 

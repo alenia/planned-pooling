@@ -11,7 +11,7 @@ const orange = "#d66127" as Color;
 const yellow = "#f5b638" as Color;
 
 function Doodle() {
-  const [swatchParams, setSwatchParams] = useState({
+  const [swatchConfig, setSwatchConfig] = useState({
     colorConfig: [
       {color: dark, length: 1},
       {color: grey, length: 2},
@@ -31,7 +31,7 @@ function Doodle() {
   return (
   <div>
     <p>This displays what the Zen Garden 500g ball looks like in Jasmine Stitch</p>
-    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
+    <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} />
   </div>
   );
 }

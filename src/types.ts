@@ -21,7 +21,7 @@ export type ColorConfig = {
 
 export type ColorConfigArray = Array<ColorConfig>
 
-export type SwatchParams = {
+export type SwatchConfig = {
     colorConfig: ColorConfigArray,
     crowLength: number,
     stitchPattern: StitchPattern,

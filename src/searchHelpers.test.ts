@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { URLSearchParamsFromSwatchParams, sanitizeSearchParamInputs } from './searchHelpers'
-import { StitchPattern, SwatchParams } from './types'
+import { URLSearchParamsFromSwatchConfig, sanitizeSearchParamInputs } from './searchHelpers'
+import { StitchPattern, SwatchConfig } from './types'
 
-describe('URLSearchParamsFromSwatchParams', () => {
+describe('URLSearchParamsFromSwatchConfig', () => {
   it('includes all the relevent info in the URL params', () => {
-    const swatchParams = {
+    const swatchConfig = {
       colorConfig: [
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
@@ -15,9 +15,9 @@ describe('URLSearchParamsFromSwatchParams', () => {
       staggerLengths: false,
       stitchPattern: StitchPattern.moss,
       showRowNumbers: false
-    } as SwatchParams
+    } as SwatchConfig
 
-    const searchParams = URLSearchParamsFromSwatchParams(swatchParams)
+    const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
     expect(searchParams.get('stitchPattern')).toEqual('moss')
     expect(searchParams.get('stitchesPerRow')).toEqual("18")
     expect(searchParams.get('rows')).toEqual("40")
@@ -30,7 +30,7 @@ describe('URLSearchParamsFromSwatchParams', () => {
 
 describe('sanitizeSearchParamInputs', () => {
   it('works properly with the parameterized inputs', () => {
-    const swatchParams = {
+    const swatchConfig = {
       colorConfig: [
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
@@ -41,9 +41,9 @@ describe('sanitizeSearchParamInputs', () => {
       staggerLengths: true,
       stitchPattern: StitchPattern.moss,
       showRowNumbers: false
-    } as SwatchParams
+    } as SwatchConfig
 
-    const searchParams = URLSearchParamsFromSwatchParams(swatchParams)
+    const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
     expect(sanitizeSearchParamInputs.crowLength(searchParams)).toEqual(18)
     expect(sanitizeSearchParamInputs.crows(searchParams)).toEqual(40)
     expect(sanitizeSearchParamInputs.colorShift(searchParams)).toEqual(5)

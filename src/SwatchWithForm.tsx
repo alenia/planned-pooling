@@ -1,17 +1,17 @@
 import Swatch from './Swatch';
 import Form from './Form';
-import { SwatchParams } from './types'
+import { SwatchConfig } from './types'
 
-function SwatchWithForm({swatchParams, setSwatchParams}  : { swatchParams: SwatchParams, setSwatchParams: (arg0: SwatchParams) => void}) {
+function SwatchWithForm({swatchConfig, setSwatchConfig}  : { swatchConfig: SwatchConfig, setSwatchConfig: (arg0: SwatchConfig) => void}) {
   return (
   <div>
     <Form
-      formData={swatchParams}
-      setFormData={setSwatchParams} 
+      formData={swatchConfig}
+      setFormData={setSwatchConfig}
     />
     <Swatch 
-    className={swatchParams.showRowNumbers ? "numbered" : ""}
-    {...swatchParams} />
+    className={swatchConfig.showRowNumbers ? "numbered" : ""}
+    {...swatchConfig} />
   </div>
   );
 }

@@ -2,7 +2,7 @@ import SwatchWithForm from './SwatchWithForm';
 import { StitchPattern, Color } from './types'
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'react-router-dom';
-import { URLSearchParamsFromSwatchParams, sanitizeSearchParamInputs } from './searchHelpers';
+import { URLSearchParamsFromSwatchConfig, sanitizeSearchParamInputs } from './searchHelpers';
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -11,7 +11,7 @@ const navy = "#0e0e66" as Color;
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [swatchParams, setSwatchParams] = useState({
+  const [swatchConfig, setSwatchConfig] = useState({
     colorConfig: sanitizeSearchParamInputs.colorConfig(searchParams) || [
       {color: navy, length: 3},
       {color: red, length: 3},
@@ -29,13 +29,13 @@ function App() {
   })
 
   useEffect(() => {
-    const newSearchParams = URLSearchParamsFromSwatchParams(swatchParams)
+    const newSearchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
 
     setSearchParams(newSearchParams)
-  }, [swatchParams, setSearchParams])
+  }, [swatchConfig, setSearchParams])
 
   return (
-    <SwatchWithForm swatchParams={swatchParams} setSwatchParams={setSwatchParams} />
+    <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} />
   );
 }
 

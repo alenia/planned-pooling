@@ -1,16 +1,16 @@
-import { SwatchParams, ColorConfigArray, Color, StitchPattern } from './types'
+import { SwatchConfig, ColorConfigArray, Color, StitchPattern } from './types'
 import { isStringAColor } from './color'
 
-export function URLSearchParamsFromSwatchParams(swatchParams : SwatchParams) : URLSearchParams {
+export function URLSearchParamsFromSwatchConfig(swatchConfig : SwatchConfig) : URLSearchParams {
   // renamed crows because it's an external facing API
   const flattenedParams = {
-    stitchesPerRow: swatchParams.crowLength.toString(),
-    rows: swatchParams.crows.toString(),
-    colorShift: swatchParams.colorShift.toString(),
-    staggerLengths: swatchParams.staggerLengths.toString(),
-    stitchPattern: swatchParams.stitchPattern.toString(),
-    colors: swatchParams.colorConfig.map(({color}) => color).toString(),
-    colorLengths: swatchParams.colorConfig.map(({length}) => length).toString()
+    stitchesPerRow: swatchConfig.crowLength.toString(),
+    rows: swatchConfig.crows.toString(),
+    colorShift: swatchConfig.colorShift.toString(),
+    staggerLengths: swatchConfig.staggerLengths.toString(),
+    stitchPattern: swatchConfig.stitchPattern.toString(),
+    colors: swatchConfig.colorConfig.map(({color}) => color).toString(),
+    colorLengths: swatchConfig.colorConfig.map(({length}) => length).toString()
   }
   return new URLSearchParams(flattenedParams);
 }
