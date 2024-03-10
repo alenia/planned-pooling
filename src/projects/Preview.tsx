@@ -19,12 +19,12 @@ const colorSequence : ColorSequenceArray = [
   {color: "#EEEEFF", length: 13},
 ] 
 
-const basicProps = { colorSequence, crowLength: 10}
-const jasminePoolerProps = { colorSequence, crowLength: 11, stitchPattern: StitchPattern.jasmine }
-const ripplePoolerProps = { colorSequence, crowLength: 3, stitchPattern: StitchPattern.ripple }
-const ripplePooler2Props = { colorSequence, crowLength: 4, stitchPattern: StitchPattern.ripple }
-const vstitchClusterProps = { colorSequence: colorSequenceScarf2, crowLength: 12, stitchPattern: StitchPattern.vstitchCluster }
-const angledBlockClusterProps = { colorSequence, crowLength: 3, stitchPattern: StitchPattern.ablockCluster }
+const basicProps = { colorSequence, stitchesPerRow: 10}
+const jasminePoolerProps = { colorSequence, stitchesPerRow: 11, stitchPattern: StitchPattern.jasmine }
+const ripplePoolerProps = { colorSequence, stitchesPerRow: 3, stitchPattern: StitchPattern.ripple }
+const ripplePooler2Props = { colorSequence, stitchesPerRow: 4, stitchPattern: StitchPattern.ripple }
+const vstitchClusterProps = { colorSequence: colorSequenceScarf2, stitchesPerRow: 12, stitchPattern: StitchPattern.vstitchCluster }
+const angledBlockClusterProps = { colorSequence, stitchesPerRow: 3, stitchPattern: StitchPattern.ablockCluster }
 
 function StitchPatternPreview({stitchPattern, notes, title} : { stitchPattern: StitchPattern, notes?: string, title?: string }) {
   return (

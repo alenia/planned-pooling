@@ -9,7 +9,7 @@ describe('URLSearchParamsFromSwatchConfig', () => {
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
       ],
-      crowLength: 18,
+      stitchesPerRow: 18,
       crows: 40,
       colorShift: 5,
       staggerLengths: false,
@@ -35,7 +35,7 @@ describe('sanitizeSearchParamInputs', () => {
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
       ],
-      crowLength: 18,
+      stitchesPerRow: 18,
       crows: 40,
       colorShift: 5,
       staggerLengths: true,
@@ -44,7 +44,7 @@ describe('sanitizeSearchParamInputs', () => {
     } as SwatchConfig
 
     const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
-    expect(sanitizeSearchParamInputs.crowLength(searchParams)).toEqual(18)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(searchParams)).toEqual(18)
     expect(sanitizeSearchParamInputs.crows(searchParams)).toEqual(40)
     expect(sanitizeSearchParamInputs.colorShift(searchParams)).toEqual(5)
     expect(sanitizeSearchParamInputs.colorSequence(searchParams)).toEqual([
@@ -55,11 +55,11 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.staggerLengths(searchParams)).toEqual(true)
   })
 
-  it('only returns crowLength iff it is a number', () => {
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=20'))).toEqual(20)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=0'))).toEqual(0)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=foo'))).toEqual(NaN)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?notHere=4'))).toEqual(NaN)
+  it('only returns stitchesPerRow iff it is a number', () => {
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=20'))).toEqual(20)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=0'))).toEqual(0)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=foo'))).toEqual(NaN)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?notHere=4'))).toEqual(NaN)
     //TODO: Don't allow negative numbers
   })
   it('only returns crows iff it is a number', () => {

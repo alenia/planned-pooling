@@ -46,10 +46,10 @@ function Stitch ({color} : { color: Color}) {
 }
 
 function buildSwatch(
-  { colorSequence, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
+  { colorSequence, stitchesPerRow, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
   : {
     colorSequence: ColorSequenceArray,
-    crowLength: number,
+    stitchesPerRow: number,
     stitchPattern: StitchPattern,
     crows?: number,
     colorShift?: number,
@@ -76,7 +76,7 @@ function buildSwatch(
           clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
         {
-          [...Array(crowLength)].map((f,j) => (
+          [...Array(stitchesPerRow)].map((f,j) => (
             <Cluster key={j}>
             {
           [...Array(clusterLength)].map((f,k) => (
@@ -94,7 +94,7 @@ function buildSwatch(
   }
   if(staggerLengths) {
     return [...Array(crows)].map((e, i) => {
-      const repeatLength = i % 2 === 1 ? crowLength : crowLength + 1;
+      const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
       return (<Crow key={i}>
       {
         [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
@@ -105,7 +105,7 @@ function buildSwatch(
   return [...Array(crows)].map((e, i) => (
     <Crow key={i}>
     {
-      [...Array(crowLength)].map((f,j) => buildStitch({key: j}))
+      [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
     }
     </Crow>
   ))
@@ -113,10 +113,10 @@ function buildSwatch(
 
 
 function Swatch(
-  { colorSequence, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
+  { colorSequence, stitchesPerRow, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
   : {
     colorSequence: ColorSequenceArray,
-    crowLength: number,
+    stitchesPerRow: number,
     stitchPattern: StitchPattern,
     crows?: number,
     colorShift?: number,
@@ -133,7 +133,7 @@ function Swatch(
     staggerLengths ? 'staggered' : ''
   ]
   const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
-                  {buildSwatch({ colorSequence, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
+                  {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch
 }

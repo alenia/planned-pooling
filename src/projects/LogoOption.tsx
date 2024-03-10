@@ -19,7 +19,7 @@ function LogoOption() {
       {color: cream, length: 4},
       {color: lightTeal, length: 0},
     ],
-    crowLength: 19,
+    stitchesPerRow: 19,
     crows: 40,
     colorShift: 0,
     staggerLengths: false,

@@ -20,7 +20,7 @@ function Doodle() {
       {color: yellow, length: 2},
       {color: orange, length: 1},
     ],
-    crowLength: 15,
+    stitchesPerRow: 15,
     crows: 9,
     colorShift: 1,
     staggerLengths: false,

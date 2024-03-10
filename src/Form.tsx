@@ -7,7 +7,7 @@ import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
 
 type SwatchConfigurationData = {
   colorSequence: ColorSequenceArray,
-  crowLength: number,
+  stitchesPerRow: number,
   stitchPattern: StitchPattern,
   crows: number,
   colorShift: number,
@@ -25,7 +25,7 @@ const Form = (
   }
 ) => {
 
-  const { colorSequence, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorSequence, stitchesPerRow, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
     setFormData({ ...formData, [name]: value});
@@ -110,9 +110,9 @@ const Form = (
         <IntegerInput
           label="Stitches per row:"
           title="The number of stitches in one row"
-          name="crowLength"
-          value={crowLength}
-          setValue={(v : number) => setFormValue('crowLength', v)}
+          name="stitchesPerRow"
+          value={stitchesPerRow}
+          setValue={(v : number) => setFormValue('stitchesPerRow', v)}
           validator={IntegerInput.validators.nonNegative}
           />
 
@@ -142,7 +142,7 @@ const Form = (
 
         <CheckboxInput
           className="checkbox-container"
-          title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${crowLength+1} stitches long`}
+          title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${stitchesPerRow+1} stitches long`}
           label="Alternate row lengths"
           name="staggerLengths"
           value={staggerLengths}

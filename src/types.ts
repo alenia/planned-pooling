@@ -23,7 +23,7 @@ export type ColorSequenceArray = Array<ColorInSequence>
 
 export type SwatchConfig = {
     colorSequence: ColorSequenceArray,
-    crowLength: number,
+    stitchesPerRow: number,
     stitchPattern: StitchPattern,
     crows: number,
     colorShift: number,

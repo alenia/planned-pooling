@@ -20,7 +20,7 @@ function App() {
       {color: cream, length: 5},
       {color: ltblue, length: 2},
     ],
-    crowLength: sanitizeSearchParamInputs.crowLength(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
+    stitchesPerRow: sanitizeSearchParamInputs.stitchesPerRow(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
     crows: sanitizeSearchParamInputs.crows(searchParams) || 40, //Note: explicitly ok not pulling zero from search params here
     colorShift: sanitizeSearchParamInputs.colorShift(searchParams) || 0,
     staggerLengths: sanitizeSearchParamInputs.staggerLengths(searchParams),
