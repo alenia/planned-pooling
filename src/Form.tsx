@@ -49,6 +49,14 @@ const Form = (
     setFormData(newFormData);
   }
 
+  const duplicateColorSequence = () => {
+    const newFormData = {
+      ...formData,
+      colorSequence: [...formData.colorSequence, ...structuredClone(formData.colorSequence)]
+    };
+    setFormData(newFormData);
+  }
+
   const removeColorFromSequence = (index: number) => {
     const newFormData = { ...formData };
     newFormData['colorSequence'].splice(index, 1);
@@ -97,6 +105,7 @@ const Form = (
         ))}
         <div>
           <button type="button" onClick={addColorToSequence}>Add a color</button>
+          <button type="button" onClick={duplicateColorSequence}>Double the colors</button>
         </div>
       </fieldset>
 
