@@ -12,7 +12,7 @@ const yellow = "#f5b638" as Color;
 
 function Doodle() {
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: [
+    colorSequence: [
       {color: dark, length: 1},
       {color: grey, length: 2},
       {color: dark, length: 1},

@@ -12,7 +12,7 @@ const navy = "#0e0e66" as Color;
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: sanitizeSearchParamInputs.colorConfig(searchParams) || [
+    colorSequence: sanitizeSearchParamInputs.colorSequence(searchParams) || [
       {color: navy, length: 3},
       {color: red, length: 3},
       {color: navy, length: 3},

@@ -12,7 +12,7 @@ const lightTeal = "#70afb7" as Color;
 
 function LogoOption() {
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: [
+    colorSequence: [
       {color: coral, length: 2},
       {color: teal, length: 5},
       {color: coral, length: 2},

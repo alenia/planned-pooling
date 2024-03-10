@@ -2,11 +2,11 @@ import './Form.scss'
 import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
-import { StitchPattern, Color, ColorConfigArray } from './types'
+import { StitchPattern, Color, ColorSequenceArray } from './types'
 import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
 
 type SwatchConfigurationData = {
-  colorConfig: ColorConfigArray,
+  colorSequence: ColorSequenceArray,
   crowLength: number,
   stitchPattern: StitchPattern,
   crows: number,
@@ -25,33 +25,33 @@ const Form = (
   }
 ) => {
 
-  const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorSequence, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
     setFormData({ ...formData, [name]: value});
   }
 
-  const setColorConfigLengthValue = (index : number, value : number) => {
+  const setColorSequenceLengthValue = (index : number, value : number) => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'][index]['length'] = value;
+    newFormData['colorSequence'][index]['length'] = value;
     setFormData(newFormData);
   }
 
-  const setColorConfigColorValue = (color : Color, index : number) => {
+  const setColorSequenceColorValue = (color : Color, index : number) => {
     const newFormData = {...formData};
-    newFormData['colorConfig'][index]['color'] = color;
+    newFormData['colorSequence'][index]['color'] = color;
     setFormData(newFormData);
   };
 
   const addColorToConfig = () => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'].push({color: getRandomNotWhiteColor(), length: 3});
+    newFormData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
     setFormData(newFormData);
   }
 
   const removeColorFromConfig = (index: number) => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'].splice(index, 1);
+    newFormData['colorSequence'].splice(index, 1);
     setFormData(newFormData);
   }
 
@@ -65,7 +65,7 @@ const Form = (
     "#542e0f",
     "#fdf0d5"
   ]
-  const presetColors = [...new Set([...defaultPickerColors, ...colorConfig.map((c) => c.color)])];
+  const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
 
   return (
     <form
@@ -74,22 +74,22 @@ const Form = (
       }}
     >
       <fieldset className='color-fields'>
-        {colorConfig.map((obj, index) => (
+        {colorSequence.map((obj, index) => (
           <div className='color-segment' key={index + 1}>
             <label>
               Color {(index + 1)}:
             </label>
             <TogglableColorPicker
-              value = {colorConfig[index].color}
-              setValue={(color) => setColorConfigColorValue(color, index)}
+              value = {colorSequence[index].color}
+              setValue={(color) => setColorSequenceColorValue(color, index)}
               presetColors = { presetColors }
               />
             <IntegerInput
               label="Length:"
               title="The number of stitches in this color segment"
               name={`${index}`}
-              value={colorConfig[index].length}
-              setValue={(v: number) => setColorConfigLengthValue(index, v)}
+              value={colorSequence[index].length}
+              setValue={(v: number) => setColorSequenceLengthValue(index, v)}
               validator={IntegerInput.validators.nonNegative}
             />
             <button type="button" onClick={() => removeColorFromConfig(index)}>Remove color</button>
@@ -103,7 +103,7 @@ const Form = (
       <fieldset className='spec-fields'>
         <div>
           <em>
-            Total stitches in color sequence: {totalColorSequenceLength(colorConfig)}
+            Total stitches in color sequence: {totalColorSequenceLength(colorSequence)}
           </em>
         </div>
 

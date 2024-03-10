@@ -14,15 +14,15 @@ export enum StitchPattern {
 
 export type Color = `#${string}`;
 
-export type ColorConfig = {
+export type ColorInSequence = {
   color: Color,
   length: number,
 }
 
-export type ColorConfigArray = Array<ColorConfig>
+export type ColorSequenceArray = Array<ColorInSequence>
 
 export type SwatchConfig = {
-    colorConfig: ColorConfigArray,
+    colorSequence: ColorSequenceArray,
     crowLength: number,
     stitchPattern: StitchPattern,
     crows: number,

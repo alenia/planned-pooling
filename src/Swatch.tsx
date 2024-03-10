@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { nextStitchColorByIndex } from './color'
-import { StitchPattern, Color, ColorConfigArray } from './types'
+import { StitchPattern, Color, ColorSequenceArray } from './types'
 import './Swatch.scss'
 
 type ClusterConfiguration = {
@@ -46,9 +46,9 @@ function Stitch ({color} : { color: Color}) {
 }
 
 function buildSwatch(
-  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
+  { colorSequence, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
   : {
-    colorConfig: ColorConfigArray,
+    colorSequence: ColorSequenceArray,
     crowLength: number,
     stitchPattern: StitchPattern,
     crows?: number,
@@ -62,7 +62,7 @@ function buildSwatch(
 
   let stitchIndex = 0;
   const nextColor = () => {
-    const color = nextStitchColorByIndex(stitchIndex, colorConfig, {colorShift})
+    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
     stitchIndex++;
     return color;
   }
@@ -113,9 +113,9 @@ function buildSwatch(
 
 
 function Swatch(
-  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
+  { colorSequence, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
   : {
-    colorConfig: ColorConfigArray,
+    colorSequence: ColorSequenceArray,
     crowLength: number,
     stitchPattern: StitchPattern,
     crows?: number,
@@ -133,7 +133,7 @@ function Swatch(
     staggerLengths ? 'staggered' : ''
   ]
   const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
-                  {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
+                  {buildSwatch({ colorSequence, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
                  </div>);
   return swatch
 }
