@@ -25,7 +25,6 @@ function App() {
     colorShift: sanitizeSearchParamInputs.colorShift(searchParams) || 0,
     staggerLengths: sanitizeSearchParamInputs.staggerLengths(searchParams),
     stitchPattern: sanitizeSearchParamInputs.stitchPattern(searchParams) || StitchPattern.moss,
-    showRowNumbers: false
   })
 
   useEffect(() => {

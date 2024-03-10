@@ -23,8 +23,7 @@ function LogoOption() {
     crows: 40,
     colorShift: 0,
     staggerLengths: false,
-    stitchPattern: StitchPattern.moss,
-    showRowNumbers: false,
+    stitchPattern: StitchPattern.moss
   })
 
   return (

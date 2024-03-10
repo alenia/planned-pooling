@@ -2,57 +2,58 @@ import './Form.scss'
 import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
-import { StitchPattern, Color, ColorConfigArray } from './types'
+import { Color, SwatchConfig } from './types'
 
-type SwatchConfigurationData = {
-  colorConfig: ColorConfigArray,
-  crowLength: number,
-  stitchPattern: StitchPattern,
-  crows: number,
-  colorShift: number,
-  staggerLengths: boolean,
+type DisplayData = {
   showRowNumbers: boolean
 }
 
-type FormValue = keyof(SwatchConfigurationData)
+type FormValue = keyof(SwatchConfig) | keyof(DisplayData)
 
 const Form = (
-  { formData, setFormData } : 
+  { swatchData, setSwatchData, displayData, setDisplayData } :
   {
-    formData: SwatchConfigurationData,
-    setFormData: (data: SwatchConfigurationData) => void
+    swatchData: SwatchConfig,
+    setSwatchData: (data: SwatchConfig) => void,
+    displayData: DisplayData,
+    setDisplayData: (data: DisplayData) => void
   }
 ) => {
 
-  const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorConfig, crowLength, crows, colorShift, staggerLengths, stitchPattern } = swatchData;
+  const { showRowNumbers } = displayData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
-    setFormData({ ...formData, [name]: value});
+    if(Object.keys(swatchData).includes(name)) {
+      setSwatchData({ ...swatchData, [name]: value});
+    } else if(Object.keys(displayData).includes(name)) {
+      setDisplayData({ ...displayData, [name]: value});
+    }
   }
 
   const setColorConfigLengthValue = (index : number, value : number) => {
-    const newFormData = { ...formData };
-    newFormData['colorConfig'][index]['length'] = value;
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorConfig'][index]['length'] = value;
+    setSwatchData(newSwatchData);
   }
 
   const setColorConfigColorValue = (color : Color, index : number) => {
-    const newFormData = {...formData};
-    newFormData['colorConfig'][index]['color'] = color;
-    setFormData(newFormData);
+    const newSwatchData = {...swatchData};
+    newSwatchData['colorConfig'][index]['color'] = color;
+    setSwatchData(newSwatchData);
   };
 
   const addColorToConfig = () => {
-    const newFormData = { ...formData };
+    const newSwatchData = { ...swatchData };
     const randomColor = Math.floor(Math.random()*16777214).toString(16).padStart(6,"0");
-    newFormData['colorConfig'].push({color: `#${randomColor}`, length: 3});
-    setFormData(newFormData);
+    newSwatchData['colorConfig'].push({color: `#${randomColor}`, length: 3});
+    setSwatchData(newSwatchData);
   }
 
   const removeColorFromConfig = (index: number) => {
-    const newFormData = { ...formData };
-    newFormData['colorConfig'].splice(index, 1);
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorConfig'].splice(index, 1);
+    setSwatchData(newSwatchData);
   }
 
   const printColorSequenceLength = () => {
