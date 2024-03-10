@@ -43,13 +43,13 @@ const Form = (
     setFormData(newFormData);
   };
 
-  const addColorToConfig = () => {
+  const addColorToSequence = () => {
     const newFormData = { ...formData };
     newFormData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
     setFormData(newFormData);
   }
 
-  const removeColorFromConfig = (index: number) => {
+  const removeColorFromSequence = (index: number) => {
     const newFormData = { ...formData };
     newFormData['colorSequence'].splice(index, 1);
     setFormData(newFormData);
@@ -92,11 +92,11 @@ const Form = (
               setValue={(v: number) => setColorSequenceLengthValue(index, v)}
               validator={IntegerInput.validators.nonNegative}
             />
-            <button type="button" onClick={() => removeColorFromConfig(index)}>Remove color</button>
+            <button type="button" onClick={() => removeColorFromSequence(index)}>Remove color</button>
           </div>
         ))}
         <div>
-          <button type="button" onClick={addColorToConfig}>Add a color</button>
+          <button type="button" onClick={addColorToSequence}>Add a color</button>
         </div>
       </fieldset>
 
