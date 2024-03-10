@@ -2,57 +2,58 @@ import './Form.scss'
 import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
-import { StitchPattern, Color, ColorSequenceArray } from './types'
+import { Color, SwatchConfig } from './types'
 import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
 
-type SwatchConfigurationData = {
-  colorSequence: ColorSequenceArray,
-  stitchesPerRow: number,
-  stitchPattern: StitchPattern,
-  numberOfRows: number,
-  colorShift: number,
-  staggerLengths: boolean,
+type DisplayData = {
   showRowNumbers: boolean
 }
 
-type FormValue = keyof(SwatchConfigurationData)
+type FormValue = keyof(SwatchConfig) | keyof(DisplayData)
 
 const Form = (
-  { formData, setFormData } : 
+  { swatchData, setSwatchData, displayData, setDisplayData } :
   {
-    formData: SwatchConfigurationData,
-    setFormData: (data: SwatchConfigurationData) => void
+    swatchData: SwatchConfig,
+    setSwatchData: (data: SwatchConfig) => void,
+    displayData: DisplayData,
+    setDisplayData: (data: DisplayData) => void
   }
 ) => {
 
-  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern } = swatchData;
+  const { showRowNumbers } = displayData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
-    setFormData({ ...formData, [name]: value});
+    if(Object.keys(swatchData).includes(name)) {
+      setSwatchData({ ...swatchData, [name]: value});
+    } else if(Object.keys(displayData).includes(name)) {
+      setDisplayData({ ...displayData, [name]: value});
+    }
   }
 
   const setColorSequenceLengthValue = (index : number, value : number) => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'][index]['length'] = value;
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'][index]['length'] = value;
+    setSwatchData(newSwatchData);
   }
 
   const setColorSequenceColorValue = (color : Color, index : number) => {
-    const newFormData = {...formData};
-    newFormData['colorSequence'][index]['color'] = color;
-    setFormData(newFormData);
+    const newSwatchData = {...swatchData};
+    newSwatchData['colorSequence'][index]['color'] = color;
+    setSwatchData(newSwatchData);
   };
 
   const addColorToSequence = () => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
+    setSwatchData(newSwatchData);
   }
 
   const removeColorFromSequence = (index: number) => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'].splice(index, 1);
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'].splice(index, 1);
+    setSwatchData(newSwatchData);
   }
 
   const defaultPickerColors = [

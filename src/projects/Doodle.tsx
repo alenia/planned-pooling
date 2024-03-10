@@ -24,8 +24,7 @@ function Doodle() {
     numberOfRows: 9,
     colorShift: 1,
     staggerLengths: false,
-    stitchPattern: StitchPattern.jasmine,
-    showRowNumbers: false,
+    stitchPattern: StitchPattern.jasmine
   })
 
   return (

@@ -1,16 +1,22 @@
 import Swatch from './Swatch';
 import Form from './Form';
 import { SwatchConfig } from './types'
+import { useState } from "react";
 
 function SwatchWithForm({swatchConfig, setSwatchConfig}  : { swatchConfig: SwatchConfig, setSwatchConfig: (arg0: SwatchConfig) => void}) {
+  const [displayData, setDisplayData] = useState({
+    showRowNumbers: false
+  })
   return (
   <div>
     <Form
-      formData={swatchConfig}
-      setFormData={setSwatchConfig}
+      swatchData={swatchConfig}
+      setSwatchData={setSwatchConfig}
+      displayData={displayData}
+      setDisplayData={setDisplayData}
     />
     <Swatch 
-    className={swatchConfig.showRowNumbers ? "numbered" : ""}
+    className={displayData.showRowNumbers ? "numbered" : ""}
     {...swatchConfig} />
   </div>
   );
