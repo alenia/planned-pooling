@@ -3,7 +3,6 @@ import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { StitchPattern, Color, ColorConfigArray } from './types'
-import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
 
 type SwatchConfigurationData = {
   colorConfig: ColorConfigArray,
@@ -45,7 +44,8 @@ const Form = (
 
   const addColorToConfig = () => {
     const newFormData = { ...formData };
-    newFormData['colorConfig'].push({color: getRandomNotWhiteColor(), length: 3});
+    const randomColor = Math.floor(Math.random()*16777214).toString(16).padStart(6,"0");
+    newFormData['colorConfig'].push({color: `#${randomColor}`, length: 3});
     setFormData(newFormData);
   }
 
@@ -55,7 +55,15 @@ const Form = (
     setFormData(newFormData);
   }
 
-  const defaultPickerColors = [
+  const printColorSequenceLength = () => {
+    let result = 0;
+    for (const i in colorConfig) {
+      result += colorConfig[i].length;
+    }
+    return result;
+  }
+
+  const defaultColors = [
     "#d9073a",
     "#f57605",
     "#fcdc4d",
@@ -65,7 +73,7 @@ const Form = (
     "#542e0f",
     "#fdf0d5"
   ]
-  const presetColors = [...new Set([...defaultPickerColors, ...colorConfig.map((c) => c.color)])];
+  const presetColors = [...new Set([...defaultColors, ...colorConfig.map((c) => c.color)])];
 
   return (
     <form
@@ -103,7 +111,7 @@ const Form = (
       <fieldset className='spec-fields'>
         <div>
           <em>
-            Total stitches in color sequence: {totalColorSequenceLength(colorConfig)}
+            Total stitches in color sequence: {printColorSequenceLength()}
           </em>
         </div>
 

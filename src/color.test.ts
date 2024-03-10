@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
-import { nextStitchColorByIndex, isStringAColor, getRandomNotWhiteColor, totalColorSequenceLength } from './color'
+import { describe, expect, it } from 'vitest'
+import { nextStitchColorByIndex, isStringAColor } from './color'
 import { ColorConfigArray } from './types'
 
 describe('nextStitchByColorIndex', () => {
@@ -57,38 +57,5 @@ describe('isStringAColor', () => {
     expect(isStringAColor('#gggggg')).toBe(false)
     expect(isStringAColor('ffffff')).toBe(false)
     expect(isStringAColor('#ffff')).toBe(false)
-  })
-})
-
-describe('getRandomNotWhiteColor', () => {
-  it('gets a random color', () => {
-    const randomColor = getRandomNotWhiteColor()
-    expect(isStringAColor(randomColor), `${randomColor} should match color string expectations`).toBe(true)
-  })
-  it('can be black', () => {
-    vi.spyOn(Math, 'random').mockReturnValue(0)
-    const black = getRandomNotWhiteColor()
-    expect(black).toEqual('#000000')
-    expect(isStringAColor(black), `${black} should match color string expectations`).toBe(true)
-    vi.spyOn(Math, 'random').mockRestore();
-  })
-
-  it('cannot be white, but can be very light', () => {
-    vi.spyOn(Math, 'random').mockReturnValue(1)
-    const almostWhite = getRandomNotWhiteColor()
-    expect(isStringAColor(almostWhite), `${almostWhite} should match color string expectations`).toBe(true)
-    expect(almostWhite).toEqual('#fffffe')
-    vi.spyOn(Math, 'random').mockRestore();
-  })
-})
-
-describe('totalColorSequenceLength', () => {
-  it('sums the lenght of the colors in the sequence', () => {
-    const config = [
-      {color: "#f00", length: 2},
-      {color: "#0f0", length: 3},
-      {color: "#00f", length: 4}
-    ] as ColorConfigArray
-    expect(totalColorSequenceLength(config)).toEqual(9)
   })
 })
