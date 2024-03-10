@@ -20,3 +20,13 @@ export type ColorConfig = {
 }
 
 export type ColorConfigArray = Array<ColorConfig>
+
+export type SwatchConfig = {
+    colorConfig: ColorConfigArray,
+    crowLength: number,
+    stitchPattern: StitchPattern,
+    crows: number,
+    colorShift: number,
+    staggerLengths: boolean,
+    showRowNumbers: boolean
+}

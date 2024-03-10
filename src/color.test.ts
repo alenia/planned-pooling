@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { nextStitchColorByIndex } from './color'
+import { nextStitchColorByIndex, isStringAColor } from './color'
 import { ColorConfigArray } from './types'
 
 describe('nextStitchByColorIndex', () => {
@@ -43,5 +43,19 @@ describe('nextStitchByColorIndex', () => {
     expect(nextStitchColorByIndex(9, config, {colorShift: 3})).toBe("#0f0")
     expect(nextStitchColorByIndex(10, config, {colorShift: 3})).toBe("#0f0")
     expect(nextStitchColorByIndex(11, config, {colorShift: 3})).toBe("#00f")
+  })
+})
+
+describe('isStringAColor', () => {
+  it('tells you whether or not a string is a hex color', () => {
+    expect(isStringAColor('#fff')).toBe(true)
+    expect(isStringAColor('#FFF')).toBe(true)
+    expect(isStringAColor('#000')).toBe(true)
+    expect(isStringAColor('#012345')).toBe(true)
+    expect(isStringAColor('#ffffff')).toBe(true)
+    expect(isStringAColor('#FFFFFF')).toBe(true)
+    expect(isStringAColor('#gggggg')).toBe(false)
+    expect(isStringAColor('ffffff')).toBe(false)
+    expect(isStringAColor('#ffff')).toBe(false)
   })
 })

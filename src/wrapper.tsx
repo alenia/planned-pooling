@@ -7,28 +7,38 @@ import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
 import './index.scss'
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom"
 
-const router = () => {
-  switch (window.location.pathname) {
-    case "/preview":
-      return Preview;
-    case "/sunflower":
-      return Sunflower;
-    case "/doodle":
-      return Doodle;
-    case "/branding-ideas":
-      return LogoOption;
-    default:
-    return App;
+const router = createBrowserRouter([
+  {
+    path: "/preview",
+    element: <Preview/>
+  },
+  {
+    path: "/sunflower",
+    element: <Sunflower/>
+  },
+  {
+    path: "/doodle",
+    element: <Doodle/>
+  },
+  {
+    path: "/branding-ideas",
+    element: <LogoOption/>
+  },
+  {
+    path: "/",
+    element: <App/>
   }
-}
-
-const Main = router();
+])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div className="container">
-      <Main />
+      <RouterProvider router={router} />
     </div>
     <Footer />
   </React.StrictMode>,
