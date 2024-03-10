@@ -20,7 +20,7 @@ function LogoOption() {
       {color: lightTeal, length: 0},
     ],
     stitchesPerRow: 19,
-    crows: 40,
+    numberOfRows: 40,
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,

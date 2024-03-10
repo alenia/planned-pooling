@@ -21,7 +21,7 @@ function Doodle() {
       {color: orange, length: 1},
     ],
     stitchesPerRow: 15,
-    crows: 9,
+    numberOfRows: 9,
     colorShift: 1,
     staggerLengths: false,
     stitchPattern: StitchPattern.jasmine,

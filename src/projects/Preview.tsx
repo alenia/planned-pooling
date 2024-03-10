@@ -41,9 +41,9 @@ function StitchPatternPreview({stitchPattern, notes, title} : { stitchPattern: S
 export default function Preview() {
   return (
     <div>
-      <h4>Testing color shift and crows</h4>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} crows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} crows={8} colorShift={1}/>
+      <h4>Testing color shift</h4>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} numberOfRows={8} colorShift={1}/>
       <StitchPatternPreview stitchPattern={StitchPattern.unstyled} title="unstyled stitch pattern"/>
       <StitchPatternPreview stitchPattern={StitchPattern.stacked}/>
       <StitchPatternPreview stitchPattern={StitchPattern.moss}/>

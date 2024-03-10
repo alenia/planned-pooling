@@ -25,7 +25,7 @@ export type SwatchConfig = {
     colorSequence: ColorSequenceArray,
     stitchesPerRow: number,
     stitchPattern: StitchPattern,
-    crows: number,
+    numberOfRows: number,
     colorShift: number,
     staggerLengths: boolean,
     showRowNumbers: boolean

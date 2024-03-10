@@ -9,7 +9,7 @@ type SwatchConfigurationData = {
   colorSequence: ColorSequenceArray,
   stitchesPerRow: number,
   stitchPattern: StitchPattern,
-  crows: number,
+  numberOfRows: number,
   colorShift: number,
   staggerLengths: boolean,
   showRowNumbers: boolean
@@ -25,7 +25,7 @@ const Form = (
   }
 ) => {
 
-  const { colorSequence, stitchesPerRow, crows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
     setFormData({ ...formData, [name]: value});
@@ -119,9 +119,9 @@ const Form = (
         <IntegerInput
           label="Number of rows:"
           title="The number of rows displayed"
-          name="crows"
-          value={crows}
-          setValue={(v: number) => setFormValue('crows', v)}
+          name="numberOfRows"
+          value={numberOfRows}
+          setValue={(v: number) => setFormValue('numberOfRows', v)}
           validator={IntegerInput.validators.nonNegative}
           />
 

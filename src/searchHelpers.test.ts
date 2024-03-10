@@ -10,7 +10,7 @@ describe('URLSearchParamsFromSwatchConfig', () => {
         {color: '#0f0', length: 2},
       ],
       stitchesPerRow: 18,
-      crows: 40,
+      numberOfRows: 40,
       colorShift: 5,
       staggerLengths: false,
       stitchPattern: StitchPattern.moss,
@@ -36,7 +36,7 @@ describe('sanitizeSearchParamInputs', () => {
         {color: '#0f0', length: 2},
       ],
       stitchesPerRow: 18,
-      crows: 40,
+      numberOfRows: 40,
       colorShift: 5,
       staggerLengths: true,
       stitchPattern: StitchPattern.moss,
@@ -45,7 +45,7 @@ describe('sanitizeSearchParamInputs', () => {
 
     const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
     expect(sanitizeSearchParamInputs.stitchesPerRow(searchParams)).toEqual(18)
-    expect(sanitizeSearchParamInputs.crows(searchParams)).toEqual(40)
+    expect(sanitizeSearchParamInputs.numberOfRows(searchParams)).toEqual(40)
     expect(sanitizeSearchParamInputs.colorShift(searchParams)).toEqual(5)
     expect(sanitizeSearchParamInputs.colorSequence(searchParams)).toEqual([
       {color: '#f00', length: 3},
@@ -62,11 +62,11 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?notHere=4'))).toEqual(NaN)
     //TODO: Don't allow negative numbers
   })
-  it('only returns crows iff it is a number', () => {
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=20'))).toEqual(20)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=0'))).toEqual(0)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=foo'))).toEqual(NaN)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?notHere=4'))).toEqual(NaN)
+  it('only returns numberOfRows iff it is a number', () => {
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=20'))).toEqual(20)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=0'))).toEqual(0)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=foo'))).toEqual(NaN)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?notHere=4'))).toEqual(NaN)
   })
   it('only returns colorShift iff it is a number', () => {
     expect(sanitizeSearchParamInputs.colorShift(new URLSearchParams('?colorShift=20'))).toEqual(20)

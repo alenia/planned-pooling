@@ -2,10 +2,9 @@ import { SwatchConfig, ColorSequenceArray, Color, StitchPattern } from './types'
 import { isStringAColor } from './color'
 
 export function URLSearchParamsFromSwatchConfig(swatchConfig : SwatchConfig) : URLSearchParams {
-  // renamed crows because it's an external facing API
   const flattenedParams = {
     stitchesPerRow: swatchConfig.stitchesPerRow.toString(),
-    rows: swatchConfig.crows.toString(),
+    rows: swatchConfig.numberOfRows.toString(),
     colorShift: swatchConfig.colorShift.toString(),
     staggerLengths: swatchConfig.staggerLengths.toString(),
     stitchPattern: swatchConfig.stitchPattern.toString(),
@@ -44,7 +43,7 @@ export const sanitizeSearchParamInputs = {
     return colorsArray.map((color, index) => ({ color: color as Color, length: colorLengths[index] }))
   },
   stitchesPerRow: numberParserForParam('stitchesPerRow'),
-  crows: numberParserForParam('rows'),
+  numberOfRows: numberParserForParam('rows'),
   colorShift: numberParserForParam('colorShift'),
   staggerLengths: (searchParams: URLSearchParams) : boolean => {
     return searchParams.get('staggerLengths') === 'true'
