@@ -12,15 +12,15 @@ const lightTeal = "#70afb7" as Color;
 
 function LogoOption() {
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: [
+    colorSequence: [
       {color: coral, length: 2},
       {color: teal, length: 5},
       {color: coral, length: 2},
       {color: cream, length: 4},
       {color: lightTeal, length: 0},
     ],
-    crowLength: 19,
-    crows: 40,
+    stitchesPerRow: 19,
+    numberOfRows: 40,
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,

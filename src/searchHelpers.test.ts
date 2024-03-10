@@ -5,12 +5,12 @@ import { StitchPattern, SwatchConfig } from './types'
 describe('URLSearchParamsFromSwatchConfig', () => {
   it('includes all the relevent info in the URL params', () => {
     const swatchConfig = {
-      colorConfig: [
+      colorSequence: [
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
       ],
-      crowLength: 18,
-      crows: 40,
+      stitchesPerRow: 18,
+      numberOfRows: 40,
       colorShift: 5,
       staggerLengths: false,
       stitchPattern: StitchPattern.moss,
@@ -31,12 +31,12 @@ describe('URLSearchParamsFromSwatchConfig', () => {
 describe('sanitizeSearchParamInputs', () => {
   it('works properly with the parameterized inputs', () => {
     const swatchConfig = {
-      colorConfig: [
+      colorSequence: [
         {color: '#f00', length: 3},
         {color: '#0f0', length: 2},
       ],
-      crowLength: 18,
-      crows: 40,
+      stitchesPerRow: 18,
+      numberOfRows: 40,
       colorShift: 5,
       staggerLengths: true,
       stitchPattern: StitchPattern.moss,
@@ -44,10 +44,10 @@ describe('sanitizeSearchParamInputs', () => {
     } as SwatchConfig
 
     const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
-    expect(sanitizeSearchParamInputs.crowLength(searchParams)).toEqual(18)
-    expect(sanitizeSearchParamInputs.crows(searchParams)).toEqual(40)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(searchParams)).toEqual(18)
+    expect(sanitizeSearchParamInputs.numberOfRows(searchParams)).toEqual(40)
     expect(sanitizeSearchParamInputs.colorShift(searchParams)).toEqual(5)
-    expect(sanitizeSearchParamInputs.colorConfig(searchParams)).toEqual([
+    expect(sanitizeSearchParamInputs.colorSequence(searchParams)).toEqual([
       {color: '#f00', length: 3},
       {color: '#0f0', length: 2},
     ])
@@ -55,18 +55,18 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.staggerLengths(searchParams)).toEqual(true)
   })
 
-  it('only returns crowLength iff it is a number', () => {
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=20'))).toEqual(20)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=0'))).toEqual(0)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?stitchesPerRow=foo'))).toEqual(NaN)
-    expect(sanitizeSearchParamInputs.crowLength(new URLSearchParams('?notHere=4'))).toEqual(NaN)
+  it('only returns stitchesPerRow iff it is a number', () => {
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=20'))).toEqual(20)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=0'))).toEqual(0)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?stitchesPerRow=foo'))).toEqual(NaN)
+    expect(sanitizeSearchParamInputs.stitchesPerRow(new URLSearchParams('?notHere=4'))).toEqual(NaN)
     //TODO: Don't allow negative numbers
   })
-  it('only returns crows iff it is a number', () => {
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=20'))).toEqual(20)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=0'))).toEqual(0)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?rows=foo'))).toEqual(NaN)
-    expect(sanitizeSearchParamInputs.crows(new URLSearchParams('?notHere=4'))).toEqual(NaN)
+  it('only returns numberOfRows iff it is a number', () => {
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=20'))).toEqual(20)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=0'))).toEqual(0)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?rows=foo'))).toEqual(NaN)
+    expect(sanitizeSearchParamInputs.numberOfRows(new URLSearchParams('?notHere=4'))).toEqual(NaN)
   })
   it('only returns colorShift iff it is a number', () => {
     expect(sanitizeSearchParamInputs.colorShift(new URLSearchParams('?colorShift=20'))).toEqual(20)
@@ -75,7 +75,7 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.colorShift(new URLSearchParams('?notHere=4'))).toEqual(NaN)
     //TODO: Don't allow negative numbers
   })
-  it('returns colorConfig iff properly formatted', () => {
+  it('returns colorSequence iff properly formatted', () => {
     const goodParams = '?colors=%230e0e66%2C%23ff001d%2C%230e0e66%2C%238dd0f2%2C%23fcf7eb%2C%238dd0f2&colorLengths=3%2C3%2C3%2C2%2C5%2C2'
     const notEnoughLengths = '?colors=%230e0e66%2C%23ff001d%2C%230e0e66%2C%238dd0f2%2C%23fcf7eb%2C%238dd0f2&colorLengths=3%2C3%2C3%2C2%2C5'
     const notEnoughColors = '?colors=%230e0e66%2C%23ff001d%2C%230e0e66%2C%238dd0f2%2C%23fcf7eb&colorLengths=3%2C3%2C3%2C2%2C5%2C2'
@@ -83,7 +83,7 @@ describe('sanitizeSearchParamInputs', () => {
     const lengthsAreNotNumbers = '?colors=%230e0e66%2C%23ff001d%2C%230e0e66%2C%238dd0f2%2C%23fcf7eb%2C%238dd0f2&colorLengths=3%2C3%2C3%2C2%2C5%2Cfour'
     const missingColors = '?colorLengths=3%2C3%2C3%2C2%2C5'
     const missingLengths = '?colors=%230e0e66%2C%23ff001d%2C%230e0e66%2C%238dd0f2%2C%23fcf7eb%2C%238dd0f2'
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(goodParams))).toEqual([
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(goodParams))).toEqual([
       {color: "#0e0e66", length: 3},
       {color: "#ff001d", length: 3},
       {color: "#0e0e66", length: 3},
@@ -91,12 +91,12 @@ describe('sanitizeSearchParamInputs', () => {
       {color: "#fcf7eb", length: 5},
       {color: "#8dd0f2", length: 2},
     ])
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(missingColors))).toEqual(false)
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(missingLengths))).toEqual(false)
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(notEnoughLengths))).toEqual(false)
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(notEnoughColors))).toEqual(false)
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(colorsAreNotColors))).toEqual(false)
-    expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(lengthsAreNotNumbers))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(missingColors))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(missingLengths))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(notEnoughLengths))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(notEnoughColors))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(colorsAreNotColors))).toEqual(false)
+    expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(lengthsAreNotNumbers))).toEqual(false)
   })
   it('returns stagger lengths iff it is true', () => {
     expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=true'))).toEqual(true)

@@ -1,17 +1,17 @@
 import Swatch from '../Swatch'
-import { StitchPattern, ColorConfigArray, Color } from '../types'
+import { StitchPattern, ColorSequenceArray, Color } from '../types'
 
 const yellow : Color = "#faf619";
 const red : Color = "#fa1933";
 const confetti : Color= "#c6f5f2";
-const colorConfigScarf2 : ColorConfigArray = [
+const colorSequenceScarf2 : ColorSequenceArray = [
   {color: red, length: 6},
   {color: yellow, length: 2},
   {color: confetti, length: 8},
   {color: yellow, length: 2},
 ]
 
-const colorConfig : ColorConfigArray = [
+const colorSequence : ColorSequenceArray = [
   {color: "#C274B3", length: 2},
   {color: "#4ECDC4", length: 3},
   {color: "#FFE66D", length: 1},
@@ -19,12 +19,12 @@ const colorConfig : ColorConfigArray = [
   {color: "#EEEEFF", length: 13},
 ] 
 
-const basicProps = { colorConfig, crowLength: 10}
-const jasminePoolerProps = { colorConfig, crowLength: 11, stitchPattern: StitchPattern.jasmine }
-const ripplePoolerProps = { colorConfig, crowLength: 3, stitchPattern: StitchPattern.ripple }
-const ripplePooler2Props = { colorConfig, crowLength: 4, stitchPattern: StitchPattern.ripple }
-const vstitchClusterProps = { colorConfig: colorConfigScarf2, crowLength: 12, stitchPattern: StitchPattern.vstitchCluster }
-const angledBlockClusterProps = { colorConfig, crowLength: 3, stitchPattern: StitchPattern.ablockCluster }
+const basicProps = { colorSequence, stitchesPerRow: 10}
+const jasminePoolerProps = { colorSequence, stitchesPerRow: 11, stitchPattern: StitchPattern.jasmine }
+const ripplePoolerProps = { colorSequence, stitchesPerRow: 3, stitchPattern: StitchPattern.ripple }
+const ripplePooler2Props = { colorSequence, stitchesPerRow: 4, stitchPattern: StitchPattern.ripple }
+const vstitchClusterProps = { colorSequence: colorSequenceScarf2, stitchesPerRow: 12, stitchPattern: StitchPattern.vstitchCluster }
+const angledBlockClusterProps = { colorSequence, stitchesPerRow: 3, stitchPattern: StitchPattern.ablockCluster }
 
 function StitchPatternPreview({stitchPattern, notes, title} : { stitchPattern: StitchPattern, notes?: string, title?: string }) {
   return (
@@ -41,9 +41,9 @@ function StitchPatternPreview({stitchPattern, notes, title} : { stitchPattern: S
 export default function Preview() {
   return (
     <div>
-      <h4>Testing color shift and crows</h4>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} crows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} crows={8} colorShift={1}/>
+      <h4>Testing color shift</h4>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} numberOfRows={8} colorShift={1}/>
       <StitchPatternPreview stitchPattern={StitchPattern.unstyled} title="unstyled stitch pattern"/>
       <StitchPatternPreview stitchPattern={StitchPattern.stacked}/>
       <StitchPatternPreview stitchPattern={StitchPattern.moss}/>

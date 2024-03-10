@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { nextStitchColorByIndex, isStringAColor, getRandomNotWhiteColor, totalColorSequenceLength } from './color'
-import { ColorConfigArray } from './types'
+import { ColorSequenceArray } from './types'
 
 describe('nextStitchByColorIndex', () => {
   it('gives the next stitch color in the sequence', () => {
@@ -8,7 +8,7 @@ describe('nextStitchByColorIndex', () => {
       {color: "#f00", length: 2},
       {color: "#0f0", length: 3},
       {color: "#00f", length: 4}
-    ] as ColorConfigArray
+    ] as ColorSequenceArray
 
     expect(nextStitchColorByIndex(0, config, {colorShift: 0})).toBe("#f00")
     expect(nextStitchColorByIndex(1, config, {colorShift: 0})).toBe("#f00")
@@ -29,7 +29,7 @@ describe('nextStitchByColorIndex', () => {
       {color: "#f00", length: 2},
       {color: "#0f0", length: 3},
       {color: "#00f", length: 4}
-    ] as ColorConfigArray
+    ] as ColorSequenceArray
 
     expect(nextStitchColorByIndex(0, config, {colorShift: 3})).toBe("#0f0")
     expect(nextStitchColorByIndex(1, config, {colorShift: 3})).toBe("#0f0")
@@ -88,7 +88,7 @@ describe('totalColorSequenceLength', () => {
       {color: "#f00", length: 2},
       {color: "#0f0", length: 3},
       {color: "#00f", length: 4}
-    ] as ColorConfigArray
+    ] as ColorSequenceArray
     expect(totalColorSequenceLength(config)).toEqual(9)
   })
 })

@@ -1,4 +1,4 @@
-import { ColorConfigArray, StitchPattern } from '../types'
+import { ColorSequenceArray, StitchPattern } from '../types'
 import Swatch from '../Swatch'
 
 const purple = "#C274B3";
@@ -6,7 +6,7 @@ const teal = "#4ECDC4";
 const brown = "#967527";
 const orange = "#f0ab0a";
 
-const colorConfigNew : ColorConfigArray = [
+const colorSequenceNew : ColorSequenceArray = [
   { color: purple, length: 6 },
   { color: teal, length: 2 },
   { color: orange, length: 2 }, 
@@ -14,7 +14,7 @@ const colorConfigNew : ColorConfigArray = [
   { color: orange, length: 2 }, 
   { color: teal, length: 2 },
 ]
-const colorConfigOld : ColorConfigArray = [
+const colorSequenceOld : ColorSequenceArray = [
   { color: purple, length: 5 },
   { color: teal, length: 2 },
   { color: orange, length: 2 }, 
@@ -24,8 +24,8 @@ const colorConfigOld : ColorConfigArray = [
 ]
 
 
-function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB} : { colorConfig: ColorConfigArray, colorShiftA: number, colorShiftB: number} ) {
-  const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: StitchPattern.ablockCluster }
+function OverlappingShawlPreview({colorSequence, colorShiftA, colorShiftB} : { colorSequence: ColorSequenceArray, colorShiftA: number, colorShiftB: number} ) {
+  const clusterProps = { colorSequence, numberOfRows: 5, stitchesPerRow: 17, stitchPattern: StitchPattern.ablockCluster }
   return (
     <div className="overlapping-container">
       <Swatch {...clusterProps} colorShift={colorShiftA}/>
@@ -38,8 +38,8 @@ function OverlappingShawlPreview({colorConfig, colorShiftA, colorShiftB} : { col
   )
 }
 
-function OverlappingPreviewMultishift({colorConfig} : { colorConfig: ColorConfigArray }) {
-  const clusterProps = { colorConfig, crows: 5, crowLength: 17, stitchPattern: StitchPattern.ablockCluster }
+function OverlappingPreviewMultishift({colorSequence} : { colorSequence: ColorSequenceArray }) {
+  const clusterProps = { colorSequence, numberOfRows: 5, stitchesPerRow: 17, stitchPattern: StitchPattern.ablockCluster }
   return (
     <div className="overlapping-container">
       <Swatch {...clusterProps} colorShift={11}/>
@@ -54,10 +54,10 @@ function OverlappingPreviewMultishift({colorConfig} : { colorConfig: ColorConfig
   )
 }
 
-const newShawlConfig = { colorConfig: colorConfigNew, colorShiftA: 10, colorShiftB: 2}
-const oldShawlConfig = { colorConfig: colorConfigOld, colorShiftA: 10, colorShiftB: 2}
-const clusterProps = { colorConfig: colorConfigNew, crows: 2, crowLength: 17, stitchPattern: StitchPattern.ablockCluster }
-const oldClusterProps = { colorConfig: colorConfigOld, crows: 2, crowLength: 17, stitchPattern: StitchPattern.ablockCluster }
+const newShawlConfig = { colorSequence: colorSequenceNew, colorShiftA: 10, colorShiftB: 2}
+const oldShawlConfig = { colorSequence: colorSequenceOld, colorShiftA: 10, colorShiftB: 2}
+const clusterProps = { colorSequence: colorSequenceNew, numberOfRows: 2, stitchesPerRow: 17, stitchPattern: StitchPattern.ablockCluster }
+const oldClusterProps = { colorSequence: colorSequenceOld, numberOfRows: 2, stitchesPerRow: 17, stitchPattern: StitchPattern.ablockCluster }
 export default function Sunflower() {
   return (
     <div>
@@ -71,7 +71,7 @@ export default function Sunflower() {
         <h4>Color Shift 1</h4>
         <Swatch {...clusterProps} colorShift={1}/>
       </div>
-      <OverlappingPreviewMultishift colorConfig={colorConfigNew}/>
+      <OverlappingPreviewMultishift colorSequence={colorSequenceNew}/>
       <h3>new yarn</h3>
       <div>
         <Swatch {...clusterProps} colorShift={10}/>

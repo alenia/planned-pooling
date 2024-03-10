@@ -12,7 +12,7 @@ const navy = "#0e0e66" as Color;
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: sanitizeSearchParamInputs.colorConfig(searchParams) || [
+    colorSequence: sanitizeSearchParamInputs.colorSequence(searchParams) || [
       {color: navy, length: 3},
       {color: red, length: 3},
       {color: navy, length: 3},
@@ -20,8 +20,8 @@ function App() {
       {color: cream, length: 5},
       {color: ltblue, length: 2},
     ],
-    crowLength: sanitizeSearchParamInputs.crowLength(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
-    crows: sanitizeSearchParamInputs.crows(searchParams) || 40, //Note: explicitly ok not pulling zero from search params here
+    stitchesPerRow: sanitizeSearchParamInputs.stitchesPerRow(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
+    numberOfRows: sanitizeSearchParamInputs.numberOfRows(searchParams) || 40, //Note: explicitly ok not pulling zero from search params here
     colorShift: sanitizeSearchParamInputs.colorShift(searchParams) || 0,
     staggerLengths: sanitizeSearchParamInputs.staggerLengths(searchParams),
     stitchPattern: sanitizeSearchParamInputs.stitchPattern(searchParams) || StitchPattern.moss,

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { nextStitchColorByIndex } from './color'
-import { StitchPattern, Color, ColorConfigArray } from './types'
+import { StitchPattern, Color, ColorSequenceArray } from './types'
 import './Swatch.scss'
 
 type ClusterConfiguration = {
@@ -46,12 +46,12 @@ function Stitch ({color} : { color: Color}) {
 }
 
 function buildSwatch(
-  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false}
   : {
-    colorConfig: ColorConfigArray,
-    crowLength: number,
+    colorSequence: ColorSequenceArray,
+    stitchesPerRow: number,
     stitchPattern: StitchPattern,
-    crows?: number,
+    numberOfRows?: number,
     colorShift?: number,
     staggerLengths?: boolean,
 
@@ -62,7 +62,7 @@ function buildSwatch(
 
   let stitchIndex = 0;
   const nextColor = () => {
-    const color = nextStitchColorByIndex(stitchIndex, colorConfig, {colorShift})
+    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
     stitchIndex++;
     return color;
   }
@@ -70,13 +70,13 @@ function buildSwatch(
   const buildStitch = (props={}) => <Stitch {...props} color={nextColor()}/>
 
   if(clusterLength) {
-      return [...Array(crows)].map((e, i) => (
+      return [...Array(numberOfRows)].map((e, i) => (
         <Crow key={i}>
         {
           clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
         {
-          [...Array(crowLength)].map((f,j) => (
+          [...Array(stitchesPerRow)].map((f,j) => (
             <Cluster key={j}>
             {
           [...Array(clusterLength)].map((f,k) => (
@@ -93,8 +93,8 @@ function buildSwatch(
       ))
   }
   if(staggerLengths) {
-    return [...Array(crows)].map((e, i) => {
-      const repeatLength = i % 2 === 1 ? crowLength : crowLength + 1;
+    return [...Array(numberOfRows)].map((e, i) => {
+      const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
       return (<Crow key={i}>
       {
         [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
@@ -102,10 +102,10 @@ function buildSwatch(
       </Crow>)
     })
   }
-  return [...Array(crows)].map((e, i) => (
+  return [...Array(numberOfRows)].map((e, i) => (
     <Crow key={i}>
     {
-      [...Array(crowLength)].map((f,j) => buildStitch({key: j}))
+      [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
     }
     </Crow>
   ))
@@ -113,12 +113,12 @@ function buildSwatch(
 
 
 function Swatch(
-  { colorConfig, crowLength, stitchPattern, crows = 40, colorShift = 0, staggerLengths = false, className}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
   : {
-    colorConfig: ColorConfigArray,
-    crowLength: number,
+    colorSequence: ColorSequenceArray,
+    stitchesPerRow: number,
     stitchPattern: StitchPattern,
-    crows?: number,
+    numberOfRows?: number,
     colorShift?: number,
     staggerLengths?: boolean,
     className?: string
@@ -133,7 +133,7 @@ function Swatch(
     staggerLengths ? 'staggered' : ''
   ]
   const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
-                  {buildSwatch({ colorConfig, crowLength, stitchPattern, crows, colorShift, staggerLengths})}
+                  {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, numberOfRows, colorShift, staggerLengths})}
                  </div>);
   return swatch
 }

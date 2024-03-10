@@ -2,7 +2,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9391 Aloe Vera",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#a6c65f", "length": 3},
       {"color": "#486111", "length": 5},
       {"color": "#a6c65f", "length": 3},
@@ -12,7 +12,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9642 Intuition",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#0e0e66", "length": 3},
       {"color": "#ff001d", "length": 3},
       {"color": "#0e0e66", "length": 3},
@@ -24,7 +24,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9482 Pacific",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#1C40B8", "length": 4},
       {"color": "#121253", "length": 5},
       {"color": "#1C40B8", "length": 4},
@@ -34,7 +34,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9128 Winter",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#3562d5", "length": 5},
       {"color": "#73BEF4", "length": 3},
       {"color": "#EBF5FC", "length": 5},
@@ -44,7 +44,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9687 Caravel",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#542E0F", "length": 5},
       {"color": "#BC9371", "length": 3},
       {"color": "#F4ECE4", "length": 5},
@@ -54,7 +54,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9165 Yellow Hibiscus",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#f51505", "length": 5},
       {"color": "#f57605", "length": 3},
       {"color": "#f5d505", "length": 5},
@@ -64,7 +64,7 @@
   {
     "yarnName": "Circulo Duna",
     "colorway": "9492 Sunflower",
-    "colorConfig": [
+    "colorSequence": [
       {"color": "#542E0F", "length": 5},
       {"color": "#c28a11", "length": 3},
       {"color": "#f5d505", "length": 5},

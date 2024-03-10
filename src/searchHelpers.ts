@@ -1,16 +1,15 @@
-import { SwatchConfig, ColorConfigArray, Color, StitchPattern } from './types'
+import { SwatchConfig, ColorSequenceArray, Color, StitchPattern } from './types'
 import { isStringAColor } from './color'
 
 export function URLSearchParamsFromSwatchConfig(swatchConfig : SwatchConfig) : URLSearchParams {
-  // renamed crows because it's an external facing API
   const flattenedParams = {
-    stitchesPerRow: swatchConfig.crowLength.toString(),
-    rows: swatchConfig.crows.toString(),
+    stitchesPerRow: swatchConfig.stitchesPerRow.toString(),
+    rows: swatchConfig.numberOfRows.toString(),
     colorShift: swatchConfig.colorShift.toString(),
     staggerLengths: swatchConfig.staggerLengths.toString(),
     stitchPattern: swatchConfig.stitchPattern.toString(),
-    colors: swatchConfig.colorConfig.map(({color}) => color).toString(),
-    colorLengths: swatchConfig.colorConfig.map(({length}) => length).toString()
+    colors: swatchConfig.colorSequence.map(({color}) => color).toString(),
+    colorLengths: swatchConfig.colorSequence.map(({length}) => length).toString()
   }
   return new URLSearchParams(flattenedParams);
 }
@@ -23,7 +22,7 @@ function numberParserForParam (paramName : string) : (searchParams: URLSearchPar
 }
 
 export const sanitizeSearchParamInputs = {
-  colorConfig: (searchParams : URLSearchParams) : ColorConfigArray | false => {
+  colorSequence: (searchParams : URLSearchParams) : ColorSequenceArray | false => {
     const colorsString = searchParams.get('colors')
     const colorLengthsString = searchParams.get('colorLengths')
     if(!colorsString || !colorLengthsString) { return false }
@@ -43,8 +42,8 @@ export const sanitizeSearchParamInputs = {
 
     return colorsArray.map((color, index) => ({ color: color as Color, length: colorLengths[index] }))
   },
-  crowLength: numberParserForParam('stitchesPerRow'),
-  crows: numberParserForParam('rows'),
+  stitchesPerRow: numberParserForParam('stitchesPerRow'),
+  numberOfRows: numberParserForParam('rows'),
   colorShift: numberParserForParam('colorShift'),
   staggerLengths: (searchParams: URLSearchParams) : boolean => {
     return searchParams.get('staggerLengths') === 'true'

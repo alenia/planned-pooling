@@ -12,7 +12,7 @@ const yellow = "#f5b638" as Color;
 
 function Doodle() {
   const [swatchConfig, setSwatchConfig] = useState({
-    colorConfig: [
+    colorSequence: [
       {color: dark, length: 1},
       {color: grey, length: 2},
       {color: dark, length: 1},
@@ -20,8 +20,8 @@ function Doodle() {
       {color: yellow, length: 2},
       {color: orange, length: 1},
     ],
-    crowLength: 15,
-    crows: 9,
+    stitchesPerRow: 15,
+    numberOfRows: 9,
     colorShift: 1,
     staggerLengths: false,
     stitchPattern: StitchPattern.jasmine,
