@@ -23,8 +23,8 @@ function App() {
     crowLength: sanitizeSearchParamInputs.crowLength(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
     crows: sanitizeSearchParamInputs.crows(searchParams) || 40, //Note: explicitly ok not pulling zero from search params here
     colorShift: sanitizeSearchParamInputs.colorShift(searchParams) || 0,
-    staggerLengths: false,
-    stitchPattern: StitchPattern.moss,
+    staggerLengths: sanitizeSearchParamInputs.staggerLengths(searchParams),
+    stitchPattern: sanitizeSearchParamInputs.stitchPattern(searchParams) || StitchPattern.moss,
     showRowNumbers: false
   })
 

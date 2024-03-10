@@ -51,8 +51,8 @@ describe('sanitizeSearchParamInputs', () => {
       {color: '#f00', length: 3},
       {color: '#0f0', length: 2},
     ])
-    //expect(sanitizeSearchParamInputs.stitchPattern(searchParams)).toEqual(StitchPattern.moss)
-    //expect(sanitizeSearchParamInputs.staggerLengths(searchParams)).toEqual(true)
+    expect(sanitizeSearchParamInputs.stitchPattern(searchParams)).toEqual(StitchPattern.moss)
+    expect(sanitizeSearchParamInputs.staggerLengths(searchParams)).toEqual(true)
   })
 
   it('only returns crowLength iff it is a number', () => {
@@ -97,5 +97,14 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(notEnoughColors))).toEqual(false)
     expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(colorsAreNotColors))).toEqual(false)
     expect(sanitizeSearchParamInputs.colorConfig(new URLSearchParams(lengthsAreNotNumbers))).toEqual(false)
+  })
+  it('returns stagger lengths iff it is true', () => {
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=true'))).toEqual(true)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=banana'))).toEqual(false)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=false'))).toEqual(false)
+  })
+  it('returns stitch patterns', () => {
+    expect(sanitizeSearchParamInputs.stitchPattern(new URLSearchParams('?stitchPattern=stacked'))).toEqual(StitchPattern.stacked)
+    expect(sanitizeSearchParamInputs.stitchPattern(new URLSearchParams('?stitchPattern=banana'))).toEqual(false)
   })
 })

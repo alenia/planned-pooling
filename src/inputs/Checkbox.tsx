@@ -13,7 +13,7 @@ function Checkbox(
           }
           name={name}
           id={name}
-          value={value.toString()} // Typescript wants me to cast the boolean to a string myself
+          checked={value}
         />
         <label htmlFor={name} title={title}>
         {label}

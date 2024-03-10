@@ -1,4 +1,4 @@
-import { SwatchParams, ColorConfigArray, Color } from './types'
+import { SwatchParams, ColorConfigArray, Color, StitchPattern } from './types'
 import { isStringAColor } from './color'
 
 export function URLSearchParamsFromSwatchParams(swatchParams : SwatchParams) : URLSearchParams {
@@ -46,4 +46,13 @@ export const sanitizeSearchParamInputs = {
   crowLength: numberParserForParam('stitchesPerRow'),
   crows: numberParserForParam('rows'),
   colorShift: numberParserForParam('colorShift'),
+  staggerLengths: (searchParams: URLSearchParams) : boolean => {
+    return searchParams.get('staggerLengths') === 'true'
+  },
+  stitchPattern: (searchParams: URLSearchParams) : StitchPattern | false => {
+    const stitchPatternParam = searchParams.get('stitchPattern')
+    if(!stitchPatternParam) { return false }
+    //return StitchPattern[stitchPatternParam] || false // can't do this because typescript doesn't like it
+    return Object.values<string>(StitchPattern).includes(stitchPatternParam) ? stitchPatternParam as StitchPattern : false
+  },
 }
