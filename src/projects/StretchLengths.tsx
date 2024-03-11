@@ -36,7 +36,7 @@ function StretchLengths() {
 
   return (
     <div>
-      <p>This is a experimental page</p>
+      <p>This is an experimental page</p>
       <ul>
         <li>alternating row lengths uses the color stretching technique instead of changing lengths of rows</li>
         <li>there is a button to double your colors</li>
