@@ -45,6 +45,40 @@ function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
+function ClusteredSwatch(
+  { clustersPerRow, numberOfRows, clusterConfig, buildStitch}
+  : {
+    clustersPerRow: number,
+    numberOfRows: number,
+    clusterConfig: ClusterConfiguration,
+    buildStitch: (props?: {key: number}) => ReactNode
+  }
+) {
+  return (
+    [...Array(numberOfRows)].map((e, i) => (
+      <Crow key={i}>
+        {
+          clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
+        }
+        {
+          [...Array(clustersPerRow)].map((f,j) => (
+            <Cluster key={j}>
+              {
+                [...Array(clusterConfig.stitchCount)].map((f,k) => (
+                  buildStitch({key: k}))
+                )
+              }
+            </Cluster>
+          ))
+        }
+        {
+          clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
+        }
+      </Crow>
+    ))
+  )
+}
+
 function Swatch(
   { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
   : {
@@ -79,27 +113,12 @@ function Swatch(
   return <div data-testid="swatch" className={classNames.join(' ')}>
     {
       clusterLength ?
-      [...Array(numberOfRows)].map((e, i) => (
-        <Crow key={i}>
-          {
-            clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
-          }
-          {
-            [...Array(stitchesPerRow)].map((f,j) => (
-              <Cluster key={j}>
-                {
-                  [...Array(clusterLength)].map((f,k) => (
-                    buildStitch({key: k}))
-                  )
-                }
-              </Cluster>
-            ))
-          }
-          {
-            clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
-          }
-        </Crow>
-      ))
+      <ClusteredSwatch
+        clustersPerRow={stitchesPerRow}
+        clusterConfig={clusterConfig}
+        numberOfRows={numberOfRows}
+        buildStitch={buildStitch}
+      />
 
       : staggerLengths ? 
       [...Array(numberOfRows)].map((e, i) => {
