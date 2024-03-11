@@ -18,10 +18,11 @@ type SwatchConfigurationData = {
 type FormValue = keyof(SwatchConfigurationData)
 
 const Form = (
-  { formData, setFormData } : 
+  { formData, setFormData, showExperimentalFeatures } :
   {
     formData: SwatchConfigurationData,
-    setFormData: (data: SwatchConfigurationData) => void
+    setFormData: (data: SwatchConfigurationData) => void,
+    showExperimentalFeatures: boolean
   }
 ) => {
 
@@ -46,6 +47,14 @@ const Form = (
   const addColorToSequence = () => {
     const newFormData = { ...formData };
     newFormData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
+    setFormData(newFormData);
+  }
+
+  const duplicateColorSequence = () => {
+    const newFormData = {
+      ...formData,
+      colorSequence: [...formData.colorSequence, ...structuredClone(formData.colorSequence)]
+    };
     setFormData(newFormData);
   }
 
@@ -97,6 +106,7 @@ const Form = (
         ))}
         <div>
           <button type="button" onClick={addColorToSequence}>Add a color</button>
+          { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}
         </div>
       </fieldset>
 
