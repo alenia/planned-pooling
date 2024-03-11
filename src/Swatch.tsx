@@ -79,6 +79,28 @@ function ClusteredSwatch(
   )
 }
 
+function StandardSwatch(
+  { stitchesPerRow, numberOfRows, staggerLengths, buildStitch}
+  : {
+    stitchesPerRow: number,
+    numberOfRows: number,
+    staggerLengths: boolean,
+    buildStitch: (props?: {key: number}) => ReactNode
+  }
+) {
+  return (
+    [...Array(numberOfRows)].map((e, i) => {
+      const repeatLength = (staggerLengths && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+
+      return (<Crow key={i}>
+        {
+          [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
+        }
+      </Crow>)
+    })
+  )
+}
+
 function Swatch(
   { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
   : {
@@ -120,24 +142,13 @@ function Swatch(
         buildStitch={buildStitch}
       />
 
-      : staggerLengths ? 
-      [...Array(numberOfRows)].map((e, i) => {
-        const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
-        return (<Crow key={i}>
-          {
-            [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
-          }
-        </Crow>)
-      })
-
-      : //default case
-      [...Array(numberOfRows)].map((e, i) => (
-        <Crow key={i}>
-          {
-            [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
-          }
-        </Crow>
-      ))
+      :
+      <StandardSwatch
+        stitchesPerRow={stitchesPerRow}
+        numberOfRows={numberOfRows}
+        staggerLengths={staggerLengths}
+        buildStitch={buildStitch}
+      />
     }
   </div>;
 }
