@@ -37,9 +37,17 @@ function StretchLengths() {
   return (
     <div>
       <p>This is a experimental page</p>
-      <p>In this version, alternating row lengths uses the color stretching technique.</p>
-      <p>If you don&apos;t know what I&apos;m talking about use the main app.</p>
-      <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} staggerType={'colorStretched'}/>
+      <ul>
+        <li>alternating row lengths uses the color stretching technique instead of changing lengths of rows</li>
+        <li>there is a button to double your colors</li>
+      </ul>
+      <p>If you don&apos;t know what I&apos;m talking about use the <a href='/'>main app.</a></p>
+      <SwatchWithForm
+        swatchConfig={swatchConfig}
+        setSwatchConfig={setSwatchConfig}
+        staggerType={'colorStretched'}
+        showExperimentalFeatures={true}
+      />
     </div>
   );
 }

@@ -18,10 +18,11 @@ type SwatchConfigurationData = {
 type FormValue = keyof(SwatchConfigurationData)
 
 const Form = (
-  { formData, setFormData } : 
+  { formData, setFormData, showExperimentalFeatures } :
   {
     formData: SwatchConfigurationData,
-    setFormData: (data: SwatchConfigurationData) => void
+    setFormData: (data: SwatchConfigurationData) => void,
+    showExperimentalFeatures: boolean
   }
 ) => {
 
@@ -105,7 +106,7 @@ const Form = (
         ))}
         <div>
           <button type="button" onClick={addColorToSequence}>Add a color</button>
-          <button type="button" onClick={duplicateColorSequence}>Double the colors</button>
+          { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}
         </div>
       </fieldset>
 
