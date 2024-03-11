@@ -129,7 +129,7 @@ function Swatch(
     className,
     'swatch',
     stitchPattern,
-    clusterConfig ? 'clustered' : '',
+    clusterConfig.stitchCount ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
   const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
