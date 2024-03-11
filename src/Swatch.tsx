@@ -45,72 +45,59 @@ function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
-function buildSwatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false}
+function ClusteredSwatch(
+  { clustersPerRow, numberOfRows, clusterConfig, buildStitch}
   : {
-    colorSequence: ColorSequenceArray,
-    stitchesPerRow: number,
-    stitchPattern: StitchPattern,
-    numberOfRows?: number,
-    colorShift?: number,
-    staggerLengths?: boolean,
-
+    clustersPerRow: number,
+    numberOfRows: number,
+    clusterConfig: ClusterConfiguration,
+    buildStitch: () => ReactNode
   }
 ) {
-  const clusterConfig = clusterConfiguration[stitchPattern];
-  const clusterLength = clusterConfig.stitchCount;
-
-  let stitchIndex = 0;
-  const nextColor = () => {
-    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
-    stitchIndex++;
-    return color;
-  }
-
-  const buildStitch = (props={}) => <Stitch {...props} color={nextColor()}/>
-
-  if(clusterLength) {
-      return [...Array(numberOfRows)].map((e, i) => (
-        <Crow key={i}>
+  return (
+    [...Array(numberOfRows)].map((e, i) => (
+      <Crow key={i}>
         {
           clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
         {
-          [...Array(stitchesPerRow)].map((f,j) => (
+          [...Array(clustersPerRow)].map((f,j) => (
             <Cluster key={j}>
-            {
-          [...Array(clusterLength)].map((f,k) => (
-            buildStitch({key: k}))
-                                    )
-            }
+              {
+                [...Array(clusterConfig.stitchCount)].map(() => (buildStitch()))
+              }
             </Cluster>
           ))
         }
         {
           clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
         }
-        </Crow>
-      ))
-  }
-  if(staggerLengths) {
-    return [...Array(numberOfRows)].map((e, i) => {
-      const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
-      return (<Crow key={i}>
-      {
-        [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
-      }
-      </Crow>)
-    })
-  }
-  return [...Array(numberOfRows)].map((e, i) => (
-    <Crow key={i}>
-    {
-      [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
-    }
-    </Crow>
-  ))
+      </Crow>
+    ))
+  )
 }
 
+function StandardSwatch(
+  { stitchesPerRow, numberOfRows, staggerLengths, buildStitch}
+  : {
+    stitchesPerRow: number,
+    numberOfRows: number,
+    staggerLengths: boolean,
+    buildStitch: () => ReactNode
+  }
+) {
+  return (
+    [...Array(numberOfRows)].map((e, i) => {
+      const repeatLength = (staggerLengths && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+
+      return (<Crow key={i}>
+        {
+          [...Array(repeatLength)].map(() => buildStitch())
+        }
+      </Crow>)
+    })
+  )
+}
 
 function Swatch(
   { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
@@ -125,17 +112,42 @@ function Swatch(
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
+  const clustered = !!clusterConfig.stitchCount;
   const classNames = [
     className,
     'swatch',
     stitchPattern,
-    clusterConfig.stitchCount ? 'clustered' : '',
+    clustered ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
-  const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
-                  {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, numberOfRows, colorShift, staggerLengths})}
-                 </div>);
-  return swatch
+
+  let stitchIndex = 0;
+
+  const buildStitch = () => {
+    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
+    stitchIndex++;
+    return <Stitch key={stitchIndex} color={color}/>;
+  }
+
+  return <div data-testid="swatch" className={classNames.join(' ')}>
+    {
+      clustered ?
+      <ClusteredSwatch
+        clustersPerRow={stitchesPerRow}
+        clusterConfig={clusterConfig}
+        numberOfRows={numberOfRows}
+        buildStitch={buildStitch}
+      />
+
+      :
+      <StandardSwatch
+        stitchesPerRow={stitchesPerRow}
+        numberOfRows={numberOfRows}
+        staggerLengths={staggerLengths}
+        buildStitch={buildStitch}
+      />
+    }
+  </div>;
 }
 
 export default Swatch
