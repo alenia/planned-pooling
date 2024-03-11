@@ -25,7 +25,7 @@ fieldset {
   }
 }
 .checkbox-container {
-  label { margin-left: 0.5em;}
+  label { margin: 0 0.25em 0 0.5em;}
 }
 
 input[type=checkbox] {
@@ -38,6 +38,12 @@ input[type=checkbox] {
   }
 }
 
+.integer-input {
+  .fa-circle-info {
+    margin-left: 0.25em;
+  }
+}
+
 .number-spinner {
   display: flex;
   input {
@@ -47,17 +53,6 @@ input[type=checkbox] {
       margin: 0;
       -webkit-appearance: none;
     }
-  }
-}
-
-label {
-  margin-right: 0.5em;
-}
-
-.chrome-picker,
-.sketch-picker {
-  label {
-    margin: unset;
   }
 }
 
