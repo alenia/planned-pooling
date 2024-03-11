@@ -2,7 +2,11 @@ import Swatch from './Swatch';
 import Form from './Form';
 import { SwatchConfig } from './types'
 
-function SwatchWithForm({swatchConfig, setSwatchConfig}  : { swatchConfig: SwatchConfig, setSwatchConfig: (arg0: SwatchConfig) => void}) {
+function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType}  : {
+  swatchConfig: SwatchConfig,
+  setSwatchConfig: (arg0: SwatchConfig) => void,
+  staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
+}) {
   return (
   <div>
     <Form
@@ -10,8 +14,10 @@ function SwatchWithForm({swatchConfig, setSwatchConfig}  : { swatchConfig: Swatc
       setFormData={setSwatchConfig}
     />
     <Swatch 
-    className={swatchConfig.showRowNumbers ? "numbered" : ""}
-    {...swatchConfig} />
+      className={swatchConfig.showRowNumbers ? "numbered" : ""}
+      staggerType={staggerType}
+      {...swatchConfig}
+    />
   </div>
   );
 }

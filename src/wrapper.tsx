@@ -6,6 +6,7 @@ import Preview from './projects/Preview'
 import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
+import StretchLengths from './projects/StretchLengths'
 import './index.scss'
 import {
   createBrowserRouter,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/branding-ideas",
     element: <LogoOption/>
+  },
+  {
+    path: "/experimental",
+    element: <StretchLengths/>
   },
   {
     path: "/",
