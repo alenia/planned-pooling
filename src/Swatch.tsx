@@ -124,13 +124,12 @@ function Swatch(
   ]
 
   let stitchIndex = 0;
-  const nextColor = () => {
+
+  const buildStitch = (props={}) => {
     const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
     stitchIndex++;
-    return color;
+    return <Stitch {...props} color={color}/>;
   }
-
-  const buildStitch = (props={}) => (<Stitch {...props} color={nextColor()}/>)
 
   return <div data-testid="swatch" className={classNames.join(' ')}>
     {
