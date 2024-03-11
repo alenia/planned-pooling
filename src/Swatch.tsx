@@ -63,7 +63,7 @@ function Swatch(
     className,
     'swatch',
     stitchPattern,
-    clusterConfig.stitchCount ? 'clustered' : '',
+    clusterLength ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
 
