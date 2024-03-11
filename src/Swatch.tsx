@@ -132,10 +132,9 @@ function Swatch(
     clusterConfig.stitchCount ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
-  const swatch = (<div data-testid="swatch" className={classNames.join(' ')}>
-                  {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, numberOfRows, colorShift, staggerLengths})}
-                 </div>);
-  return swatch
+  return <div data-testid="swatch" className={classNames.join(' ')}>
+    {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, numberOfRows, colorShift, staggerLengths})}
+  </div>;
 }
 
 export default Swatch
