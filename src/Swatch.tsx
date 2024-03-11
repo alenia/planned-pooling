@@ -51,7 +51,7 @@ function ClusteredSwatch(
     clustersPerRow: number,
     numberOfRows: number,
     clusterConfig: ClusterConfiguration,
-    buildStitch: (props?: {key: number}) => ReactNode
+    buildStitch: () => ReactNode
   }
 ) {
   return (
@@ -64,9 +64,7 @@ function ClusteredSwatch(
           [...Array(clustersPerRow)].map((f,j) => (
             <Cluster key={j}>
               {
-                [...Array(clusterConfig.stitchCount)].map((f,k) => (
-                  buildStitch({key: k}))
-                )
+                [...Array(clusterConfig.stitchCount)].map(() => (buildStitch()))
               }
             </Cluster>
           ))
@@ -85,7 +83,7 @@ function StandardSwatch(
     stitchesPerRow: number,
     numberOfRows: number,
     staggerLengths: boolean,
-    buildStitch: (props?: {key: number}) => ReactNode
+    buildStitch: () => ReactNode
   }
 ) {
   return (
@@ -94,7 +92,7 @@ function StandardSwatch(
 
       return (<Crow key={i}>
         {
-          [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
+          [...Array(repeatLength)].map(() => buildStitch())
         }
       </Crow>)
     })
@@ -125,10 +123,10 @@ function Swatch(
 
   let stitchIndex = 0;
 
-  const buildStitch = (props={}) => {
+  const buildStitch = () => {
     const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
     stitchIndex++;
-    return <Stitch {...props} color={color}/>;
+    return <Stitch key={stitchIndex} color={color}/>;
   }
 
   return <div data-testid="swatch" className={classNames.join(' ')}>
