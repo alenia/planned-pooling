@@ -78,18 +78,39 @@ function ClusteredSwatch(
 }
 
 function StandardSwatch(
-  { stitchesPerRow, numberOfRows, staggerLengths, buildStitch}
+  { stitchesPerRow, numberOfRows, staggerLengths, staggerType, buildStitch, buildColorStretchedStitch}
   : {
     stitchesPerRow: number,
     numberOfRows: number,
     staggerLengths: boolean,
-    buildStitch: () => ReactNode
+    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
+    buildStitch: () => ReactNode,
+    buildColorStretchedStitch: () => ReactNode
   }
 ) {
+  if(staggerLengths && staggerType === 'colorStretched') {
+    return (
+      [...Array(numberOfRows)].map((e, i) => {
+        if( i%2 === 0) {
+          return (<Crow key={i}>
+            {
+              [...Array(stitchesPerRow)].map(() => buildStitch())
+            }
+          </Crow>)
+        } else {
+          return (<Crow key={i}>
+            {
+              [...Array(stitchesPerRow - 1)].map(() => buildStitch())
+            }
+            { buildColorStretchedStitch() }
+          </Crow>)
+        }
+      })
+    )
+  }
   return (
     [...Array(numberOfRows)].map((e, i) => {
       const repeatLength = (staggerLengths && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
-
       return (<Crow key={i}>
         {
           [...Array(repeatLength)].map(() => buildStitch())
@@ -100,7 +121,7 @@ function StandardSwatch(
 }
 
 function Swatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType, className}
   : {
     colorSequence: ColorSequenceArray,
     stitchesPerRow: number,
@@ -108,20 +129,28 @@ function Swatch(
     numberOfRows?: number,
     colorShift?: number,
     staggerLengths?: boolean,
+    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
     className?: string
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
   const clustered = !!clusterConfig.stitchCount;
+  const staggered = staggerLengths && staggerType != 'colorStretched'
+
   const classNames = [
     className,
     'swatch',
     stitchPattern,
     clustered ? 'clustered' : '',
-    staggerLengths ? 'staggered' : ''
+    staggered ? 'staggered' : ''
   ]
 
   let stitchIndex = 0;
+
+  const buildColorStretchedStitch = () => {
+    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
+    return <Stitch key={`stretch${stitchIndex}`} color={color}/>;
+  }
 
   const buildStitch = () => {
     const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
@@ -144,7 +173,9 @@ function Swatch(
         stitchesPerRow={stitchesPerRow}
         numberOfRows={numberOfRows}
         staggerLengths={staggerLengths}
+        staggerType={staggerType}
         buildStitch={buildStitch}
+        buildColorStretchedStitch={buildColorStretchedStitch}
       />
     }
   </div>;
