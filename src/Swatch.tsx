@@ -45,73 +45,6 @@ function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
-function buildSwatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false}
-  : {
-    colorSequence: ColorSequenceArray,
-    stitchesPerRow: number,
-    stitchPattern: StitchPattern,
-    numberOfRows?: number,
-    colorShift?: number,
-    staggerLengths?: boolean,
-
-  }
-) {
-  const clusterConfig = clusterConfiguration[stitchPattern];
-  const clusterLength = clusterConfig.stitchCount;
-
-  let stitchIndex = 0;
-  const nextColor = () => {
-    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
-    stitchIndex++;
-    return color;
-  }
-
-  const buildStitch = (props={}) => <Stitch {...props} color={nextColor()}/>
-
-  if(clusterLength) {
-      return [...Array(numberOfRows)].map((e, i) => (
-        <Crow key={i}>
-        {
-          clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
-        }
-        {
-          [...Array(stitchesPerRow)].map((f,j) => (
-            <Cluster key={j}>
-            {
-          [...Array(clusterLength)].map((f,k) => (
-            buildStitch({key: k}))
-                                    )
-            }
-            </Cluster>
-          ))
-        }
-        {
-          clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
-        }
-        </Crow>
-      ))
-  }
-  if(staggerLengths) {
-    return [...Array(numberOfRows)].map((e, i) => {
-      const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
-      return (<Crow key={i}>
-      {
-        [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
-      }
-      </Crow>)
-    })
-  }
-  return [...Array(numberOfRows)].map((e, i) => (
-    <Crow key={i}>
-    {
-      [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
-    }
-    </Crow>
-  ))
-}
-
-
 function Swatch(
   { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, className}
   : {
@@ -125,6 +58,7 @@ function Swatch(
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
+  const clusterLength = clusterConfig.stitchCount;
   const classNames = [
     className,
     'swatch',
@@ -132,8 +66,60 @@ function Swatch(
     clusterConfig.stitchCount ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
+
+  let stitchIndex = 0;
+  const nextColor = () => {
+    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
+    stitchIndex++;
+    return color;
+  }
+
+  const buildStitch = (props={}) => (<Stitch {...props} color={nextColor()}/>)
+
   return <div data-testid="swatch" className={classNames.join(' ')}>
-    {buildSwatch({ colorSequence, stitchesPerRow, stitchPattern, numberOfRows, colorShift, staggerLengths})}
+    {
+      clusterLength ?
+      [...Array(numberOfRows)].map((e, i) => (
+        <Crow key={i}>
+          {
+            clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
+          }
+          {
+            [...Array(stitchesPerRow)].map((f,j) => (
+              <Cluster key={j}>
+                {
+                  [...Array(clusterLength)].map((f,k) => (
+                    buildStitch({key: k}))
+                  )
+                }
+              </Cluster>
+            ))
+          }
+          {
+            clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
+          }
+        </Crow>
+      ))
+
+      : staggerLengths ? 
+      [...Array(numberOfRows)].map((e, i) => {
+        const repeatLength = i % 2 === 1 ? stitchesPerRow : stitchesPerRow + 1;
+        return (<Crow key={i}>
+          {
+            [...Array(repeatLength)].map((f,j) => buildStitch({key: j}))
+          }
+        </Crow>)
+      })
+
+      : //default case
+      [...Array(numberOfRows)].map((e, i) => (
+        <Crow key={i}>
+          {
+            [...Array(stitchesPerRow)].map((f,j) => buildStitch({key: j}))
+          }
+        </Crow>
+      ))
+    }
   </div>;
 }
 
