@@ -114,12 +114,12 @@ function Swatch(
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
-  const clusterLength = clusterConfig.stitchCount;
+  const clustered = !!clusterConfig.stitchCount;
   const classNames = [
     className,
     'swatch',
     stitchPattern,
-    clusterLength ? 'clustered' : '',
+    clustered ? 'clustered' : '',
     staggerLengths ? 'staggered' : ''
   ]
 
@@ -133,7 +133,7 @@ function Swatch(
 
   return <div data-testid="swatch" className={classNames.join(' ')}>
     {
-      clusterLength ?
+      clustered ?
       <ClusteredSwatch
         clustersPerRow={stitchesPerRow}
         clusterConfig={clusterConfig}
