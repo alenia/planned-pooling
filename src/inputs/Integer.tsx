@@ -1,11 +1,21 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+
 enum Direction {
   DOWN,
   UP
 }
 
 const IntegerInput = (
-  { value, name, label, title, setValue, validator = () => true}
-  : { value: number, name: string, label: string, title: string, setValue: (value: number) => void, validator?: (value: number) => boolean}
+  { value, name, label, title, setValue, validator = () => true, showTooltip}
+  : { value: number,
+      name: string,
+      label: string,
+      title: string,
+      setValue: (value: number) => void,
+      validator?: (value: number) => boolean,
+      showTooltip?: boolean,
+    }
 ) => {
   const handleButtonChange = (direction : Direction) : void => {
     let v = value;
@@ -25,9 +35,14 @@ const IntegerInput = (
   }
   return (
       <div className="input-group integer-input">
-        <label htmlFor={name} title={title}>
-          {label}
-        </label>
+        <div className='label-wrapper'>
+          <label htmlFor={name} title={title}>
+            {label}
+          </label>
+          {
+            showTooltip ? <FontAwesomeIcon icon={faCircleInfo} title={title} /> : ''
+          }
+        </div>
         <div className="number-spinner">
           <button
             type="button"

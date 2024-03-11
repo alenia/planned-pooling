@@ -148,6 +148,7 @@ const Form = (
           name="colorShift"
           value={colorShift}
           setValue={(v : number) => setFormValue('colorShift', v)}
+          showTooltip={true}
           />
 
         <CheckboxInput
@@ -157,6 +158,7 @@ const Form = (
           name="staggerLengths"
           value={staggerLengths}
           setValue={(v: boolean) => setFormValue('staggerLengths', v)}
+          showTooltip={true}
         />
       </fieldset>
 
@@ -167,6 +169,7 @@ const Form = (
         name="showRowNumbers"
         value={showRowNumbers}
         setValue={(v: boolean) => setFormValue('showRowNumbers', v)}
+        showTooltip={true}
       />
     </form>
   );
