@@ -104,7 +104,7 @@ const Form = (
             <button type="button" onClick={() => removeColorFromSequence(index)}>Remove color</button>
           </div>
         ))}
-        <div>
+        <div className="color-buttons">
           <button type="button" onClick={addColorToSequence}>Add a color</button>
           { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}
         </div>
