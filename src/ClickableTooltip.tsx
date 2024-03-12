@@ -10,7 +10,12 @@ const ClickableTooltip = ({ title }: { title: string }) => {
     <Fragment>
       <FontAwesomeIcon icon={faCircleInfo} title={title} onClick={() => setDisplayTooltip(!displayTooltip)} />
       {
-        displayTooltip ? (<div className="tooltip" onClick={() => setDisplayTooltip(!displayTooltip)}>{title}</div>) : ''
+        displayTooltip ? (
+          <div className='popover clickable-tooltip'>
+            <div className='cover' onClick={() => setDisplayTooltip(false)} />
+            <div className="tooltip">{title}</div>
+          </div>
+        ) : ''
       }
     </Fragment>
   )
