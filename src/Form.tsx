@@ -18,10 +18,11 @@ type SwatchConfigurationData = {
 type FormValue = keyof(SwatchConfigurationData)
 
 const Form = (
-  { formData, setFormData, showExperimentalFeatures } :
+  { formData, setFormData, staggerType, showExperimentalFeatures } :
   {
     formData: SwatchConfigurationData,
     setFormData: (data: SwatchConfigurationData) => void,
+    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean
   }
 ) => {
@@ -64,6 +65,33 @@ const Form = (
     setFormData(newFormData);
   }
 
+  function mod(n: number, m: number) {
+    // because native JS % operator chokes on negatives
+    return ((n % m) + m) % m;
+  }
+
+  const colorShiftTooltip = () => {
+    let tip = "Start the swatch this many stitches into your color sequence."
+    const seqLength = totalColorSequenceLength(colorSequence)
+    const equiv = mod(colorShift, seqLength)
+    if (colorShift === 0 || (0 <= colorShift && colorShift < seqLength) || isNaN(equiv)) {
+      // do nothing
+    } else if (colorShift !== equiv) {
+      tip = tip + ` \n\nWith ${seqLength} stitches in your color sequence, this is the same as shifting by ${equiv}.`
+    }
+    return tip
+  }
+
+  const staggerLengthsTooltip = () => {
+    let tip = "";
+    if (staggerType === "colorStretched") {
+      tip = "In the current mode, alternating row lengths uses the color stretching technique instead of changing lengths of rows."
+    } else {
+      tip = `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
+    }
+    return tip
+  }
+
   const defaultPickerColors = [
     "#d9073a",
     "#f57605",
@@ -104,7 +132,7 @@ const Form = (
             <button type="button" onClick={() => removeColorFromSequence(index)}>Remove color</button>
           </div>
         ))}
-        <div>
+        <div className="color-buttons">
           <button type="button" onClick={addColorToSequence}>Add a color</button>
           { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}
         </div>
@@ -144,19 +172,21 @@ const Form = (
 
         <IntegerInput
           label="Color shift:"
-          title="Start the swatch this many stitches into your color sequence"
+          title={colorShiftTooltip()}
           name="colorShift"
           value={colorShift}
           setValue={(v : number) => setFormValue('colorShift', v)}
+          withTooltip={true}
           />
 
         <CheckboxInput
           className="checkbox-container"
-          title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${stitchesPerRow+1} stitches long`}
+          title={staggerLengthsTooltip()}
           label="Alternate row lengths"
           name="staggerLengths"
           value={staggerLengths}
           setValue={(v: boolean) => setFormValue('staggerLengths', v)}
+          withTooltip={true}
         />
       </fieldset>
 
@@ -167,6 +197,7 @@ const Form = (
         name="showRowNumbers"
         value={showRowNumbers}
         setValue={(v: boolean) => setFormValue('showRowNumbers', v)}
+        withTooltip={true}
       />
     </form>
   );

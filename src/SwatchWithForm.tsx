@@ -13,6 +13,7 @@ function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperim
     <Form
       formData={swatchConfig}
       setFormData={setSwatchConfig}
+      staggerType={staggerType}
       showExperimentalFeatures={!!showExperimentalFeatures}
     />
     <Swatch 
