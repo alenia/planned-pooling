@@ -76,7 +76,7 @@ const Form = (
     if (colorShift === 0 || (0 <= colorShift && colorShift < seqLength) || isNaN(equiv)) {
       // do nothing
     } else if (colorShift !== equiv) {
-      tip = tip + ` Shift by ${colorShift} with length ${seqLength} is equivalent to shift by ${equiv}.`
+      tip = tip + ` \n\nWith ${seqLength} stitches in your color sequence, this is the same as shifting by ${equiv}.`
     }
     return tip
   }
