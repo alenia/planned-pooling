@@ -64,6 +64,23 @@ const Form = (
     setFormData(newFormData);
   }
 
+  function mod(n: number, m: number) {
+    // because native JS % operator chokes on negatives
+    return ((n % m) + m) % m;
+  }
+
+  const colorShiftTooltip = () => {
+    let tip = "Start the swatch this many stitches into your color sequence."
+    const seqLength = totalColorSequenceLength(colorSequence)
+    const equiv = mod(colorShift, seqLength)
+    if (colorShift === 0 || (0 <= colorShift && colorShift < seqLength) || isNaN(equiv)) {
+      // do nothing
+    } else if (colorShift !== equiv) {
+      tip = tip + ` Shift by ${colorShift} with length ${seqLength} is equivalent to shift by ${equiv}.`
+    }
+    return tip
+  }
+
   const defaultPickerColors = [
     "#d9073a",
     "#f57605",
@@ -144,7 +161,7 @@ const Form = (
 
         <IntegerInput
           label="Color shift:"
-          title="Start the swatch this many stitches into your color sequence"
+          title={colorShiftTooltip()}
           name="colorShift"
           value={colorShift}
           setValue={(v : number) => setFormValue('colorShift', v)}
