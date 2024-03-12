@@ -18,10 +18,11 @@ type SwatchConfigurationData = {
 type FormValue = keyof(SwatchConfigurationData)
 
 const Form = (
-  { formData, setFormData, showExperimentalFeatures } :
+  { formData, setFormData, staggerType, showExperimentalFeatures } :
   {
     formData: SwatchConfigurationData,
     setFormData: (data: SwatchConfigurationData) => void,
+    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean
   }
 ) => {
@@ -77,6 +78,16 @@ const Form = (
       // do nothing
     } else if (colorShift !== equiv) {
       tip = tip + ` \n\nWith ${seqLength} stitches in your color sequence, this is the same as shifting by ${equiv}.`
+    }
+    return tip
+  }
+
+  const staggerLengthsTooltip = () => {
+    let tip = "";
+    if (staggerType === "colorStretched") {
+      tip = "In the current mode, alternating row lengths uses the color stretching technique instead of changing lengths of rows."
+    } else {
+      tip = `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
     }
     return tip
   }
@@ -170,7 +181,7 @@ const Form = (
 
         <CheckboxInput
           className="checkbox-container"
-          title={`This will make odd rows of your project one stitch longer than the even rows. With your current settings, odd rows will be ${stitchesPerRow+1} stitches long`}
+          title={staggerLengthsTooltip()}
           label="Alternate row lengths"
           name="staggerLengths"
           value={staggerLengths}
