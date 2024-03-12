@@ -30,6 +30,7 @@ fieldset {
   }
 }
 .checkbox-container {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -43,6 +44,8 @@ input[type=checkbox] {
 }
 
 .input-group {
+  position: relative;
+
   label {
     display: inline-block;
   }
@@ -59,6 +62,18 @@ input[type=checkbox] {
   outline: 1px solid #666666;
   border-radius: 50%;
   background: #000000;
+}
+
+.tooltip {
+  background: aliceblue;
+  padding: 0.25em;
+  position: absolute;
+  top: 2em;
+  left: 0;
+  z-index: 2;
+  border-radius: 0.5em;
+  outline: 1px solid #bbbbbb;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 10px;
 }
 
 .number-spinner {
