@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
+import ClickableTooltip from '../ClickableTooltip';
 
 enum Direction {
   DOWN,
@@ -18,7 +16,6 @@ const IntegerInput = (
       withTooltip?: boolean,
     }
 ) => {
-  const [displayTooltip, setDisplayTooltip] = useState(false);
   const handleButtonChange = (direction : Direction) : void => {
     let v = value;
     if(direction === Direction.DOWN) {
@@ -41,12 +38,7 @@ const IntegerInput = (
           <label htmlFor={name} title={title}>
             {label}
           </label>
-          {
-            withTooltip ? <FontAwesomeIcon icon={faCircleInfo} title={title} onClick={() => setDisplayTooltip(!displayTooltip)} /> : ''
-          }
-          {
-            withTooltip && displayTooltip ? (<div className="tooltip" onClick={() => setDisplayTooltip(!displayTooltip)}>{title}</div>) : ''
-          }
+          { withTooltip ? <ClickableTooltip title={title} /> : '' }
         </div>
         <div className="number-spinner">
           <button

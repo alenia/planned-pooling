@@ -113,6 +113,12 @@ input[type=checkbox] {
   z-index: 5;
   top: 2em;
   left: 4.25em;
+
+  &.clickable-tooltip {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 }
 
 .cover {

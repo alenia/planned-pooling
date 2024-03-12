@@ -1,6 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
+import ClickableTooltip from '../ClickableTooltip';
+
 
 function Checkbox(
   { className, value, name, label, title, setValue, withTooltip}
@@ -13,7 +12,6 @@ function Checkbox(
       withTooltip?: boolean,
     }
   ){
-  const [displayTooltip, setDisplayTooltip] = useState(false);
 
   return (
       <div className={className}>
@@ -29,14 +27,9 @@ function Checkbox(
           checked={value}
         />
         <label htmlFor={name} title={title}>
-        {label}
+          {label}
         </label>
-        {
-          withTooltip ? <FontAwesomeIcon icon={faCircleInfo} title={title} onClick={() => setDisplayTooltip(!displayTooltip)} /> : ''
-        }
-        {
-          withTooltip && displayTooltip ? (<div className="tooltip" onClick={() => setDisplayTooltip(!displayTooltip)}>{title}</div>) : ''
-        }
+        { withTooltip ? <ClickableTooltip title={title} /> : '' }
       </div>
   )
 }
