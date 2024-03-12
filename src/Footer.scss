@@ -1,6 +1,12 @@
 .footer {
   display: flex;
+  align-items: center;
   gap: 2em;
   background-color: aliceblue;
   border-top: 1px solid #bbbbbb;
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
 }
+
