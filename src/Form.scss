@@ -54,6 +54,13 @@ input[type=checkbox] {
   }
 }
 
+.fa-circle-info {
+  color: #E0F1FF; // a slightly more saturated aliceblue, complementing the footer
+  outline: 1px solid #666666;
+  border-radius: 50%;
+  background: #000000;
+}
+
 .number-spinner {
   display: flex;
   input {
