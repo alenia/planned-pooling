@@ -7,6 +7,7 @@ import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
 import StretchLengths from './projects/StretchLengths'
+import Parallax from './projects/Parallax'
 import './index.scss'
 import {
   createBrowserRouter,
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/experimental",
     element: <StretchLengths/>
+  },
+  {
+    path: "/parallax",
+    element: <Parallax/>
   },
   {
     path: "/",
