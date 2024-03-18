@@ -2,20 +2,10 @@ import './Form.scss'
 import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
-import { StitchPattern, Color, ColorSequenceArray } from './types'
+import { Color, SwatchConfig } from './types'
 import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
 
-type SwatchConfigurationData = {
-  colorSequence: ColorSequenceArray,
-  stitchesPerRow: number,
-  stitchPattern: StitchPattern,
-  numberOfRows: number,
-  colorShift: number,
-  staggerLengths: boolean,
-  showRowNumbers: boolean
-}
-
-type FormValue = keyof(SwatchConfigurationData)
+type FormValue = keyof(SwatchConfig)
 
 function mod(n: number, m: number) {
   // because native JS % operator chokes on negatives
@@ -36,8 +26,8 @@ const defaultPickerColors = [
 function Form(
   { formData, setFormData, staggerType, showExperimentalFeatures } :
   {
-    formData: SwatchConfigurationData,
-    setFormData: (data: SwatchConfigurationData) => void,
+    formData: SwatchConfig,
+    setFormData: (data: SwatchConfig) => void,
     staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean
   }

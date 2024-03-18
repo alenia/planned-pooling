@@ -25,7 +25,6 @@ function Doodle() {
     colorShift: 1,
     staggerLengths: false,
     stitchPattern: StitchPattern.jasmine,
-    showRowNumbers: false,
   })
 
   return (

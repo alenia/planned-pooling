@@ -13,13 +13,12 @@ function Parallax() {
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.unstyled,
-    showRowNumbers: true,
   })
 
   return (
     <Fragment>
       <p>This is a page to help with the parallax beanie chart. If you want to design more planned pooling patterns, I recommend the <a href='/'>main app.</a></p>
-      <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} />
+      <SwatchWithForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} showRowNumbersInitially={true} />
     </Fragment>
   );
 }
