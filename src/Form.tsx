@@ -17,7 +17,23 @@ type SwatchConfigurationData = {
 
 type FormValue = keyof(SwatchConfigurationData)
 
-const Form = (
+function mod(n: number, m: number) {
+  // because native JS % operator chokes on negatives
+  return ((n % m) + m) % m;
+}
+
+const defaultPickerColors = [
+  "#d9073a",
+  "#f57605",
+  "#fcdc4d",
+  "#a1c349",
+  "#1c40b8",
+  "#7b0f9a",
+  "#542e0f",
+  "#fdf0d5"
+]
+
+function Form(
   { formData, setFormData, staggerType, showExperimentalFeatures } :
   {
     formData: SwatchConfigurationData,
@@ -25,7 +41,7 @@ const Form = (
     staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean
   }
-) => {
+) {
 
   const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
 
@@ -33,6 +49,7 @@ const Form = (
     setFormData({ ...formData, [name]: value});
   }
 
+  //color fields specific
   const setColorSequenceLengthValue = (index : number, value : number) => {
     const newFormData = { ...formData };
     newFormData['colorSequence'][index]['length'] = value;
@@ -44,6 +61,12 @@ const Form = (
     newFormData['colorSequence'][index]['color'] = color;
     setFormData(newFormData);
   };
+
+  const removeColorFromSequence = (index: number) => {
+    const newFormData = { ...formData };
+    newFormData['colorSequence'].splice(index, 1);
+    setFormData(newFormData);
+  }
 
   const addColorToSequence = () => {
     const newFormData = { ...formData };
@@ -59,17 +82,9 @@ const Form = (
     setFormData(newFormData);
   }
 
-  const removeColorFromSequence = (index: number) => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'].splice(index, 1);
-    setFormData(newFormData);
-  }
+  const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
 
-  function mod(n: number, m: number) {
-    // because native JS % operator chokes on negatives
-    return ((n % m) + m) % m;
-  }
-
+  //spec fields specific
   const colorShiftTooltip = () => {
     let tip = "Start the swatch this many stitches into your color sequence."
     const seqLength = totalColorSequenceLength(colorSequence)
@@ -91,18 +106,6 @@ const Form = (
     }
     return tip
   }
-
-  const defaultPickerColors = [
-    "#d9073a",
-    "#f57605",
-    "#fcdc4d",
-    "#a1c349",
-    "#1c40b8",
-    "#7b0f9a",
-    "#542e0f",
-    "#fdf0d5"
-  ]
-  const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
 
   return (
     <form
@@ -200,7 +203,7 @@ const Form = (
         withTooltip={true}
       />
     </form>
-  );
+  )
 }
 
-export default Form;
+export default Form
