@@ -24,52 +24,52 @@ const defaultPickerColors = [
 ]
 
 function Form(
-  { formData, setFormData, staggerType, showExperimentalFeatures } :
+  { swatchData, setSwatchData, staggerType, showExperimentalFeatures } :
   {
-    formData: SwatchConfig,
-    setFormData: (data: SwatchConfig) => void,
+    swatchData: SwatchConfig,
+    setSwatchData: (data: SwatchConfig) => void,
     staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean
   }
 ) {
 
-  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern } = formData;
+  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern } = swatchData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
-    setFormData({ ...formData, [name]: value});
+    setSwatchData({ ...swatchData, [name]: value});
   }
 
   //color fields specific
   const setColorSequenceLengthValue = (index : number, value : number) => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'][index]['length'] = value;
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'][index]['length'] = value;
+    setSwatchData(newSwatchData);
   }
 
   const setColorSequenceColorValue = (color : Color, index : number) => {
-    const newFormData = {...formData};
-    newFormData['colorSequence'][index]['color'] = color;
-    setFormData(newFormData);
+    const newSwatchData = {...swatchData};
+    newSwatchData['colorSequence'][index]['color'] = color;
+    setSwatchData(newSwatchData);
   };
 
   const removeColorFromSequence = (index: number) => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'].splice(index, 1);
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'].splice(index, 1);
+    setSwatchData(newSwatchData);
   }
 
   const addColorToSequence = () => {
-    const newFormData = { ...formData };
-    newFormData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
-    setFormData(newFormData);
+    const newSwatchData = { ...swatchData };
+    newSwatchData['colorSequence'].push({color: getRandomNotWhiteColor(), length: 3});
+    setSwatchData(newSwatchData);
   }
 
   const duplicateColorSequence = () => {
-    const newFormData = {
-      ...formData,
-      colorSequence: [...formData.colorSequence, ...structuredClone(formData.colorSequence)]
+    const newSwatchData = {
+      ...swatchData,
+      colorSequence: [...swatchData.colorSequence, ...structuredClone(swatchData.colorSequence)]
     };
-    setFormData(newFormData);
+    setSwatchData(newSwatchData);
   }
 
   const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
