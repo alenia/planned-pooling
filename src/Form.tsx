@@ -43,7 +43,7 @@ function Form(
   }
 ) {
 
-  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern, showRowNumbers } = formData;
+  const { colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, stitchPattern } = formData;
 
   const setFormValue = (name: FormValue, value : string | number | boolean) => {
     setFormData({ ...formData, [name]: value});
@@ -192,16 +192,6 @@ function Form(
           withTooltip={true}
         />
       </fieldset>
-
-      <CheckboxInput
-        className="checkbox-container"
-        label="Show Row Numbers"
-        title="Display row numbers at the beginning of each row."
-        name="showRowNumbers"
-        value={showRowNumbers}
-        setValue={(v: boolean) => setFormValue('showRowNumbers', v)}
-        withTooltip={true}
-      />
     </form>
   )
 }
