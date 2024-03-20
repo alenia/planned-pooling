@@ -2,9 +2,8 @@ import ClickableTooltip from '../ClickableTooltip';
 
 
 function Checkbox(
-  { className, value, name, label, title, setValue, withTooltip}
-  : { className: string,
-      value: boolean,
+  { value, name, label, title, setValue, withTooltip}
+  : { value: boolean,
       name: string,
       label: string,
       title: string,
@@ -14,7 +13,7 @@ function Checkbox(
   ){
 
   return (
-      <div className={className}>
+      <div className="checkbox-input">
         <input
           type="checkbox"
           onChange={
