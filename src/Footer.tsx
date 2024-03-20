@@ -2,7 +2,7 @@ import './Footer.scss'
 
 function Footer() {
   return (
-  <footer className="container">
+  <footer>
     <a href="http://frog2tog.com">
       <img className="logo" src="/logo.png"/>
     </a>
