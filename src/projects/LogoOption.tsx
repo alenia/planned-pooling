@@ -24,7 +24,6 @@ function LogoOption() {
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
-    showRowNumbers: false,
   })
 
   return (

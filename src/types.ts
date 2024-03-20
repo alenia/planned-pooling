@@ -27,6 +27,5 @@ export type SwatchConfig = {
     stitchPattern: StitchPattern,
     numberOfRows: number,
     colorShift: number,
-    staggerLengths: boolean,
-    showRowNumbers: boolean
+    staggerLengths: boolean
 }

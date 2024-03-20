@@ -14,7 +14,6 @@ describe('URLSearchParamsFromSwatchConfig', () => {
       colorShift: 5,
       staggerLengths: false,
       stitchPattern: StitchPattern.moss,
-      showRowNumbers: false
     } as SwatchConfig
 
     const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
@@ -40,7 +39,6 @@ describe('sanitizeSearchParamInputs', () => {
       colorShift: 5,
       staggerLengths: true,
       stitchPattern: StitchPattern.moss,
-      showRowNumbers: false
     } as SwatchConfig
 
     const searchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
