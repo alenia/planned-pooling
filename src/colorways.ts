@@ -26,7 +26,7 @@ export const dunaColorways : Array<Colorway> = [ {
       {"color": "#ff001d", "length": 3},
       {"color": "#0e0e66", "length": 3},
       {"color": "#8dd0f2", "length": 2},
-      {"color": "#fcf7eb", "length": 5},
+      {"color": "#fcf7eb", "length": 3},
       {"color": "#8dd0f2", "length": 2}
     ]
   },
@@ -35,9 +35,9 @@ export const dunaColorways : Array<Colorway> = [ {
     "colorway": "9482 Pacific",
     "id": "duna-9482",
     "colorSequence": [
-      {"color": "#1C40B8", "length": 4},
+      {"color": "#1C40B8", "length": 3},
       {"color": "#121253", "length": 5},
-      {"color": "#1C40B8", "length": 4},
+      {"color": "#1C40B8", "length": 3},
       {"color": "#37AFF0", "length": 5}
     ]
   },
@@ -68,10 +68,10 @@ export const dunaColorways : Array<Colorway> = [ {
     "colorway": "9165 Yellow Hibiscus",
     "id": "duna-9165",
     "colorSequence": [
-      {"color": "#f51505", "length": 5},
-      {"color": "#f57605", "length": 3},
-      {"color": "#f5d505", "length": 5},
-      {"color": "#f57605", "length": 3}
+      {"color": "#E70F43", "length": 5},
+      {"color": "#FF8500", "length": 3},
+      {"color": "#FCE136", "length": 5},
+      {"color": "#FF8500", "length": 3},
     ]
   },
   {
@@ -79,10 +79,10 @@ export const dunaColorways : Array<Colorway> = [ {
     "colorway": "9492 Sunflower",
     "id": "duna-9492",
     "colorSequence": [
-      {"color": "#542E0F", "length": 5},
-      {"color": "#c28a11", "length": 3},
-      {"color": "#f5d505", "length": 5},
-      {"color": "#c28a11", "length": 3}
+      {"color": "#542e0f", "length": 5},
+      {"color": "#fda02c", "length": 3},
+      {"color": "#fae245", "length": 5},
+      {"color": "#fda02c", "length": 3},
     ]
   }
 ]
