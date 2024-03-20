@@ -15,21 +15,23 @@ function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperim
 
   return (
   <div>
-    <Form
-      swatchData={swatchConfig}
-      setSwatchData={setSwatchConfig}
-      staggerType={staggerType}
-      showExperimentalFeatures={!!showExperimentalFeatures}
-    />
-    <CheckboxInput
-      className="checkbox-container"
-      label="Show Row Numbers"
-      title="Display row numbers at the beginning of each row."
-      name="showRowNumbers"
-      value={displayRowNumbers}
-      setValue={(v: boolean) => setDisplayRowNumbers(v)}
-      withTooltip={true}
-    />
+    <div className="container">
+      <Form
+        swatchData={swatchConfig}
+        setSwatchData={setSwatchConfig}
+        staggerType={staggerType}
+        showExperimentalFeatures={!!showExperimentalFeatures}
+      />
+      <CheckboxInput
+        className="checkbox-container"
+        label="Show Row Numbers"
+        title="Display row numbers at the beginning of each row."
+        name="showRowNumbers"
+        value={displayRowNumbers}
+        setValue={(v: boolean) => setDisplayRowNumbers(v)}
+        withTooltip={true}
+      />
+    </div>
     <Swatch 
       className={displayRowNumbers ? "numbered" : ""}
       staggerType={staggerType}
