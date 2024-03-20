@@ -173,7 +173,6 @@ function Form(
           />
 
         <CheckboxInput
-          className="checkbox-container"
           title={staggerLengthsTooltip()}
           label="Alternate row lengths"
           name="staggerLengths"
