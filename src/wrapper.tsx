@@ -8,6 +8,7 @@ import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
 import StretchLengths from './projects/StretchLengths'
 import Parallax from './projects/Parallax'
+import DoloresParkTote from './projects/DoloresParkTote'
 import './index.scss'
 import {
   createBrowserRouter,
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/parallax",
     element: <Parallax/>
+  },
+  {
+    path: "/dolores-park-tote",
+    element: <DoloresParkTote/>
   },
   {
     path: "/",
