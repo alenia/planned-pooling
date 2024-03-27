@@ -1,0 +1,36 @@
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { StitchPattern, SwatchConfig, ColorSequenceArray } from './types'
+import SwatchWithForm from './SwatchWithForm'
+
+const basicSwatchConfig = {
+  colorSequence: [
+    {color: '#f00', length: 3},
+    {color: '#0f0', length: 2},
+  ] as ColorSequenceArray,
+  stitchesPerRow: 5,
+  numberOfRows: 4,
+  colorShift: 0,
+  staggerLengths: false,
+  stitchPattern: StitchPattern.moss
+} as SwatchConfig
+
+describe('SwatchWithForm', () => {
+  it('renders the form and the swatch', () => {
+    render(
+      <SwatchWithForm
+        swatchConfig={basicSwatchConfig}
+        setSwatchConfig={() => {}}
+        staggerType='normal'
+        showExperimentalFeatures={false}
+        showRowNumbersInitially={false}
+      />
+    )
+
+    //TODO: I hate this assertion just want to get a test up.
+    expect(screen.getAllByRole("spinbutton").length).toEqual(5)
+    expect(screen.getAllByTestId("swatch").length).toEqual(1)
+  })
+})
+
+

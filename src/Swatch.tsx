@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, Fragment } from 'react'
 import { nextStitchColorByIndex } from './color'
 import { StitchPattern, Color, ColorSequenceArray } from './types'
 import './Swatch.scss'
@@ -41,8 +41,8 @@ function Cluster (props: { children : ReactNode}) {
   return <div className="cluster">{props.children}</div>
 }
 
-function Stitch ({color} : { color: Color}) {
-  return <div className="stitch" style={{backgroundColor: color}}/>
+function Stitch ({color, stitchIndex} : { color: Color, stitchIndex: Number}) {
+  return <div className="stitch" title={`stitch ${stitchIndex}`} style={{backgroundColor: color}}/>
 }
 
 function ClusteredSwatch(
@@ -149,16 +149,27 @@ function Swatch(
 
   const buildColorStretchedStitch = () => {
     const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
-    return <Stitch key={`stretch${stitchIndex}`} color={color}/>;
+    return <Stitch key={`stretch${stitchIndex}`} stitchIndex={stitchIndex} color={color}/>;
   }
 
   const buildStitch = () => {
     const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
     stitchIndex++;
-    return <Stitch key={stitchIndex} color={color}/>;
+    return <Stitch key={stitchIndex} stitchIndex={stitchIndex} color={color}/>;
   }
 
-  return <div data-testid="swatch" className={classNames.join(' ')}>
+  return <Fragment>
+    <pre>
+      colorSequence: {JSON.stringify(colorSequence)}<br/>
+      stitchesPerRow: {stitchesPerRow}<br/>
+      stitchPattern: {stitchPattern}<br/>
+      numberOfRows: {numberOfRows}<br/>
+      colorShift: {colorShift}<br/>
+      staggerLengths: {staggerLengths.toString()}<br/>
+      staggerType: {staggerType}<br/>
+      className: {className}
+    </pre>
+    <div data-testid="swatch" className={classNames.join(' ')}>
     {
       clustered ?
       <ClusteredSwatch
@@ -178,7 +189,8 @@ function Swatch(
         buildColorStretchedStitch={buildColorStretchedStitch}
       />
     }
-  </div>;
+  </div>
+  </Fragment>;
 }
 
 export default Swatch

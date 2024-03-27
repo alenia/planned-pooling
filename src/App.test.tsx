@@ -12,4 +12,7 @@ describe('App', () => {
     )
     expect(screen.getAllByTestId("swatch").length).toEqual(1)
   })
+  it.skip('properly colors stitches even when the row count updates', () => {
+
+  })
 })
