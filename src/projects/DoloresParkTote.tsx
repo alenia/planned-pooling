@@ -35,6 +35,7 @@ function DoloresParkTote() {
       <p> When you change colorways, it resets the width of your panel</p>
       <p> For Panel 2: Select <em>Stretch Colors</em> to preview the color stretching technique</p>
       <p> For the band: Turn off Stretch Colors and set <em>Stitches Per Row</em> to half of your color sequence</p>
+      <p> You can play with the color shift to change where you start your band or Panel 1</p>
       <DropdownInput
         label="Pick a colorway"
         name="colorway"
