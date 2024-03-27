@@ -31,7 +31,10 @@ function DoloresParkTote() {
 
   return (
     <Fragment>
-      <p>This is a page to help with the Dolores Park Tote. If you want to design more planned pooling patterns, I recommend the <a href='/'>main app.</a></p>
+      <p>This is a page to help with the Dolores Park Tote pattern. You can also try the <a href='/'>main app.</a></p>
+      <p> When you change colorways, it resets the width of your panel</p>
+      <p> For Panel 2: Select <em>Stretch Colors</em> to preview the color stretching technique</p>
+      <p> For the band: Turn off Stretch Colors and set <em>Stitches Per Row</em> to half of your color sequence</p>
       <DropdownInput
         label="Pick a colorway"
         name="colorway"

@@ -97,7 +97,7 @@ function Form(
 
   const staggerLengthsLabel = () => {
     if (staggerType === "colorStretched") {
-      return "Stretch Colors on Even Rows"
+      return "Stretch Colors at row boundary"
     } else {
       return "Alternate Row Lengths"
     }
