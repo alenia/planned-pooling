@@ -3,23 +3,25 @@ import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways } from '../colorways';
-import { totalColorSequenceLength } from '../color';
+import { totalColorSequenceLength, duplicateColorSequenceArray } from '../color';
 
 function DoloresParkTote() {
   const initialColorway = dunaColorways[0]
+  const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(initialColorway.id)
   const [swatchConfig, setSwatchConfig] = useState({
-    colorSequence: initialColorway.colorSequence,
-    stitchesPerRow: totalColorSequenceLength(initialColorway.colorSequence),
+    colorSequence: initialColorSequence,
+    stitchesPerRow: totalColorSequenceLength(initialColorSequence),
     numberOfRows: 38,
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
   })
 
-  const resetColorway = (selectedColorwayId) => {
+  //const resetColorway = (selectedColorwayId : keyof dunaColorways.map((c) => c.id) => {
+  const resetColorway = (selectedColorwayId : string) => {
     setSelectedColorway(selectedColorwayId)
-    const newColorSequence = dunaColorways.find((c) => c.id === selectedColorwayId).colorSequence
+    const newColorSequence = duplicateColorSequenceArray(dunaColorways.find((c) => c.id === selectedColorwayId).colorSequence)
     setSwatchConfig({
       ...swatchConfig,
       colorSequence: newColorSequence,

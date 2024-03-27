@@ -1,3 +1,4 @@
+import { DeepReadonly } from "ts-essentials";
 import { ColorInSequence } from './types'
 type Colorway = {
   yarnName: string,
@@ -6,7 +7,7 @@ type Colorway = {
   colorSequence: Array<ColorInSequence>
 }
 
-export const dunaColorways : Array<Colorway> = [ {
+export const dunaColorways : DeepReadonly<Array<Colorway>> = [ {
     "yarnName": "Circulo Duna",
     "colorway": "9391 Aloe Vera",
     "id": "duna-9391",
@@ -87,6 +88,6 @@ export const dunaColorways : Array<Colorway> = [ {
   }
 ]
 
-const colorways : Array<Colorway> = { ...dunaColorways }
+const colorways : DeepReadonly<Array<Colorway>> = { ...dunaColorways }
 
 export default colorways;

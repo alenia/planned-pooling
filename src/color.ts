@@ -1,4 +1,5 @@
 import { Color, ColorInSequence, ColorSequenceArray } from './types'
+import { DeepReadonly } from 'ts-essentials'
 
 export function nextStitchColorByIndex(i : number, colorSequence : ColorSequenceArray, { colorShift } = { colorShift: 0 } ):Color {
   const flatColorSequenceArray = colorSequence.reduce((ary : Array<Color>, conf: ColorInSequence) : Array<Color> => ary.concat(new Array(conf.length).fill(conf.color)), []);
@@ -19,4 +20,8 @@ export function totalColorSequenceLength(colorSequence : ColorSequenceArray) : n
     result += colorSequence[i].length;
   }
   return result;
+}
+
+export function duplicateColorSequenceArray(colorSequence : DeepReadonly<ColorSequenceArray> | ColorSequenceArray) : ColorSequenceArray {
+  return colorSequence.map((c) => ({...c}))
 }
