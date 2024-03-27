@@ -34,10 +34,10 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
     "yarnName": "Circulo Duna",
     "colorway": "9482 Pacific",
     "colorSequence": [
-      {"color": "#1C40B8", "length": 3},
+      {"color": "#1c40b8", "length": 3},
       {"color": "#121253", "length": 5},
-      {"color": "#1C40B8", "length": 3},
-      {"color": "#37AFF0", "length": 5}
+      {"color": "#1c40b8", "length": 3},
+      {"color": "#37aff0", "length": 5}
     ]
   },
   "duna-9128": {
@@ -45,29 +45,29 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
     "colorway": "9128 Winter",
     "colorSequence": [
       {"color": "#3562d5", "length": 5},
-      {"color": "#73BEF4", "length": 3},
-      {"color": "#EBF5FC", "length": 5},
-      {"color": "#73BEF4", "length": 3}
+      {"color": "#73bef4", "length": 3},
+      {"color": "#ebf5fc", "length": 5},
+      {"color": "#73bef4", "length": 3}
     ]
   },
   "duna-9687": {
     "yarnName": "Circulo Duna",
     "colorway": "9687 Caravel",
     "colorSequence": [
-      {"color": "#542E0F", "length": 5},
-      {"color": "#BC9371", "length": 3},
-      {"color": "#F4ECE4", "length": 5},
-      {"color": "#BC9371", "length": 3}
+      {"color": "#542e0f", "length": 5},
+      {"color": "#bc9371", "length": 3},
+      {"color": "#f4ece4", "length": 5},
+      {"color": "#bc9371", "length": 3}
     ]
   },
   "duna-9165": {
     "yarnName": "Circulo Duna",
     "colorway": "9165 Yellow Hibiscus",
     "colorSequence": [
-      {"color": "#E70F43", "length": 5},
-      {"color": "#FF8500", "length": 3},
-      {"color": "#FCE136", "length": 5},
-      {"color": "#FF8500", "length": 3},
+      {"color": "#e70f43", "length": 5},
+      {"color": "#ff8500", "length": 3},
+      {"color": "#fce136", "length": 5},
+      {"color": "#ff8500", "length": 3},
     ]
   },
   "duna-9492": {

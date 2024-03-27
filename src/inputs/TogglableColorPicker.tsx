@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import fontColorContrast from 'font-color-contrast';
 import { ColorResult, SketchPicker } from 'react-color';
 import { Color } from '../types'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const forceColorType = (colorString : string) : Color => {
@@ -20,6 +20,11 @@ const TogglableColorPicker = (
 ) => {
   const [pickerColor, setPickerColor] = useState(value)
   const [displayPicker, setDisplayPicker] = useState(false)
+
+  // If something else changes the value, this updates the color picker
+  useEffect(() => {
+    setPickerColor(value)
+  }, [value]);
 
   return (
     <Fragment>
