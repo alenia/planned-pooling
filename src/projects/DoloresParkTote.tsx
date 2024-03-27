@@ -1,14 +1,14 @@
 import SwatchWithForm from '../SwatchWithForm';
-import { StitchPattern, ColorSequenceArray } from '../types'
+import { StitchPattern } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
-import { dunaColorways } from '../colorways';
+import { dunaColorways, defaultDunaColorwayId } from '../colorways';
 import { totalColorSequenceLength, duplicateColorSequenceArray } from '../color';
 
 function DoloresParkTote() {
-  const initialColorway = dunaColorways[0]
+  const initialColorway = dunaColorways[defaultDunaColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
-  const [selectedColorway, setSelectedColorway] = useState(initialColorway.id)
+  const [selectedColorway, setSelectedColorway] = useState(defaultDunaColorwayId)
   const [swatchConfig, setSwatchConfig] = useState({
     colorSequence: initialColorSequence,
     stitchesPerRow: totalColorSequenceLength(initialColorSequence),
@@ -18,10 +18,9 @@ function DoloresParkTote() {
     stitchPattern: StitchPattern.moss,
   })
 
-  //const resetColorway = (selectedColorwayId : keyof dunaColorways.map((c) => c.id) => {
   const resetColorway = (selectedColorwayId : string) => {
     setSelectedColorway(selectedColorwayId)
-    const newColorSequence = duplicateColorSequenceArray(dunaColorways.find((c) => c.id === selectedColorwayId).colorSequence)
+    const newColorSequence = duplicateColorSequenceArray(dunaColorways[selectedColorwayId].colorSequence)
     setSwatchConfig({
       ...swatchConfig,
       colorSequence: newColorSequence,
@@ -39,8 +38,8 @@ function DoloresParkTote() {
         title="Pick from a Circulo DUNA colorway"
         value={selectedColorway}
         setValue={resetColorway}
-        items={dunaColorways.map((colorway) => (
-          { label: colorway.colorway, value: colorway.id }
+        items={Object.keys(dunaColorways).map((id) => (
+          { label: dunaColorways[id].colorway, value: id }
         ))}
       />
       <SwatchWithForm
