@@ -88,13 +88,19 @@ function Form(
   }
 
   const staggerLengthsTooltip = () => {
-    let tip = "";
     if (staggerType === "colorStretched") {
-      tip = "In the current mode, alternating row lengths uses the color stretching technique instead of changing lengths of rows."
+      return "This will stretch the length of the color that ends an even row/starts an odd row.\n\nThat is, if you normally have 5 stitches of a color, this will make it 6 at that transition point."
     } else {
-      tip = `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
+      return `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
     }
-    return tip
+  }
+
+  const staggerLengthsLabel = () => {
+    if (staggerType === "colorStretched") {
+      return "Stretch Colors at row boundary"
+    } else {
+      return "Alternate Row Lengths"
+    }
   }
 
   return (
@@ -175,7 +181,7 @@ function Form(
         <CheckboxInput
           className="checkbox-container"
           title={staggerLengthsTooltip()}
-          label="Alternate row lengths"
+          label={staggerLengthsLabel()}
           name="staggerLengths"
           value={staggerLengths}
           setValue={(v: boolean) => setFormValue('staggerLengths', v)}
