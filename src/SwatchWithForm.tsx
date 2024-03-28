@@ -23,7 +23,6 @@ function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperim
         showExperimentalFeatures={!!showExperimentalFeatures}
       />
       <CheckboxInput
-        className="checkbox-container"
         label="Show Row Numbers"
         title="Display row numbers at the beginning of each row."
         name="showRowNumbers"

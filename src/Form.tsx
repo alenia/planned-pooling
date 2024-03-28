@@ -179,7 +179,6 @@ function Form(
           />
 
         <CheckboxInput
-          className="checkbox-container"
           title={staggerLengthsTooltip()}
           label={staggerLengthsLabel()}
           name="staggerLengths"
