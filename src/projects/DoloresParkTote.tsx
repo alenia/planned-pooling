@@ -81,7 +81,7 @@ function DoloresParkTote() {
           )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
         />
         <label>
-          Set the stitches per row and color stretching based on your panel:
+          Set the stitches per row and pooling technique based on your panel:
         </label>
         <div className="color-buttons">
           <button type="button" onClick={setPanel1Configuration}>Panel 1 (stripes)</button>
