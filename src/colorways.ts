@@ -79,7 +79,17 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
       {"color": "#fae245", "length": 5},
       {"color": "#fda02c", "length": 3},
     ]
-  }
+  },
+  "duna-9563": {
+    "yarnName": "Circulo Duna",
+    "colorway": "9563 Winery",
+    "colorSequence": [
+      {"color": "#27105d", "length": 5},
+      {"color": "#6549a7", "length": 3},
+      {"color": "#b8aed4", "length": 5},
+      {"color": "#6549a7", "length": 3},
+    ]
+  },
 }
 
 //const colorways : Record<string, DeepReadonly<Colorway>> = { ...dunaColorways }
