@@ -1,9 +1,9 @@
 import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern } from '../types'
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways, defaultDunaColorwayId } from '../colorways';
-import { totalColorSequenceLength, duplicateColorSequenceArray } from '../color';
+import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../color';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 function DoloresParkTote() {
@@ -23,8 +23,14 @@ function DoloresParkTote() {
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
+  useEffect(() => {
+    const newColorway = matchColorwayToColorSequence(dunaColorways, swatchConfig.colorSequence)
+    setSelectedColorway(newColorway)
+  },[swatchConfig, setSelectedColorway])
+
   const resetColorway = (selectedColorwayId : string) => {
     setSelectedColorway(selectedColorwayId)
+    if(!dunaColorways[selectedColorwayId]) { return false } //TODO test me
     const newColorSequence = duplicateColorSequenceArray(dunaColorways[selectedColorwayId].colorSequence)
     setSwatchConfig({
       ...swatchConfig,
@@ -47,9 +53,9 @@ function DoloresParkTote() {
         title="Pick from a Circulo DUNA colorway"
         value={selectedColorway}
         setValue={resetColorway}
-        items={Object.keys(dunaColorways).map((id) => (
+        items={[...Object.keys(dunaColorways).map((id) => (
           { label: dunaColorways[id].colorway, value: id }
-        ))}
+        )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
       />
       <SwatchWithForm
         swatchConfig={swatchConfig}

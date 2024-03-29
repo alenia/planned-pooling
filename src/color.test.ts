@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import { nextStitchColorByIndex, isStringAColor, getRandomNotWhiteColor, totalColorSequenceLength } from './color'
-import { ColorSequenceArray } from './types'
+import { nextStitchColorByIndex, isStringAColor, getRandomNotWhiteColor, totalColorSequenceLength, matchColorwayToColorSequence } from './color'
+import { ColorSequenceArray, ColorwayRecord } from './types'
 
 describe('nextStitchByColorIndex', () => {
   it('gives the next stitch color in the sequence', () => {
@@ -90,5 +90,64 @@ describe('totalColorSequenceLength', () => {
       {color: "#00f", length: 4}
     ] as ColorSequenceArray
     expect(totalColorSequenceLength(config)).toEqual(9)
+  })
+})
+
+
+describe('matchColorwayToSequence', () => {
+  const colorwayList : ColorwayRecord = {
+    'test1': {
+      yarnName: 'My Yarn',
+      colorway: 'test1 is cool',
+      colorSequence: [
+        {color: "#f00", length: 2},
+        {color: "#0f0", length: 3},
+        {color: "#00f", length: 4}
+      ]
+    }
+  }
+
+  it('returns the colorway id of a colorway which works if the colors values and order match', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#f00", length: 2},
+      {color: "#0f0", length: 3},
+      {color: "#00f", length: 4}
+    ])).toEqual('test1')
+  })
+  it('returns the colorway id of a colorway which works if the colors values and order match but the lengths are different', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#f00", length: 4},
+      {color: "#0f0", length: 3},
+      {color: "#00f", length: 4}
+    ])).toEqual('test1')
+  })
+  it.skip('picks one if multiple colorways have the same colors', () => {})
+  it('returns custom if one of the colors is different', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#f00", length: 2},
+      {color: "#0ff", length: 3},
+      {color: "#00f", length: 4}
+    ])).toEqual('custom')
+  })
+  it('returns custom if the order does not match', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#00f", length: 4},
+      {color: "#f00", length: 2},
+      {color: "#0f0", length: 3},
+    ])).toEqual('custom')
+  })
+  it('returns custom if the colorway to match has more colors than the one in the colorways object', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#f00", length: 2},
+      {color: "#0f0", length: 3},
+      {color: "#00f", length: 4},
+      {color: "#0ff", length: 5}
+    ])).toEqual('custom')
+  })
+  it('returns custom if the colorway to match has fewer colors than the one in the colorways object', () => {
+    expect(matchColorwayToColorSequence(colorwayList, [
+      {color: "#f00", length: 2},
+      {color: "#0f0", length: 3},
+    ])).toEqual('custom')
   })
 })
