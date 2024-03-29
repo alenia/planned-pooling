@@ -69,31 +69,39 @@ function DoloresParkTote() {
       <p> For Panel 2: Select <em>Stretch Colors</em> to preview the color stretching technique</p>
       <p> For the band: Turn off Stretch Colors and set <em>Stitches Per Row</em> to half of your color sequence</p>
       <p> You can play with the color shift to change where you start your band or Panel 1</p>
-      <fieldset>
-        <DropdownInput
-          label="Pick a colorway"
-          name="colorway"
-          title="Pick from a Circulo DUNA colorway"
-          value={selectedColorway}
-          setValue={resetColorway}
-          items={[...Object.keys(dunaColorways).map((id) => (
-            { label: dunaColorways[id].colorway, value: id }
-          )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
-        />
-        <label>
-          Set the stitches per row and pooling technique based on your panel:
-        </label>
-        <div className="color-buttons">
-          <button type="button" onClick={setPanel1Configuration}>Panel 1 (stripes)</button>
-          <button type="button" onClick={setPanel2Configuration}>Panel 2 (color stretching)</button>
-          <button type="button" onClick={setBandConfiguration}>Band (half width)</button>
-        </div>
-      </fieldset>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        className='wide-first-column'
+      >
+        <fieldset>
+          <DropdownInput
+            label="Pick a colorway"
+            name="colorway"
+            title="Pick from a Circulo DUNA colorway"
+            value={selectedColorway}
+            setValue={resetColorway}
+            items={[...Object.keys(dunaColorways).map((id) => (
+              { label: dunaColorways[id].colorway, value: id }
+            )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
+          />
+          <label>
+            Set the stitches per row and pooling technique based on your panel:
+          </label>
+          <div className="buttons">
+            <button type="button" onClick={setPanel1Configuration}>Panel 1 (stripes)</button>
+            <button type="button" onClick={setPanel2Configuration}>Panel 2 (color stretching)</button>
+            <button type="button" onClick={setBandConfiguration}>Band (half width)</button>
+          </div>
+        </fieldset>
+      </form>
       <SwatchWithForm
         swatchConfig={swatchConfig}
         setSwatchConfig={setSwatchConfig}
         showRowNumbersInitially={true}
         staggerType={'colorStretched'}
+        formClasses='wide-first-column'
       />
     </Fragment>
   );

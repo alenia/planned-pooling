@@ -24,12 +24,13 @@ const defaultPickerColors = [
 ]
 
 function Form(
-  { swatchData, setSwatchData, staggerType, showExperimentalFeatures } :
+  { swatchData, setSwatchData, staggerType, showExperimentalFeatures, formClasses } :
   {
     swatchData: SwatchConfig,
     setSwatchData: (data: SwatchConfig) => void,
     staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
-    showExperimentalFeatures: boolean
+    showExperimentalFeatures: boolean,
+    formClasses?: string,
   }
 ) {
 
@@ -108,6 +109,7 @@ function Form(
       onSubmit={(e) => {
         e.preventDefault();
       }}
+      className={formClasses}
     >
       <fieldset className='color-fields'>
         {colorSequence.map((obj, index) => (
@@ -131,7 +133,7 @@ function Form(
             <button type="button" onClick={() => removeColorFromSequence(index)}>Remove color</button>
           </div>
         ))}
-        <div className="color-buttons">
+        <div className="buttons">
           <button type="button" onClick={addColorToSequence}>Add a color</button>
           { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}
         </div>
