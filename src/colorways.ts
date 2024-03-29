@@ -12,20 +12,20 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
     "yarnName": "Circulo Duna",
     "colorway": "9128 Winter",
     "colorSequence": [
+      {"color": "#73bef4", "length": 3},
       {"color": "#3562d5", "length": 5},
       {"color": "#73bef4", "length": 3},
       {"color": "#ebf5fc", "length": 5},
-      {"color": "#73bef4", "length": 3}
     ]
   },
   "duna-9165": {
     "yarnName": "Circulo Duna",
     "colorway": "9165 Yellow Hibiscus",
     "colorSequence": [
+      {"color": "#ff8500", "length": 3},
       {"color": "#e70f43", "length": 5},
       {"color": "#ff8500", "length": 3},
       {"color": "#fce136", "length": 5},
-      {"color": "#ff8500", "length": 3},
     ]
   },
   "duna-9391": {
@@ -52,20 +52,20 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
     "yarnName": "Circulo Duna",
     "colorway": "9492 Sunflower",
     "colorSequence": [
+      {"color": "#fda02c", "length": 3},
       {"color": "#542e0f", "length": 5},
       {"color": "#fda02c", "length": 3},
       {"color": "#fae245", "length": 5},
-      {"color": "#fda02c", "length": 3},
     ]
   },
   "duna-9563": {
     "yarnName": "Circulo Duna",
     "colorway": "9563 Winery",
     "colorSequence": [
+      {"color": "#6549a7", "length": 3},
       {"color": "#27105d", "length": 5},
       {"color": "#6549a7", "length": 3},
       {"color": "#b8aed4", "length": 5},
-      {"color": "#6549a7", "length": 3},
     ]
   },
   "duna-9642": {
@@ -84,10 +84,10 @@ export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
     "yarnName": "Circulo Duna",
     "colorway": "9687 Caravel",
     "colorSequence": [
+      {"color": "#bc9371", "length": 3},
       {"color": "#542e0f", "length": 5},
       {"color": "#bc9371", "length": 3},
       {"color": "#f4ece4", "length": 5},
-      {"color": "#bc9371", "length": 3}
     ]
   },
 }
