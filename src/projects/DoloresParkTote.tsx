@@ -57,7 +57,6 @@ function DoloresParkTote() {
   const setBandConfiguration = () => {
     setSwatchConfig({
       ...swatchConfig,
-      numberOfRows: totalColorSequenceLength(swatchConfig.colorSequence)*4,
       stitchesPerRow: Math.floor(totalColorSequenceLength(swatchConfig.colorSequence)/2),
       staggerLengths: false,
     })
