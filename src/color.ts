@@ -1,4 +1,4 @@
-import { Color, ColorInSequence, ColorSequenceArray } from './types'
+import { Color, ColorInSequence, ColorSequenceArray, ColorwayRecord } from './types'
 import { DeepReadonly } from 'ts-essentials'
 
 export function nextStitchColorByIndex(i : number, colorSequence : ColorSequenceArray, { colorShift } = { colorShift: 0 } ):Color {
@@ -24,4 +24,14 @@ export function totalColorSequenceLength(colorSequence : ColorSequenceArray) : n
 
 export function duplicateColorSequenceArray(colorSequence : DeepReadonly<ColorSequenceArray> | ColorSequenceArray) : ColorSequenceArray {
   return colorSequence.map((c) => ({...c}))
+}
+
+export function matchColorwayToColorSequence(colorwayList: ColorwayRecord, colorSequence: ColorSequenceArray) : string {
+  const colorwayIds = Object.keys(colorwayList)
+  const matchedColorwayId = colorwayIds.find((colorwayId) => {
+    const colorway = colorwayList[colorwayId]
+    if(colorway.colorSequence.length !== colorSequence.length ) { return false }
+    return colorway.colorSequence.every(({color}, index) => color === colorSequence[index].color)
+  })
+  return matchedColorwayId || 'custom'
 }

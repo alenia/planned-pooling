@@ -1,3 +1,5 @@
+import { DeepReadonly } from 'ts-essentials'
+
 export enum StitchPattern {
   unstyled = "unstyled",
   moss = "moss",
@@ -29,3 +31,11 @@ export type SwatchConfig = {
     colorShift: number,
     staggerLengths: boolean
 }
+
+export type Colorway = {
+  yarnName: string,
+  colorway: string,
+  colorSequence: Array<ColorInSequence>
+}
+
+export type ColorwayRecord = Record<string, DeepReadonly<Colorway>>
