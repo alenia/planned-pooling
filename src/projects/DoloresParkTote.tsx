@@ -77,7 +77,7 @@ function DoloresParkTote() {
       >
         <fieldset>
           <DropdownInput
-            label="Pick a colorway"
+            label="Pick a colorway:"
             name="colorway"
             title="Pick from a Circulo DUNA colorway"
             value={selectedColorway}
