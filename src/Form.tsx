@@ -24,13 +24,13 @@ const defaultPickerColors = [
 ]
 
 function Form(
-  { swatchData, setSwatchData, staggerType, showExperimentalFeatures, formClasses } :
+  { swatchData, setSwatchData, staggerType, showExperimentalFeatures, className } :
   {
     swatchData: SwatchConfig,
     setSwatchData: (data: SwatchConfig) => void,
     staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
     showExperimentalFeatures: boolean,
-    formClasses?: string,
+    className?: string,
   }
 ) {
 
@@ -109,7 +109,7 @@ function Form(
       onSubmit={(e) => {
         e.preventDefault();
       }}
-      className={formClasses}
+      className={className}
     >
       <fieldset className='color-fields'>
         {colorSequence.map((obj, index) => (

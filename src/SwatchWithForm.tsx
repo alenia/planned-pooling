@@ -22,7 +22,7 @@ function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperim
         setSwatchData={setSwatchConfig}
         staggerType={staggerType}
         showExperimentalFeatures={!!showExperimentalFeatures}
-        formClasses={formClasses}
+        className={formClasses}
       />
       <CheckboxInput
         label="Show Row Numbers"
