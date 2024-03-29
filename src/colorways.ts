@@ -1,13 +1,7 @@
-import { DeepReadonly } from "ts-essentials";
-import { ColorInSequence } from './types'
-type Colorway = {
-  yarnName: string,
-  colorway: string,
-  colorSequence: Array<ColorInSequence>
-}
+import { ColorwayRecord } from './types'
 
 export const defaultDunaColorwayId = "duna-9391"
-export const dunaColorways : Record<string, DeepReadonly<Colorway>> = {
+export const dunaColorways : ColorwayRecord = {
   "duna-9128": {
     "yarnName": "Circulo Duna",
     "colorway": "9128 Winter",
