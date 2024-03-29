@@ -50,7 +50,7 @@ describe('sanitizeSearchParamInputs', () => {
       {color: '#0f0', length: 2},
     ])
     expect(sanitizeSearchParamInputs.stitchPattern(searchParams)).toEqual(StitchPattern.moss)
-    expect(sanitizeSearchParamInputs.staggerLengths(searchParams)).toEqual(true)
+    expect(sanitizeSearchParamInputs.staggerLengths(searchParams, false)).toEqual(true)
   })
 
   it('only returns stitchesPerRow iff it is a number', () => {
@@ -96,10 +96,13 @@ describe('sanitizeSearchParamInputs', () => {
     expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(colorsAreNotColors))).toEqual(false)
     expect(sanitizeSearchParamInputs.colorSequence(new URLSearchParams(lengthsAreNotNumbers))).toEqual(false)
   })
-  it('returns stagger lengths iff it is true', () => {
-    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=true'))).toEqual(true)
-    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=banana'))).toEqual(false)
-    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=false'))).toEqual(false)
+  it('returns stagger lengths if it is true, false if it is explicitly false, and default if it is unspecified', () => {
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=true'), false)).toEqual(true)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=true'), true)).toEqual(true)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=banana'), false)).toEqual(false)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=banana'), true)).toEqual(true)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=false'), true)).toEqual(false)
+    expect(sanitizeSearchParamInputs.staggerLengths(new URLSearchParams('?staggerLengths=false'), false)).toEqual(false)
   })
   it('returns stitch patterns', () => {
     expect(sanitizeSearchParamInputs.stitchPattern(new URLSearchParams('?stitchPattern=stacked'))).toEqual(StitchPattern.stacked)

@@ -1,8 +1,6 @@
 import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern, Color } from '../types'
-import { useState, useEffect } from "react";
-import { useSearchParams } from 'react-router-dom';
-import { URLSearchParamsFromSwatchConfig, sanitizeSearchParamInputs } from '../searchHelpers';
+import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -10,9 +8,8 @@ const ltblue = "#8dd0f2" as Color;
 const navy = "#0e0e66" as Color;
 
 function StretchLengths() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [swatchConfig, setSwatchConfig] = useState({
-    colorSequence: sanitizeSearchParamInputs.colorSequence(searchParams) || [
+  const defaultSwatchConfig = {
+    colorSequence: [
       {color: navy, length: 3},
       {color: red, length: 3},
       {color: navy, length: 3},
@@ -20,18 +17,16 @@ function StretchLengths() {
       {color: cream, length: 5},
       {color: ltblue, length: 2},
     ],
-    stitchesPerRow: sanitizeSearchParamInputs.stitchesPerRow(searchParams) || 18, //Note: explicitly ok not saving zero from search params here
-    numberOfRows: sanitizeSearchParamInputs.numberOfRows(searchParams) || 40, //Note: explicitly ok not pulling zero from search params here
-    colorShift: sanitizeSearchParamInputs.colorShift(searchParams) || 0,
-    staggerLengths: sanitizeSearchParamInputs.staggerLengths(searchParams),
-    stitchPattern: sanitizeSearchParamInputs.stitchPattern(searchParams) || StitchPattern.moss,
-  })
+    stitchesPerRow: 18, //Note: explicitly ok not saving zero from search params here
+    numberOfRows: 40, //Note: explicitly ok not pulling zero from search params here
+    colorShift: 0,
+    staggerLengths: false,
+    stitchPattern: StitchPattern.moss,
+  }
 
-  useEffect(() => {
-    const newSearchParams = URLSearchParamsFromSwatchConfig(swatchConfig)
+  const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
-    setSearchParams(newSearchParams)
-  }, [swatchConfig, setSearchParams])
+  useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
   return (
     <div>

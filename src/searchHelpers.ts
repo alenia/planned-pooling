@@ -45,8 +45,14 @@ export const sanitizeSearchParamInputs = {
   stitchesPerRow: numberParserForParam('stitchesPerRow'),
   numberOfRows: numberParserForParam('rows'),
   colorShift: numberParserForParam('colorShift'),
-  staggerLengths: (searchParams: URLSearchParams) : boolean => {
-    return searchParams.get('staggerLengths') === 'true'
+  staggerLengths: (searchParams: URLSearchParams, defaultValue: boolean) : boolean => {
+    if(searchParams.get('staggerLengths') === 'false') {
+      return false
+    }
+    if(searchParams.get('staggerLengths') === 'true') {
+      return true
+    }
+    return defaultValue
   },
   stitchPattern: (searchParams: URLSearchParams) : StitchPattern | false => {
     const stitchPatternParam = searchParams.get('stitchPattern')
