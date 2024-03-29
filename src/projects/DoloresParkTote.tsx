@@ -4,19 +4,24 @@ import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways, defaultDunaColorwayId } from '../colorways';
 import { totalColorSequenceLength, duplicateColorSequenceArray } from '../color';
+import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(defaultDunaColorwayId)
-  const [swatchConfig, setSwatchConfig] = useState({
+  const defaultSwatchConfig = {
     colorSequence: initialColorSequence,
     stitchesPerRow: totalColorSequenceLength(initialColorSequence),
     numberOfRows: 38,
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
-  })
+  }
+
+  const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
+
+  useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
   const resetColorway = (selectedColorwayId : string) => {
     setSelectedColorway(selectedColorwayId)
