@@ -2,7 +2,7 @@ form {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-gap: 0.75em;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.5em;
 
   &.wide-first-column {
     grid-template-columns: 475px max-content;
