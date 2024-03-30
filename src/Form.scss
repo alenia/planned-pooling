@@ -1,7 +1,16 @@
 form {
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-gap: 0.5em;
+  grid-gap: 0.75em;
+  margin-bottom: 0.75em;
+
+  &.wide-first-column {
+    grid-template-columns: 475px max-content;
+
+    fieldset:first-child {
+      width: 450px;
+    }
+  }
 }
 
 fieldset {
@@ -9,10 +18,8 @@ fieldset {
   border-radius: 8px;
   border: 1px solid #bbbbbb;
   padding: 12px;
-}
+  margin: 0;
 
-.color-fields,
-.spec-fields {
   & > div {
     margin-bottom: 0.5em;
     height: 2em;
@@ -29,6 +36,7 @@ fieldset {
     gap: 0.5em;
   }
 }
+
 .checkbox-input {
   position: relative;
   display: flex;
@@ -91,7 +99,7 @@ fieldset {
   position: relative;
 }
 
-.color-buttons {
+.buttons {
   display: flex;
   align-items: flex-end;
   justify-content: left;
@@ -135,6 +143,14 @@ fieldset {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 0.5em;
+
+    &.wide-first-column {
+      grid-template-columns: 1fr;
+
+      fieldset:first-child {
+        width: inherit;
+      }
+    }
   }
 
   fieldset {

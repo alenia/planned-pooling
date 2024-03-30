@@ -4,12 +4,13 @@ import { SwatchConfig } from './types'
 import { useState } from 'react';
 import CheckboxInput from './inputs/Checkbox'
 
-function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperimentalFeatures, showRowNumbersInitially}  : {
+function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperimentalFeatures, showRowNumbersInitially, formClasses}  : {
   swatchConfig: SwatchConfig,
   setSwatchConfig: (arg0: SwatchConfig) => void,
   staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
   showExperimentalFeatures?: boolean,
   showRowNumbersInitially?: boolean,
+  formClasses?: string,
 }) {
   const [displayRowNumbers, setDisplayRowNumbers] = useState(!!showRowNumbersInitially)
 
@@ -21,6 +22,7 @@ function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperim
         setSwatchData={setSwatchConfig}
         staggerType={staggerType}
         showExperimentalFeatures={!!showExperimentalFeatures}
+        className={formClasses}
       />
       <CheckboxInput
         label="Show Row Numbers"
