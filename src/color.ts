@@ -14,7 +14,7 @@ export function nextStitchColorByIndex(i : number, colorSequence : ColorSequence
 export function shiftedColorSequenceArray(colorSequence : ColorSequenceArray, colorShift: number) : ColorSequenceArray {
   const flattened = flatColorSequenceArray(colorSequence)
   const shift = mod(colorShift, totalColorSequenceLength(colorSequence))
-  flattened.unshift(...flattened.splice(-shift, shift))
+  flattened.push(...flattened.splice(0, shift))
   const shiftedColorSequence = flattened.reduce((newArray: ColorSequenceArray, color : Color) => {
     const last = newArray.slice(-1)[0]
     if(last && last.color === color) {

@@ -47,11 +47,11 @@ describe('shiftedColorSequenceArray', () => {
     ])
 
     expect(shiftedColorSequenceArray(colorSequence, 3)).toEqual([
-      {color: "#aaa", length: 2},
+      {color: "#ccc", length: 3},
+      {color: "#aaa", length: 3},
       {color: "#ddd", length: 1},
       {color: "#aaa", length: 2},
-      {color: "#ccc", length: 4},
-      {color: "#aaa", length: 1},
+      {color: "#ccc", length: 1},
     ])
   })
 
@@ -63,9 +63,8 @@ describe('shiftedColorSequenceArray', () => {
     ] as ColorSequenceArray
 
     expect(shiftedColorSequenceArray(colorSequence, 2)).toEqual([
-      {color: "#ccc", length: 2},
+      {color: "#ccc", length: 4},
       {color: "#aaa", length: 2},
-      {color: "#ccc", length: 2},
     ])
 
     expect(colorSequence).toEqual([
@@ -82,15 +81,15 @@ describe('shiftedColorSequenceArray', () => {
     ] as ColorSequenceArray
 
     expect(shiftedColorSequenceArray(colorSequence, -1)).toEqual([
-      {color: "#aaa", length: 1},
-      {color: "#bbb", length: 3},
-      {color: "#aaa", length: 1},
-    ])
-
-    expect(shiftedColorSequenceArray(colorSequence, 6)).toEqual([
       {color: "#bbb", length: 1},
       {color: "#aaa", length: 2},
       {color: "#bbb", length: 2},
+    ])
+
+    expect(shiftedColorSequenceArray(colorSequence, 6)).toEqual([
+      {color: "#aaa", length: 1},
+      {color: "#bbb", length: 3},
+      {color: "#aaa", length: 1},
     ])
   })
 })
