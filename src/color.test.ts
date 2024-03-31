@@ -45,12 +45,33 @@ describe('shiftedColorSequenceArray', () => {
       {color: "#aaa", length: 3},
       {color: "#ddd", length: 1},
     ])
+
     expect(shiftedColorSequenceArray(colorSequence, 3)).toEqual([
       {color: "#aaa", length: 2},
       {color: "#ddd", length: 1},
       {color: "#aaa", length: 2},
       {color: "#ccc", length: 4},
       {color: "#aaa", length: 1},
+    ])
+  })
+
+  it('does not change color sequence', () => {
+    const colorSequence = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 0},
+      {color: "#ccc", length: 4},
+    ] as ColorSequenceArray
+
+    expect(shiftedColorSequenceArray(colorSequence, 2)).toEqual([
+      {color: "#ccc", length: 2},
+      {color: "#aaa", length: 2},
+      {color: "#ccc", length: 2},
+    ])
+
+    expect(colorSequence).toEqual([
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 0},
+      {color: "#ccc", length: 4},
     ])
   })
 
