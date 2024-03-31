@@ -101,7 +101,9 @@ function DiffusionScarf() {
 
   const [selectedSwatchIndex, setSelectedSwatchIndex] = useState(0)
   const [panelConfigs, setPanelConfigs] = useState(initialPanelConfigs)
-  const selectedColorShift = panelConfigs[selectedSwatchIndex].colorShift
+  const selectedSwatchConfig = panelConfigs[selectedSwatchIndex]
+
+  const selectedColorShift = selectedSwatchConfig.colorShift
   const setSelectedColorShift = (newShift: number) => {
     const nextPanelConfigs = [...panelConfigs]
     nextPanelConfigs[selectedSwatchIndex].colorShift = newShift
@@ -113,15 +115,25 @@ function DiffusionScarf() {
     nextPanelConfigs[selectedSwatchIndex].flip = newFlip
     setPanelConfigs(nextPanelConfigs)
   }
-  const selectedAccentColorLength = panelConfigs[selectedSwatchIndex].colorSequence[1].length
+  const selectedAccentColorLength = selectedSwatchConfig.colorSequence[1].length
+  const selectedMainColorLength = selectedSwatchConfig.colorSequence[0].length
   const setSelectedColorLengthsBasedOnAccent = (newAccentLength: number) => {
     const nextPanelConfigs = [...panelConfigs]
-    const prevSequence = panelConfigs[selectedSwatchIndex].colorSequence
+    const prevSequence = selectedSwatchConfig.colorSequence
     const seqLength = totalColorSequenceLength(prevSequence)
-    nextPanelConfigs[selectedSwatchIndex].colorSequence = [
-      { color: prevSequence[0].color, length: seqLength - newAccentLength},
-      { color: prevSequence[1].color, length: newAccentLength},
-    ]
+    if(prevSequence.length === 2) {
+      nextPanelConfigs[selectedSwatchIndex].colorSequence = [
+        { color: prevSequence[0].color, length: seqLength - newAccentLength},
+        { color: prevSequence[1].color, length: newAccentLength},
+      ]
+    } else if(prevSequence.length === 4) {
+      nextPanelConfigs[selectedSwatchIndex].colorSequence = [
+        { color: prevSequence[0].color, length: Math.floor(seqLength/2) - newAccentLength},
+        { color: prevSequence[1].color, length: newAccentLength},
+        { color: prevSequence[0].color, length: Math.ceil(seqLength/2) - newAccentLength},
+        { color: prevSequence[1].color, length: newAccentLength},
+      ]
+    }
     setPanelConfigs(nextPanelConfigs)
   }
 
@@ -152,20 +164,24 @@ function DiffusionScarf() {
           e.preventDefault();
         }}>
         <fieldset>
-          <IntegerInput
-            label="Color shift:"
-            title="Start the swatch this many stitches into your color sequence"
-            name="colorShift"
-            value={selectedColorShift}
-            setValue={setSelectedColorShift}
-            withTooltip={true}
-          />
+          <pre>
+            total color sequence length (varies per swatch): {totalColorSequenceLength(selectedSwatchConfig.colorSequence)}
+          </pre>
+          { selectedSwatchConfig.colorSequence.length === 2 ?  <pre>main color length: {selectedMainColorLength}</pre> : <pre>color sequence: {JSON.stringify(selectedSwatchConfig.colorSequence)}</pre>}
           <IntegerInput
             label="Accent Color Length:"
             title="The color sequence length will always be the same, but if you have more stitches of your accent color you can change this"
             name="accentColorLength"
             value={selectedAccentColorLength}
             setValue={setSelectedColorLengthsBasedOnAccent}
+            withTooltip={true}
+          />
+          <IntegerInput
+            label="Color shift:"
+            title="Start the swatch this many stitches into your color sequence"
+            name="colorShift"
+            value={selectedColorShift}
+            setValue={setSelectedColorShift}
             withTooltip={true}
           />
           <CheckboxInput
@@ -176,8 +192,7 @@ function DiffusionScarf() {
             setValue={setSelectedFlipPreview}
           />
           <pre>
-            stitches per row: {panelConfigs[selectedSwatchIndex].stitchesPerRow}<br/>
-            color sequence length: {totalColorSequenceLength(panelConfigs[selectedSwatchIndex].colorSequence)}
+            stitches per row in this swatch: {panelConfigs[selectedSwatchIndex].stitchesPerRow}<br/>
           </pre>
         </fieldset>
       </form>
