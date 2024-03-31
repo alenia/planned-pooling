@@ -17,13 +17,6 @@ version of preview. Hopefully there will be a test of this diff at some point*/
     position: absolute;
     margin: 5px -15px;
   }
-  &.moss:not(.staggered), &.hdc:not(.staggered) {
-    .crow:nth-child(2n + 1) {
-      &::before {
-        margin: 5px -30px;
-      }
-    }
-  }
 }
 
 /*Shared swatch styling including row-reverse layout*/
@@ -58,11 +51,7 @@ version of preview. Hopefully there will be a test of this diff at some point*/
 
 
 /*Basic layout swatches: moss, hdc, granny, shell, v-stitch*/
-$basicStitchHeight: 28px;
-.swatch.moss, .swatch.hdc {
-  $stitchHeight: $basicStitchHeight;
-  $stitchWidth: 14px;
-  $spacing: 1px;
+@mixin interwovenStitch($stitchHeight, $stitchWidth, $spacing, $overlapRatio) {
   &.staggered {
     .crow:nth-child(2n) {
       margin: 0 $stitchWidth + $spacing;
@@ -84,29 +73,28 @@ $basicStitchHeight: 28px;
     margin-right: $stitchWidth + $spacing;
     margin-left: $spacing;
     margin-top: $spacing;
+    margin-bottom: -1 * $overlapRatio * $stitchHeight;
   }
+  &.numbered:not(.staggered) {
+    .crow:nth-child(2n + 1) {
+      &::before {
+        margin-left: -1*$stitchWidth - 15px;
+      }
+    }
+  }
+
 }
 
-.swatch.moss .stitch {
-  margin-bottom: -0.5*$basicStitchHeight;
+.swatch.moss {
+  @include interwovenStitch(28px, 14px, 1px, 0.5)
 }
 
-.swatch.hdc .stitch {
-  margin-bottom: -.3*$basicStitchHeight;
+.swatch.hdc {
+  @include interwovenStitch(28px, 14px, 1px, 0.3)
 }
 
 .swatch.granny {
-  $stitchHeight: 20px;
-  .crow:nth-child(2n) {
-    margin: 0 $stitchHeight;
-  }
-  .stitch {
-    box-sizing: border-box;
-    border: 1px solid black;
-    height: $stitchHeight;
-    width: $stitchHeight;
-    margin: 0 $stitchHeight -.2*$stitchHeight 0;
-  }
+  @include interwovenStitch(20px, 20px, 0, 0.2);
 }
 
 .swatch.shell {
