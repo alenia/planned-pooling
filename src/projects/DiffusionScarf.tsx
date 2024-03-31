@@ -1,13 +1,12 @@
 import Swatch from '../Swatch';
 import { StitchPattern, Color, ColorSequenceArray } from '../types'
-/*
- import IntegerInput from '../inputs/Integer'
- import { useState } from "react";
- */
 import { totalColorSequenceLength } from '../color'
+// import IntegerInput from '../inputs/Integer'
+import { useState } from "react";
+
 
 function DiffusionScarf() {
-  // const [mainColorShift, setMainColorShift] = useState(0)
+  const [selectedSwatchIndex, setSelectedSwatchIndex] = useState(0)
   const colorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
     {color: '#000', length: 17},
     {color: accent, length: 3}
@@ -109,15 +108,13 @@ function DiffusionScarf() {
       <div className="squashed-swatch-container">
         {
           panelConfigs.map((specificConfig, index) =>{
-            const style = {transform: ""}
+            const style = { transform: "", cursor: 'pointer'}
             if(specificConfig.flip) {
               style.transform = "rotateY(180deg)"
             }
             return (
-              <div style={style} key={`compactChart${index}`}>
-                <a href={`#chart${index}`}>
-                  <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />
-                </a>
+              <div style={style} key={`compactChart${index}`} onClick={() => setSelectedSwatchIndex(index)}>
+                <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />
               </div>
             )
           })
@@ -133,17 +130,13 @@ function DiffusionScarf() {
       />
         */}
       <div className="container">
-        {panelConfigs.map((specificConfig, index) => (
-          <div key={`chart${index}`}>
-            <a id={`chart${index}`}>
-              <pre>
-                stitches per row: {specificConfig.stitchesPerRow}<br/>
-                color sequence length: {totalColorSequenceLength(specificConfig.colorSequence)}
-              </pre>
-            </a>
-            <Swatch className='numbered' {...sharedConfig} stitchPattern={StitchPattern.moss} {...specificConfig} />
-          </div>
-          ))}
+        <div>
+          <pre>
+            stitches per row: {panelConfigs[selectedSwatchIndex].stitchesPerRow}<br/>
+            color sequence length: {totalColorSequenceLength(panelConfigs[selectedSwatchIndex].colorSequence)}
+          </pre>
+          <Swatch className='numbered' {...sharedConfig} stitchPattern={StitchPattern.moss} {...panelConfigs[selectedSwatchIndex]} />
+        </div>
       </div>
     </div>
   );
