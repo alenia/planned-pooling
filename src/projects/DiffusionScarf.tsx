@@ -8,19 +8,24 @@ import { useState } from "react";
 
 function DiffusionScarf() {
   const colorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
+    {color: accent, length: 3},
     {color: '#000', length: 17},
-    {color: accent, length: 3}
   ])
   const oddColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 18},
-    {color: accent, length: 3}
-  ])
-  const stretchedColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 17},
     {color: accent, length: 3},
     {color: '#000', length: 18},
-    {color: accent, length: 3}
   ])
+  const generateStaggeredSequence = (cc : Color, mc : Color, ccLength : number, seqLength : number) => ([
+    { color: cc, length: ccLength },
+    { color: mc, length: (Math.ceil(seqLength/2) - ccLength)},
+    { color: cc, length: ccLength },
+    { color: mc, length: (Math.floor(seqLength/2) - ccLength)},
+  ])
+
+  const stretchedColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => {
+    const stretchedLength = 20 + 21
+    return generateStaggeredSequence(accent, '#000', 3, stretchedLength)
+  }
 
   const neonPurple = '#e100ff' as Color
   const neonPink = '#FF00A0' as Color
@@ -33,71 +38,70 @@ function DiffusionScarf() {
   const initialPanelConfigs = [
     {
       stitchesPerRow: 10,
-      colorShift: 17,
+      colorShift: 0,
       colorSequence: colorSequenceWithAccent(neonOrange),
       flip: true,
     },
     {
       stitchesPerRow: 20,
-      colorShift: 16,
+      colorShift: 20,
       colorSequence: stretchedColorSequenceWithAccent(neonPink)
 
     },
     {
       stitchesPerRow: 19,
-      colorShift: 14,
+      colorShift: 17,
       colorSequence: colorSequenceWithAccent(neonPurple)
     },
     {
       stitchesPerRow: 18,
-      colorShift: 17,
+      colorShift: 20,
       colorSequence: colorSequenceWithAccent(neonBlue)
     },
     {
       stitchesPerRow: 16,
-      colorShift: 17,
+      colorShift: 20,
       colorSequence: colorSequenceWithAccent(neonGreen),
       flip: true,
     },
     {
       stitchesPerRow: 16,
-      colorShift: 0,
+      colorShift: 3,
       colorSequence: oddColorSequenceWithAccent(neonYellow)
     },
     {
       stitchesPerRow: 15,
-      colorShift: 17,
+      colorShift: 20,
       colorSequence: colorSequenceWithAccent(neonGreen)
     },
     {
       stitchesPerRow: 14,
-      colorShift: 20,
+      colorShift: 2,
       colorSequence: oddColorSequenceWithAccent(neonBlue),
       flip: true,
     },
     {
       stitchesPerRow: 12,
-      colorShift: 17,
+      colorShift: 20,
       colorSequence: colorSequenceWithAccent(neonPurple)
     },
     {
       stitchesPerRow: 12,
-      colorShift: 18,
+      colorShift: 0,
       colorSequence: oddColorSequenceWithAccent(neonPink)
     },
     {
       stitchesPerRow: 11,
-      colorShift: 13,
+      colorShift: 16,
       colorSequence: colorSequenceWithAccent(neonOrange)
     },
     {
       stitchesPerRow: 11,
-      colorShift: 2, // 12, 12', 2, 2'
+      colorShift: 5, // 15, 15', 5, 5'
       colorSequence: oddColorSequenceWithAccent(neonYellow),
       flip: true,
     },
   ]
-
 
   const [selectedSwatchIndex, setSelectedSwatchIndex] = useState(0)
   const [panelConfigs, setPanelConfigs] = useState(initialPanelConfigs)
@@ -115,24 +119,24 @@ function DiffusionScarf() {
     nextPanelConfigs[selectedSwatchIndex].flip = newFlip
     setPanelConfigs(nextPanelConfigs)
   }
-  const selectedAccentColorLength = selectedSwatchConfig.colorSequence[1].length
-  const selectedMainColorLength = selectedSwatchConfig.colorSequence[0].length
+  const selectedAccentColorLength = selectedSwatchConfig.colorSequence[0].length
+  const selectedMainColorLength = selectedSwatchConfig.colorSequence[1].length
   const setSelectedColorLengthsBasedOnAccent = (newAccentLength: number) => {
     const nextPanelConfigs = [...panelConfigs]
     const prevSequence = selectedSwatchConfig.colorSequence
     const seqLength = totalColorSequenceLength(prevSequence)
     if(prevSequence.length === 2) {
       nextPanelConfigs[selectedSwatchIndex].colorSequence = [
-        { color: prevSequence[0].color, length: seqLength - newAccentLength},
-        { color: prevSequence[1].color, length: newAccentLength},
+        { color: prevSequence[0].color, length: newAccentLength},
+        { color: prevSequence[1].color, length: seqLength - newAccentLength},
       ]
     } else if(prevSequence.length === 4) {
-      nextPanelConfigs[selectedSwatchIndex].colorSequence = [
-        { color: prevSequence[0].color, length: Math.floor(seqLength/2) - newAccentLength},
-        { color: prevSequence[1].color, length: newAccentLength},
-        { color: prevSequence[0].color, length: Math.ceil(seqLength/2) - newAccentLength},
-        { color: prevSequence[1].color, length: newAccentLength},
-      ]
+      nextPanelConfigs[selectedSwatchIndex].colorSequence = generateStaggeredSequence(
+        prevSequence[0].color,
+        prevSequence[1].color,
+        newAccentLength,
+        seqLength
+      )
     }
     setPanelConfigs(nextPanelConfigs)
   }
