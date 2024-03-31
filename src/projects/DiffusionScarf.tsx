@@ -1,11 +1,13 @@
 import Swatch from '../Swatch';
 import { StitchPattern, Color, ColorSequenceArray } from '../types'
-import IntegerInput from '../inputs/Integer'
-import { useState } from "react";
+/*
+ import IntegerInput from '../inputs/Integer'
+ import { useState } from "react";
+ */
 import { totalColorSequenceLength } from '../color'
 
 function DiffusionScarf() {
-  const [mainColorShift, setMainColorShift] = useState(0)
+  // const [mainColorShift, setMainColorShift] = useState(0)
   const colorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
     {color: '#000', length: 17},
     {color: accent, length: 3}
@@ -20,15 +22,10 @@ function DiffusionScarf() {
     {color: '#000', length: 18},
     {color: accent, length: 3}
   ])
-  const swallowedColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 14},
-    {color: accent, length: 4},
-    {color: '#000', length: 13},
-    {color: accent, length: 4}
-  ])
   const sharedConfig = {
     numberOfRows: 30,
-    colorShift: mainColorShift,
+    // colorShift: mainColorShift,
+    colorShift: 0,
     staggerLengths: false,
   }
 
@@ -112,12 +109,12 @@ function DiffusionScarf() {
       <div className="squashed-swatch-container">
         {
           panelConfigs.map((specificConfig, index) =>{
-            let style = {transform: ""}
+            const style = {transform: ""}
             if(specificConfig.flip) {
               style.transform = "rotateY(180deg)"
             }
             return (
-              <div style={style}>
+              <div style={style} key={`compactChart${index}`}>
                 <a href={`#chart${index}`}>
                   <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />
                 </a>
@@ -137,7 +134,7 @@ function DiffusionScarf() {
         */}
       <div className="container">
         {panelConfigs.map((specificConfig, index) => (
-          <div>
+          <div key={`chart${index}`}>
             <a id={`chart${index}`}>
               <pre>
                 stitches per row: {specificConfig.stitchesPerRow}<br/>
