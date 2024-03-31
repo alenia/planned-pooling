@@ -113,6 +113,17 @@ function DiffusionScarf() {
     nextPanelConfigs[selectedSwatchIndex].flip = newFlip
     setPanelConfigs(nextPanelConfigs)
   }
+  const selectedAccentColorLength = panelConfigs[selectedSwatchIndex].colorSequence[1].length
+  const setSelectedColorLengthsBasedOnAccent = (newAccentLength: number) => {
+    const nextPanelConfigs = [...panelConfigs]
+    const prevSequence = panelConfigs[selectedSwatchIndex].colorSequence
+    const seqLength = totalColorSequenceLength(prevSequence)
+    nextPanelConfigs[selectedSwatchIndex].colorSequence = [
+      { color: prevSequence[0].color, length: seqLength - newAccentLength},
+      { color: prevSequence[1].color, length: newAccentLength},
+    ]
+    setPanelConfigs(nextPanelConfigs)
+  }
 
   const sharedConfig = {
     numberOfRows: 30,
@@ -141,20 +152,29 @@ function DiffusionScarf() {
           e.preventDefault();
         }}>
         <fieldset>
-        <IntegerInput
-          label="Color shift:"
-          title={"color shift"}
-          name="colorShift"
-          value={selectedColorShift}
-          setValue={setSelectedColorShift}
-        />
-        <CheckboxInput
-          label="Flip preview"
-          title="flip preview"
-          name="flipPreview"
-          value={selectedFlipPreview}
-          setValue={setSelectedFlipPreview}
-        />
+          <IntegerInput
+            label="Color shift:"
+            title="Start the swatch this many stitches into your color sequence"
+            name="colorShift"
+            value={selectedColorShift}
+            setValue={setSelectedColorShift}
+            withTooltip={true}
+          />
+          <IntegerInput
+            label="Accent Color Length:"
+            title="The color sequence length will always be the same, but if you have more stitches of your accent color you can change this"
+            name="accentColorLength"
+            value={selectedAccentColorLength}
+            setValue={setSelectedColorLengthsBasedOnAccent}
+            withTooltip={true}
+          />
+          <CheckboxInput
+            label="Flip preview"
+            title="flip the small version of the swatch"
+            name="flipPreview"
+            value={selectedFlipPreview}
+            setValue={setSelectedFlipPreview}
+          />
           <pre>
             stitches per row: {panelConfigs[selectedSwatchIndex].stitchesPerRow}<br/>
             color sequence length: {totalColorSequenceLength(panelConfigs[selectedSwatchIndex].colorSequence)}
