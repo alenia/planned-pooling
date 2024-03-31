@@ -47,6 +47,7 @@ export default function Preview() {
       <StitchPatternPreview stitchPattern={StitchPattern.unstyled} title="unstyled stitch pattern"/>
       <StitchPatternPreview stitchPattern={StitchPattern.stacked}/>
       <StitchPatternPreview stitchPattern={StitchPattern.moss}/>
+      <StitchPatternPreview stitchPattern={StitchPattern.compactMoss}/>
       <StitchPatternPreview stitchPattern={StitchPattern.hdc} notes="Probably needs a rename, called hdc based on the amian hat"/>
       <StitchPatternPreview stitchPattern={StitchPattern.granny}/>
       <StitchPatternPreview stitchPattern={StitchPattern.shell} />

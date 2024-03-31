@@ -12,6 +12,7 @@ export enum StitchPattern {
   ripple = "ripple",
   vstitchCluster = "vstitchCluster",
   ablockCluster = "ablockCluster",
+  compactMoss = "compact-moss",
 }
 
 export type Color = `#${string}`;

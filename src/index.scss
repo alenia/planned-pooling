@@ -16,10 +16,3 @@ main, footer {
   flex-direction: column;
   gap: 0.5em;
 }
-
-.squashed-swatch-container {
-  display: flex;
-  .swatch.moss {
-    margin-left: -15px;
-  }
-}
