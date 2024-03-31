@@ -1,3 +1,4 @@
+import { StrictMode } from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { StitchPattern, SwatchConfig, ColorSequenceArray } from './types'
@@ -28,6 +29,83 @@ describe('Swatch', () => {
   })
   describe('unclustered swatches', () => {
     describe('moss stitch', () => {
+      it('properly colors stitches when there are multiple swatches in strict mode', () => {
+        render(
+          <StrictMode>
+            <Swatch
+              colorSequence={[
+                {color: '#aaa', length: 1},
+                {color: '#bbb', length: 1},
+                {color: '#ccc', length: 1},
+                {color: '#ddd', length: 1},
+                {color: '#eee', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={4}
+              colorShift={1}
+              numberOfRows={2}
+              staggerLengths={false}
+            />
+            <Swatch
+              colorSequence={[
+                {color: '#aaa', length: 1},
+                {color: '#bbb', length: 1},
+                {color: '#ccc', length: 1},
+                {color: '#ddd', length: 1},
+                {color: '#eee', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={4}
+              colorShift={1}
+              numberOfRows={2}
+              staggerLengths={false}
+            />
+          </StrictMode>
+        )
+
+        const swatches = screen.getAllByTestId("swatch")
+        expect(swatches[0].children[0].children[0]).toHaveStyle('background-color: #bbb')
+        expect(swatches[1].children[0].children[0]).toHaveStyle('background-color: #bbb')
+      })
+      it('properly colors stitches when there are multiple swatches in strict mode, color stretched', () => {
+        render(
+          <StrictMode>
+            <Swatch
+              colorSequence={[
+                {color: '#aaa', length: 1},
+                {color: '#bbb', length: 1},
+                {color: '#ccc', length: 1},
+                {color: '#ddd', length: 1},
+                {color: '#eee', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={4}
+              colorShift={1}
+              numberOfRows={2}
+              staggerLengths={true}
+              staggerType="colorStretched"
+            />
+            <Swatch
+              colorSequence={[
+                {color: '#aaa', length: 1},
+                {color: '#bbb', length: 1},
+                {color: '#ccc', length: 1},
+                {color: '#ddd', length: 1},
+                {color: '#eee', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={4}
+              colorShift={1}
+              numberOfRows={2}
+              staggerLengths={false}
+            />
+          </StrictMode>
+        )
+
+        const swatches = screen.getAllByTestId("swatch")
+        expect(swatches[0].children[0].children[0]).toHaveStyle('background-color: #bbb')
+        expect(swatches[1].children[0].children[0]).toHaveStyle('background-color: #bbb')
+      })
       it('renders a moss stitch swatch', () => {
         render(
           <Swatch
@@ -390,6 +468,41 @@ describe('Swatch', () => {
           expect(row1Clusters[1].children[0]).toHaveStyle('background-color: #800')
           expect(row1Clusters[1].children[1]).toHaveStyle('background-color: #900')
           expect(row1Clusters[1].children[2]).toHaveStyle('background-color: #000')
+        })
+        it('properly puts the colors on the stitches when there is a prepended stitch in strict mode', () => {
+          render(
+            <StrictMode>
+              <Swatch
+                colorSequence={[
+                  {color: '#aaa', length: 1},
+                  {color: '#bbb', length: 1},
+                  {color: '#ccc', length: 1},
+                  {color: '#ddd', length: 1},
+                  {color: '#eee', length: 1},
+                ]}
+                stitchPattern={StitchPattern.jasmine}
+                stitchesPerRow={2}
+                numberOfRows={4}
+                staggerLengths={false}
+              />
+              <Swatch
+                colorSequence={[
+                  {color: '#aaa', length: 1},
+                  {color: '#bbb', length: 1},
+                  {color: '#ccc', length: 1},
+                  {color: '#ddd', length: 1},
+                  {color: '#eee', length: 1},
+                ]}
+                stitchPattern={StitchPattern.jasmine}
+                stitchesPerRow={2}
+                numberOfRows={4}
+                staggerLengths={false}
+              />
+            </StrictMode>
+          )
+          const swatches = screen.getAllByTestId("swatch")
+          expect(swatches[0].children[0].children[0].children[0]).toHaveStyle('background-color: #aaa')
+          expect(swatches[1].children[0].children[0].children[0]).toHaveStyle('background-color: #aaa')
         })
       })
 
