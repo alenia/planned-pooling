@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from "react-router-dom";
 import DiffusionScarf from './DiffusionScarf'
 
-describe('DoloresParkTote', () => {
+describe('DiffusionScarf', () => {
   it('renders the component with a swatch in it', () => {
     render(
       <MemoryRouter>
