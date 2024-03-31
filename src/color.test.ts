@@ -1,6 +1,78 @@
 import { describe, expect, it, vi } from 'vitest'
-import { nextStitchColorByIndex, isStringAColor, getRandomNotWhiteColor, totalColorSequenceLength, matchColorwayToColorSequence } from './color'
+import {
+  flatColorSequenceArray,
+  shiftedColorSequenceArray,
+  nextStitchColorByIndex,
+  isStringAColor,
+  getRandomNotWhiteColor,
+  totalColorSequenceLength,
+  matchColorwayToColorSequence,
+} from './color'
 import { ColorSequenceArray, ColorwayRecord } from './types'
+
+describe('flatColorSequenceArray', () => {
+  it('returns the flattened color sequence array without zero length colors', () => {
+    const colorSequence = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 0},
+      {color: "#ccc", length: 4},
+      {color: "#aaa", length: 3},
+      {color: "#ddd", length: 1}
+    ] as ColorSequenceArray
+
+    expect(flatColorSequenceArray(colorSequence)).toEqual([
+      '#aaa', '#aaa',
+      '#ccc', '#ccc', '#ccc', '#ccc',
+      '#aaa', '#aaa', '#aaa',
+      '#ddd',
+    ])
+  })
+})
+
+describe('shiftedColorSequenceArray', () => {
+  it('returns a shifted color sequence array with no zero lenght colors, depending on the shift', () => {
+    const colorSequence = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 0},
+      {color: "#ccc", length: 4},
+      {color: "#aaa", length: 3},
+      {color: "#ddd", length: 1}
+    ] as ColorSequenceArray
+
+    expect(shiftedColorSequenceArray(colorSequence, 0)).toEqual([
+      {color: "#aaa", length: 2},
+      {color: "#ccc", length: 4},
+      {color: "#aaa", length: 3},
+      {color: "#ddd", length: 1},
+    ])
+    expect(shiftedColorSequenceArray(colorSequence, 3)).toEqual([
+      {color: "#aaa", length: 2},
+      {color: "#ddd", length: 1},
+      {color: "#aaa", length: 2},
+      {color: "#ccc", length: 4},
+      {color: "#aaa", length: 1},
+    ])
+  })
+
+  it('works for negative or large numbers', () => {
+    const colorSequence = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 3},
+    ] as ColorSequenceArray
+
+    expect(shiftedColorSequenceArray(colorSequence, -1)).toEqual([
+      {color: "#aaa", length: 1},
+      {color: "#bbb", length: 3},
+      {color: "#aaa", length: 1},
+    ])
+
+    expect(shiftedColorSequenceArray(colorSequence, 6)).toEqual([
+      {color: "#bbb", length: 1},
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 2},
+    ])
+  })
+})
 
 describe('nextStitchByColorIndex', () => {
   it('gives the next stitch color in the sequence', () => {

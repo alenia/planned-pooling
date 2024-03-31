@@ -3,6 +3,7 @@ import { StitchPattern, Color, ColorSequenceArray } from '../types'
 import { totalColorSequenceLength } from '../color'
 import IntegerInput from '../inputs/Integer'
 import CheckboxInput from '../inputs/Checkbox'
+import ColorSequenceInfo from '../ColorSequenceInfo'
 import { useState } from "react";
 
 
@@ -120,7 +121,6 @@ function DiffusionScarf() {
     setPanelConfigs(nextPanelConfigs)
   }
   const selectedAccentColorLength = selectedSwatchConfig.colorSequence[0].length
-  const selectedMainColorLength = selectedSwatchConfig.colorSequence[1].length
   const setSelectedColorLengthsBasedOnAccent = (newAccentLength: number) => {
     const nextPanelConfigs = [...panelConfigs]
     const prevSequence = selectedSwatchConfig.colorSequence
@@ -168,10 +168,7 @@ function DiffusionScarf() {
           e.preventDefault();
         }}>
         <fieldset>
-          <pre>
-            total color sequence length (varies per swatch): {totalColorSequenceLength(selectedSwatchConfig.colorSequence)}
-          </pre>
-          { selectedSwatchConfig.colorSequence.length === 2 ?  <pre>main color length: {selectedMainColorLength}</pre> : <pre>color sequence: {JSON.stringify(selectedSwatchConfig.colorSequence)}</pre>}
+          <ColorSequenceInfo colorSequence={selectedSwatchConfig.colorSequence} colorShift={selectedSwatchConfig.colorShift}/>
           <IntegerInput
             label="Accent Color Length:"
             title="The color sequence length will always be the same, but if you have more stitches of your accent color you can change this"

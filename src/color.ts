@@ -1,9 +1,30 @@
 import { Color, ColorInSequence, ColorSequenceArray, ColorwayRecord } from './types'
 import { DeepReadonly } from 'ts-essentials'
+import { mod } from './numberHelpers'
+
+export function flatColorSequenceArray(colorSequence : ColorSequenceArray) : Array<Color> {
+  return colorSequence.reduce((ary : Array<Color>, conf: ColorInSequence) : Array<Color> => ary.concat(new Array(conf.length).fill(conf.color)), []);
+}
 
 export function nextStitchColorByIndex(i : number, colorSequence : ColorSequenceArray, { colorShift } = { colorShift: 0 } ):Color {
-  const flatColorSequenceArray = colorSequence.reduce((ary : Array<Color>, conf: ColorInSequence) : Array<Color> => ary.concat(new Array(conf.length).fill(conf.color)), []);
-  return flatColorSequenceArray[(i + colorShift) % flatColorSequenceArray.length];
+  const flattened = flatColorSequenceArray(colorSequence)
+  return flattened[(i + colorShift) % flattened.length];
+}
+
+export function shiftedColorSequenceArray(colorSequence : ColorSequenceArray, colorShift: number) : ColorSequenceArray {
+  const flattened = flatColorSequenceArray(colorSequence)
+  const shift = mod(colorShift, totalColorSequenceLength(colorSequence))
+  flattened.unshift(...flattened.splice(-shift, shift))
+  const shiftedColorSequence = flattened.reduce((newArray: ColorSequenceArray, color : Color) => {
+    const last = newArray.slice(-1)[0]
+    if(last && last.color === color) {
+      last.length += 1
+    } else {
+      newArray.push({color: color, length: 1})
+    }
+    return newArray
+  }, [])
+  return shiftedColorSequence
 }
 
 export function isStringAColor(s: string) : boolean {
