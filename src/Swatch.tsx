@@ -162,11 +162,6 @@ function Swatch(
     staggered ? 'staggered' : ''
   ]
 
-  const buildStitch = (stitchIndex: number) => {
-    const color = nextStitchColorByIndex(stitchIndex, colorSequence, {colorShift})
-    stitchIndex++;
-    return <Stitch key={stitchIndex} color={color}/>;
-  }
   const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift})
 
   return <div data-testid="swatch" className={classNames.join(' ')}>
