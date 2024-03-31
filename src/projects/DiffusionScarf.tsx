@@ -6,18 +6,18 @@ import { useState } from "react";
 function DiffusionScarf() {
   const [mainColorShift, setMainColorShift] = useState(0)
   const colorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 14},
-    {color: accent, length: 4}
+    {color: '#000', length: 17},
+    {color: accent, length: 3}
   ])
   const oddColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 15},
-    {color: accent, length: 4}
+    {color: '#000', length: 18},
+    {color: accent, length: 3}
   ])
   const stretchedColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
-    {color: '#000', length: 14},
-    {color: accent, length: 4},
-    {color: '#000', length: 15},
-    {color: accent, length: 4}
+    {color: '#000', length: 17},
+    {color: accent, length: 3},
+    {color: '#000', length: 18},
+    {color: accent, length: 3}
   ])
   const swallowedColorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
     {color: '#000', length: 14},
@@ -49,162 +49,95 @@ function DiffusionScarf() {
         setValue={setMainColorShift}
       />
       {/*
-      <p>1</p>
+      <p>combined, no really random ones</p>
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={20} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={19} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={stretchedColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={swallowedColorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={10} colorShift={7} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorShift={10} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorShift={4} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={1} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={1} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={1} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={6} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={14} colorShift={6} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={5} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={3} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={0} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={0} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
       </div>
-      <p>2</p>
+      combined alternate
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={2} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={stretchedColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={15} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={10} colorShift={7} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorShift={11} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorShift={13} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={3} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={4} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={3} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={10} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={14} colorShift={5} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={19} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={13} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={3} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={7} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
       </div>
         */}
-      <p>3</p>
+      combined alternate 2
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={20} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={19} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={stretchedColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={2} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={swallowedColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        {/*<Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonBlue)}/>*/}
+        <Swatch {...sharedConfig} stitchesPerRow={10} colorShift={7} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorShift={11} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorShift={4} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={13} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={1} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={3} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={17} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={14} colorShift={5} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={5} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={13} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={3} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorShift={7} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
       </div>
-      <p>4</p>
+      {/*
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={5} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={10} colorSequence={stretchedColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={8} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={4} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={swallowedColorSequenceWithAccent(neonYellow)}/>
         <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonPink)}/>
-      </div>
-      <p>yellow middle</p>
-      <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={5} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={10} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={8} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={4} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={swallowedColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-      </div>
-      <p>yellow first</p>
-      <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={5} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={10} colorSequence={stretchedColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={8} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={4} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={swallowedColorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-      </div>
-      <p>5</p>
-      <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={4} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={3} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={colorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorShift={1} colorSequence={colorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={5} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={4} colorSequence={colorSequenceWithAccent(neonGreen)}/>
-      </div>
-      <p>6</p>
-      <div className="squashed-swatch-container">
-        {/*
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={colorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorSequence={colorSequenceWithAccent(neonGreen)}/>
         <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-          */}
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={5} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={colorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={colorSequenceWithAccent(neonOrange)}/>
       </div>
-      <p>7</p>
+      <p>odd</p>
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={5} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={15} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9}  colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={5} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={4} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={3}  colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
       </div>
-      <p>8</p>
+      <p>combined</p>
       <div className="squashed-swatch-container">
-        <Swatch {...sharedConfig} stitchesPerRow={14} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorShift={4} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={10} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorShift={3} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={9} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={colorSequenceWithAccent(neonPink)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={8} colorSequence={oddColorSequenceWithAccent(neonPurple)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={colorSequenceWithAccent(neonBlue)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={7} colorSequence={oddColorSequenceWithAccent(neonGreen)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorShift={1} colorSequence={colorSequenceWithAccent(neonYellow)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={6} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
-        <Swatch {...sharedConfig} stitchesPerRow={5} colorSequence={colorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={10} colorShift={7} colorSequence={colorSequenceWithAccent(neonOrange)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={20} colorShift={10} colorSequence={stretchedColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={19} colorShift={3} colorSequence={colorSequenceWithAccent(neonPurple)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={18} colorShift={1} colorSequence={colorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={17} colorSequence={colorSequenceWithAccent(neonGreen)}/> {//can be even or odd, very random }
+        <Swatch {...sharedConfig} stitchesPerRow={16} colorShift={1} colorSequence={oddColorSequenceWithAccent(neonYellow)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={15} colorShift={6} colorSequence={colorSequenceWithAccent(neonGreen)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={14} colorShift={6} colorSequence={oddColorSequenceWithAccent(neonBlue)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={13} colorSequence={oddColorSequenceWithAccent(neonPurple)}/> {//can be even or odd, very random}
+        <Swatch {...sharedConfig} stitchesPerRow={12} colorSequence={oddColorSequenceWithAccent(neonPink)}/>
+        <Swatch {...sharedConfig} stitchesPerRow={11} colorSequence={oddColorSequenceWithAccent(neonOrange)}/>
       </div>
+    */}
     </div>
   );
 }
