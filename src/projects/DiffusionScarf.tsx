@@ -1,12 +1,12 @@
 import Swatch from '../Swatch';
 import { StitchPattern, Color, ColorSequenceArray } from '../types'
 import { totalColorSequenceLength } from '../color'
-// import IntegerInput from '../inputs/Integer'
+import IntegerInput from '../inputs/Integer'
+import CheckboxInput from '../inputs/Checkbox'
 import { useState } from "react";
 
 
 function DiffusionScarf() {
-  const [selectedSwatchIndex, setSelectedSwatchIndex] = useState(0)
   const colorSequenceWithAccent = (accent : Color) : ColorSequenceArray => ([
     {color: '#000', length: 17},
     {color: accent, length: 3}
@@ -21,12 +21,6 @@ function DiffusionScarf() {
     {color: '#000', length: 18},
     {color: accent, length: 3}
   ])
-  const sharedConfig = {
-    numberOfRows: 30,
-    // colorShift: mainColorShift,
-    colorShift: 0,
-    staggerLengths: false,
-  }
 
   const neonPurple = '#e100ff' as Color
   const neonPink = '#FF00A0' as Color
@@ -35,7 +29,8 @@ function DiffusionScarf() {
   const neonGreen = '#79FF04' as Color
   const neonBlue = '#04FFFF' as Color
 
-  const panelConfigs = [
+
+  const initialPanelConfigs = [
     {
       stitchesPerRow: 10,
       colorShift: 17,
@@ -103,6 +98,27 @@ function DiffusionScarf() {
     },
   ]
 
+
+  const [selectedSwatchIndex, setSelectedSwatchIndex] = useState(0)
+  const [panelConfigs, setPanelConfigs] = useState(initialPanelConfigs)
+  const selectedColorShift = panelConfigs[selectedSwatchIndex].colorShift
+  const setSelectedColorShift = (newShift: number) => {
+    const nextPanelConfigs = [...panelConfigs]
+    nextPanelConfigs[selectedSwatchIndex].colorShift = newShift
+    setPanelConfigs(nextPanelConfigs)
+  }
+  const selectedFlipPreview = !!(panelConfigs[selectedSwatchIndex].flip)
+  const setSelectedFlipPreview = (newFlip: boolean) => {
+    const nextPanelConfigs = [...panelConfigs]
+    nextPanelConfigs[selectedSwatchIndex].flip = newFlip
+    setPanelConfigs(nextPanelConfigs)
+  }
+
+  const sharedConfig = {
+    numberOfRows: 30,
+    staggerLengths: false,
+  }
+
   return (
     <div className="container">
       <div className="squashed-swatch-container">
@@ -120,23 +136,33 @@ function DiffusionScarf() {
           })
         }
       </div>
-      {/*
-      <IntegerInput
-        label="Color shift:"
-        title={"color shift"}
-        name="colorShift"
-        value={mainColorShift}
-        setValue={setMainColorShift}
-      />
-        */}
-      <div className="container">
-        <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}>
+        <fieldset>
+        <IntegerInput
+          label="Color shift:"
+          title={"color shift"}
+          name="colorShift"
+          value={selectedColorShift}
+          setValue={setSelectedColorShift}
+        />
+        <CheckboxInput
+          label="Flip preview"
+          title="flip preview"
+          name="flipPreview"
+          value={selectedFlipPreview}
+          setValue={setSelectedFlipPreview}
+        />
           <pre>
             stitches per row: {panelConfigs[selectedSwatchIndex].stitchesPerRow}<br/>
             color sequence length: {totalColorSequenceLength(panelConfigs[selectedSwatchIndex].colorSequence)}
           </pre>
-          <Swatch className='numbered' {...sharedConfig} stitchPattern={StitchPattern.moss} {...panelConfigs[selectedSwatchIndex]} />
-        </div>
+        </fieldset>
+      </form>
+      <div className="container">
+        <Swatch className='numbered' {...sharedConfig} stitchPattern={StitchPattern.moss} {...panelConfigs[selectedSwatchIndex]} />
       </div>
     </div>
   );
