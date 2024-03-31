@@ -98,7 +98,7 @@ function DiffusionScarf() {
     },
     {
       stitchesPerRow: 11,
-      //colorShift: 2, // 12, 12', 2, 2'
+      colorShift: 2, // 12, 12', 2, 2'
       colorSequence: oddColorSequenceWithAccent(neonYellow),
       flip: true,
     },
