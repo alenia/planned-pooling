@@ -45,7 +45,7 @@ function DiffusionScarf() {
     },
     {
       stitchesPerRow: 20,
-      colorShift: 20,
+      colorShift: 0,
       colorSequence: stretchedColorSequenceWithAccent(neonPink)
 
     },
@@ -56,12 +56,12 @@ function DiffusionScarf() {
     },
     {
       stitchesPerRow: 18,
-      colorShift: 20,
+      colorShift: 0,
       colorSequence: colorSequenceWithAccent(neonBlue)
     },
     {
       stitchesPerRow: 16,
-      colorShift: 20,
+      colorShift: 0,
       colorSequence: colorSequenceWithAccent(neonGreen),
       flip: true,
     },
@@ -72,7 +72,7 @@ function DiffusionScarf() {
     },
     {
       stitchesPerRow: 15,
-      colorShift: 20,
+      colorShift: 0,
       colorSequence: colorSequenceWithAccent(neonGreen)
     },
     {
@@ -83,7 +83,7 @@ function DiffusionScarf() {
     },
     {
       stitchesPerRow: 12,
-      colorShift: 20,
+      colorShift: 0,
       colorSequence: colorSequenceWithAccent(neonPurple)
     },
     {
