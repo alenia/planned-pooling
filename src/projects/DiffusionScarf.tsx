@@ -40,32 +40,110 @@ function DiffusionScarf() {
   const neonBlue = '#04FFFF' as Color
 
   const panelConfigs = [
-    { stitchesPerRow: 10, colorShift: 7, colorSequence: colorSequenceWithAccent(neonOrange) },
-    { stitchesPerRow: 20, colorShift: 11, colorSequence: stretchedColorSequenceWithAccent(neonPink) },
-    { stitchesPerRow: 19, colorShift: 4, colorSequence: colorSequenceWithAccent(neonPurple) },
-    { stitchesPerRow: 18, colorShift: 13, colorSequence: colorSequenceWithAccent(neonBlue) },
-    { stitchesPerRow: 16, colorShift: 1, colorSequence: colorSequenceWithAccent(neonGreen) },
-    { stitchesPerRow: 16, colorShift: 3, colorSequence: oddColorSequenceWithAccent(neonYellow) },
-    { stitchesPerRow: 15, colorShift: 17, colorSequence: colorSequenceWithAccent(neonGreen) },
-    { stitchesPerRow: 14, colorShift: 5,  colorSequence: oddColorSequenceWithAccent(neonBlue) },
-    { stitchesPerRow: 12, colorShift: 5,  colorSequence: colorSequenceWithAccent(neonPurple) },
-    { stitchesPerRow: 12, colorShift: 13, colorSequence: oddColorSequenceWithAccent(neonPink) },
-    { stitchesPerRow: 11, colorShift: 3,  colorSequence: colorSequenceWithAccent(neonOrange) },
-    { stitchesPerRow: 11, colorShift: 7,  colorSequence: oddColorSequenceWithAccent(neonYellow) },
+    {
+      stitchesPerRow: 10,
+      colorShift: 17,
+      colorSequence: colorSequenceWithAccent(neonOrange),
+      flip: true,
+    },
+    {
+      stitchesPerRow: 20,
+      colorShift: 16,
+      colorSequence: stretchedColorSequenceWithAccent(neonPink)
+
+    },
+    {
+      stitchesPerRow: 19,
+      colorShift: 14,
+      colorSequence: colorSequenceWithAccent(neonPurple)
+    },
+    {
+      stitchesPerRow: 18,
+      colorShift: 17,
+      colorSequence: colorSequenceWithAccent(neonBlue)
+    },
+    {
+      stitchesPerRow: 16,
+      colorShift: 17,
+      colorSequence: colorSequenceWithAccent(neonGreen),
+      flip: true,
+    },
+    {
+      stitchesPerRow: 16,
+      colorShift: 0,
+      colorSequence: oddColorSequenceWithAccent(neonYellow)
+    },
+    {
+      stitchesPerRow: 15,
+      colorShift: 17,
+      colorSequence: colorSequenceWithAccent(neonGreen)
+    },
+    {
+      stitchesPerRow: 14,
+      colorShift: 20,
+      colorSequence: oddColorSequenceWithAccent(neonBlue),
+      flip: true,
+    },
+    {
+      stitchesPerRow: 12,
+      colorShift: 17,
+      colorSequence: colorSequenceWithAccent(neonPurple)
+    },
+    {
+      stitchesPerRow: 12,
+      colorShift: 18,
+      colorSequence: oddColorSequenceWithAccent(neonPink)
+    },
+    {
+      stitchesPerRow: 11,
+      colorShift: 13,
+      colorSequence: colorSequenceWithAccent(neonOrange)
+    },
+    {
+      stitchesPerRow: 11,
+      //colorShift: 2, // 12, 12', 2, 2'
+      colorSequence: oddColorSequenceWithAccent(neonYellow),
+      flip: true,
+    },
   ]
 
   return (
     <div className="container">
       <div className="squashed-swatch-container">
-        {panelConfigs.map((specificConfig) => <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />)}
+        {
+          panelConfigs.map((specificConfig, index) =>{
+            let style = {transform: ""}
+            if(specificConfig.flip) {
+              style.transform = "rotateY(180deg)"
+            }
+            return (
+              <div style={style}>
+                <a href={`#chart${index}`}>
+                  <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />
+                </a>
+              </div>
+            )
+          })
+        }
       </div>
+      {/*
+      <IntegerInput
+        label="Color shift:"
+        title={"color shift"}
+        name="colorShift"
+        value={mainColorShift}
+        setValue={setMainColorShift}
+      />
+        */}
       <div className="container">
-        {panelConfigs.map((specificConfig) => (
+        {panelConfigs.map((specificConfig, index) => (
           <div>
-            <pre>
-              stitches per row: {specificConfig.stitchesPerRow}<br/>
-              color sequence length: {totalColorSequenceLength(specificConfig.colorSequence)}
-            </pre>
+            <a id={`chart${index}`}>
+              <pre>
+                stitches per row: {specificConfig.stitchesPerRow}<br/>
+                color sequence length: {totalColorSequenceLength(specificConfig.colorSequence)}
+              </pre>
+            </a>
             <Swatch className='numbered' {...sharedConfig} stitchPattern={StitchPattern.moss} {...specificConfig} />
           </div>
           ))}
