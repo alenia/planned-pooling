@@ -173,6 +173,7 @@ function DiffusionScarf() {
             value={selectedAccentColorLength}
             setValue={setSelectedColorLengthsBasedOnAccent}
             withTooltip={true}
+            validator={IntegerInput.validators.nonNegative}
           />
           <IntegerInput
             label="Color shift:"
