@@ -1,3 +1,4 @@
+import './DiffusionScarf.scss';
 import Swatch from '../Swatch';
 import { StitchPattern, Color, ColorSequenceArray } from '../types'
 import { totalColorSequenceLength } from '../color'
@@ -150,12 +151,9 @@ function DiffusionScarf() {
       <div className="squashed-swatch-container">
         {
           panelConfigs.map((specificConfig, index) =>{
-            const style = { transform: "", cursor: 'pointer'}
-            if(specificConfig.flip) {
-              style.transform = "rotateY(180deg)"
-            }
+            const classes = ['swatchWrapper', specificConfig.flip ? 'flip' : '', index === selectedSwatchIndex ? 'selected' : '']
             return (
-              <div style={style} key={`compactChart${index}`} onClick={() => setSelectedSwatchIndex(index)}>
+              <div className={classes.join(' ')} key={`compactChart${index}`} onClick={() => setSelectedSwatchIndex(index)}>
                 <Swatch {...sharedConfig} stitchPattern={StitchPattern.compactMoss} {...specificConfig} />
               </div>
             )
