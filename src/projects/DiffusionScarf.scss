@@ -1,0 +1,15 @@
+.squashed-swatch-container {
+  display: flex;
+  .swatchWrapper {
+    cursor: pointer;
+    &.flip {
+      transform: rotateY(180deg)
+    }
+    &.selected {
+      background-color: #bbf;
+    }
+  }
+  .swatch.compact-moss {
+    margin-right: -3px;
+  }
+}

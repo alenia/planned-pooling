@@ -4,13 +4,9 @@ import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig } from './types'
 import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
+import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)
-
-function mod(n: number, m: number) {
-  // because native JS % operator chokes on negatives
-  return ((n % m) + m) % m;
-}
 
 const defaultPickerColors = [
   "#d9073a",

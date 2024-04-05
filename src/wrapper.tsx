@@ -9,6 +9,7 @@ import LogoOption from './projects/LogoOption'
 import StretchLengths from './projects/StretchLengths'
 import Parallax from './projects/Parallax'
 import DoloresParkTote from './projects/DoloresParkTote'
+import DiffusionScarf from './projects/DiffusionScarf'
 import './index.scss'
 import {
   createBrowserRouter,
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/dolores-park-tote",
     element: <DoloresParkTote/>
+  },
+  {
+    path: "/diffusion-scarf",
+    element: <DiffusionScarf/>
   },
   {
     path: "/",

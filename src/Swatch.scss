@@ -89,6 +89,13 @@ version of preview. Hopefully there will be a test of this diff at some point*/
   @include interwovenStitch(28px, 14px, 1px, 0.5)
 }
 
+.swatch.compact-moss {
+  @include interwovenStitch(6px, 3px, 0px, 0.5);
+  .stitch {
+    border-width: 0;
+  }
+}
+
 .swatch.hdc {
   @include interwovenStitch(28px, 14px, 1px, 0.3)
 }
