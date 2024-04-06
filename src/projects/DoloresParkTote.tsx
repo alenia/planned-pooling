@@ -5,6 +5,7 @@ import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways, defaultDunaColorwayId } from '../colorways';
 import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../color';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
+import ColorSequenceInfo from '../ColorSequenceInfo'
 
 function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]
@@ -86,6 +87,7 @@ function DoloresParkTote() {
               { label: dunaColorways[id].colorway, value: id }
             )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
           />
+          <ColorSequenceInfo colorSequence={swatchConfig.colorSequence} colorShift={swatchConfig.colorShift}/>
           <label>
             Set the stitches per row and pooling technique based on your panel:
           </label>
