@@ -87,6 +87,8 @@ function Form(
   const staggerLengthsTooltip = () => {
     if (staggerType === "colorStretched") {
       return "This will stretch the length of the color that ends an even row/starts an odd row.\n\nThat is, if you normally have 5 stitches of a color, this will make it 6 at that transition point."
+    } else if (staggerType === "colorSwallowed") {
+      return "This will contract the length of the color that starts an odd row.\n\nThat is, if you normally have 5 stitches of a color, this will make it 4 at that transition point."
     } else {
       return `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
     }
@@ -95,6 +97,8 @@ function Form(
   const staggerLengthsLabel = () => {
     if (staggerType === "colorStretched") {
       return "Stretch Colors at row boundary"
+    } else if (staggerType === "colorSwallowed") {
+      return "Swallow Colors at row boundary"
     } else {
       return "Alternate Row Lengths"
     }
