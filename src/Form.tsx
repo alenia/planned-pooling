@@ -4,6 +4,7 @@ import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig } from './types'
 import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
+import ColorSequenceInfo from './ColorSequenceInfo'
 import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)
@@ -136,12 +137,7 @@ function Form(
       </fieldset>
 
       <fieldset className='spec-fields'>
-        <div>
-          <em>
-            Total stitches in color sequence: {totalColorSequenceLength(colorSequence)}
-          </em>
-        </div>
-
+        <ColorSequenceInfo colorSequence={colorSequence} colorShift={colorShift}/>
         <IntegerInput
           label="Stitches per row:"
           title="The number of stitches in one row"
