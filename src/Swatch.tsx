@@ -153,17 +153,19 @@ function Swatch(
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
   const clustered = !!clusterConfig.stitchCount;
-  const staggered = staggerLengths && staggerType != 'colorStretched'
+
+  const computedColorShift = staggerLengths && staggerType === 'colorSwallowed' ? colorShift - 1 : colorShift
 
   const classNames = [
     className,
     'swatch',
     stitchPattern,
     clustered ? 'clustered' : '',
-    staggered ? 'staggered' : ''
+    staggerLengths ? 'staggered' : '',
+    staggerType
   ]
 
-  const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift})
+  const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift: computedColorShift})
 
   return <div data-testid="swatch" className={classNames.join(' ')}>
     {

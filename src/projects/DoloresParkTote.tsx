@@ -6,10 +6,18 @@ import { dunaColorways, defaultDunaColorwayId } from '../colorways';
 import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../color';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
+type StaggerType = 'colorStretched' | 'colorSwallowed'
+
 function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(defaultDunaColorwayId)
+  const [staggerType, setStaggerType] = useState('colorStretched' as StaggerType)
+
+  const setStaggerTypeFromDropdown = (newStaggerType: string) => {
+    setStaggerType(newStaggerType as StaggerType)
+  }
+
   const defaultSwatchConfig = {
     colorSequence: initialColorSequence,
     stitchesPerRow: totalColorSequenceLength(initialColorSequence),
@@ -86,6 +94,17 @@ function DoloresParkTote() {
               { label: dunaColorways[id].colorway, value: id }
             )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
           />
+          <DropdownInput
+            label="Row alternating technique (for panel 2):"
+            name="staggerType"
+            title="This changes how the piece behaves at the boundary between the end of an even row and beginning of an odd row"
+            value={staggerType}
+            setValue={setStaggerTypeFromDropdown}
+            items={[
+              {label: 'Color stretching', value: 'colorStretched'},
+              {label: 'Color swallowing', value: 'colorSwallowed'},
+            ]}
+          />
           <label>
             Set the stitches per row and pooling technique based on your panel:
           </label>
@@ -100,7 +119,7 @@ function DoloresParkTote() {
         swatchConfig={swatchConfig}
         setSwatchConfig={setSwatchConfig}
         showRowNumbersInitially={true}
-        staggerType={'colorStretched'}
+        staggerType={staggerType}
         formClasses='wide-first-column'
       />
     </Fragment>

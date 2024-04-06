@@ -52,12 +52,12 @@ version of preview. Hopefully there will be a test of this diff at some point*/
 
 /*Basic layout swatches: moss, hdc, granny, shell, v-stitch*/
 @mixin interwovenStitch($stitchHeight, $stitchWidth, $spacing, $overlapRatio) {
-  &.staggered {
+  &.staggered:not(.colorSwallowed):not(.colorStretched) {
     .crow:nth-child(2n) {
       margin: 0 $stitchWidth + $spacing;
     }
   }
-  &:not(.staggered) {
+  &:not(.staggered), &.colorSwallowed, &.colorStretched {
     .crow:nth-child(2n) {
       margin-right: $stitchWidth + $spacing;
     }
@@ -65,6 +65,14 @@ version of preview. Hopefully there will be a test of this diff at some point*/
       margin-left: $stitchWidth + $spacing;
     }
   }
+  &.colorSwallowed.staggered {
+    .crow:nth-child(2n+1) {
+      .stitch:first-child {
+        display: none;
+      }
+    }
+  }
+
   .stitch {
     box-sizing: border-box;
     border: 1px solid black;
@@ -75,7 +83,7 @@ version of preview. Hopefully there will be a test of this diff at some point*/
     margin-top: $spacing;
     margin-bottom: -1 * $overlapRatio * $stitchHeight;
   }
-  &.numbered:not(.staggered) {
+  &.numbered:not(.staggered), &.numbered.colorSwallowed, &.numbered.colorStretched {
     .crow:nth-child(2n + 1) {
       &::before {
         margin-left: -1*$stitchWidth - 15px;
