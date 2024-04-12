@@ -14,6 +14,57 @@ const ltblue = "#8dd0f2" as Color;
 const navy = "#0e0e66" as Color;
 
 
+function DoubleCheckerSubform({swatchConfig, yardage} : 
+  {
+    swatchConfig: SwatchConfig,
+    yardage: number
+  }
+) {
+  const [totalWeight, setTotalWeight] = useState(100)
+  const [swatchWeight, setSwatchWeight] = useState(100)
+  const [actualRows, setActualRows] = useState(swatchConfig.numberOfRows)
+
+  const rowsPossible = Math.floor(actualRows * totalWeight/swatchWeight)
+  const inchesPerSkein = yardage * 12 * 3;
+  const stitchesPossible = swatchConfig.stitchesPerRow * rowsPossible
+  const numColorSequencesPossible = stitchesPossible/totalColorSequenceLength(swatchConfig.colorSequence)
+  const possibleColorSequenceInches = inchesPerSkein/numColorSequencesPossible
+  return (
+    <fieldset>
+      <em>Double check values based on your actual project</em>
+      <NumericInput
+        label="Total weight of yarn:"
+        title="Weight of your yarn for the project"
+        name="TotalWeight"
+        value={totalWeight}
+        setValue={setTotalWeight}
+        validator={NumericInput.validators.nonNegative}
+      />
+      <NumericInput
+        label="Weight of swatch:"
+        title="Measured weight of your swatch"
+        withTooltip={true}
+        name="swatchWeight"
+        value={swatchWeight}
+        setValue={setSwatchWeight}
+        validator={NumericInput.validators.nonNegative}
+      />
+      <NumericInput
+        label="Rows in your actual swatch:"
+        title="Rows in your swatch"
+        name="numberOfSkeins"
+        value={actualRows}
+        setValue={setActualRows}
+        validator={NumericInput.validators.positive}
+      />
+      <p>
+        You should end up with {rowsPossible} rows.<br/>
+        {/*This is DIFFERENCE rows MORE OR LESS than the calculated number based on yardage (PERCENTAGE%).<br/>*/}
+        Your color sequence length in inches might be {possibleColorSequenceInches.toFixed(1)} instead.
+      </p>
+    </fieldset>
+  )
+}
 function YardageForm(
   { swatchConfig, setSwatchConfig, active } : 
   {
@@ -79,6 +130,7 @@ function YardageForm(
           validator={NumericInput.validators.positive}
         />
       </fieldset>
+      <DoubleCheckerSubform swatchConfig={swatchConfig} yardage={yardage}/>
     </form>
   )
 }
