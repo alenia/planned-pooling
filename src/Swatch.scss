@@ -112,6 +112,13 @@ version of preview. Hopefully there will be a test of this diff at some point*/
   @include interwovenStitch(20px, 20px, 0, 0.2);
 }
 
+.swatch.entrelac {
+  @include interwovenStitch(20px, 20px, -6px, 0);
+  .stitch {
+    transform: rotate(45deg);
+  }
+}
+
 .swatch.shell {
   $stitchWidth: 35px;
   $stitchHeight: 20px;

@@ -10,6 +10,7 @@ type ClusterConfiguration = {
 }
 const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Todo: make this a class of some sort?
   moss: {},
+  entrelac: {},
   'compact-moss': {},
   unstyled: {},
   stacked: {},
