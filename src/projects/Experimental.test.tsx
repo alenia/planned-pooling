@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import Experimental from './Experimental'
 
 describe('Experimental', () => {
-  it('renders the StretchLengths component with a swatch in it', () => {
+  it('renders the Experimental component with a swatch in it', () => {
     render(
       <MemoryRouter >
         <Experimental />
