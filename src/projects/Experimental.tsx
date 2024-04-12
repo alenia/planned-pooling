@@ -63,7 +63,7 @@ function Experimental() {
           <ColorSequenceInfo colorSequence={swatchConfig.colorSequence} colorShift={swatchConfig.colorShift}/>
           <p>In this swatch:</p>
           <pre>Number of stitches/clusters displayed (might be wrong with a stagger type): {numStitches}</pre>
-          <pre>Number of color sequences displayed: {numColorSequences.toFixed(1)}</pre>
+          <pre>Number of {swatchConfig.colorSequence.length}-color color sequences displayed: {numColorSequences.toFixed(1)}</pre>
           <DropdownInput
             label="Row alternating technique:"
             name="staggerType"
