@@ -1,5 +1,5 @@
 import SwatchWithForm from '../SwatchWithForm';
-import { StitchPattern, Color, SwatchConfig } from '../types'
+import { StitchPattern, SwatchConfig } from '../types'
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { useState, useEffect } from "react";
 import ColorSequenceInfo from '../ColorSequenceInfo'
@@ -7,11 +7,6 @@ import DropdownInput from '../inputs/Dropdown';
 import CheckboxInput from '../inputs/Checkbox';
 import NumericInput from '../inputs/Numeric';
 import { totalColorSequenceLength } from '../color'
-
-const red = "#ff001d" as Color;
-const cream = "#fcf7eb" as Color;
-const ltblue = "#8dd0f2" as Color;
-const navy = "#0e0e66" as Color;
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
 
@@ -75,7 +70,7 @@ function YardageForm(
   }
 ) {
   const [numberOfSkeins, setNumberOfSkeins] = useState(1)
-  const [yardage, setYardage] = useState(230)
+  const [yardage, setYardage] = useState(245)
   const [colorSequenceInches, setColorSequenceInches] = useState(64)
 
   useEffect(() => {
@@ -139,19 +134,18 @@ function YardageForm(
 function Experimental() {
   const defaultSwatchConfig = {
     colorSequence: [
-      {color: navy, length: 3},
-      {color: red, length: 3},
-      {color: navy, length: 3},
-      {color: ltblue, length: 2},
-      {color: cream, length: 5},
-      {color: ltblue, length: 2},
+      {color: '#fafc38', length: 13},
+      {color: '#ef42c6', length: 1},
+      {color: '#7b0f9a', length: 3},
+      {color: '#ef42c6', length: 1},
+      {color: '#c3fc38', length: 1},
     ],
-    stitchesPerRow: 18, //Note: explicitly ok not saving zero from search params here
-    numberOfRows: 40, //Note: explicitly ok not pulling zero from search params here
+    stitchesPerRow: 29, //Note: explicitly ok not saving zero from search params here
+    numberOfRows: 58, //Note: explicitly ok not pulling zero from search params here
     colorShift: 0,
     staggerLengths: false,
     stitchPattern: StitchPattern.moss,
-  }
+  } as SwatchConfig
 
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
