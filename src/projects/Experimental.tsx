@@ -23,9 +23,9 @@ function YardageForm(
     active: boolean,
   }
 ) {
-  const [numberOfSkeins, setNumberOfSkeins] = useState(1 as number | undefined)
-  const [yardage, setYardage] = useState(230 as number | undefined)
-  const [colorSequenceInches, setColorSequenceInches] = useState(64 as number | undefined)
+  const [numberOfSkeins, setNumberOfSkeins] = useState(1)
+  const [yardage, setYardage] = useState(230)
+  const [colorSequenceInches, setColorSequenceInches] = useState(64)
 
   useEffect(() => {
     if(active && numberOfSkeins && yardage && colorSequenceInches) {
