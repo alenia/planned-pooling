@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from "react-router-dom";
-import StretchLengths from './StretchLengths'
+import Experimental from './Experimental'
 
-describe('StretchLengths', () => {
-  it('renders the StretchLengths component with a swatch in it', () => {
+describe('Experimental', () => {
+  it('renders the Experimental component with a swatch in it', () => {
     render(
       <MemoryRouter >
-        <StretchLengths />
+        <Experimental />
       </MemoryRouter>
     )
     expect(screen.getAllByTestId("swatch").length).toEqual(1)

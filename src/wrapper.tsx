@@ -6,7 +6,7 @@ import Preview from './projects/Preview'
 import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
-import StretchLengths from './projects/StretchLengths'
+import Experimental from './projects/Experimental'
 import Parallax from './projects/Parallax'
 import DoloresParkTote from './projects/DoloresParkTote'
 import DiffusionScarf from './projects/DiffusionScarf'
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/experimental",
-    element: <StretchLengths/>
+    element: <Experimental/>
   },
   {
     path: "/parallax",
