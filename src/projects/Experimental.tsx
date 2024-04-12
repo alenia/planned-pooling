@@ -27,7 +27,7 @@ function Experimental() {
     numberOfRows: 40, //Note: explicitly ok not pulling zero from search params here
     colorShift: 0,
     staggerLengths: false,
-    stitchPattern: StitchPattern.moss,
+    stitchPattern: StitchPattern.entrelac,
   }
 
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
