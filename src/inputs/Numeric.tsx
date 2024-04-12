@@ -2,22 +2,18 @@ import ClickableTooltip from '../ClickableTooltip';
 
 const NumericInput = (
   { value, name, label, title, setValue, validator = () => true, withTooltip}
-  : { value: number | undefined,
+  : { value: number,
       name: string,
       label: string,
       title: string,
-      setValue: (value: number | undefined) => void,
+      setValue: (value: number) => void,
       validator?: (value: number) => boolean,
       withTooltip?: boolean,
     }
 ) => {
   const setValueFromForm = (formValue: string) : void => {
-    if(formValue === undefined) {
-      setValue(formValue)
-      return
-    }
     let v : number | undefined = parseFloat(formValue)
-    if (isNaN(v) || !validator(v)) { v = undefined }
+    if (isNaN(v) || !validator(v)) { v = 1 }
     setValue(v);
   }
 
