@@ -4,6 +4,7 @@ import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatch
 import { useState } from "react";
 import ColorSequenceInfo from '../ColorSequenceInfo'
 import DropdownInput from '../inputs/Dropdown';
+import { totalColorSequenceLength } from '../color'
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -39,12 +40,15 @@ function Experimental() {
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
+  const numStitches = swatchConfig.stitchesPerRow * swatchConfig.numberOfRows
+  const numColorSequences = numStitches/totalColorSequenceLength(swatchConfig.colorSequence)
+
   return (
     <div>
       <p>This is an experimental page. It might change at anytime and URLs can break.</p>
       <p>Here are the current features:</p>
       <ul>
-        <li>there is a button to double your colors</li>
+        <li>there is a button to double your colors that makes a copy of all the colors</li>
         <li>there's more info about the colors you see</li>
         <li>you can change stagger type (not saved on url)</li>
       </ul>
@@ -57,6 +61,9 @@ function Experimental() {
       >
         <fieldset>
           <ColorSequenceInfo colorSequence={swatchConfig.colorSequence} colorShift={swatchConfig.colorShift}/>
+          <p>In this swatch:</p>
+          <pre>Number of stitches/clusters displayed (might be wrong with a stagger type): {numStitches}</pre>
+          <pre>Number of color sequences displayed: {numColorSequences.toFixed(1)}</pre>
           <DropdownInput
             label="Row alternating technique:"
             name="staggerType"
