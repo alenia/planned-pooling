@@ -3,6 +3,7 @@ import { DeepReadonly } from 'ts-essentials'
 export enum StitchPattern {
   unstyled = "unstyled",
   moss = "moss",
+  entrelac = "entrelac",
   stacked = "stacked",
   granny = "granny",
   hdc = "hdc",
