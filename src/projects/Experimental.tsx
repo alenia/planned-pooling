@@ -149,7 +149,7 @@ function Experimental() {
 
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
-  const [staggerType, setStaggerType] = useState('colorStretched' as StaggerType)
+  const [staggerType, setStaggerType] = useState('normal' as StaggerType)
   const [displayYardageForm, setDisplayYardageForm] = useState(false)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
