@@ -86,6 +86,98 @@ export const dunaColorways : ColorwayRecord = {
   },
 }
 
+export const defaultParallaxColorwayId = "dic-tiger-falls"
+export const parallaxColorways : ColorwayRecord = {
+  "dic-bali-wood": {
+    "yarnName": "Dream in Color",
+    "colorway": "Bali Wood",
+    "colorSequence": [
+      {"color": "#45ebd3", "length": 3},
+      {"color": "#404039", "length": 16},
+    ]
+  },
+  "dic-big-bang": {
+    "yarnName": "Dream in Color",
+    "colorway": "Big Bang",
+    "colorSequence": [
+      {"color": "#ff5a0e", "length": 3},
+      {"color": "#c10dab", "length": 16},
+    ]
+  },
+  "dic-flash-bulb": {
+    "yarnName": "Dream in Color",
+    "colorway": "Flash Bulb",
+    "colorSequence": [
+      {"color": "#FF406F", "length": 3},
+      {"color": "#cfd5c2", "length": 16},
+    ]
+  },
+  "dic-gold-record-blues": {
+    "yarnName": "Dream in Color",
+    "colorway": "Gold Record Blues",
+    "colorSequence": [
+      {"color": "#d2b11e", "length": 3},
+      {"color": "#0d3e54", "length": 16},
+    ]
+  },
+  "dic-pink-pop": {
+    "yarnName": "Dream in Color",
+    "colorway": "Pink Pop",
+    "colorSequence": [
+      {"color": "#fb7fc0", "length": 3},
+      {"color": "#cd0636", "length": 16},
+    ]
+  },
+  "dic-storm-berry": {
+    "yarnName": "Dream in Color",
+    "colorway": "Storm Berry",
+    "colorSequence": [
+      {"color": "#bf0b5d", "length": 3},
+      {"color": "#9fa3a4", "length": 16},
+    ]
+  },
+  "dic-terra-cotta-sky": {
+    "yarnName": "Dream in Color",
+    "colorway": "Terra Cotta Sky",
+    "colorSequence": [
+      {"color": "#b72e0c", "length": 3},
+      {"color": "#baebfb", "length": 16},
+    ]
+  },
+  "dic-tiger-falls": {
+    "yarnName": "Dream in Color",
+    "colorway": "Tiger Falls",
+    "colorSequence": [
+      {color: "#e0962b", length: 3},
+      {color: "#157255", length: 16},
+    ]
+  },
+  "dic-tip-top-tangerine": {
+    "yarnName": "Dream in Color",
+    "colorway": "Tip Top Tangerine",
+    "colorSequence": [
+      {"color": "#ff406f", "length": 3},
+      {"color": "#fe9929", "length": 16},
+    ]
+  },
+  "dic-tuscan-sand": {
+    "yarnName": "Dream in Color",
+    "colorway": "Tuscan Sand",
+    "colorSequence": [
+      {color: "#FDF0D5", length: 3},
+      {color: "#D0881D", length: 16},
+    ]
+  },
+  "dic-violet-fields": {
+    "yarnName": "Dream in Color",
+    "colorway": "Violet Fields",
+    "colorSequence": [
+      {color: "#540F9A", length: 3},
+      {color: "#909C30", length: 16},
+    ]
+  },
+}
+
 //const colorways : Record<string, DeepReadonly<Colorway>> = { ...dunaColorways }
 
 //export default colorways;
