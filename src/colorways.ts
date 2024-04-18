@@ -164,16 +164,36 @@ export const parallaxColorways : ColorwayRecord = {
     "yarnName": "Dream in Color",
     "colorway": "Tuscan Sand",
     "colorSequence": [
-      {color: "#FDF0D5", length: 3},
-      {color: "#D0881D", length: 16},
+      {color: "#fdf0d5", length: 3},
+      {color: "#d0881d", length: 16},
     ]
   },
   "dic-violet-fields": {
     "yarnName": "Dream in Color",
     "colorway": "Violet Fields",
     "colorSequence": [
-      {color: "#540F9A", length: 3},
-      {color: "#909C30", length: 16},
+      {color: "#540f9a", length: 3},
+      {color: "#909c30", length: 16},
+    ]
+  },
+  "wonderland-lounging-lazily": {
+    "yarnName": "Wonderland Yarns",
+    "colorway": "Lounging Lazily on a Dreary Day",
+    "colorSequence": [
+      {color: "#184760", length: 1},
+      {color: "#3d4c54", length: 1},
+      {color: "#83888c", length: 1},
+      {color: "#d5d6d7", length: 16},
+    ]
+  },
+  "wonderland-city-lights": {
+    "yarnName": "Wonderland Yarns",
+    "colorway": "City Ligths Reflected on Wet Pavement",
+    "colorSequence": [
+      {color: "#b625b8", length: 1},
+      {color: "#287aa4", length: 1},
+      {color: "#b6cd32", length: 1},
+      {color: "#42464d", length: 16},
     ]
   },
 }
