@@ -7,6 +7,7 @@ import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
 import StretchLengths from './projects/StretchLengths'
+import Entrelac from './projects/Entrelac'
 import Parallax from './projects/Parallax'
 import DoloresParkTote from './projects/DoloresParkTote'
 import SwimLesson from './projects/SwimLesson'
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/experimental",
     element: <StretchLengths/>
+  },
+  {
+    path: "/entrelac",
+    element: <Entrelac/>
   },
   {
     path: "/parallax",
