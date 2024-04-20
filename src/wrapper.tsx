@@ -7,6 +7,7 @@ import Sunflower from './projects/Sunflower'
 import Doodle from './projects/Doodle'
 import LogoOption from './projects/LogoOption'
 import Experimental from './projects/Experimental'
+import Entrelac from './projects/Entrelac'
 import Parallax from './projects/Parallax'
 import DoloresParkTote from './projects/DoloresParkTote'
 import DiffusionScarf from './projects/DiffusionScarf'
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/experimental",
     element: <Experimental/>
+  },
+  {
+    path: "/entrelac",
+    element: <Entrelac/>
   },
   {
     path: "/parallax",
