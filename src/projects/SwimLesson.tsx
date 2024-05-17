@@ -1,4 +1,6 @@
+import './SwimLesson.scss';
 import SwatchWithForm from '../SwatchWithForm';
+import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
@@ -54,6 +56,20 @@ function SwimLesson() {
     })
   }
 
+  const miniStripeConfiguration = {
+    stitchesPerRow: totalColorSequenceLength(swatchConfig.colorSequence),
+    numberOfRows: 10,
+    staggerLengths: false,
+    stitchPattern: StitchPattern.compactMoss
+  }
+  const miniPlaidConfiguration = {
+    stitchesPerRow: totalColorSequenceLength(swatchConfig.colorSequence),
+    numberOfRows: totalColorSequenceLength(swatchConfig.colorSequence)*4,
+    staggerLengths: true,
+    staggerType: staggerType,
+    stitchPattern: StitchPattern.compactMoss
+  }
+
   return (
     <Fragment>
       <p>This is a page to help with the Swim Lesson Cowl and Headband patterns. You can also try the <a href='/'>main app.</a></p>
@@ -94,6 +110,13 @@ function SwimLesson() {
         staggerType={staggerType}
         formClasses='wide-first-column'
       />
+      <br/>
+      <h4>Entire Cowl Preview (beta)</h4>
+      <div className="mini-vertical-preview">
+        <Swatch {...swatchConfig} {...miniStripeConfiguration} />
+        <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
+        <Swatch {...swatchConfig} {...miniStripeConfiguration} />
+      </div>
     </Fragment>
   );
 }

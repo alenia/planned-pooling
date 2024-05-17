@@ -10,7 +10,7 @@ describe('SwimLesson', () => {
         <SwimLesson />
       </MemoryRouter>
     )
-    expect(screen.getAllByTestId("swatch").length).toEqual(1)
+    expect(screen.getAllByTestId("swatch").length).toBeGreaterThan(1)
   })
 })
 
