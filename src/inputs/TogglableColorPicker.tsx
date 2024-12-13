@@ -16,7 +16,7 @@ const forceColorType = (colorString : string) : Color => {
 
 const TogglableColorPicker = (
   { value, setValue, presetColors }
-  : { value: Color, setValue: (color: Color) => void, presetColors: Array<string> }
+  : { value: Color, setValue: (color: Color) => void, presetColors?: Array<string> }
 ) => {
   const [pickerColor, setPickerColor] = useState(value)
   const [displayPicker, setDisplayPicker] = useState(false)

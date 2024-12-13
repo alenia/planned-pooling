@@ -4,8 +4,10 @@ import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
+import TogglableColorPicker from '../inputs/TogglableColorPicker'
 import { totalColorSequenceLength } from '../color';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
+import { Color } from '../types'
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
 
@@ -15,6 +17,7 @@ function PoolFade() {
     { color: "#10dbcc", length: 4 }
   ] as ColorSequenceArray
   const [staggerType, setStaggerType] = useState('colorSwallowed' as StaggerType)
+  const [fade1Color, setFade1Color] = useState('#9E7DB9' as Color)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)
@@ -34,7 +37,7 @@ function PoolFade() {
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
   const miniPlaidConfiguration = {
-    numberOfRows: 47*6,
+    numberOfRows: 40*6,
     staggerLengths: true,
     staggerType: staggerType,
     stitchPattern: StitchPattern.compactMoss
@@ -60,6 +63,10 @@ function PoolFade() {
               {label: 'Color swallowing', value: 'colorSwallowed'},
             ]}
           />
+          <TogglableColorPicker
+            value = {fade1Color}
+            setValue={setFade1Color}
+          />
         </fieldset>
       </form>
       <SwatchWithForm
@@ -72,7 +79,7 @@ function PoolFade() {
       />
       <br/>
       <h4>Preview</h4>
-      <div className="flexy">
+      <div className="flexy" style={{"--fade-1-color": fade1Color} as React.CSSProperties}>
         <div className="multicolor-hacks-1 mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
         </div>
