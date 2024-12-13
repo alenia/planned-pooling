@@ -17,6 +17,11 @@ $rowsPerColor: 40;
   display: flex;
   gap: 10px;
   --fade-1-color: #9E7DB9;
+  --fade-2-color: #CAB1E4;
+  --fade-3-color: #E4D4F5;
+  --fade-4-color: #F5E8FE;
+  --fade-5-color: #CBF7FA;
+  --fade-6-color: #7DF2E6;
   .multicolor-hacks-1 {
     $n1: $rowsPerColor;
     $n2: $n1 + $rowsPerColor;
@@ -33,11 +38,11 @@ $rowsPerColor: 40;
     .stitch {
       @include undertoneColor(var(--fade-1-color));
     }
-    @include colorChildren($n1,  #CAB1E4);
-    @include colorChildren($n2,  #E4D4F5);
-    @include colorChildren($n3,  #F5E8FE);
-    @include colorChildren($n4,  #CBF7FA);
-    @include colorChildren($n5,  #7DF2E6);
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
   }
 
   .multicolor-hacks-2 {
@@ -57,11 +62,11 @@ $rowsPerColor: 40;
     .stitch {
       @include undertoneColor(var(--fade-1-color));
     }
-    @include colorChildren($n1,  #CAB1E4);
-    @include colorChildren($n2,  #E4D4F5);
-    @include colorChildren($n3,  #F5E8FE);
-    @include colorChildren($n4,  #CBF7FA);
-    @include colorChildren($n5,  #7DF2E6);
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
   }
 
   .multicolor-hacks-3 {
@@ -83,11 +88,11 @@ $rowsPerColor: 40;
     .stitch {
       @include undertoneColor(var(--fade-1-color));
     }
-    @include colorChildren($n1,  #CAB1E4);
-    @include colorChildren($n2,  #E4D4F5);
-    @include colorChildren($n3,  #F5E8FE);
-    @include colorChildren($n4,  #CBF7FA);
-    @include colorChildren($n5,  #7DF2E6);
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
   }
 
   .multicolor-hacks-4 {
@@ -109,11 +114,11 @@ $rowsPerColor: 40;
     .stitch {
       @include undertoneColor(var(--fade-1-color));
     }
-    @include colorChildren($n1,  #CAB1E4);
-    @include colorChildren($n2,  #E4D4F5);
-    @include colorChildren($n3,  #F5E8FE);
-    @include colorChildren($n4,  #CBF7FA);
-    @include colorChildren($n5,  #7DF2E6);
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
   }
 
 
@@ -140,10 +145,10 @@ $rowsPerColor: 40;
     .stitch {
       @include undertoneColor(var(--fade-1-color));
     }
-    @include colorChildren($n1,  #CAB1E4);
-    @include colorChildren($n2,  #E4D4F5);
-    @include colorChildren($n3,  #F5E8FE);
-    @include colorChildren($n4,  #CBF7FA);
-    @include colorChildren($n5,  #7DF2E6);
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
   }
 }
