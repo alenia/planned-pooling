@@ -1,4 +1,4 @@
-import './PoolFade.scss';
+import './FadingPool.scss';
 import SwatchWithForm from '../SwatchWithForm';
 import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
@@ -11,7 +11,7 @@ import { Color } from '../types'
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
 
-function PoolFade() {
+function FadingPool() {
   const initialColorSequence = [
     { color: "#dfebea", length: 12 },
     { color: "#10dbcc", length: 4 }
@@ -134,5 +134,5 @@ function PoolFade() {
   );
 }
 
-export default PoolFade;
+export default FadingPool;
 
