@@ -11,6 +11,19 @@ import { Color } from '../types'
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
 
+//NOTE: this is copypasta, refactor later. From Form.tsx
+const defaultPickerColors = [
+  "#d9073a",
+  "#f57605",
+  "#fcdc4d",
+  "#a1c349",
+  "#1c40b8",
+  "#7b0f9a",
+  "#542e0f",
+  "#fdf0d5"
+]
+
+
 function FadingPool() {
   const initialColorSequence = [
     { color: "#dfebea", length: 12 },
@@ -23,6 +36,7 @@ function FadingPool() {
   const [fade4Color, setFade4Color] = useState('#F5E8FE' as Color)
   const [fade5Color, setFade5Color] = useState('#CBF7FA' as Color)
   const [fade6Color, setFade6Color] = useState('#7DF2E6' as Color)
+  const fadeColors = [fade1Color, fade2Color, fade3Color, fade4Color, fade5Color, fade6Color]
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)
@@ -37,13 +51,13 @@ function FadingPool() {
     stitchPattern: StitchPattern.moss,
   }
 
-  const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
+  const { swatchConfig, setSwatchConfig, setSearchParams, staggerLengths, colorSequence } = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
   const miniPlaidConfiguration = {
     numberOfRows: 40*6,
-    staggerLengths: true,
+    staggerLengths: staggerLengths,
     staggerType: staggerType,
     stitchPattern: StitchPattern.compactMoss
   }
@@ -56,6 +70,8 @@ function FadingPool() {
     "--fade-5-color": fade5Color,
     "--fade-6-color": fade6Color,
   } as React.CSSProperties
+
+  const presetColors = [...new Set([...defaultPickerColors, ...fadeColors])]; //add in color sequence colors?
 
   return (
     <Fragment>
@@ -80,26 +96,32 @@ function FadingPool() {
           <TogglableColorPicker
             value = {fade1Color}
             setValue={setFade1Color}
+            presetColors = { presetColors }
           />
           <TogglableColorPicker
             value = {fade2Color}
             setValue={setFade2Color}
+            presetColors = { presetColors }
           />
           <TogglableColorPicker
             value = {fade3Color}
             setValue={setFade3Color}
+            presetColors = { presetColors }
           />
           <TogglableColorPicker
             value = {fade4Color}
             setValue={setFade4Color}
+            presetColors = { presetColors }
           />
           <TogglableColorPicker
             value = {fade5Color}
             setValue={setFade5Color}
+            presetColors = { presetColors }
           />
           <TogglableColorPicker
             value = {fade6Color}
             setValue={setFade6Color}
+            presetColors = { presetColors }
           />
         </fieldset>
       </form>
