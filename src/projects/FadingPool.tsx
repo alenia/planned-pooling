@@ -136,10 +136,10 @@ function FadingPool() {
       <br/>
       <h4>Preview</h4>
       <div className="flexy" style={fadeColorStyles}>
-        <div className="multicolor-hacks-1 mini-horizontal-preview">
+        <div className="marled-no-fade mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
         </div>
-        <div className="multicolor-hacks-4 mini-horizontal-preview">
+        <div className="eight-row-color-fade mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
         </div>
       </div>

@@ -22,7 +22,7 @@ $rowsPerColor: 40;
   --fade-4-color: #F5E8FE;
   --fade-5-color: #CBF7FA;
   --fade-6-color: #7DF2E6;
-  .multicolor-hacks-1 {
+  .marled-no-fade {
     $n1: $rowsPerColor;
     $n2: $n1 + $rowsPerColor;
     $n3: $n2 + $rowsPerColor;
@@ -45,57 +45,7 @@ $rowsPerColor: 40;
     @include colorChildren($n5,  var(--fade-6-color));
   }
 
-  .multicolor-hacks-2 {
-    $n1: $rowsPerColor - 2;
-    $n2: $n1 + $rowsPerColor;
-    $n3: $n2 + $rowsPerColor;
-    $n4: $n3 + $rowsPerColor;
-    $n5: $n4 + $rowsPerColor;
-    @mixin colorChildren($k, $nextColor) {
-      .crow:nth-child(#{$k}), .crow:nth-child(#{$k + 1}), // 2 rows of next color
-      .crow:nth-child(n+#{$k + 4}) { // skip 2 rows, all next color
-        .stitch {
-          @include undertoneColor($nextColor);
-        }
-      }
-    }
-    .stitch {
-      @include undertoneColor(var(--fade-1-color));
-    }
-    @include colorChildren($n1,  var(--fade-2-color));
-    @include colorChildren($n2,  var(--fade-3-color));
-    @include colorChildren($n3,  var(--fade-4-color));
-    @include colorChildren($n4,  var(--fade-5-color));
-    @include colorChildren($n5,  var(--fade-6-color));
-  }
-
-  .multicolor-hacks-3 {
-    $n1: $rowsPerColor - 8;
-    $n2: $n1 + $rowsPerColor;
-    $n3: $n2 + $rowsPerColor;
-    $n4: $n3 + $rowsPerColor;
-    $n5: $n4 + $rowsPerColor;
-    @mixin colorChildren($k, $nextColor) {
-      .crow:nth-child(#{$k}), .crow:nth-child(#{$k + 1}), // two rows of next color
-      .crow:nth-child(#{$k + 6}), .crow:nth-child(#{$k + 7}), // skip 4 rows, 2 rows of next color
-      .crow:nth-child(n + #{$k + 10}):nth-child(-n+#{$k + 13}), // skip 2 rows, 4 rows of next color
-      .crow:nth-child(n+#{$k + 16}) { // skip 2 rows, all next color
-        .stitch {
-          @include undertoneColor($nextColor);
-        }
-      }
-    }
-    .stitch {
-      @include undertoneColor(var(--fade-1-color));
-    }
-    @include colorChildren($n1,  var(--fade-2-color));
-    @include colorChildren($n2,  var(--fade-3-color));
-    @include colorChildren($n3,  var(--fade-4-color));
-    @include colorChildren($n4,  var(--fade-5-color));
-    @include colorChildren($n5,  var(--fade-6-color));
-  }
-
-  .multicolor-hacks-4 {
+  .eight-row-color-fade {
     $n1: $rowsPerColor - 4;
     $n2: $n1 + $rowsPerColor;
     $n3: $n2 + $rowsPerColor;
@@ -106,37 +56,6 @@ $rowsPerColor: 40;
       .crow:nth-child(#{$k + 3}), //skip 2 rows, 1 row of next color
       .crow:nth-child(#{$k + 5}), .crow:nth-child(#{$k + 6}), // skip 1 rows, 2 rows of next color
       .crow:nth-child(n+#{$k + 8}) { // skip 1 row, all next color
-        .stitch {
-          @include undertoneColor($nextColor);
-        }
-      }
-    }
-    .stitch {
-      @include undertoneColor(var(--fade-1-color));
-    }
-    @include colorChildren($n1,  var(--fade-2-color));
-    @include colorChildren($n2,  var(--fade-3-color));
-    @include colorChildren($n3,  var(--fade-4-color));
-    @include colorChildren($n4,  var(--fade-5-color));
-    @include colorChildren($n5,  var(--fade-6-color));
-  }
-
-
-  .multicolor-hacks-5 {
-    $n1: $rowsPerColor - 9;
-    $n2: $n1 + $rowsPerColor;
-    $n3: $n2 + $rowsPerColor;
-    $n4: $n3 + $rowsPerColor;
-    $n5: $n4 + $rowsPerColor;
-
-    @mixin colorChildren($k, $nextColor) {
-      .crow:nth-child(#{$k}),
-      .crow:nth-child(#{$k + 4}), // skip 3 rows
-      .crow:nth-child(#{$k + 7}), // skip 2 rows
-      .crow:nth-child(#{$k + 9}), //skip 1 row
-      .crow:nth-child(#{$k + 11}), .crow:nth-child(#{$k + 12}), //skip 1 row
-      .crow:nth-child(n + #{$k + 14}):nth-child(-n+#{$k + 16}), // skip 2 rows, 3 rows of next color
-      .crow:nth-child(n+#{$k + 18}) {
         .stitch {
           @include undertoneColor($nextColor);
         }
