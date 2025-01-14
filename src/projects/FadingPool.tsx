@@ -51,13 +51,13 @@ function FadingPool() {
     stitchPattern: StitchPattern.moss,
   }
 
-  const { swatchConfig, setSwatchConfig, setSearchParams, staggerLengths, colorSequence } = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
+  const { swatchConfig, setSwatchConfig, setSearchParams } = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
   const miniPlaidConfiguration = {
     numberOfRows: 40*6,
-    staggerLengths: staggerLengths,
+    staggerLengths: swatchConfig.staggerLengths,
     staggerType: staggerType,
     stitchPattern: StitchPattern.compactMoss
   }
@@ -139,17 +139,8 @@ function FadingPool() {
         <div className="multicolor-hacks-1 mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
         </div>
-        <div className="multicolor-hacks-2 mini-horizontal-preview">
-          <Swatch {...swatchConfig} {...miniPlaidConfiguration}/>
-        </div>
-        <div className="multicolor-hacks-3 mini-horizontal-preview">
-          <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
-        </div>
         <div className="multicolor-hacks-4 mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
-        </div>
-        <div className="multicolor-hacks-5 mini-horizontal-preview">
-          <Swatch {...swatchConfig} {...miniPlaidConfiguration}/>
         </div>
       </div>
     </Fragment>
