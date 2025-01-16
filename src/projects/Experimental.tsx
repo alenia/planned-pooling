@@ -25,7 +25,10 @@ function DoubleCheckerSubform({swatchConfig, yardage} :
   const possibleColorSequenceInches = inchesPerSkein/numColorSequencesPossible
   return (
     <fieldset>
-      <em>Double check values based on your actual project</em>
+      <em>Double check values based on the weight of your actual project.<br/>This does not affect your displayed swatch or the values of the form below.</em><br/>
+      <p>Using the yardage in your yardage form, this tells you how many rows you should have in your project based on its weight.<br/>
+        This is intended to tell you if your color sequence length in inches might be wrong, given that this is a hard thing to measure.</p>
+      <p>Note: this shows up even if you haven't entered anything and should probably display nothing instead.</p>
       <NumericInput
         label="Total weight of yarn:"
         title="Weight of your yarn for the project"
@@ -46,15 +49,15 @@ function DoubleCheckerSubform({swatchConfig, yardage} :
       <NumericInput
         label="Rows in your actual swatch:"
         title="Rows in your swatch"
-        name="numberOfSkeins"
+        name="actualRows"
         value={actualRows}
         setValue={setActualRows}
         validator={NumericInput.validators.positive}
       />
       <p>
-        You should end up with {rowsPossible} rows.<br/>
+        If the values in the form to the left are correct, you should have {rowsPossible} rows in a swatch that weighs {swatchWeight}g.<br/>
         {/*This is DIFFERENCE rows MORE OR LESS than the calculated number based on yardage (PERCENTAGE%).<br/>*/}
-        Your color sequence length in inches might be {possibleColorSequenceInches.toFixed(1)} instead.
+        Based on the weight of this swatch, your color sequence length in inches might be {possibleColorSequenceInches.toFixed(1)} instead of the number you input.
       </p>
     </fieldset>
   )
