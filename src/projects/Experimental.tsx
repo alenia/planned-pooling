@@ -67,11 +67,11 @@ function Experimental() {
           <DropdownInput
             label="Row alternating technique:"
             name="staggerType"
-            title="This changes how the piece behaves at the boundary between the end of an even row and beginning of an odd row"
+            title="This changes how the piece behaves at the boundary between the end of an even row and beginning of an odd row when the checkbox is checked"
             value={staggerType}
             setValue={setStaggerTypeFromDropdown}
             items={[
-              {label: 'Alternate Row Lengths (most basic)', value: 'normal'},
+              {label: 'Display odd rows and even rows with different lengths', value: 'normal'},
               {label: 'Color stretching (increasing tension)', value: 'colorStretched'},
               {label: 'Color swallowing (loosening tension)', value: 'colorSwallowed'},
             ]}
