@@ -3,21 +3,17 @@ import SwatchWithForm from '../SwatchWithForm';
 import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
-import DropdownInput from '../inputs/Dropdown';
 import TogglableColorPicker from '../inputs/TogglableColorPicker'
 import { totalColorSequenceLength } from '../colorSequenceHelpers';
 import { defaultPickerColors } from '../colorHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { Color } from '../types'
 
-type StaggerType = 'colorStretched' | 'colorSwallowed'
-
 function FadingPool() {
   const initialColorSequence = [
     { color: "#dfebea", length: 12 },
     { color: "#10dbcc", length: 4 }
   ] as ColorSequenceArray
-  const [staggerType, setStaggerType] = useState('colorSwallowed' as StaggerType)
   const [fade1Color, setFade1Color] = useState('#9E7DB9' as Color)
   const [fade2Color, setFade2Color] = useState('#CAB1E4' as Color)
   const [fade3Color, setFade3Color] = useState('#E4D4F5' as Color)
@@ -25,10 +21,6 @@ function FadingPool() {
   const [fade5Color, setFade5Color] = useState('#CBF7FA' as Color)
   const [fade6Color, setFade6Color] = useState('#7DF2E6' as Color)
   const fadeColors = [fade1Color, fade2Color, fade3Color, fade4Color, fade5Color, fade6Color]
-
-  const setStaggerTypeFromDropdown = (newStaggerType: string) => {
-    setStaggerType(newStaggerType as StaggerType)
-  }
 
   const defaultSwatchConfig = {
     colorSequence: initialColorSequence,
@@ -46,7 +38,6 @@ function FadingPool() {
   const miniPlaidConfiguration = {
     numberOfRows: 40*6,
     staggerLengths: swatchConfig.staggerLengths,
-    staggerType: staggerType,
     stitchPattern: StitchPattern.compactMoss
   }
 
@@ -67,7 +58,6 @@ function FadingPool() {
         swatchConfig={swatchConfig}
         setSwatchConfig={setSwatchConfig}
         showRowNumbersInitially={true}
-        staggerType={staggerType}
         formClasses='wide-first-column'
         swatchClasses='multicolor-hacks'
       />
