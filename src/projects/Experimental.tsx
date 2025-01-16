@@ -148,7 +148,7 @@ function Experimental() {
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
   const [staggerType, setStaggerType] = useState('normal' as StaggerType)
-  const [displayYardageForm, setDisplayYardageForm] = useState(false)
+  const [lockRowsToYardageForm, setLockRowsToYardageForm] = useState(false)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)
@@ -194,15 +194,16 @@ function Experimental() {
             ]}
           />
           <CheckboxInput
-            title="Show a form to change the length of the preview based on yarn yardage, number of skeins, and color sequence length in inches"
-            label="Use yarn yardage form instead of number of rows"
-            name="displayYardageForm"
-            value={displayYardageForm}
-            setValue={setDisplayYardageForm}
+            title="Change the length of the preview based on yarn yardage, number of skeins, and color sequence length in inches rather than using the number of rows input."
+            label="Use yarn yardage form to change number of rows"
+            name="lockRowsToYardageForm"
+            value={lockRowsToYardageForm}
+            setValue={setLockRowsToYardageForm}
+            withTooltip={true}
           />
         </fieldset>
       </form>
-      <YardageForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} active={displayYardageForm}/>
+      <YardageForm swatchConfig={swatchConfig} setSwatchConfig={setSwatchConfig} active={lockRowsToYardageForm}/>
       <SwatchWithForm
         swatchConfig={swatchConfig}
         setSwatchConfig={setSwatchConfig}
