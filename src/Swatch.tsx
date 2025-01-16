@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { nextStitchColorByIndex } from './color'
+import { nextStitchColorByIndex } from './colorHelpers'
 import { StitchPattern, Color, ColorSequenceArray } from './types'
 import './Swatch.scss'
 

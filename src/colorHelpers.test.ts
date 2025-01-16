@@ -7,7 +7,7 @@ import {
   getRandomNotWhiteColor,
   totalColorSequenceLength,
   matchColorwayToColorSequence,
-} from './color'
+} from './colorHelpers'
 import { ColorSequenceArray, ColorwayRecord } from './types'
 
 describe('flatColorSequenceArray', () => {

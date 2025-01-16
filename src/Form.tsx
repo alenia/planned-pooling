@@ -3,7 +3,7 @@ import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig } from './types'
-import { getRandomNotWhiteColor, totalColorSequenceLength } from './color'
+import { getRandomNotWhiteColor, totalColorSequenceLength } from './colorHelpers'
 import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)

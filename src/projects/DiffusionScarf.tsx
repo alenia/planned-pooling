@@ -1,7 +1,7 @@
 import './DiffusionScarf.scss';
 import Swatch from '../Swatch';
 import { StitchPattern, Color, ColorSequenceArray } from '../types'
-import { totalColorSequenceLength } from '../color'
+import { totalColorSequenceLength } from '../colorHelpers'
 import IntegerInput from '../inputs/Integer'
 import CheckboxInput from '../inputs/Checkbox'
 import ColorSequenceInfo from '../ColorSequenceInfo'
