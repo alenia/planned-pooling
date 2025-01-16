@@ -4,7 +4,7 @@ import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
-import { totalColorSequenceLength } from '../colorHelpers';
+import { totalColorSequenceLength } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'

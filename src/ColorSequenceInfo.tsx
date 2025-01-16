@@ -1,4 +1,4 @@
-import { totalColorSequenceLength, shiftedColorSequenceArray } from './colorHelpers'
+import { totalColorSequenceLength, shiftedColorSequenceArray } from './colorSequenceHelpers'
 import { ColorSequenceArray } from './types'
 import fontColorContrast from 'font-color-contrast';
 

@@ -3,7 +3,7 @@ import { StitchPattern } from '../types'
 import { Fragment, useState, useEffect } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways, defaultDunaColorwayId } from '../colorways';
-import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../colorHelpers';
+import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
