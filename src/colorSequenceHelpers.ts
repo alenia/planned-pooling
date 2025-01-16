@@ -48,3 +48,17 @@ export function matchColorwayToColorSequence(colorwayList: ColorwayRecord, color
   })
   return matchedColorwayId || 'custom'
 }
+
+export function presetPickerColors({colorSequence = [], extraColors = []} : {colorSequence? : ColorSequenceArray, extraColors?: Array<Color>}) : Array<Color> {
+  const defaultColors = [
+    "#d9073a",
+    "#f57605",
+    "#fcdc4d",
+    "#a1c349",
+    "#1c40b8",
+    "#7b0f9a",
+    "#542e0f",
+    "#fdf0d5"
+  ] as Array<Color>
+  return [...new Set([...defaultColors, ...colorSequence.map((c) => c.color), ...extraColors])];
+}

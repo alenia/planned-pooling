@@ -1,0 +1,73 @@
+.mini-horizontal-preview {
+  width: fit-content;
+  height: fit-content;
+  .swatch.compact-moss {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@mixin undertoneColor($color) {
+  background-image: linear-gradient(to bottom left, rgba(0,0,0,0) 50%, #{$color} 50%);
+}
+
+$rowsPerColor: 40;
+
+.flexy {
+  display: flex;
+  gap: 10px;
+  --fade-1-color: #9E7DB9;
+  --fade-2-color: #CAB1E4;
+  --fade-3-color: #E4D4F5;
+  --fade-4-color: #F5E8FE;
+  --fade-5-color: #CBF7FA;
+  --fade-6-color: #7DF2E6;
+  .marled-no-fade {
+    $n1: $rowsPerColor;
+    $n2: $n1 + $rowsPerColor;
+    $n3: $n2 + $rowsPerColor;
+    $n4: $n3 + $rowsPerColor;
+    $n5: $n4 + $rowsPerColor;
+    @mixin colorChildren($k, $nextColor) {
+      .crow:nth-child(n+#{$k}) { // abrupt change
+        .stitch {
+          @include undertoneColor($nextColor);
+        }
+      }
+    }
+    .stitch {
+      @include undertoneColor(var(--fade-1-color));
+    }
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
+  }
+
+  .eight-row-color-fade {
+    $n1: $rowsPerColor - 4;
+    $n2: $n1 + $rowsPerColor;
+    $n3: $n2 + $rowsPerColor;
+    $n4: $n3 + $rowsPerColor;
+    $n5: $n4 + $rowsPerColor;
+    @mixin colorChildren($k, $nextColor) {
+      .crow:nth-child(#{$k}), // one row of next color
+      .crow:nth-child(#{$k + 3}), //skip 2 rows, 1 row of next color
+      .crow:nth-child(#{$k + 5}), .crow:nth-child(#{$k + 6}), // skip 1 rows, 2 rows of next color
+      .crow:nth-child(n+#{$k + 8}) { // skip 1 row, all next color
+        .stitch {
+          @include undertoneColor($nextColor);
+        }
+      }
+    }
+    .stitch {
+      @include undertoneColor(var(--fade-1-color));
+    }
+    @include colorChildren($n1,  var(--fade-2-color));
+    @include colorChildren($n2,  var(--fade-3-color));
+    @include colorChildren($n3,  var(--fade-4-color));
+    @include colorChildren($n4,  var(--fade-5-color));
+    @include colorChildren($n5,  var(--fade-6-color));
+  }
+}

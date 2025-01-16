@@ -4,21 +4,10 @@ import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig } from './types'
 import { getRandomNotWhiteColor } from './colorHelpers'
-import { totalColorSequenceLength } from './colorSequenceHelpers'
+import { totalColorSequenceLength, presetPickerColors } from './colorSequenceHelpers'
 import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)
-
-const defaultPickerColors = [
-  "#d9073a",
-  "#f57605",
-  "#fcdc4d",
-  "#a1c349",
-  "#1c40b8",
-  "#7b0f9a",
-  "#542e0f",
-  "#fdf0d5"
-]
 
 function Form(
   { swatchData, setSwatchData, staggerType, showExperimentalFeatures, className } :
@@ -70,7 +59,7 @@ function Form(
     setSwatchData(newSwatchData);
   }
 
-  const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
+  const presetColors = presetPickerColors({colorSequence: colorSequence});
 
   //spec fields specific
   const colorShiftTooltip = () => {
