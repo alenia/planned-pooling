@@ -1,5 +1,5 @@
 import { SwatchConfig, ColorSequenceArray, Color, StitchPattern } from './types'
-import { isStringAColor } from './color'
+import { isStringAColor } from './colorHelpers'
 
 export function URLSearchParamsFromSwatchConfig(swatchConfig : SwatchConfig) : URLSearchParams {
   const flattenedParams = {

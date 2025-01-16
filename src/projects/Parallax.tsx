@@ -2,7 +2,7 @@ import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern } from '../types'
 import { Fragment, useState, useEffect } from "react";
 import { parallaxColorways, defaultParallaxColorwayId } from '../colorways';
-import { duplicateColorSequenceArray, matchColorwayToColorSequence } from '../color';
+import { duplicateColorSequenceArray, matchColorwayToColorSequence } from '../colorSequenceHelpers';
 import DropdownInput from '../inputs/Dropdown';
 
 function Parallax() {
