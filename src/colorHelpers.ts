@@ -7,3 +7,14 @@ export function isStringAColor(s: string) : boolean {
 export function getRandomNotWhiteColor() : Color {
   return '#' + Math.floor(Math.random()*16777214).toString(16).padStart(6,"0") as Color
 }
+
+export const defaultPickerColors = [
+  "#d9073a",
+  "#f57605",
+  "#fcdc4d",
+  "#a1c349",
+  "#1c40b8",
+  "#7b0f9a",
+  "#542e0f",
+  "#fdf0d5"
+]

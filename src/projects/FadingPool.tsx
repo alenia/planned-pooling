@@ -6,23 +6,11 @@ import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import TogglableColorPicker from '../inputs/TogglableColorPicker'
 import { totalColorSequenceLength } from '../colorSequenceHelpers';
+import { defaultPickerColors } from '../colorHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { Color } from '../types'
 
 type StaggerType = 'colorStretched' | 'colorSwallowed'
-
-//NOTE: this is copypasta, refactor later. From Form.tsx
-const defaultPickerColors = [
-  "#d9073a",
-  "#f57605",
-  "#fcdc4d",
-  "#a1c349",
-  "#1c40b8",
-  "#7b0f9a",
-  "#542e0f",
-  "#fdf0d5"
-]
-
 
 function FadingPool() {
   const initialColorSequence = [
