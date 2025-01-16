@@ -188,6 +188,7 @@ function Experimental() {
             title="This changes how the piece behaves at the boundary between the end of an even row and beginning of an odd row when the checkbox is checked"
             value={staggerType}
             setValue={setStaggerTypeFromDropdown}
+            withTooltip={true}
             items={[
               {label: 'Display odd rows and even rows with different lengths', value: 'normal'},
               {label: 'Color stretching (increasing tension)', value: 'colorStretched'},
