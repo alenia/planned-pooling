@@ -13,12 +13,13 @@ function FadingPool() {
     { color: "#dfebea", length: 12 },
     { color: "#10dbcc", length: 4 }
   ] as ColorSequenceArray
-  const [fade1Color, setFade1Color] = useState('#9E7DB9' as Color)
-  const [fade2Color, setFade2Color] = useState('#CAB1E4' as Color)
-  const [fade3Color, setFade3Color] = useState('#E4D4F5' as Color)
-  const [fade4Color, setFade4Color] = useState('#F5E8FE' as Color)
-  const [fade5Color, setFade5Color] = useState('#CBF7FA' as Color)
-  const [fade6Color, setFade6Color] = useState('#7DF2E6' as Color)
+
+  const [fade1Color, setFade1Color] = useState('#9e7db9' as Color)
+  const [fade2Color, setFade2Color] = useState('#cab1e4' as Color)
+  const [fade3Color, setFade3Color] = useState('#e4d4f5' as Color)
+  const [fade4Color, setFade4Color] = useState('#f5e8fe' as Color)
+  const [fade5Color, setFade5Color] = useState('#cbf7fa' as Color)
+  const [fade6Color, setFade6Color] = useState('#7df2e6' as Color)
 
   const fadeColors = [fade1Color, fade2Color, fade3Color, fade4Color, fade5Color, fade6Color]
 
