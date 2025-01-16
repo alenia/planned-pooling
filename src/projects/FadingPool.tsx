@@ -19,7 +19,17 @@ function FadingPool() {
   const [fade4Color, setFade4Color] = useState('#F5E8FE' as Color)
   const [fade5Color, setFade5Color] = useState('#CBF7FA' as Color)
   const [fade6Color, setFade6Color] = useState('#7DF2E6' as Color)
+
   const fadeColors = [fade1Color, fade2Color, fade3Color, fade4Color, fade5Color, fade6Color]
+
+  const fadeColorStyles = {
+    "--fade-1-color": fade1Color,
+    "--fade-2-color": fade2Color,
+    "--fade-3-color": fade3Color,
+    "--fade-4-color": fade4Color,
+    "--fade-5-color": fade5Color,
+    "--fade-6-color": fade6Color,
+  } as React.CSSProperties
 
   const defaultSwatchConfig = {
     colorSequence: initialColorSequence,
@@ -39,15 +49,6 @@ function FadingPool() {
     staggerLengths: swatchConfig.staggerLengths,
     stitchPattern: StitchPattern.compactMoss
   }
-
-  const fadeColorStyles = {
-    "--fade-1-color": fade1Color,
-    "--fade-2-color": fade2Color,
-    "--fade-3-color": fade3Color,
-    "--fade-4-color": fade4Color,
-    "--fade-5-color": fade5Color,
-    "--fade-6-color": fade6Color,
-  } as React.CSSProperties
 
   const presetColors = presetPickerColors({colorSequence: swatchConfig.colorSequence, extraColors: fadeColors})
 
