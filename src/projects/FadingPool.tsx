@@ -5,7 +5,7 @@ import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import TogglableColorPicker from '../inputs/TogglableColorPicker'
-import { totalColorSequenceLength } from '../color';
+import { totalColorSequenceLength } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { Color } from '../types'
 
