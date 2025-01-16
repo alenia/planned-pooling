@@ -1,5 +1,7 @@
+import ClickableTooltip from '../ClickableTooltip';
+
 function Dropdown(
-  { value, name, label, title, setValue, items }
+  { value, name, label, title, setValue, items, withTooltip }
   : {
       value: string,
       name: string,
@@ -7,6 +9,7 @@ function Dropdown(
       title: string,
       setValue: (value: string) => void,
       items: Array<{value: string, label: string}>,
+      withTooltip?: boolean,
     }
   ){
 
@@ -16,6 +19,7 @@ function Dropdown(
         <label htmlFor={name} title={title}>
           {label}
         </label>
+        { withTooltip ? <ClickableTooltip title={title} /> : '' }
       </div>
       <select
         onChange={
