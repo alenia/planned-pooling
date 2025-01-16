@@ -63,24 +63,25 @@ function FadingPool() {
 
   return (
     <Fragment>
+      <SwatchWithForm
+        swatchConfig={swatchConfig}
+        setSwatchConfig={setSwatchConfig}
+        showRowNumbersInitially={true}
+        staggerType={staggerType}
+        formClasses='wide-first-column'
+        swatchClasses='multicolor-hacks'
+      />
+      <br/>
+      <h4>Fade Preview</h4>
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className='wide-first-column'
       >
         <fieldset>
-          <DropdownInput
-            label="Row alternating technique (for section 2):"
-            name="staggerType"
-            title="This changes how the piece behaves at the boundary between the end of an even row and beginning of an odd row"
-            value={staggerType}
-            setValue={setStaggerTypeFromDropdown}
-            items={[
-              {label: 'Color stretching', value: 'colorStretched'},
-              {label: 'Color swallowing', value: 'colorSwallowed'},
-            ]}
-          />
+          <div>
+            Fade Colors:
+          </div>
           <TogglableColorPicker
             value = {fade1Color}
             setValue={setFade1Color}
@@ -113,16 +114,6 @@ function FadingPool() {
           />
         </fieldset>
       </form>
-      <SwatchWithForm
-        swatchConfig={swatchConfig}
-        setSwatchConfig={setSwatchConfig}
-        showRowNumbersInitially={true}
-        staggerType={staggerType}
-        formClasses='wide-first-column'
-        swatchClasses='multicolor-hacks'
-      />
-      <br/>
-      <h4>Preview</h4>
       <div className="flexy" style={fadeColorStyles}>
         <div className="marled-no-fade mini-horizontal-preview">
           <Swatch {...swatchConfig} {...miniPlaidConfiguration} />
