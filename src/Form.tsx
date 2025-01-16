@@ -3,8 +3,8 @@ import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig } from './types'
-import { getRandomNotWhiteColor, defaultPickerColors } from './colorHelpers'
-import { totalColorSequenceLength } from './colorSequenceHelpers'
+import { getRandomNotWhiteColor } from './colorHelpers'
+import { totalColorSequenceLength, presetPickerColors } from './colorSequenceHelpers'
 import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)
@@ -59,7 +59,7 @@ function Form(
     setSwatchData(newSwatchData);
   }
 
-  const presetColors = [...new Set([...defaultPickerColors, ...colorSequence.map((c) => c.color)])];
+  const presetColors = presetPickerColors({colorSequence: colorSequence});
 
   //spec fields specific
   const colorShiftTooltip = () => {

@@ -5,8 +5,9 @@ import {
   nextStitchColorByIndex,
   totalColorSequenceLength,
   matchColorwayToColorSequence,
+  presetPickerColors,
 } from './colorSequenceHelpers'
-import { ColorSequenceArray, ColorwayRecord } from './types'
+import { Color, ColorSequenceArray, ColorwayRecord } from './types'
 
 describe('flatColorSequenceArray', () => {
   it('returns the flattened color sequence array without zero length colors', () => {
@@ -156,6 +157,95 @@ describe('totalColorSequenceLength', () => {
   })
 })
 
+describe('presetPickerColors', () => {
+  const defaultColors = [ //explicitly duplicating this here to make sure that the colors are what I expect
+    "#d9073a",
+    "#f57605",
+    "#fcdc4d",
+    "#a1c349",
+    "#1c40b8",
+    "#7b0f9a",
+    "#542e0f",
+    "#fdf0d5"
+  ] as Array<Color>
+  it('includes all the default picker colors', () => {
+    expect(presetPickerColors({})).toHaveLength(8)
+    expect(presetPickerColors({})).toContain(defaultColors[0]) //TODO can I just go through all of these
+  })
+  it('allows the user to add in an array of extra colors', () => {
+    expect(presetPickerColors({extraColors: ['#abcdef']})).toHaveLength(9)
+    expect(presetPickerColors({extraColors: ['#abcdef']})).toContain(defaultColors[0])
+    expect(presetPickerColors({extraColors: ['#abcdef']})).toContain('#abcdef')
+    const twoAddedColors = presetPickerColors({extraColors: ['#abcdef', '#123456']})
+    expect(twoAddedColors).toHaveLength(10)
+    expect(twoAddedColors).toContain('#abcdef')
+    expect(twoAddedColors).toContain('#123456')
+  })
+  it('dedupes extra colors from the extra color array', () => {
+    const doubledExtraColors = presetPickerColors({extraColors: ['#abcdef', '#abcdef']})
+    expect(doubledExtraColors).toHaveLength(9)
+    expect(doubledExtraColors).toContain('#abcdef')
+  })
+  it('dedupes extra colors that already exist in defaults', () => {
+    const duplicatedExistingColor = presetPickerColors({extraColors: ['#abcdef', defaultColors[0]]})
+    expect(duplicatedExistingColor).toHaveLength(9)
+    expect(duplicatedExistingColor).toContain('#abcdef')
+    expect(duplicatedExistingColor).toContain(defaultColors[0])
+  })
+  it('allows the user to add in a color sequence', () => {
+    const colorSequence = [
+      {color: "#111111", length: 2},
+      {color: "#222222", length: 3},
+      {color: "#333333", length: 4}
+    ] as ColorSequenceArray
+    const pickerColors = presetPickerColors({colorSequence: colorSequence})
+    expect(pickerColors).toHaveLength(11)
+    expect(pickerColors).toContain('#111111')
+  })
+  it('dedupes color sequence colors that are in the color sequence array twice', () => {
+    const colorSequence = [
+      {color: "#111111", length: 2},
+      {color: "#222222", length: 3},
+      {color: "#111111", length: 4}
+    ] as ColorSequenceArray
+    const pickerColors = presetPickerColors({colorSequence: colorSequence})
+    expect(pickerColors).toHaveLength(10)
+    expect(pickerColors).toContain('#111111')
+  })
+  it('dedupes color sequence colors that already exist in defaults', () => {
+    const colorSequence = [
+      {color: "#111111", length: 2},
+      {color: "#222222", length: 3},
+      {color: defaultColors[0], length: 4}
+    ] as ColorSequenceArray
+    const pickerColors = presetPickerColors({colorSequence: colorSequence})
+    expect(pickerColors).toHaveLength(10)
+    expect(pickerColors).toContain('#111111')
+    expect(pickerColors).toContain(defaultColors[0])
+  })
+  it('allows the user to add in both extra colors and color sequence colors', () => {
+    const colorSequence = [
+      {color: "#111111", length: 2},
+      {color: "#222222", length: 3},
+    ] as ColorSequenceArray
+    const pickerColors = presetPickerColors({colorSequence: colorSequence, extraColors: ['#abcdef']})
+    expect(pickerColors).toHaveLength(11)
+    expect(pickerColors).toContain('#111111')
+    expect(pickerColors).toContain('#abcdef')
+    expect(pickerColors).toContain(defaultColors[0])
+  })
+  it('dedupes color sequence colors that are also passed in as extra colors', () => {
+    const colorSequence = [
+      {color: "#111111", length: 2},
+      {color: "#abcdef", length: 3},
+    ] as ColorSequenceArray
+    const pickerColors = presetPickerColors({colorSequence: colorSequence, extraColors: ['#abcdef']})
+    expect(pickerColors).toHaveLength(10)
+    expect(pickerColors).toContain('#111111')
+    expect(pickerColors).toContain('#abcdef')
+    expect(pickerColors).toContain(defaultColors[0])
+  })
+})
 
 describe('matchColorwayToSequence', () => {
   const colorwayList : ColorwayRecord = {

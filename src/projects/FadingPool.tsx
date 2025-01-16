@@ -4,8 +4,7 @@ import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray } from '../types'
 import { Fragment, useState } from "react";
 import TogglableColorPicker from '../inputs/TogglableColorPicker'
-import { totalColorSequenceLength } from '../colorSequenceHelpers';
-import { defaultPickerColors } from '../colorHelpers';
+import { totalColorSequenceLength, presetPickerColors } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { Color } from '../types'
 
@@ -50,7 +49,7 @@ function FadingPool() {
     "--fade-6-color": fade6Color,
   } as React.CSSProperties
 
-  const presetColors = [...new Set([...defaultPickerColors, ...fadeColors])]; //add in color sequence colors?
+  const presetColors = presetPickerColors({colorSequence: swatchConfig.colorSequence, extraColors: fadeColors})
 
   return (
     <Fragment>
