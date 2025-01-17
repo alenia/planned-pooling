@@ -422,7 +422,7 @@ describe('rowsTillMirrored', () => {
      2  o.....o
      3 o.....oo odd
      */
-    expect(rowsTillMirrored({colorSequence, stitchesPerRow: 7, colorShift: 0, staggerLengths: true, staggerType: "normal"})).toEqual(3)
+    expect(rowsTillMirrored({colorSequence, stitchesPerRow: 7, colorShift: 0, staggerLengths: true, staggerType: "normal"})).toEqual(3)//maybe 2
   })
   it.skip("works for other stagger types")
 })
