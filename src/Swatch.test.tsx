@@ -187,6 +187,32 @@ describe('Swatch', () => {
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
       })
 
+      it('secretly alternates row lengths when color is swallowed', () => {
+          render(
+            <Swatch
+              colorSequence={[
+                {color: '#f00', length: 3},
+                {color: '#0f0', length: 2},
+              ]}
+              staggerType='colorSwallowed'
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={5}
+              numberOfRows={4}
+              staggerLengths={true}
+            />
+          )
+
+          const swatch = screen.getByTestId("swatch")
+          expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
+          expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'second row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[3].children.length, 'second row should have correct number of stitches').toEqual(5)
+
+          expect(swatch.children[0]).toHaveClass('crow')
+          expect(swatch.children[0].children[0]).toHaveClass('stitch')
+      })
+
       it('properly colors stitches', () => {
           render(
             <Swatch
