@@ -126,7 +126,6 @@ describe('swatchMatrix', () => {
         ["#ddd","#eee","#aaa","#bbb","#ccc"]
       ])
   })
-  it.skip('swallows stitches') //Note, this also is in CSS rather than in the code
   it('stretches stitches', () => {
     expect(
       swatchMatrix({colorSequence: [
