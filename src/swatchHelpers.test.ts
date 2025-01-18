@@ -6,7 +6,6 @@ import {
 } from './swatchHelpers'
 
 describe('swatchMatrix', () => {
-  it.skip("doesn't choke on zeros")
   it('creates a matrix of color codes based on the color sequence', () => {
     expect(
       swatchMatrix({colorSequence: [
@@ -25,6 +24,62 @@ describe('swatchMatrix', () => {
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#eee","#aaa","#bbb","#ccc"],
         ["#ddd","#eee","#aaa","#bbb"]
+      ])
+  })
+  it("doesn't choke on zeros for stitches per row", () => {
+    expect(
+      swatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 0,
+        numberOfRows: 3,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([
+        [],
+        [],
+        []
+      ])
+  })
+  it("doesn't choke on zeros for number of rows", () => {
+    expect(
+      swatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3,
+        numberOfRows: 0,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([])
+  })
+  it("doesn't choke on zero length colors", () => {
+    expect(
+      swatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 0},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3,
+        numberOfRows: 3,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([
+        ["#aaa","#ccc","#ddd"],
+        ["#eee","#aaa","#ccc"],
+        ["#ddd","#eee","#aaa"]
       ])
   })
   it('accounts for colors of different lengths and number of rows', () => {
@@ -151,7 +206,6 @@ describe('swatchMatrix', () => {
 })
 
 describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I just put it here to put it here.
-  it.skip("doesn't choke on zeros")
   it('creates a matrix of color codes based on the color sequence with the colors in the even rows filling in in the reverse direction', () => {
     expect(
       swatchMatrixWithReversedEvenRows({colorSequence: [
@@ -170,6 +224,62 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#ccc","#bbb","#aaa","#eee"],
         ["#ddd","#eee","#aaa","#bbb"]
+      ])
+  })
+  it("doesn't choke on zeros for stitches per row", () => {
+    expect(
+      swatchMatrixWithReversedEvenRows({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 0,
+        numberOfRows: 3,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([
+        [],
+        [],
+        []
+      ])
+  })
+  it("doesn't choke on zeros for number of rows", () => {
+    expect(
+      swatchMatrixWithReversedEvenRows({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3,
+        numberOfRows: 0,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([])
+  })
+  it("doesn't choke on zero length colors", () => {
+    expect(
+      swatchMatrixWithReversedEvenRows({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 0},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3,
+        numberOfRows: 3,
+        staggerLengths: false,
+        colorShift: 0,
+        staggerType: 'normal'
+      })).toEqual([
+        ["#aaa","#ccc","#ddd"],
+        ["#ccc","#aaa","#eee"],
+        ["#ddd","#eee","#aaa"]
       ])
   })
   it('accounts for colors of different lengths and number of rows', () => {

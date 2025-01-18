@@ -33,7 +33,7 @@ export function swatchMatrix({
   return output
 }
 
-export function swatchMatrixWithReversedEvenRows({ //TODO: This is the version of swatchMatrix that takes logic out of CSS
+export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) version of swatchMatrix that takes logic out of CSS
   colorSequence,
   stitchesPerRow,
   numberOfRows,
