@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { ColorSequenceArray } from './types'
 import {
-  swatchMatrix
+  swatchMatrix,
 } from './swatchHelpers'
 
 describe('swatchMatrix', () => {
   it.skip("doesn't choke on zeros")
-  it('creates a matrix of color codes based on the color sequence with the colors in the even rows filling in in the reverse direction', () => {
+  it('creates a matrix of color codes based on the color sequence', () => {
     expect(
       swatchMatrix({colorSequence: [
         {color: '#aaa', length: 1},
@@ -22,7 +22,7 @@ describe('swatchMatrix', () => {
         staggerType: 'normal'
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
-        ["#ccc","#bbb","#aaa","#eee"],
+        ["#eee","#aaa","#bbb","#ccc"],
         ["#ddd","#eee","#aaa","#bbb"]
       ])
   })
@@ -40,9 +40,9 @@ describe('swatchMatrix', () => {
       staggerType: 'normal'
     })).toEqual([
       ["#000","#000","#000","#111"],
-      ["#222","#222","#222","#111"],
+      ["#111","#222","#222","#222"],
       ["#222","#000","#000","#000"],
-      ["#222","#222","#111","#111"]
+      ["#111","#111","#222","#222"]
     ])
   })
   it('accounts for different numbers of stitches per row', () => {
@@ -61,7 +61,7 @@ describe('swatchMatrix', () => {
         staggerType: 'normal'
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
-        ["#eee","#ddd","#ccc","#bbb","#aaa"],
+        ["#aaa","#bbb","#ccc","#ddd","#eee"],
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
       ])
   })
@@ -81,7 +81,7 @@ describe('swatchMatrix', () => {
         staggerType: 'normal'
       })).toEqual([
         ["#ddd","#eee","#aaa","#bbb"],
-        ["#aaa","#eee","#ddd","#ccc"],
+        ["#ccc","#ddd","#eee","#aaa"],
         ["#bbb","#ccc","#ddd","#eee"]
       ])
   })
@@ -101,30 +101,11 @@ describe('swatchMatrix', () => {
         staggerType: 'normal'
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
-        ["#ddd","#ccc","#bbb","#aaa"],
+        ["#aaa","#bbb","#ccc","#ddd"],
         ["#eee","#aaa","#bbb","#ccc","#ddd"]
       ])
   })
-  it.skip('swallows stitches', () => { //NOTE: this is not handled in the existing code, it's just dealt with by CSS (so gross!!!)
-    expect(
-      swatchMatrix({colorSequence: [
-        {color: '#aaa', length: 1},
-        {color: '#bbb', length: 1},
-        {color: '#ccc', length: 1},
-        {color: '#ddd', length: 1},
-        {color: '#eee', length: 1},
-      ] as ColorSequenceArray,
-        stitchesPerRow: 4,
-        numberOfRows: 3,
-        colorShift: 0,
-        staggerLengths: true,
-        staggerType: 'colorSwallowed'
-      })).toEqual([
-        ["#aaa","#bbb","#ccc","#ddd"],
-        ["#ddd","#ccc","#bbb","#aaa"],
-        ["#eee","#aaa","#bbb","#ccc"]
-      ])
-  })
+  it.skip('swallows stitches') //Note, this also is in CSS rather than in the code
   it('stretches stitches', () => {
     expect(
       swatchMatrix({colorSequence: [
@@ -141,9 +122,9 @@ describe('swatchMatrix', () => {
         staggerType: 'colorStretched'
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
-        ["#ccc","#bbb","#aaa","#eee"],
+        ["#eee","#aaa","#bbb","#ccc"],
         ["#ccc","#ddd","#eee","#aaa"],
-        ["#eee","#ddd","#ccc","#bbb"],
+        ["#bbb","#ccc","#ddd","#eee"],
         ["#eee","#aaa","#bbb","#ccc"],
       ])
   })

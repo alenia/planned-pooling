@@ -11,16 +11,20 @@ export function swatchMatrix({
   staggerType
 } : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : Array<Array<Color>>{
   const flattenedColorSequence = flatColorSequenceArray(colorSequence)
+  function staggeredWithType(typeName: 'normal' | 'colorStretched' | 'colorSwallowed') {
+    if (!staggerLengths) { return false }
+    return staggerType === typeName
+  }
   const output = [] as Array<Array<Color>>
-  let startingIndex = colorShift;
+  let startingIndex = staggeredWithType('colorSwallowed') ? colorShift - 1 : colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const stitchesInThisRow = (staggerLengths && staggerType === 'normal' && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+    const stitchesInThisRow = ((staggeredWithType('normal') || staggeredWithType('colorSwallowed')) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
 
     const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesInThisRow) as Array<Color>
 
-    i % 2 === 0 ? output.push(nextSlice) : output.push(nextSlice.reverse())
+    output.push(nextSlice)
 
-    if(staggerLengths && staggerType === 'colorStretched' && i % 2 === 1) {
+    if(staggeredWithType('colorStretched') && i % 2 === 1) {
       startingIndex += stitchesInThisRow - 1
     } else {
       startingIndex += stitchesInThisRow
