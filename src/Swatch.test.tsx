@@ -180,8 +180,8 @@ describe('Swatch', () => {
           expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
           expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
           expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'second row should have correct number of stitches').toEqual(6)
-          expect(swatch.children[3].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
@@ -206,8 +206,8 @@ describe('Swatch', () => {
           expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
           expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
           expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'second row should have correct number of stitches').toEqual(6)
-          expect(swatch.children[3].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
@@ -324,7 +324,7 @@ describe('Swatch', () => {
           expect(row1stitches[4]).toHaveStyle('background-color: #000')
       })
 
-      it('properly colors stitches when stitches are swallowed', () => {
+      it('has an extra (hidden by css) stitch at the beginning of each odd row when stitches are swallowed', () => {
           render(
             <Swatch
               colorSequence={[
