@@ -324,6 +324,45 @@ describe('Swatch', () => {
           expect(row1stitches[4]).toHaveStyle('background-color: #000')
       })
 
+      it('properly colors stitches when stitches are swallowed', () => {
+          render(
+            <Swatch
+              colorSequence={[
+                {color: '#000', length: 1},
+                {color: '#100', length: 1},
+                {color: '#200', length: 1},
+                {color: '#300', length: 1},
+                {color: '#400', length: 1},
+                {color: '#500', length: 1},
+                {color: '#600', length: 1},
+                {color: '#700', length: 1},
+                {color: '#800', length: 1},
+                {color: '#900', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={5}
+              numberOfRows={4}
+              staggerLengths={true}
+              staggerType={'colorSwallowed'}
+            />
+          )
+
+          const swatch = screen.getByTestId("swatch")
+          const row0stitches = swatch.children[0].children;
+          expect(row0stitches[0]).toHaveStyle('background-color: #900')
+          expect(row0stitches[1]).toHaveStyle('background-color: #000')
+          expect(row0stitches[2]).toHaveStyle('background-color: #100')
+          expect(row0stitches[3]).toHaveStyle('background-color: #200')
+          expect(row0stitches[4]).toHaveStyle('background-color: #300')
+          expect(row0stitches[5]).toHaveStyle('background-color: #400')
+          const row1stitches = swatch.children[1].children;
+          expect(row1stitches[0]).toHaveStyle('background-color: #500')
+          expect(row1stitches[1]).toHaveStyle('background-color: #600')
+          expect(row1stitches[2]).toHaveStyle('background-color: #700')
+          expect(row1stitches[3]).toHaveStyle('background-color: #800')
+          expect(row1stitches[4]).toHaveStyle('background-color: #900')
+      })
+
       it('color stretches with correct row lengths and colors', () => {
         render(
           <Swatch
