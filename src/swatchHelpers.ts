@@ -67,3 +67,41 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
   }
   return output
 }
+
+type ClusterConfiguration = { //TODO move to types.ts
+    stitchCount?: number,
+    prepend?: boolean ,
+    append?: boolean,
+}
+
+export function clusteredSwatchMatrix({
+  colorSequence,
+  stitchesPerRow,
+  numberOfRows,
+  colorShift,
+  staggerLengths,
+  //staggerType, clusters don't support stagger types yet
+} : StandardSwatchConfig, {
+  stitchCount
+} : ClusterConfiguration) : Array<Array<Array<Color>>>{
+  //Variable renames, deal with this later
+  const clustersPerRow = stitchesPerRow;
+  const stitchesPerCluster = stitchCount;
+
+  const flattenedColorSequence = flatColorSequenceArray(colorSequence)
+
+  const wholeOutput = [] as Array<Array<Array<Color>>>
+  let startingIndex = colorShift;
+  for(let i = 0; i < numberOfRows; i++) {
+    const clustersInThisRow = (staggerLengths && i % 2 === 0) ? clustersPerRow + 1 : clustersPerRow;
+    const rowOutput = [] as Array<Array<Color>>
+    for (let j = 0; j < clustersInThisRow; j++) {
+      const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesPerCluster) as Array<Color>
+      startingIndex += stitchesPerCluster
+      rowOutput.push(nextSlice)
+    }
+
+    wholeOutput.push(rowOutput)
+  }
+  return wholeOutput
+}
