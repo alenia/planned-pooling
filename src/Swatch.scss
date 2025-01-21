@@ -31,10 +31,6 @@ version of preview. Hopefully there will be a test of this diff at some point*/
     flex-direction: row;
   }
 
-  .crow:nth-child(2n) {
-    flex-direction: row-reverse;
-  }
-
   .stitch {
     border: 1px solid black;
     width: 12px;

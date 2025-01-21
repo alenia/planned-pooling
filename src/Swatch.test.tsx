@@ -242,11 +242,11 @@ describe('Swatch', () => {
           expect(row0stitches[3]).toHaveStyle('background-color: #300')
           expect(row0stitches[4]).toHaveStyle('background-color: #400')
           const row1stitches = swatch.children[1].children;
-          expect(row1stitches[0]).toHaveStyle('background-color: #500')
-          expect(row1stitches[1]).toHaveStyle('background-color: #600')
+          expect(row1stitches[4]).toHaveStyle('background-color: #500')
+          expect(row1stitches[3]).toHaveStyle('background-color: #600')
           expect(row1stitches[2]).toHaveStyle('background-color: #700')
-          expect(row1stitches[3]).toHaveStyle('background-color: #800')
-          expect(row1stitches[4]).toHaveStyle('background-color: #000')
+          expect(row1stitches[1]).toHaveStyle('background-color: #800')
+          expect(row1stitches[0]).toHaveStyle('background-color: #000')
       })
 
       it('properly colors stitches with a color shift', () => {
@@ -279,11 +279,11 @@ describe('Swatch', () => {
           expect(row0stitches[3]).toHaveStyle('background-color: #500')
           expect(row0stitches[4]).toHaveStyle('background-color: #600')
           const row1stitches = swatch.children[1].children;
-          expect(row1stitches[0]).toHaveStyle('background-color: #700')
-          expect(row1stitches[1]).toHaveStyle('background-color: #800')
+          expect(row1stitches[4]).toHaveStyle('background-color: #700')
+          expect(row1stitches[3]).toHaveStyle('background-color: #800')
           expect(row1stitches[2]).toHaveStyle('background-color: #000')
-          expect(row1stitches[3]).toHaveStyle('background-color: #100')
-          expect(row1stitches[4]).toHaveStyle('background-color: #200')
+          expect(row1stitches[1]).toHaveStyle('background-color: #100')
+          expect(row1stitches[0]).toHaveStyle('background-color: #200')
       })
 
       it('properly colors stitches when lengths are staggered', () => {
@@ -317,11 +317,11 @@ describe('Swatch', () => {
           expect(row0stitches[4]).toHaveStyle('background-color: #400')
           expect(row0stitches[5]).toHaveStyle('background-color: #500')
           const row1stitches = swatch.children[1].children;
-          expect(row1stitches[0]).toHaveStyle('background-color: #600')
-          expect(row1stitches[1]).toHaveStyle('background-color: #700')
+          expect(row1stitches[4]).toHaveStyle('background-color: #600')
+          expect(row1stitches[3]).toHaveStyle('background-color: #700')
           expect(row1stitches[2]).toHaveStyle('background-color: #800')
-          expect(row1stitches[3]).toHaveStyle('background-color: #900')
-          expect(row1stitches[4]).toHaveStyle('background-color: #000')
+          expect(row1stitches[1]).toHaveStyle('background-color: #900')
+          expect(row1stitches[0]).toHaveStyle('background-color: #000')
       })
 
       it('skips a stitch color after each even row when colors are swallowed', () => {
@@ -355,11 +355,11 @@ describe('Swatch', () => {
           expect(row0stitches[3]).toHaveStyle('background-color: #300')
           expect(row0stitches[4]).toHaveStyle('background-color: #400')
           const row1stitches = swatch.children[1].children;
-          expect(row1stitches[0]).toHaveStyle('background-color: #500')
-          expect(row1stitches[1]).toHaveStyle('background-color: #600')
+          expect(row1stitches[4]).toHaveStyle('background-color: #500')
+          expect(row1stitches[3]).toHaveStyle('background-color: #600')
           expect(row1stitches[2]).toHaveStyle('background-color: #700')
-          expect(row1stitches[3]).toHaveStyle('background-color: #800')
-          expect(row1stitches[4]).toHaveStyle('background-color: #900')
+          expect(row1stitches[1]).toHaveStyle('background-color: #800')
+          expect(row1stitches[0]).toHaveStyle('background-color: #900')
           const row2stitches = swatch.children[2].children;
           expect(row2stitches[0]).toHaveStyle('background-color: #100')
           expect(row2stitches[1]).toHaveStyle('background-color: #200')
@@ -402,11 +402,11 @@ describe('Swatch', () => {
         expect(row0stitches[4]).toHaveStyle('background-color: #400')
         const row1stitches = swatch.children[1].children;
         expect(row1stitches.length).toEqual(5)
-        expect(row1stitches[0]).toHaveStyle('background-color: #500')
-        expect(row1stitches[1]).toHaveStyle('background-color: #600')
+        expect(row1stitches[4]).toHaveStyle('background-color: #500')
+        expect(row1stitches[3]).toHaveStyle('background-color: #600')
         expect(row1stitches[2]).toHaveStyle('background-color: #700')
-        expect(row1stitches[3]).toHaveStyle('background-color: #800')
-        expect(row1stitches[4]).toHaveStyle('background-color: #900')
+        expect(row1stitches[1]).toHaveStyle('background-color: #800')
+        expect(row1stitches[0]).toHaveStyle('background-color: #900')
         const row2stitches = swatch.children[2].children;
         expect(row2stitches.length).toEqual(5)
         expect(row2stitches[0]).toHaveStyle('background-color: #900')
