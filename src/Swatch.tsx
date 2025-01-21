@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { nextStitchColorByIndex } from './colorSequenceHelpers'
-import { swatchMatrix } from './swatchHelpers'
+import { swatchMatrix, clusteredSwatchMatrix } from './swatchHelpers'
 import { StitchPattern, Color, ColorSequenceArray, StandardSwatchConfig } from './types'
 import './Swatch.scss'
 
@@ -47,43 +47,27 @@ function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
-function ClusteredSwatch(
-  { clustersPerRow, numberOfRows, clusterConfig, nextColor}
-  : {
-    clustersPerRow: number,
-    numberOfRows: number,
-    clusterConfig: ClusterConfiguration,
-    nextColor: (index: number) => Color
-  }
-) {
-  let stitchIndex = 0
-
-  const buildStitch = () => {
-    const color = nextColor(stitchIndex)
-    stitchIndex++;
-    return <Stitch key={stitchIndex} color={color}/>;
-  }
-  return (
-    [...Array(numberOfRows)].map((e, i) => (
-      <Crow key={i}>
-        {
-          clusterConfig.prepend ?  <Cluster>{buildStitch()}</Cluster> : ''
-        }
-        {
-          [...Array(clustersPerRow)].map((f,j) => (
-            <Cluster key={j}>
-              {
-                [...Array(clusterConfig.stitchCount)].map(() => (buildStitch()))
-              }
-            </Cluster>
-          ))
-        }
-        {
-          clusterConfig.append ?  <Cluster>{buildStitch()}</Cluster> : ''
-        }
-      </Crow>
-    ))
-  )
+function ClusteredSwatch({
+  colorSequence,
+  stitchesPerRow,
+  numberOfRows,
+  colorShift,
+  staggerLengths,
+  staggerType,
+  clusterConfig,
+} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed', clusterConfig: ClusterConfiguration}) {
+  const matrix = clusteredSwatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths}, clusterConfig)
+  return matrix.map((rowArray, i) => (
+    <Crow key={i}>
+      { rowArray.map((clusterArray, j) => (
+        <Cluster key ={j}>
+          { clusterArray.map((color, k) => (
+            <Stitch key={k} color={color}/>
+          )) }
+        </Cluster>
+      )) }
+    </Crow>
+  ))
 }
 
 function StandardSwatch({
@@ -130,13 +114,15 @@ function Swatch(
   ]
 
   if(clustered) {
-    const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift: colorShift})
     return <div data-testid="swatch" className={classNames.join(' ')}>
       <ClusteredSwatch
-        clustersPerRow={stitchesPerRow}
         clusterConfig={clusterConfig}
+        stitchesPerRow={stitchesPerRow}
         numberOfRows={numberOfRows}
-        nextColor={nextColor}
+        staggerLengths={staggerLengths}
+        staggerType={staggerType || 'normal'}
+        colorSequence={colorSequence}
+        colorShift={colorShift}
       />
     </div>
   } else {
