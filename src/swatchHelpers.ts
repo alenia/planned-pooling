@@ -79,7 +79,7 @@ export function clusteredSwatchMatrix({
   stitchesPerRow,
   numberOfRows,
   colorShift,
-  staggerLengths,
+  //staggerLengths, clusters don't support staggering yet
   //staggerType, clusters don't support stagger types yet
 } : StandardSwatchConfig, clusterConfig : ClusterConfiguration) : Array<Array<Array<Color>>>{
   //Variable renames, deal with this later
@@ -91,7 +91,7 @@ export function clusteredSwatchMatrix({
   const wholeOutput = [] as Array<Array<Array<Color>>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const clustersInThisRow = (staggerLengths && i % 2 === 0) ? clustersPerRow + 1 : clustersPerRow;
+    const clustersInThisRow = clustersPerRow;
     const rowOutput = [] as Array<Array<Color>>;
     if(clusterConfig.prepend){
       const nextSlice = circularSlice(flattenedColorSequence, startingIndex, 1) as Array<Color>
