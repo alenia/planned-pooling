@@ -6,11 +6,6 @@ export function flatColorSequenceArray(colorSequence : ColorSequenceArray) : Arr
   return colorSequence.reduce((ary : Array<Color>, conf: ColorInSequence) : Array<Color> => ary.concat(new Array(conf.length).fill(conf.color)), []);
 }
 
-export function nextStitchColorByIndex(i : number, colorSequence : ColorSequenceArray, { colorShift } = { colorShift: 0 } ):Color {
-  const flattened = flatColorSequenceArray(colorSequence)
-  return flattened[mod((i + colorShift), flattened.length)];
-}
-
 export function shiftedColorSequenceArray(colorSequence : ColorSequenceArray, colorShift: number) : ColorSequenceArray {
   const flattened = flatColorSequenceArray(colorSequence)
   const shift = mod(colorShift, totalColorSequenceLength(colorSequence))

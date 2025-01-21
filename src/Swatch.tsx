@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
-import { nextStitchColorByIndex } from './colorSequenceHelpers'
 import { swatchMatrix, clusteredSwatchMatrix } from './swatchHelpers'
-import { StitchPattern, Color, ColorSequenceArray, StandardSwatchConfig } from './types'
+import { StitchPattern, Color, ColorSequenceArray } from './types'
 import './Swatch.scss'
 
 type ClusterConfiguration = {
