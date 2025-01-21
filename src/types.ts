@@ -24,14 +24,18 @@ export type ColorInSequence = {
 
 export type ColorSequenceArray = Array<ColorInSequence>
 
-export type SwatchConfig = {
-    colorSequence: ColorSequenceArray,
-    stitchesPerRow: number,
-    stitchPattern: StitchPattern,
-    numberOfRows: number,
-    colorShift: number,
-    staggerLengths: boolean
+  // Naming note: I really don't /love/ this name. The difference is stitchPattern is a lookup key but is primarily a view concern?
+  // I don't really want my swatchMatrix to know about stitchPattern since if I have to pass that in it'll be a distraction in the tests.
+  // I think later ClusteredSwatchConfig will include clustersPerRow and all the other cluster stuff that comes from the stitchPattern lookup
+export type StandardSwatchConfig = {
+  colorSequence: ColorSequenceArray,
+  stitchesPerRow: number,
+  numberOfRows: number,
+  colorShift: number,
+  staggerLengths: boolean
 }
+
+export type SwatchConfig = StandardSwatchConfig & { stitchPattern: StitchPattern }
 
 export type Colorway = {
   yarnName: string,

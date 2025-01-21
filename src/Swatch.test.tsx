@@ -135,8 +135,8 @@ describe('Swatch', () => {
           expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
           expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(5)
           expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'first row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[3].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
@@ -180,8 +180,34 @@ describe('Swatch', () => {
           expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
           expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
           expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'second row should have correct number of stitches').toEqual(6)
-          expect(swatch.children[3].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
+
+          expect(swatch.children[0]).toHaveClass('crow')
+          expect(swatch.children[0].children[0]).toHaveClass('stitch')
+      })
+
+      it('secretly alternates row lengths when color is swallowed', () => {
+          render(
+            <Swatch
+              colorSequence={[
+                {color: '#f00', length: 3},
+                {color: '#0f0', length: 2},
+              ]}
+              staggerType='colorSwallowed'
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={5}
+              numberOfRows={4}
+              staggerLengths={true}
+            />
+          )
+
+          const swatch = screen.getByTestId("swatch")
+          expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
+          expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
@@ -296,6 +322,45 @@ describe('Swatch', () => {
           expect(row1stitches[2]).toHaveStyle('background-color: #800')
           expect(row1stitches[3]).toHaveStyle('background-color: #900')
           expect(row1stitches[4]).toHaveStyle('background-color: #000')
+      })
+
+      it('has an extra (hidden by css) stitch at the beginning of each odd row when stitches are swallowed', () => {
+          render(
+            <Swatch
+              colorSequence={[
+                {color: '#000', length: 1},
+                {color: '#100', length: 1},
+                {color: '#200', length: 1},
+                {color: '#300', length: 1},
+                {color: '#400', length: 1},
+                {color: '#500', length: 1},
+                {color: '#600', length: 1},
+                {color: '#700', length: 1},
+                {color: '#800', length: 1},
+                {color: '#900', length: 1},
+              ]}
+              stitchPattern={StitchPattern.moss}
+              stitchesPerRow={5}
+              numberOfRows={4}
+              staggerLengths={true}
+              staggerType={'colorSwallowed'}
+            />
+          )
+
+          const swatch = screen.getByTestId("swatch")
+          const row0stitches = swatch.children[0].children;
+          expect(row0stitches[0]).toHaveStyle('background-color: #900')
+          expect(row0stitches[1]).toHaveStyle('background-color: #000')
+          expect(row0stitches[2]).toHaveStyle('background-color: #100')
+          expect(row0stitches[3]).toHaveStyle('background-color: #200')
+          expect(row0stitches[4]).toHaveStyle('background-color: #300')
+          expect(row0stitches[5]).toHaveStyle('background-color: #400')
+          const row1stitches = swatch.children[1].children;
+          expect(row1stitches[0]).toHaveStyle('background-color: #500')
+          expect(row1stitches[1]).toHaveStyle('background-color: #600')
+          expect(row1stitches[2]).toHaveStyle('background-color: #700')
+          expect(row1stitches[3]).toHaveStyle('background-color: #800')
+          expect(row1stitches[4]).toHaveStyle('background-color: #900')
       })
 
       it('color stretches with correct row lengths and colors', () => {
@@ -422,11 +487,11 @@ describe('Swatch', () => {
           const secondRowClusters = swatch.children[0].children
           expect(secondRowClusters[0].children.length, 'first cluster in row should have one stitch').toEqual(1)
           expect(secondRowClusters[1].children.length, 'second cluster in row should have three stitches').toEqual(3)
-          expect(secondRowClusters[2].children.length, 'cluster in should have three stitches').toEqual(3)
-          expect(secondRowClusters[3].children.length, 'cluster in should have three stitches').toEqual(3)
-          expect(secondRowClusters[4].children.length, 'cluster in should have three stitches').toEqual(3)
-          expect(swatch.children[2].children.length, 'first row should have correct number of clusters').toEqual(5)
-          expect(swatch.children[3].children.length, 'second row should have correct number of clusters').toEqual(5)
+          expect(secondRowClusters[2].children.length, 'cluster should have three stitches').toEqual(3)
+          expect(secondRowClusters[3].children.length, 'cluster should have three stitches').toEqual(3)
+          expect(secondRowClusters[4].children.length, 'cluster should have three stitches').toEqual(3)
+          expect(swatch.children[2].children.length, 'third row should have correct number of clusters').toEqual(5)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of clusters').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('cluster')
@@ -544,10 +609,10 @@ describe('Swatch', () => {
           const secondRowClusters = swatch.children[0].children
           expect(secondRowClusters[0].children.length, 'first cluster in row should have correct number of stitches').toEqual(5)
           expect(secondRowClusters[1].children.length, 'second cluster in row should have correct number of stitches').toEqual(5)
-          expect(secondRowClusters[2].children.length, 'cluster in should have correct number of stitches').toEqual(5)
-          expect(secondRowClusters[3].children.length, 'cluster in should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'first row should have correct number of clusters').toEqual(4)
-          expect(swatch.children[3].children.length, 'second row should have correct number of clusters').toEqual(4)
+          expect(secondRowClusters[2].children.length, 'cluster should have correct number of stitches').toEqual(5)
+          expect(secondRowClusters[3].children.length, 'cluster should have correct number of stitches').toEqual(5)
+          expect(swatch.children[2].children.length, 'third row should have correct number of clusters').toEqual(4)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of clusters').toEqual(4)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('cluster')
@@ -594,12 +659,12 @@ describe('Swatch', () => {
           const secondRowClusters = swatch.children[0].children
           expect(secondRowClusters[0].children.length, 'first cluster in row should have correct number of stitches').toEqual(1)
           expect(secondRowClusters[1].children.length, 'second cluster in row should have correct number of stitches').toEqual(2)
-          expect(secondRowClusters[2].children.length, 'cluster in should have correct number of stitches').toEqual(2)
-          expect(secondRowClusters[3].children.length, 'cluster in should have correct number of stitches').toEqual(2)
-          expect(secondRowClusters[4].children.length, 'cluster in should have correct number of stitches').toEqual(2)
-          expect(secondRowClusters[5].children.length, 'cluster in should have correct number of stitches').toEqual(1)
-          expect(swatch.children[2].children.length, 'first row should have correct number of clusters').toEqual(6)
-          expect(swatch.children[3].children.length, 'second row should have correct number of clusters').toEqual(6)
+          expect(secondRowClusters[2].children.length, 'cluster should have correct number of stitches').toEqual(2)
+          expect(secondRowClusters[3].children.length, 'cluster should have correct number of stitches').toEqual(2)
+          expect(secondRowClusters[4].children.length, 'cluster should have correct number of stitches').toEqual(2)
+          expect(secondRowClusters[5].children.length, 'cluster should have correct number of stitches').toEqual(1)
+          expect(swatch.children[2].children.length, 'third row should have correct number of clusters').toEqual(6)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of clusters').toEqual(6)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('cluster')
@@ -682,11 +747,11 @@ describe('Swatch', () => {
           const secondRowClusters = swatch.children[0].children
           expect(secondRowClusters[0].children.length, 'first cluster in row should have correct number of stitches').toEqual(4)
           expect(secondRowClusters[1].children.length, 'second cluster in row should have correct number of stitches').toEqual(4)
-          expect(secondRowClusters[2].children.length, 'cluster in should have correct number of stitches').toEqual(4)
-          expect(secondRowClusters[3].children.length, 'cluster in should have correct number of stitches').toEqual(4)
-          expect(secondRowClusters[4].children.length, 'cluster in should have correct number of stitches').toEqual(4)
-          expect(swatch.children[2].children.length, 'first row should have correct number of clusters').toEqual(5)
-          expect(swatch.children[3].children.length, 'second row should have correct number of clusters').toEqual(5)
+          expect(secondRowClusters[2].children.length, 'cluster should have correct number of stitches').toEqual(4)
+          expect(secondRowClusters[3].children.length, 'cluster should have correct number of stitches').toEqual(4)
+          expect(secondRowClusters[4].children.length, 'cluster should have correct number of stitches').toEqual(4)
+          expect(swatch.children[2].children.length, 'third row should have correct number of clusters').toEqual(5)
+          expect(swatch.children[3].children.length, 'fourth row should have correct number of clusters').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
           expect(swatch.children[0].children[0]).toHaveClass('cluster')
