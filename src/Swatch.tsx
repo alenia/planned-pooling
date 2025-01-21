@@ -9,6 +9,11 @@ type ClusterConfiguration = {
     prepend?: boolean ,
     append?: boolean,
 }
+type PresentClusterConfiguration = {
+    stitchCount: number,
+    prepend?: boolean ,
+    append?: boolean,
+}
 const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Todo: make this a class of some sort?
   moss: {},
   'compact-moss': {},
@@ -47,49 +52,8 @@ function Stitch ({color} : { color: Color}) {
   return <div className="stitch" style={{backgroundColor: color}}/>
 }
 
-function ClusteredSwatch({
-  colorSequence,
-  stitchesPerRow,
-  numberOfRows,
-  colorShift,
-  staggerLengths,
-  staggerType,
-  clusterConfig,
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed', clusterConfig: ClusterConfiguration}) {
-  const matrix = clusteredSwatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths}, clusterConfig)
-  return matrix.map((rowArray, i) => (
-    <Crow key={i}>
-      { rowArray.map((clusterArray, j) => (
-        <Cluster key ={j}>
-          { clusterArray.map((color, k) => (
-            <Stitch key={k} color={color}/>
-          )) }
-        </Cluster>
-      )) }
-    </Crow>
-  ))
-}
-
-function StandardSwatch({
-  colorSequence,
-  stitchesPerRow,
-  numberOfRows,
-  colorShift,
-  staggerLengths,
-  staggerType
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) {
-  const matrix = swatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, staggerType})
-  return matrix.map((rowArray, i) => (
-    <Crow key={i}>
-      { rowArray.map((color, i) => (
-        <Stitch key={i} color={color}/>
-      )) }
-    </Crow>
-  ))
-}
-
 function Swatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType, className}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType = "normal", className}
   : {
     colorSequence: ColorSequenceArray,
     stitchesPerRow: number,
@@ -114,27 +78,30 @@ function Swatch(
   ]
 
   if(clustered) {
+    const matrix = clusteredSwatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths}, clusterConfig as PresentClusterConfiguration)
     return <div data-testid="swatch" className={classNames.join(' ')}>
-      <ClusteredSwatch
-        clusterConfig={clusterConfig}
-        stitchesPerRow={stitchesPerRow}
-        numberOfRows={numberOfRows}
-        staggerLengths={staggerLengths}
-        staggerType={staggerType || 'normal'}
-        colorSequence={colorSequence}
-        colorShift={colorShift}
-      />
+      {matrix.map((rowArray, i) => (
+        <Crow key={i}>
+          { rowArray.map((clusterArray, j) => (
+            <Cluster key ={j}>
+              { clusterArray.map((color, k) => (
+                <Stitch key={k} color={color}/>
+              )) }
+            </Cluster>
+          )) }
+        </Crow>
+      ))}
     </div>
   } else {
+    const matrix = swatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths, staggerType})
     return <div data-testid="swatch" className={classNames.join(' ')}>
-      <StandardSwatch
-        stitchesPerRow={stitchesPerRow}
-        numberOfRows={numberOfRows}
-        staggerLengths={staggerLengths}
-        staggerType={staggerType || 'normal'}
-        colorSequence={colorSequence}
-        colorShift={colorShift}
-      />
+      { matrix.map((rowArray, i) => (
+        <Crow key={i}>
+          { rowArray.map((color, i) => (
+            <Stitch key={i} color={color}/>
+          )) }
+        </Crow>
+      ))}
     </div>
   }
 }
