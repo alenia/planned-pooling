@@ -492,49 +492,47 @@ describe('rowsTillMirrored', () => {
         staggerLengths: false,
         staggerType: 'normal'
     }
-    it("returns 2 if the first 2 rows are identical", () => {
+    describe('when the color sequence lengths are 2, 5, 2, 6', () => {
       const colorSequence = [
         {color: '#00f', length: 2},
         {color: '#fff', length: 5},
         {color: '#00f', length: 2},
         {color: '#fff', length: 6},
       ] as ColorSequenceArray
-      /*
-     1 ...oo... odd
-     2 ...oo...
-       */
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 8, colorShift: 4, ...sharedConfig})).toEqual(2)
+      it("returns 2 if the first 2 rows are identical", () => {
+        /*
+         1 ...oo... odd
+         2 ...oo...
+         */
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 8, colorShift: 4, ...sharedConfig})).toEqual(2)
+      })
+      it("returns the number of rows until the position of the colors in the first two rows matches up with what happens in the last two rows but mirrored", () => {
+          /*
+         1 oo..... odd
+         2 .....oo
+         3 .oo.... odd
+         4 ....oo.
+         5 ..oo... odd
+         6 ...oo..
+         7 ...oo.. odd
+         8 ..oo...
+         9 ....oo. odd
+        10 .oo....
+        11 .....oo odd
+        12 oo.....
+         */
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 7, colorShift: 0, ...sharedConfig})).toEqual(12)
+      })
+      it("describe me later", () => {
+        /*
+       1 oo.....o odd
+       2 o......o
+       3 o.....oo odd
+         */
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 8, colorShift: 0, ...sharedConfig})).toEqual(3)
+      })
     })
-    it("returns the number of rows until the position of the colors in the first two rows matches up with what happens in the last two rows but mirrored", () => {
-      const colorSequence = [
-        {color: '#00f', length: 2},
-        {color: '#fff', length: 5},
-        {color: '#00f', length: 2},
-        {color: '#fff', length: 6},
-      ] as ColorSequenceArray
-      /*
-     1 oo..... odd
-     2 .....oo
-     3 .oo.... odd
-     4 ....oo.
-     5 ..oo... odd
-     6 ...oo..
-     7 ...oo.. odd
-     8 ..oo...
-     9 ....oo. odd
-    10 .oo....
-    11 .....oo odd
-    12 oo.....
-       */
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 7, colorShift: 0, ...sharedConfig})).toEqual(12)
-      /*
-     1 oo.....o odd
-     2 o......o
-     3 o.....oo odd
-       */
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 8, colorShift: 0, ...sharedConfig})).toEqual(3)
-    })
-    it("works when the first color and second color are closer in length", () => {
+    describe("when the first color and second color are closer in length", () => {
       const colorSequence = [
         {color: '#00f', length: 5},
         {color: '#fff', length: 6},
@@ -542,10 +540,14 @@ describe('rowsTillMirrored', () => {
         {color: '#fff', length: 7},
 
       ]
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 11, colorShift: 0, ...sharedConfig})).toEqual(14)
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 12, colorShift: 0, ...sharedConfig})).toEqual(9)
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 11, colorShift: 0, ...sharedConfig})).toEqual(14)
+      })
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 12, colorShift: 0, ...sharedConfig})).toEqual(9)
+      })
     })
-    it("works when the first color is the same length as the alternating color", () => {
+    describe("when the first color is the same length as the alternating color", () => {
       const colorSequence = [
         {color: '#00f', length: 6},
         {color: '#fff', length: 6},
@@ -553,10 +555,14 @@ describe('rowsTillMirrored', () => {
         {color: '#fff', length: 7},
 
       ]
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 12, colorShift: 0, ...sharedConfig})).toEqual(14)
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 13, colorShift: 0, ...sharedConfig})).toEqual(11)
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 12, colorShift: 0, ...sharedConfig})).toEqual(14)
+      })
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 13, colorShift: 0, ...sharedConfig})).toEqual(11)
+      })
     })
-    it("works when the first color is longer than the alternating color", () => {
+    describe("when the first color is longer than the alternating color", () => {
       const colorSequence = [
         {color: '#00f', length: 6},
         {color: '#fff', length: 3},
@@ -564,11 +570,18 @@ describe('rowsTillMirrored', () => {
         {color: '#fff', length: 4},
 
       ]
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 9, colorShift: 0, ...sharedConfig})).toEqual(8)
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 10, colorShift: 0, ...sharedConfig})).toEqual(11)
-      expect(rowsTillMirrored({colorSequence, stitchesPerRow: 9, colorShift: -3, ...sharedConfig})).toEqual(15)
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 9, colorShift: 0, ...sharedConfig})).toEqual(8)
+      })
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 10, colorShift: 0, ...sharedConfig})).toEqual(11)
+      })
+      it("describe me later", () => {
+        expect(rowsTillMirrored({colorSequence, stitchesPerRow: 9, colorShift: -3, ...sharedConfig})).toEqual(15)
+      })
     })
-    it.skip("works with different offsets", () => {
+    describe("looking at swatches with different offsets", () => {
+
       const colorSequence = [
         {color: '#00f', length: 2},
         {color: '#fff', length: 6},
@@ -576,8 +589,12 @@ describe('rowsTillMirrored', () => {
         {color: '#fff', length: 7},
       ]
 
+    it("describe me later", () => {
       expect(rowsTillMirrored({colorSequence, stitchesPerRow: 7, colorShift: 0, ...sharedConfig})).toEqual(33) // Yikes i hate this one, don't believe in it
+    })
+      it("describe me later", () => {
       expect(rowsTillMirrored({colorSequence, stitchesPerRow: 6, colorShift: 0, ...sharedConfig})).toEqual(13)
+    })
     })
     it.skip("works when the first color is the alternating color")
     it.skip("works when the second alternating color is the shorter one")

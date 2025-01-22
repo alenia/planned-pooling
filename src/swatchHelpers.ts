@@ -1,5 +1,5 @@
 import { StandardSwatchConfig, Color, ClusterConfiguration } from './types'
-import { flatColorSequenceArray } from './colorSequenceHelpers'
+import { flatColorSequenceArray, totalColorSequenceLength } from './colorSequenceHelpers'
 import { circularSlice } from './arrayHelpers'
 
 export function swatchMatrix({
@@ -116,8 +116,9 @@ export function rowsTillMirrored({
   staggerLengths,
   staggerType
 } : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : number {
-  const maxRows = stitchesPerRow * 4
-  const matrix = swatchMatrix({
+  const maxRows = totalColorSequenceLength(colorSequence) * 4
+  const matrix = swatchMatrixWithReversedEvenRows({
+  //const matrix = swatchMatrix({
     colorSequence,
     stitchesPerRow,
     numberOfRows: maxRows,
@@ -131,11 +132,19 @@ export function rowsTillMirrored({
 
   const target0 = matrix[0].toReversed()
   const target1 = matrix[1].toReversed()
+  const target2 = matrix[2].toReversed()
 
   var i = 0
-  while(i <= maxRows) {
-    if(compareRows(matrix[i], target1) && compareRows(matrix[i + 1], target0)) {
-      return i + 2
+  while(i < maxRows) {
+    if(compareRows(matrix[i], target2) && compareRows(matrix[i + 1], target1) && compareRows(matrix[i + 2], target0)) {
+      if(false) {
+        console.log(
+          matrix.map(
+            (ary) => (ary.map((v) => (v === "#fff" ? '.' : 'o')).join(''))))
+        console.log(i, matrix[i], target1, compareRows(matrix[i], target1))
+        console.log(i, matrix[i+1], target0, compareRows(matrix[i+1], target0))
+      }
+      return i + 3
     }
     i += 1
   }
