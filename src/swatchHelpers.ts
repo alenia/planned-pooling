@@ -1,4 +1,4 @@
-import { StandardSwatchConfig, Color } from './types'
+import { StandardSwatchConfig, Color, ClusterConfiguration } from './types'
 import { flatColorSequenceArray } from './colorSequenceHelpers'
 import { circularSlice } from './arrayHelpers'
 
@@ -66,12 +66,6 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
     }
   }
   return output
-}
-
-type ClusterConfiguration = { //TODO move to types.ts
-    stitchCount: number,
-    prepend?: boolean ,
-    append?: boolean,
 }
 
 export function clusteredSwatchMatrix({

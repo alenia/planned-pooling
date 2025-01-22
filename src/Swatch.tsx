@@ -1,27 +1,17 @@
 import { ReactNode } from 'react'
 import { swatchMatrix, clusteredSwatchMatrix } from './swatchHelpers'
-import { StitchPattern, Color, ColorSequenceArray } from './types'
+import { StitchPattern, Color, ColorSequenceArray, ClusterConfiguration } from './types'
 import './Swatch.scss'
 
-type ClusterConfiguration = {
-    stitchCount?: number,
-    prepend?: boolean ,
-    append?: boolean,
-}
-type PresentClusterConfiguration = {
-    stitchCount: number,
-    prepend?: boolean ,
-    append?: boolean,
-}
-const clusterConfiguration:Record<StitchPattern, ClusterConfiguration> = { //Todo: make this a class of some sort?
-  moss: {},
-  'compact-moss': {},
-  unstyled: {},
-  stacked: {},
-  granny: {},
-  hdc: {},
-  shell: {},
-  'v-stitch': {},
+const clusterConfiguration:Record<StitchPattern, (ClusterConfiguration | null)> = { //Todo: make this a class of some sort?
+  moss: null,
+  'compact-moss': null,
+  unstyled: null,
+  stacked: null,
+  granny: null,
+  hdc: null,
+  shell: null,
+  'v-stitch': null,
   jasmine: {
     stitchCount: 3,
     prepend: true
@@ -65,19 +55,18 @@ function Swatch(
   }
 ) {
   const clusterConfig = clusterConfiguration[stitchPattern];
-  const clustered = !!clusterConfig.stitchCount;
 
   const classNames = [
     className,
     'swatch',
     stitchPattern,
-    clustered ? 'clustered' : '',
+    clusterConfig ? 'clustered' : '',
     staggerLengths ? 'staggered' : '',
     staggerType
   ]
 
-  if(clustered) {
-    const matrix = clusteredSwatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths}, clusterConfig as PresentClusterConfiguration)
+  if(clusterConfig) {
+    const matrix = clusteredSwatchMatrix({colorSequence, stitchesPerRow, numberOfRows, colorShift, staggerLengths}, clusterConfig)
     return <div data-testid="swatch" className={classNames.join(' ')}>
       {matrix.map((rowArray, i) => (
         <Crow key={i}>
