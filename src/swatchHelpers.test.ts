@@ -431,7 +431,7 @@ describe("clusteredSwatchMatrix", () => {
         [["#ccc","#ddd"],["#eee","#aaa"],["#bbb","#ccc"]],
       ])
   })
-  it('prepends a single stitch cluster when prepend is selected', () => {
+  it('prepends a single-stitch cluster when prepend is selected', () => {
     expect(
       clusteredSwatchMatrix({colorSequence: [
         {color: '#aaa', length: 1},
@@ -455,7 +455,7 @@ describe("clusteredSwatchMatrix", () => {
         [["#eee"],["#aaa","#bbb","#ccc"],["#ddd","#eee","#aaa"],["#bbb","#ccc","#ddd"],["#eee","#aaa","#bbb"]],
       ])
   })
-  it('appends a single stitch cluster when append is selected', () => {
+  it('appends a single-stitch cluster when append is selected', () => {
     expect(
       clusteredSwatchMatrix({colorSequence: [
         {color: '#aaa', length: 1},
