@@ -130,10 +130,7 @@ function Swatch(
   ]
 
   if(clustered) {
-
-    const computedColorShift = staggerLengths && staggerType === 'colorSwallowed' ? colorShift - 1 : colorShift
-
-    const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift: computedColorShift})
+    const nextColor = (index: number) => nextStitchColorByIndex(index, colorSequence, {colorShift: colorShift})
     return <div data-testid="swatch" className={classNames.join(' ')}>
       <ClusteredSwatch
         clustersPerRow={stitchesPerRow}

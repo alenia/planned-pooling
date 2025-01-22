@@ -65,13 +65,6 @@ version of preview. Hopefully there will be a test of this diff at some point*/
       margin-left: $stitchWidth + $spacing;
     }
   }
-  &.colorSwallowed.staggered {
-    .crow:nth-child(2n+1) {
-      .stitch:first-child {
-        display: none;
-      }
-    }
-  }
 
   .stitch {
     box-sizing: border-box;

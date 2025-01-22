@@ -171,14 +171,15 @@ describe('swatchMatrix', () => {
         {color: '#eee', length: 1},
       ] as ColorSequenceArray,
         stitchesPerRow: 4,
-        numberOfRows: 3,
+        numberOfRows: 4,
         colorShift: 0,
         staggerLengths: true,
         staggerType: 'colorSwallowed'
       })).toEqual([
-        ["#eee","#aaa","#bbb","#ccc","#ddd"],
-               ["#eee","#aaa","#bbb","#ccc"],
-        ["#ddd","#eee","#aaa","#bbb","#ccc"]
+        ["#aaa","#bbb","#ccc","#ddd"],
+        ["#eee","#aaa","#bbb","#ccc"],
+        ["#eee","#aaa","#bbb","#ccc"],
+        ["#ddd","#eee","#aaa","#bbb"],
       ])
   })
   it('stretches stitches', () => {
@@ -377,7 +378,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         staggerType: 'colorSwallowed'
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
-        ["#ddd","#ccc","#bbb","#aaa"],
+        ["#ccc","#bbb","#aaa","#eee"],
         ["#eee","#aaa","#bbb","#ccc"]
       ])
   })

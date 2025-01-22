@@ -187,7 +187,7 @@ describe('Swatch', () => {
           expect(swatch.children[0].children[0]).toHaveClass('stitch')
       })
 
-      it('secretly alternates row lengths when color is swallowed', () => {
+      it('does not alternate row lengths when colors are swallowed', () => {
           render(
             <Swatch
               colorSequence={[
@@ -204,9 +204,9 @@ describe('Swatch', () => {
 
           const swatch = screen.getByTestId("swatch")
           expect(swatch.children.length, 'should have correct numberOfRows').toEqual(4)
-          expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[0].children.length, 'first row should have correct number of stitches').toEqual(5)
           expect(swatch.children[1].children.length, 'second row should have correct number of stitches').toEqual(5)
-          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(6)
+          expect(swatch.children[2].children.length, 'third row should have correct number of stitches').toEqual(5)
           expect(swatch.children[3].children.length, 'fourth row should have correct number of stitches').toEqual(5)
 
           expect(swatch.children[0]).toHaveClass('crow')
@@ -324,7 +324,7 @@ describe('Swatch', () => {
           expect(row1stitches[4]).toHaveStyle('background-color: #000')
       })
 
-      it('has an extra (hidden by css) stitch at the beginning of each odd row when stitches are swallowed', () => {
+      it('skips a stitch color after each even row when colors are swallowed', () => {
           render(
             <Swatch
               colorSequence={[
@@ -349,18 +349,23 @@ describe('Swatch', () => {
 
           const swatch = screen.getByTestId("swatch")
           const row0stitches = swatch.children[0].children;
-          expect(row0stitches[0]).toHaveStyle('background-color: #900')
-          expect(row0stitches[1]).toHaveStyle('background-color: #000')
-          expect(row0stitches[2]).toHaveStyle('background-color: #100')
-          expect(row0stitches[3]).toHaveStyle('background-color: #200')
-          expect(row0stitches[4]).toHaveStyle('background-color: #300')
-          expect(row0stitches[5]).toHaveStyle('background-color: #400')
+          expect(row0stitches[0]).toHaveStyle('background-color: #000')
+          expect(row0stitches[1]).toHaveStyle('background-color: #100')
+          expect(row0stitches[2]).toHaveStyle('background-color: #200')
+          expect(row0stitches[3]).toHaveStyle('background-color: #300')
+          expect(row0stitches[4]).toHaveStyle('background-color: #400')
           const row1stitches = swatch.children[1].children;
           expect(row1stitches[0]).toHaveStyle('background-color: #500')
           expect(row1stitches[1]).toHaveStyle('background-color: #600')
           expect(row1stitches[2]).toHaveStyle('background-color: #700')
           expect(row1stitches[3]).toHaveStyle('background-color: #800')
           expect(row1stitches[4]).toHaveStyle('background-color: #900')
+          const row2stitches = swatch.children[2].children;
+          expect(row2stitches[0]).toHaveStyle('background-color: #100')
+          expect(row2stitches[1]).toHaveStyle('background-color: #200')
+          expect(row2stitches[2]).toHaveStyle('background-color: #300')
+          expect(row2stitches[3]).toHaveStyle('background-color: #400')
+          expect(row2stitches[4]).toHaveStyle('background-color: #500')
       })
 
       it('color stretches with correct row lengths and colors', () => {
