@@ -324,7 +324,7 @@ describe('Swatch', () => {
           expect(row1stitches[4]).toHaveStyle('background-color: #000')
       })
 
-      it('removes a stitch between each even row and odd row when colors are swallowed', () => {
+      it('skips a stitch color after each even row when colors are swallowed', () => {
           render(
             <Swatch
               colorSequence={[
