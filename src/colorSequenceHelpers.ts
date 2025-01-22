@@ -57,7 +57,3 @@ export function presetPickerColors({colorSequence = [], extraColors = []} : {col
   ] as Array<Color>
   return [...new Set([...defaultColors, ...colorSequence.map((c) => c.color), ...extraColors])];
 }
-
-export function rowsTillMirrored({colorSequence, stitchesPerRow, colorShift} : {colorSequence: ColorSequenceArray, stitchesPerRow: number, colorShift: number}) : number {
-  return 0
-}

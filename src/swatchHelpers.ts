@@ -107,3 +107,37 @@ export function clusteredSwatchMatrix({
   }
   return wholeOutput
 }
+
+export function rowsTillMirrored({
+  colorSequence,
+  stitchesPerRow,
+  numberOfRows, //note this shouldn't be needed
+  colorShift,
+  staggerLengths,
+  staggerType
+} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : number {
+  const maxRows = stitchesPerRow * 4
+  const matrix = swatchMatrix({
+    colorSequence,
+    stitchesPerRow,
+    numberOfRows: maxRows,
+    colorShift,
+    staggerLengths,
+    staggerType
+  })
+  function compareRows(ref: Array<unknown>, target: Array<unknown>) {
+    return ref.every((v,i)=> v === target[i])
+  }
+
+  const target0 = matrix[0].toReversed()
+  const target1 = matrix[1].toReversed()
+
+  var i = 0
+  while(i <= maxRows) {
+    if(compareRows(matrix[i], target1) && compareRows(matrix[i + 1], target0)) {
+      return i + 2
+    }
+    i += 1
+  }
+  return 0
+}
