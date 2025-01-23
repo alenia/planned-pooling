@@ -44,3 +44,9 @@ export type Colorway = {
 }
 
 export type ColorwayRecord = Record<string, DeepReadonly<Colorway>>
+
+export type ClusterConfiguration = {
+    stitchCount: number,
+    prepend?: boolean ,
+    append?: boolean,
+}

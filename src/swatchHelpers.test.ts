@@ -3,6 +3,7 @@ import { ColorSequenceArray } from './types'
 import {
   swatchMatrix,
   swatchMatrixWithReversedEvenRows,
+  clusteredSwatchMatrix,
 } from './swatchHelpers'
 
 describe('swatchMatrix', () => {
@@ -402,6 +403,80 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         ["#ccc","#ddd","#eee","#aaa"],
         ["#eee","#ddd","#ccc","#bbb"],
         ["#eee","#aaa","#bbb","#ccc"],
+      ])
+  })
+})
+
+describe("clusteredSwatchMatrix", () => {
+  it('creates a matrix of color codes based on the color sequence and cluster configuration', () => {
+    expect(
+      clusteredSwatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3, // Clusters per row in this case
+        numberOfRows: 3,
+        staggerLengths: false,
+        colorShift: 0,
+      }, {
+        stitchCount: 2,
+        prepend: false,
+        append: false
+      })).toEqual([
+        [["#aaa","#bbb"],["#ccc","#ddd"],["#eee","#aaa"]],
+        [["#bbb","#ccc"],["#ddd","#eee"],["#aaa","#bbb"]],
+        [["#ccc","#ddd"],["#eee","#aaa"],["#bbb","#ccc"]],
+      ])
+  })
+  it('prepends a single-stitch cluster when prepend is selected', () => {
+    expect(
+      clusteredSwatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 4, // Clusters per row in this case
+        numberOfRows: 4,
+        staggerLengths: false,
+        colorShift: 0,
+      }, {
+        stitchCount: 3,
+        prepend: true,
+        append: false
+      })).toEqual([
+        [["#aaa"],["#bbb","#ccc","#ddd"],["#eee","#aaa","#bbb"],["#ccc","#ddd","#eee"],["#aaa","#bbb","#ccc"]],
+        [["#ddd"],["#eee","#aaa","#bbb"],["#ccc","#ddd","#eee"],["#aaa","#bbb","#ccc"],["#ddd","#eee","#aaa"]],
+        [["#bbb"],["#ccc","#ddd","#eee"],["#aaa","#bbb","#ccc"],["#ddd","#eee","#aaa"],["#bbb","#ccc","#ddd"]],
+        [["#eee"],["#aaa","#bbb","#ccc"],["#ddd","#eee","#aaa"],["#bbb","#ccc","#ddd"],["#eee","#aaa","#bbb"]],
+      ])
+  })
+  it('appends a single-stitch cluster when append is selected', () => {
+    expect(
+      clusteredSwatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 1},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 1},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 3, // Clusters per row in this case
+        numberOfRows: 4,
+        staggerLengths: false,
+        colorShift: 0,
+      }, {
+        stitchCount: 2,
+        prepend: false,
+        append: true
+      })).toEqual([
+        [["#aaa","#bbb"],["#ccc","#ddd"],["#eee","#aaa"],["#bbb"]],
+        [["#ccc","#ddd"],["#eee","#aaa"],["#bbb","#ccc"],["#ddd"]],
+        [["#eee","#aaa"],["#bbb","#ccc"],["#ddd","#eee"],["#aaa"]],
+        [["#bbb","#ccc"],["#ddd","#eee"],["#aaa","#bbb"],["#ccc"]]
       ])
   })
 })
