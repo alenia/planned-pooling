@@ -49,7 +49,7 @@ function Experimental() {
       <p>Here are the current features:</p>
       <ul>
         <li>there is a button to double your colors that makes a copy of all the colors</li>
-        <li>there's more info about the colors you see</li>
+        <li>there&rsquo;s more info about the colors you see</li>
         <li>you can change stagger type (not saved on url)</li>
       </ul>
       <p>If you don&apos;t know what I&apos;m talking about use the <a href='/'>main app.</a></p>
