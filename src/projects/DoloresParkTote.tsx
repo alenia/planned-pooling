@@ -1,12 +1,10 @@
 import SwatchWithForm from '../SwatchWithForm';
-import { StitchPattern } from '../types'
+import { StitchPattern, StaggerType } from '../types'
 import { Fragment, useState, useEffect } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { dunaColorways, defaultDunaColorwayId } from '../colorways';
 import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
-
-type StaggerType = 'colorStretched' | 'colorSwallowed'
 
 function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]

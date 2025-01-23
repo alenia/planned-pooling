@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { swatchMatrix, clusteredSwatchMatrix } from './swatchHelpers'
-import { StitchPattern, Color, ColorSequenceArray, ClusterConfiguration } from './types'
+import { StitchPattern, Color, ColorSequenceArray, ClusterConfiguration, StaggerType } from './types'
 import './Swatch.scss'
 
 const clusterConfiguration:Record<StitchPattern, (ClusterConfiguration | null)> = { //Todo: make this a class of some sort?
@@ -42,7 +42,7 @@ function Stitch ({color} : { color: Color}) {
 }
 
 function Swatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType = "normal", className}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType = 'normal', className}
   : {
     colorSequence: ColorSequenceArray,
     stitchesPerRow: number,
@@ -50,7 +50,7 @@ function Swatch(
     numberOfRows?: number,
     colorShift?: number,
     staggerLengths?: boolean,
-    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
+    staggerType?: StaggerType,
     className?: string
   }
 ) {

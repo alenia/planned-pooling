@@ -1,5 +1,5 @@
 import SwatchWithForm from '../SwatchWithForm';
-import { StitchPattern, Color } from '../types'
+import { StitchPattern, Color, StaggerType } from '../types'
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { useState } from "react";
 import ColorSequenceInfo from '../ColorSequenceInfo'
@@ -10,8 +10,6 @@ const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
 const ltblue = "#8dd0f2" as Color;
 const navy = "#0e0e66" as Color;
-
-type StaggerType = 'colorStretched' | 'colorSwallowed'
 
 function Experimental() {
   const defaultSwatchConfig = {
