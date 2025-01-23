@@ -130,21 +130,31 @@ export function rowsTillMirrored({
     return ref.every((v,i)=> v === target[i])
   }
 
-  const target0 = matrix[0].toReversed()
-  const target1 = matrix[1].toReversed()
-  const target2 = matrix[2].toReversed()
+  const reversed0 = matrix[0].toReversed()
+  const reversed1 = matrix[1].toReversed()
+  const reversed2 = matrix[2].toReversed()
 
-  var i = 0
+  var i = 2
   while(i < maxRows) {
-    if(compareRows(matrix[i], target2) && compareRows(matrix[i + 1], target1) && compareRows(matrix[i + 2], target0)) {
+    if(compareRows(matrix[i - 2], reversed2) && compareRows(matrix[i - 1], reversed1) && compareRows(matrix[i], reversed0)) {
       if(false) {
         console.log(
           matrix.map(
             (ary) => (ary.map((v) => (v === "#fff" ? '.' : 'o')).join(''))))
-        console.log(i, matrix[i], target1, compareRows(matrix[i], target1))
-        console.log(i, matrix[i+1], target0, compareRows(matrix[i+1], target0))
+        console.log(i, matrix[i], reversed1, compareRows(matrix[i], reversed1))
+        console.log(i, matrix[i+1], reversed0, compareRows(matrix[i+1], reversed0))
       }
-      return i + 3
+      return i + 1
+    }
+    if(compareRows(matrix[i - 2], matrix[2]) && compareRows(matrix[i - 1], matrix[1]) && compareRows(matrix[i], matrix[0])) {
+      if(false) {
+        console.log(
+          matrix.map(
+            (ary) => (ary.map((v) => (v === "#fff" ? '.' : 'o')).join(''))))
+        console.log(i, matrix[i], matrix[1], compareRows(matrix[i], matrix[1]))
+        console.log(i, matrix[i+1], matrix[0], compareRows(matrix[i+1], matrix[0]))
+      }
+      return i + 1
     }
     i += 1
   }
