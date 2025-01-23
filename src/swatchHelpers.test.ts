@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { ColorSequenceArray } from './types'
 import {
   swatchMatrix,
-  swatchMatrixWithReversedEvenRows,
   clusteredSwatchMatrix,
 } from './swatchHelpers'
 
