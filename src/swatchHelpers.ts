@@ -62,7 +62,8 @@ export function clusteredSwatchMatrix({
     for (let j = 0; j < clustersInThisRow; j++) {
       const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesPerCluster) as Array<Color>
       startingIndex += stitchesPerCluster
-      rowOutput.push(nextSlice)
+      //rowOutput.push(nextSlice)
+      i % 2 === 0 ? rowOutput.push(nextSlice) : rowOutput.push(nextSlice.reverse())
     }
     if(clusterConfig.append){
       const nextSlice = circularSlice(flattenedColorSequence, startingIndex, 1) as Array<Color>
@@ -70,7 +71,8 @@ export function clusteredSwatchMatrix({
       rowOutput.push(nextSlice)
     }
 
-    wholeOutput.push(rowOutput)
+    //wholeOutput.push(rowOutput)
+    i % 2 === 0 ? wholeOutput.push(rowOutput) : wholeOutput.push(rowOutput.reverse())
   }
   return wholeOutput
 }

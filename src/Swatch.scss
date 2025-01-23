@@ -137,10 +137,6 @@ version of preview. Hopefully there will be a test of this diff at some point*/
     display: flex;
     flex-direction: row;
   }
-
-  .crow:nth-child(2n) .cluster {
-    flex-direction: row-reverse;
-  }
 }
 
 .swatch.jasmine {
@@ -160,12 +156,12 @@ version of preview. Hopefully there will be a test of this diff at some point*/
   }
   .crow:nth-child(2n) {
     margin-left: 50px; //this is a weird artifact of the fact that the prepended cluster takes up a ton of room
-    .stitch:nth-child(3n), .stitch:only-child {
-      transform: rotate(120deg);
+    .stitch:nth-child(3n + 2) {
+      transform: rotate(60deg);
       transform-origin: center left;
     }
-    .stitch:nth-child(3n+2) {
-      transform: rotate(60deg);
+    .stitch:nth-child(3n), .stitch:only-child {
+      transform: rotate(120deg);
       transform-origin: center left;
     }
   }
@@ -183,7 +179,7 @@ version of preview. Hopefully there will be a test of this diff at some point*/
 
 .swatch.ripple {
   $rot: 20deg;
-  .crow:nth-child(2n) .cluster:nth-last-child(2n+1), .crow:nth-child(2n+1) .cluster:nth-child(2n+1) {
+  .cluster:nth-child(2n+1) {
     transform: rotate($rot);
     .stitch:first-child {
       transform: rotate(-1 * $rot);
@@ -193,7 +189,7 @@ version of preview. Hopefully there will be a test of this diff at some point*/
     }
   }
 
-  .crow:nth-child(2n) .cluster:nth-last-child(2n), .crow:nth-child(2n+1) .cluster:nth-child(2n) {
+  .cluster:nth-child(2n) {
     transform: rotate(-1 * $rot);
     .stitch:first-child {
       transform: rotate($rot);
@@ -206,10 +202,10 @@ version of preview. Hopefully there will be a test of this diff at some point*/
 
 .vstitchCluster {
   $rot: 30deg;
-  .cluster .stitch:first-child, .crow:nth-child(2n) .cluster .stitch:last-child {
+  .cluster .stitch:first-child {
     transform: rotate(-1* $rot);
   }
-  .cluster .stitch:last-child, .crow:nth-child(2n) .cluster .stitch:first-child {
+  .cluster .stitch:last-child {
     transform: rotate($rot);
   }
   .cluster .stitch:only-child {
