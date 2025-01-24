@@ -51,7 +51,6 @@ function Experimental() {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className='wide-first-column'
       >
         <fieldset>
           <DropdownInput
@@ -77,7 +76,7 @@ function Experimental() {
       />
       <SwatchInfoPopover
         swatchConfig={swatchConfig}
-        staggerType={staggerType}
+        //staggerType={staggerType}
       />
     </div>
   );

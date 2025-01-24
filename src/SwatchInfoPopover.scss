@@ -2,4 +2,17 @@
   position: fixed;
   top: 0;
   right: 0;
+  background-color: rgba(256,256,256,85%);
+  padding: 20px;
+  .info-heading {
+    &.clickable-info-heading {
+      cursor: pointer;
+    }
+    .icon {
+      cursor: pointer;
+      padding: 0 10px;
+    }
+    display: flex;
+    justify-content: flex-end;
+  }
 }
