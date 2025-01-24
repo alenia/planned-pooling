@@ -2,9 +2,8 @@ import SwatchWithForm from '../SwatchWithForm';
 import { StitchPattern, Color, StaggerType } from '../types'
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 import { useState } from "react";
-import ColorSequenceInfo from '../ColorSequenceInfo'
+import SwatchInfoPopover from '../SwatchInfoPopover'
 import DropdownInput from '../inputs/Dropdown';
-import { totalColorSequenceLength } from '../colorSequenceHelpers'
 
 const red = "#ff001d" as Color;
 const cream = "#fcf7eb" as Color;
@@ -38,9 +37,6 @@ function Experimental() {
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
-  const numStitches = swatchConfig.stitchesPerRow * swatchConfig.numberOfRows
-  const numColorSequences = numStitches/totalColorSequenceLength(swatchConfig.colorSequence)
-
   return (
     <div>
       <p>This is an experimental page. It might change at anytime and URLs can break.</p>
@@ -58,10 +54,6 @@ function Experimental() {
         className='wide-first-column'
       >
         <fieldset>
-          <ColorSequenceInfo colorSequence={swatchConfig.colorSequence} colorShift={swatchConfig.colorShift}/>
-          <p>In this swatch:</p>
-          <pre>Number of stitches/clusters displayed (might be wrong with a stagger type): {numStitches}</pre>
-          <pre>Number of {swatchConfig.colorSequence.length}-color color sequences displayed: {numColorSequences.toFixed(1)}</pre>
           <DropdownInput
             label="Row alternating technique:"
             name="staggerType"
@@ -82,6 +74,10 @@ function Experimental() {
         setSwatchConfig={setSwatchConfig}
         staggerType={staggerType}
         showExperimentalFeatures={true}
+      />
+      <SwatchInfoPopover
+        swatchConfig={swatchConfig}
+        staggerType={staggerType}
       />
     </div>
   );
