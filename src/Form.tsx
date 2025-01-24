@@ -2,7 +2,7 @@ import './Form.scss'
 import CheckboxInput from './inputs/Checkbox'
 import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
-import { Color, SwatchConfig } from './types'
+import { Color, SwatchConfig, StaggerType } from './types'
 import { getRandomNotWhiteColor } from './colorHelpers'
 import { totalColorSequenceLength, presetPickerColors } from './colorSequenceHelpers'
 import { mod } from './numberHelpers'
@@ -14,7 +14,7 @@ function Form(
   {
     swatchData: SwatchConfig,
     setSwatchData: (data: SwatchConfig) => void,
-    staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed',
+    staggerType?: StaggerType,
     showExperimentalFeatures: boolean,
     className?: string,
   }

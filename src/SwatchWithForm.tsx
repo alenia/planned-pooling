@@ -1,13 +1,13 @@
 import Swatch from './Swatch';
 import Form from './Form';
-import { SwatchConfig } from './types'
+import { SwatchConfig, StaggerType } from './types'
 import { useState } from 'react';
 import CheckboxInput from './inputs/Checkbox'
 
 function SwatchWithForm({swatchConfig, setSwatchConfig, staggerType, showExperimentalFeatures, showRowNumbersInitially, formClasses, swatchClasses}  : {
   swatchConfig: SwatchConfig,
   setSwatchConfig: (arg0: SwatchConfig) => void,
-  staggerType?: 'normal' | 'colorStretched' | 'colorSwallowed'
+  staggerType?: StaggerType,
   showExperimentalFeatures?: boolean,
   showRowNumbersInitially?: boolean,
   formClasses?: string,

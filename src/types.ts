@@ -1,5 +1,8 @@
 import { DeepReadonly } from 'ts-essentials'
 
+// consider making this an enum later. I can say `const foo = 'whatever' as StaggerType` right now.
+export type StaggerType = 'colorStretched' | 'colorSwallowed' | 'normal'
+
 export enum StitchPattern {
   unstyled = "unstyled",
   moss = "moss",
