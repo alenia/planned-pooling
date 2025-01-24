@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import ColorSequenceInfo from './ColorSequenceInfo'
 import { totalColorSequenceLength } from './colorSequenceHelpers'
-//import { StaggerType, SwatchConfig } from './types'
-import { SwatchConfig } from './types'
+import { rowsTillMirrored } from './swatchHelpers'
+import { StaggerType, SwatchConfig } from './types'
 import './SwatchInfoPopover.scss'
 
-/*function SwatchInfoPopover({swatchConfig, staggerType}  : {*/
-function SwatchInfoPopover({swatchConfig}  : {
+function SwatchInfoPopover({swatchConfig, staggerType}  : {
   swatchConfig: SwatchConfig,
-  /*staggerType?: StaggerType,*/
+  staggerType: StaggerType,
 }) {
   const [displayInfo, setDisplayInfo] = useState(false);
 
@@ -29,6 +28,7 @@ function SwatchInfoPopover({swatchConfig}  : {
         <p>In this swatch:</p>
         <pre>Number of stitches/clusters displayed (might be wrong with a stagger type): {numStitches}</pre>
         <pre>Number of {swatchConfig.colorSequence.length}-color color sequences displayed: {numColorSequences.toFixed(1)}</pre>
+        <pre>Rows till mirrored: {rowsTillMirrored({...swatchConfig, staggerType})}</pre>
       </div>
     ) : (
       <div>

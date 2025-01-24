@@ -77,7 +77,7 @@ function Experimental() {
       />
       <SwatchInfoPopover
         swatchConfig={swatchConfig}
-        //staggerType={staggerType}
+        staggerType={staggerType}
       />
     </div>
   );
