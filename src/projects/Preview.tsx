@@ -1,5 +1,5 @@
 import Swatch from '../Swatch'
-import { StitchPattern, ColorSequenceArray, Color } from '../types'
+import { StitchPattern, ColorSequenceArray, Color, StaggerType } from '../types'
 
 const yellow : Color = "#faf619";
 const red : Color = "#fa1933";
@@ -47,12 +47,12 @@ export default function Preview() {
       <h4>Testing color stretching and swallowing</h4>
       <h5>unstyled normal, swallowed, stretched</h5>
       <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} staggerLengths={true} numberOfRows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} staggerLengths={true} staggerType={'colorSwallowed'} numberOfRows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} staggerLengths={true} staggerType={'colorStretched'} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} staggerLengths={true} staggerType={StaggerType.colorSwallowed} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.unstyled} staggerLengths={true} staggerType={StaggerType.colorStretched} numberOfRows={8}/>
       <h5>moss normal, swallowed, stretched</h5>
       <Swatch {...basicProps} stitchPattern={StitchPattern.moss} staggerLengths={true} numberOfRows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.moss} staggerLengths={true} staggerType={'colorSwallowed'} numberOfRows={8}/>
-      <Swatch {...basicProps} stitchPattern={StitchPattern.moss} staggerLengths={true} staggerType={'colorStretched'} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.moss} staggerLengths={true} staggerType={StaggerType.colorSwallowed} numberOfRows={8}/>
+      <Swatch {...basicProps} stitchPattern={StitchPattern.moss} staggerLengths={true} staggerType={StaggerType.colorStretched} numberOfRows={8}/>
 
       <StitchPatternPreview stitchPattern={StitchPattern.unstyled} title="unstyled stitch pattern"/>
       <StitchPatternPreview stitchPattern={StitchPattern.stacked}/>
