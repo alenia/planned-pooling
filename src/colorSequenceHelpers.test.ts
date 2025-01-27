@@ -5,7 +5,6 @@ import {
   totalColorSequenceLength,
   matchColorwayToColorSequence,
   presetPickerColors,
-  rowsTillMirrored
 } from './colorSequenceHelpers'
 import { Color, ColorSequenceArray, ColorwayRecord } from './types'
 

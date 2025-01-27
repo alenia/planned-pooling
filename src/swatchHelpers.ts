@@ -1,4 +1,4 @@
-import { StandardSwatchConfig, Color, ClusterConfiguration } from './types'
+import { StandardSwatchConfig, Color, ClusterConfiguration, StaggerType } from './types'
 import { flatColorSequenceArray, totalColorSequenceLength } from './colorSequenceHelpers'
 import { circularSlice } from './arrayHelpers'
 
@@ -9,9 +9,9 @@ export function swatchMatrix({
   colorShift,
   staggerLengths,
   staggerType
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : Array<Array<Color>>{
+} : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
   const flattenedColorSequence = flatColorSequenceArray(colorSequence)
-  function staggeredWithType(typeName: 'normal' | 'colorStretched' | 'colorSwallowed') {
+  function staggeredWithType(typeName: StaggerType) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
@@ -111,11 +111,10 @@ export function clusteredSwatchMatrix({
 export function rowsTillMirrored({
   colorSequence,
   stitchesPerRow,
-  numberOfRows, //note this shouldn't be needed
   colorShift,
   staggerLengths,
-  staggerType
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : number {
+  staggerType = 'normal'
+} : StandardSwatchConfig & {staggerType: StaggerType}) : number {
   const maxRows = totalColorSequenceLength(colorSequence) * 4
   const matrix = swatchMatrixWithReversedEvenRows({
   //const matrix = swatchMatrix({
