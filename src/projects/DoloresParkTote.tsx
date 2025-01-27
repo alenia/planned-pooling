@@ -10,7 +10,7 @@ function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(defaultDunaColorwayId)
-  const [staggerType, setStaggerType] = useState('colorStretched' as StaggerType)
+  const [staggerType, setStaggerType] = useState(StaggerType.colorStretched)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)

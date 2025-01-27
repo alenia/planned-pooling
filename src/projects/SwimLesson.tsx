@@ -12,7 +12,7 @@ function SwimLesson() {
     { color: "#d6dfd7", length: 8 },
     { color: "#0e7a42", length: 6 }
   ] as ColorSequenceArray
-  const [staggerType, setStaggerType] = useState('colorStretched' as StaggerType)
+  const [staggerType, setStaggerType] = useState(StaggerType.colorStretched)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)

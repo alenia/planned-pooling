@@ -30,7 +30,7 @@ function Experimental() {
 
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
-  const [staggerType, setStaggerType] = useState('normal' as StaggerType)
+  const [staggerType, setStaggerType] = useState(StaggerType.normal)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     setStaggerType(newStaggerType as StaggerType)
