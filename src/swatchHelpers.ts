@@ -11,7 +11,7 @@ export function swatchMatrix({
   staggerType
 } : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
   const flattenedColorSequence = flatColorSequenceArray(colorSequence)
-  function staggeredWithType(typeName: String) {
+  function staggeredWithType(typeName: string) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
@@ -43,7 +43,7 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
   staggerLengths,
   staggerType
 } : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
-  function staggeredWithType(typeName: String) {
+  function staggeredWithType(typeName: string) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
@@ -133,7 +133,7 @@ export function rowsTillMirrored({
   const reversed1 = matrix[1].toReversed()
   const reversed2 = matrix[2].toReversed()
 
-  var i = 2
+  let i = 2
   while(i < maxRows) {
     if(compareRows(matrix[i - 2], reversed2) && compareRows(matrix[i - 1], reversed1) && compareRows(matrix[i], reversed0)) {
       if(false) {
