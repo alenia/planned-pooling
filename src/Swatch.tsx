@@ -42,7 +42,7 @@ function Stitch ({color} : { color: Color}) {
 }
 
 function Swatch(
-  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType = 'normal', className}
+  { colorSequence, stitchesPerRow, stitchPattern, numberOfRows = 40, colorShift = 0, staggerLengths = false, staggerType = StaggerType.normal, className}
   : {
     colorSequence: ColorSequenceArray,
     stitchesPerRow: number,

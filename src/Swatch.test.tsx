@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { StitchPattern, SwatchConfig, ColorSequenceArray } from './types'
+import { StitchPattern, SwatchConfig, ColorSequenceArray, StaggerType } from './types'
 import Swatch from './Swatch'
 
 const basicSwatchConfig = {
@@ -83,7 +83,7 @@ describe('Swatch', () => {
               colorShift={1}
               numberOfRows={2}
               staggerLengths={true}
-              staggerType="colorStretched"
+              staggerType={StaggerType.colorStretched}
             />
             <Swatch
               colorSequence={[
@@ -194,7 +194,7 @@ describe('Swatch', () => {
                 {color: '#f00', length: 3},
                 {color: '#0f0', length: 2},
               ]}
-              staggerType='colorSwallowed'
+              staggerType={StaggerType.colorSwallowed}
               stitchPattern={StitchPattern.moss}
               stitchesPerRow={5}
               numberOfRows={4}
@@ -343,7 +343,7 @@ describe('Swatch', () => {
               stitchesPerRow={5}
               numberOfRows={4}
               staggerLengths={true}
-              staggerType={'colorSwallowed'}
+              staggerType={StaggerType.colorSwallowed}
             />
           )
 
@@ -384,7 +384,7 @@ describe('Swatch', () => {
               {color: '#900', length: 1},
             ]}
             stitchPattern={StitchPattern.moss}
-            staggerType='colorStretched'
+            staggerType={StaggerType.colorStretched}
             stitchesPerRow={5}
             numberOfRows={4}
             staggerLengths={true}

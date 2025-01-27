@@ -10,9 +10,10 @@ function DoloresParkTote() {
   const initialColorway = dunaColorways[defaultDunaColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(defaultDunaColorwayId)
-  const [staggerType, setStaggerType] = useState('colorStretched' as StaggerType)
+  const [staggerType, setStaggerType] = useState(StaggerType.colorStretched)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
+    //TODO: write some tests for this dropdown. The typecasting might be cargo culted and fail silently one day
     setStaggerType(newStaggerType as StaggerType)
   }
 
@@ -99,8 +100,8 @@ function DoloresParkTote() {
             value={staggerType}
             setValue={setStaggerTypeFromDropdown}
             items={[
-              {label: 'Color stretching', value: 'colorStretched'},
-              {label: 'Color swallowing', value: 'colorSwallowed'},
+              {label: 'Color stretching', value: StaggerType.colorStretched},
+              {label: 'Color swallowing', value: StaggerType.colorSwallowed},
             ]}
           />
           <label>
