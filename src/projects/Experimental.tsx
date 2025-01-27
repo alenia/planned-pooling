@@ -33,6 +33,7 @@ function Experimental() {
   const [staggerType, setStaggerType] = useState(StaggerType.normal)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
+    //TODO: write some tests for this dropdown. The typecasting might be cargo culted and fail silently one day
     setStaggerType(newStaggerType as StaggerType)
   }
 
@@ -70,9 +71,9 @@ function Experimental() {
             setValue={setStaggerTypeFromDropdown}
             withTooltip={true}
             items={[
-              {label: 'Display odd rows and even rows with different lengths', value: 'normal'},
-              {label: 'Color stretching (increasing tension)', value: 'colorStretched'},
-              {label: 'Color swallowing (loosening tension)', value: 'colorSwallowed'},
+              {label: 'Display odd rows and even rows with different lengths', value: StaggerType.normal},
+              {label: 'Color stretching (increasing tension)', value: StaggerType.colorStretched},
+              {label: 'Color swallowing (loosening tension)', value: StaggerType.colorSwallowed},
             ]}
           />
         </fieldset>
