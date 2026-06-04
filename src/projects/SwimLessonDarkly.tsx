@@ -1,17 +1,17 @@
-import './SwimLesson.scss';
+import './SwimLessonDarkly.scss';
 import SwatchWithForm from '../SwatchWithForm';
 import Swatch from '../Swatch';
 import { StitchPattern, ColorSequenceArray, StaggerType } from '../types'
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import DropdownInput from '../inputs/Dropdown';
-import { totalColorSequenceLength } from '../colorSequenceHelpers';
+import { aSkeinerDarklyColorways, defaultASkeinerDarklyColorwayId } from '../colorways';
+import { totalColorSequenceLength, duplicateColorSequenceArray, matchColorwayToColorSequence } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
 function SwimLessonDarkly() {
-  const initialColorSequence = [
-    { color: "#d6dfd7", length: 8 },
-    { color: "#0e7a42", length: 6 }
-  ] as ColorSequenceArray
+  const initialColorway = aSkeinerDarklyColorways[defaultASkeinerDarklyColorwayId]
+  const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
+  const [selectedColorway, setSelectedColorway] = useState(defaultASkeinerDarklyColorwayId)
   const [staggerType, setStaggerType] = useState(StaggerType.colorStretched)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
@@ -32,6 +32,22 @@ function SwimLessonDarkly() {
 
   useEffectToUpdateURLParamsFromSwatchConfig(swatchConfig, setSearchParams)
 
+  useEffect(() => {
+    const newColorway = matchColorwayToColorSequence(aSkeinerDarklyColorways, swatchConfig.colorSequence)
+    setSelectedColorway(newColorway)
+  },[swatchConfig, setSelectedColorway])
+
+  const resetColorway = (selectedColorwayId : string) => {
+    setSelectedColorway(selectedColorwayId)
+    if(!aSkeinerDarklyColorways[selectedColorwayId]) { return false } //TODO test me
+    const newColorSequence = duplicateColorSequenceArray(aSkeinerDarklyColorways[selectedColorwayId].colorSequence)
+    setSwatchConfig({
+      ...swatchConfig,
+      colorSequence: newColorSequence,
+      stitchesPerRow: totalColorSequenceLength(newColorSequence),
+      colorShift: 0,
+    })
+  }
   const setPanel1Configuration = () => {
     setSwatchConfig({
       ...swatchConfig,
@@ -81,6 +97,16 @@ function SwimLessonDarkly() {
         className='wide-first-column'
       >
         <fieldset>
+          <DropdownInput
+            label="Pick a colorway:"
+            name="colorway"
+            title="Pick from an A Skeiner Darkly colorway"
+            value={selectedColorway}
+            setValue={resetColorway}
+            items={[...Object.keys(aSkeinerDarklyColorways).map((id) => (
+              { label: aSkeinerDarklyColorways[id].colorway, value: id }
+            )), {label: 'Custom (choose your own colors)', value: 'custom'}]}
+          />
           <DropdownInput
             label="Row alternating technique (for section 2):"
             name="staggerType"
