@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { ColorSequenceArray } from './types'
+import { ColorSequenceArray, StaggerType } from './types'
 import {
   swatchMatrix,
   swatchMatrixWithReversedEvenRows,
@@ -20,7 +20,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#eee","#aaa","#bbb","#ccc"],
@@ -40,7 +40,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         [],
         [],
@@ -60,7 +60,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 0,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([])
   })
   it("doesn't choke on zero length colors", () => {
@@ -76,7 +76,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#ccc","#ddd"],
         ["#eee","#aaa","#ccc"],
@@ -94,7 +94,7 @@ describe('swatchMatrix', () => {
       numberOfRows: 4,
       staggerLengths: false,
       colorShift: 0,
-      staggerType: 'normal'
+      staggerType: StaggerType.normal
     })).toEqual([
       ["#000","#000","#000","#111"],
       ["#111","#222","#222","#222"],
@@ -115,7 +115,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
@@ -135,7 +135,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 3,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#ddd","#eee","#aaa","#bbb"],
         ["#ccc","#ddd","#eee","#aaa"],
@@ -155,7 +155,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 3,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
         ["#aaa","#bbb","#ccc","#ddd"],
@@ -175,7 +175,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 4,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'colorSwallowed'
+        staggerType: StaggerType.colorSwallowed
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#eee","#aaa","#bbb","#ccc"],
@@ -196,7 +196,7 @@ describe('swatchMatrix', () => {
         numberOfRows: 5,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'colorStretched'
+        staggerType: StaggerType.colorStretched
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#eee","#aaa","#bbb","#ccc"],
@@ -221,7 +221,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#ccc","#bbb","#aaa","#eee"],
@@ -241,7 +241,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         [],
         [],
@@ -261,7 +261,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 0,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([])
   })
   it("doesn't choke on zero length colors", () => {
@@ -277,7 +277,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#ccc","#ddd"],
         ["#ccc","#aaa","#eee"],
@@ -295,7 +295,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
       numberOfRows: 4,
       staggerLengths: false,
       colorShift: 0,
-      staggerType: 'normal'
+      staggerType: StaggerType.normal
     })).toEqual([
       ["#000","#000","#000","#111"],
       ["#222","#222","#222","#111"],
@@ -316,7 +316,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 0,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
         ["#eee","#ddd","#ccc","#bbb","#aaa"],
@@ -336,7 +336,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         staggerLengths: false,
         colorShift: 3,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#ddd","#eee","#aaa","#bbb"],
         ["#aaa","#eee","#ddd","#ccc"],
@@ -356,7 +356,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'normal'
+        staggerType: StaggerType.normal
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd","#eee"],
         ["#ddd","#ccc","#bbb","#aaa"],
@@ -376,7 +376,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 3,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'colorSwallowed'
+        staggerType: StaggerType.colorSwallowed
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#ccc","#bbb","#aaa","#eee"],
@@ -396,7 +396,7 @@ describe('swatchMatrixWithReversedEvenRows', () => { //TODO this is unused, I ju
         numberOfRows: 5,
         colorShift: 0,
         staggerLengths: true,
-        staggerType: 'colorStretched'
+        staggerType: StaggerType.colorStretched
       })).toEqual([
         ["#aaa","#bbb","#ccc","#ddd"],
         ["#ccc","#bbb","#aaa","#eee"],

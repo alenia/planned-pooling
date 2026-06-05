@@ -5,6 +5,7 @@ import {
   totalColorSequenceLength,
   matchColorwayToColorSequence,
   presetPickerColors,
+  firstLongestColor,
 } from './colorSequenceHelpers'
 import { Color, ColorSequenceArray, ColorwayRecord } from './types'
 
@@ -100,6 +101,18 @@ describe('totalColorSequenceLength', () => {
       {color: "#00f", length: 4}
     ] as ColorSequenceArray
     expect(totalColorSequenceLength(config)).toEqual(9)
+  })
+})
+
+describe('firstLongestColor', () => {
+  it('returns the first longest color in the color sequence array as well as its index', () => {
+    const config = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 4},
+      {color: "#ccc", length: 4},
+      {color: "#ddd", length: 3},
+    ] as ColorSequenceArray
+    expect(firstLongestColor(config)).toEqual({colorInSequence: {color: "#bbb", length: 4}, index: 1})
   })
 })
 

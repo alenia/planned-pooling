@@ -30,6 +30,14 @@ export function totalColorSequenceLength(colorSequence : ColorSequenceArray) : n
   return result;
 }
 
+export function firstLongestColor(colorSequence : ColorSequenceArray) : {colorInSequence: ColorInSequence, index: number} {
+  return colorSequence.reduce(
+    (saved, currColor, currIndex) => 
+    saved.colorInSequence.length >= currColor.length ? saved : {colorInSequence: currColor, index: currIndex},
+    {colorInSequence: colorSequence[0], index: 0}
+  )
+}
+
 export function duplicateColorSequenceArray(colorSequence : DeepReadonly<ColorSequenceArray> | ColorSequenceArray) : ColorSequenceArray {
   return colorSequence.map((c) => ({...c}))
 }

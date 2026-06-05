@@ -3,6 +3,7 @@ import { DeepReadonly } from 'ts-essentials'
 export enum StaggerType {
   colorStretched = 'colorStretched',
   colorSwallowed = 'colorSwallowed',
+  staggerLongestColor = 'staggerLongestColor',
   normal = 'normal'
 }
 
