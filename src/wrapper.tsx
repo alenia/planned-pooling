@@ -10,6 +10,7 @@ import Experimental from './projects/Experimental'
 import Parallax from './projects/Parallax'
 import DoloresParkTote from './projects/DoloresParkTote'
 import SwimLesson from './projects/SwimLesson'
+import SwimLessonDarkly from './projects/SwimLessonDarkly'
 import FadingPool from './projects/FadingPool'
 import DiffusionScarf from './projects/DiffusionScarf'
 import './index.scss'
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/swim-lesson",
     element: <SwimLesson/>
+  },
+  {
+    path: "/swim-lesson-darkly",
+    element: <SwimLessonDarkly/>
   },
   {
     path: "/fading-pool",

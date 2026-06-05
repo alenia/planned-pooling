@@ -86,6 +86,93 @@ export const dunaColorways : ColorwayRecord = {
   },
 }
 
+export const defaultASkeinerDarklyColorwayId = "skeiner-substance-d"
+export const aSkeinerDarklyColorways : ColorwayRecord = {
+  "skeiner-substance-d": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Substance D",
+    "colorSequence": [
+      {"color": "#8adfed", "length": 13},
+      {"color": "#aae67a", "length": 1},
+      {"color": "#e9f473", "length": 3},
+      {"color": "#aae67a", "length": 1},
+    ]
+  },
+  "skeiner-starship": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Starship Heart of Gold",
+    "colorSequence": [
+      {"color": "#bef4ee", "length": 13},
+      {"color": "#e138d2", "length": 1},
+      {"color": "#f1375e", "length": 1},
+      {"color": "#f3fb4c", "length": 1},
+      {"color": "#34bce8", "length": 1},
+      {"color": "#480d95", "length": 1},
+    ]
+  },
+  "skeiner-time-warp": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Let's Do the Time Warp Again",
+    "colorSequence": [
+      {"color": "#b5bac4", "length": 13},
+      {"color": "#fc7a58", "length": 2},
+      {"color": "#cd238d", "length": 1},
+      {"color": "#fc7a58", "length": 2},
+    ]
+  },
+  "skeiner-rebel-scum": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Rebel Scum",
+    "colorSequence": [
+      {"color": "#717e90", "length": 13},
+      {"color": "#f55005", "length": 3},
+      {"color": "#ec31ed", "length": 1},
+      {"color": "#5d2aae", "length": 1},
+    ]
+  },
+  "skeiner-necrobard": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Necrobard",
+    "colorSequence": [
+      {"color": "#ccc0d9", "length": 13},
+      {"color": "#6090c8", "length": 1},
+      {"color": "#288276", "length": 3},
+      {"color": "#6090c8", "length": 1},
+    ]
+  },
+  "skeiner-aurora-caelestis": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Aurora Caelestis",
+    "colorSequence": [
+      {"color": "#292c2f", "length": 13},
+      {"color": "#e138d2", "length": 1},
+      {"color": "#8e6be5", "length": 1},
+      {"color": "#3bd2fb", "length": 2},
+      {"color": "#73f4c7", "length": 1},
+    ]
+  },
+  "skeiner-warp-10": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "Warp 10",
+    "colorSequence": [
+      {"color": "#1275d7", "length": 12},
+      {"color": "#f23fee", "length": 2},
+      {"color": "#f2ee41", "length": 2},
+      {"color": "#f23fee", "length": 2},
+    ]
+  },
+  "skeiner-river-song": {
+    "yarnName": "A Skeiner Darkly",
+    "colorway": "River Song",
+    "colorSequence": [
+      {"color": "#ecefe8", "length": 13},
+      {"color": "#78e6a8", "length": 1},
+      {"color": "#95ebf1", "length": 3},
+      {"color": "#8cbaed", "length": 1},
+    ]
+  },
+}
+
 export const defaultParallaxColorwayId = "dic-tiger-falls"
 export const parallaxColorways : ColorwayRecord = {
   "dic-bali-wood": {
