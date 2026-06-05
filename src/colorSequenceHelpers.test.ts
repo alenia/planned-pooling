@@ -6,6 +6,7 @@ import {
   matchColorwayToColorSequence,
   presetPickerColors,
   firstLongestColor,
+  staggerLongestColor,
 } from './colorSequenceHelpers'
 import { Color, ColorSequenceArray, ColorwayRecord } from './types'
 
@@ -113,6 +114,33 @@ describe('firstLongestColor', () => {
       {color: "#ddd", length: 3},
     ] as ColorSequenceArray
     expect(firstLongestColor(config)).toEqual({colorInSequence: {color: "#bbb", length: 4}, index: 1})
+  })
+})
+
+describe('staggerLongestColor', () => {
+  it('staggers the first longest color in the color sequence array without changing input', () => {
+    const config = [
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 4},
+      {color: "#ccc", length: 4},
+      {color: "#ddd", length: 3},
+    ] as ColorSequenceArray
+    expect(staggerLongestColor(config)).toEqual([
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 4},
+      {color: "#ccc", length: 4},
+      {color: "#ddd", length: 3},
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 5},
+      {color: "#ccc", length: 4},
+      {color: "#ddd", length: 3},
+    ])
+    expect(config).toEqual([
+      {color: "#aaa", length: 2},
+      {color: "#bbb", length: 4},
+      {color: "#ccc", length: 4},
+      {color: "#ddd", length: 3},
+    ])
   })
 })
 

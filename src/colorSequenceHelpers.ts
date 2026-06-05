@@ -38,6 +38,13 @@ export function firstLongestColor(colorSequence : ColorSequenceArray) : {colorIn
   )
 }
 
+export function staggerLongestColor(origColorSequence : ColorSequenceArray) : ColorSequenceArray {
+  const staggeredColorSequence = duplicateColorSequenceArray(origColorSequence)
+  const newLongestColor = firstLongestColor(staggeredColorSequence)
+  newLongestColor.colorInSequence.length += 1
+  return [...origColorSequence, ...staggeredColorSequence]
+}
+
 export function duplicateColorSequenceArray(colorSequence : DeepReadonly<ColorSequenceArray> | ColorSequenceArray) : ColorSequenceArray {
   return colorSequence.map((c) => ({...c}))
 }

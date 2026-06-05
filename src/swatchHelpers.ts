@@ -1,5 +1,5 @@
 import { StandardSwatchConfig, Color, ClusterConfiguration, StaggerType } from './types'
-import { flatColorSequenceArray } from './colorSequenceHelpers'
+import { flatColorSequenceArray, staggerLongestColor } from './colorSequenceHelpers'
 import { circularSlice } from './arrayHelpers'
 
 export function swatchMatrix({
@@ -10,11 +10,11 @@ export function swatchMatrix({
   staggerLengths,
   staggerType
 } : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
-  const flattenedColorSequence = flatColorSequenceArray(colorSequence)
   function staggeredWithType(typeName: StaggerType) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
+  const flattenedColorSequence = staggeredWithType(StaggerType.staggerLongestColor)? flatColorSequenceArray(staggerLongestColor(colorSequence)) : flatColorSequenceArray(colorSequence)
   const output = [] as Array<Array<Color>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
