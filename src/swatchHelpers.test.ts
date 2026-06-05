@@ -162,7 +162,7 @@ describe('swatchMatrix', () => {
         ["#eee","#aaa","#bbb","#ccc","#ddd"]
       ])
   })
-  it('pretends to swallow stitches because the css removes the first stitch from odd rows', () => {
+  it('swallows stitches', () => {
     expect(
       swatchMatrix({colorSequence: [
         {color: '#aaa', length: 1},
@@ -181,6 +181,28 @@ describe('swatchMatrix', () => {
         ["#eee","#aaa","#bbb","#ccc"],
         ["#eee","#aaa","#bbb","#ccc"],
         ["#ddd","#eee","#aaa","#bbb"],
+      ])
+  })
+  it('staggers length of first longest color', () => {
+    expect(
+      swatchMatrix({colorSequence: [
+        {color: '#aaa', length: 1},
+        {color: '#bbb', length: 2},
+        {color: '#ccc', length: 1},
+        {color: '#ddd', length: 2},
+        {color: '#eee', length: 1},
+      ] as ColorSequenceArray,
+        stitchesPerRow: 4,
+        numberOfRows: 5,
+        colorShift: 0,
+        staggerLengths: true,
+        staggerType: StaggerType.staggerLongestColor
+      })).toEqual([
+        ["#aaa","#bbb","#bbb","#ccc"],
+        ["#ddd","#ddd","#eee","#aaa"],
+        ["#bbb","#bbb","#bbb","#ccc"],
+        ["#ddd","#ddd","#eee","#aaa"],
+        ["#bbb","#bbb","#ccc","#ddd"],
       ])
   })
   it('stretches stitches', () => {
