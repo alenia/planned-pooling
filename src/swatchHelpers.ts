@@ -18,7 +18,7 @@ export function swatchMatrix({
   const output = [] as Array<Array<Color>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const stitchesInThisRow = (staggeredWithType(StaggerType.normal) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+    const stitchesInThisRow = (staggeredWithType(StaggerType.alternateRowLengths) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
 
     const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesInThisRow) as Array<Color>
 
@@ -51,7 +51,7 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
   const output = [] as Array<Array<Color>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const stitchesInThisRow = (staggeredWithType(StaggerType.normal) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+    const stitchesInThisRow = (staggeredWithType(StaggerType.alternateRowLengths) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
 
     const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesInThisRow) as Array<Color>
 

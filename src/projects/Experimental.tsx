@@ -29,7 +29,7 @@ function Experimental() {
 
   const { swatchConfig, setSwatchConfig, setSearchParams} = useSwatchConfigStateFromURLParams(defaultSwatchConfig);
 
-  const [staggerType, setStaggerType] = useState(StaggerType.normal)
+  const [staggerType, setStaggerType] = useState(StaggerType.alternateRowLengths)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     //TODO: write some tests for this dropdown. The typecasting might be cargo culted and fail silently one day
@@ -62,9 +62,10 @@ function Experimental() {
             setValue={setStaggerTypeFromDropdown}
             withTooltip={true}
             items={[
-              {label: 'Display odd rows and even rows with different lengths', value: StaggerType.normal},
+              {label: 'Display odd rows and even rows with different lengths', value: StaggerType.alternateRowLengths},
               {label: 'Color stretching (increasing tension)', value: StaggerType.colorStretched},
               {label: 'Color swallowing (loosening tension)', value: StaggerType.colorSwallowed},
+              {label: 'Adjust length of longest color', value: StaggerType.staggerLongestColor},
             ]}
           />
         </fieldset>

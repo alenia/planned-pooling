@@ -4,7 +4,7 @@ export enum StaggerType {
   colorStretched = 'colorStretched',
   colorSwallowed = 'colorSwallowed',
   staggerLongestColor = 'staggerLongestColor',
-  normal = 'normal'
+  alternateRowLengths = 'alternateRowLengths'
 }
 
 export enum StitchPattern {
