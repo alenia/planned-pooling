@@ -89,7 +89,6 @@ function SwimLessonDarkly() {
     <Fragment>
       <p>This is a page to help with the Swim Lesson Cowl and Headband patterns. You can also try the <a href='/'>main app.</a></p>
       <p> You can play with the color shift to change where you start your band or adjust your stripes</p>
-      <p> For section 2, if you want to alternate lengths of one color, keep it on the stripes setting and add the same colors a second time.</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
