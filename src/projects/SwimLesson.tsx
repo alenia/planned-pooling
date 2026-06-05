@@ -7,7 +7,7 @@ import DropdownInput from '../inputs/Dropdown';
 import { totalColorSequenceLength } from '../colorSequenceHelpers';
 import { useSwatchConfigStateFromURLParams, useEffectToUpdateURLParamsFromSwatchConfig } from '../URLSwatchParams';
 
-function SwimLessonDarkly() {
+function SwimLesson() {
   const initialColorSequence = [
     { color: "#d6dfd7", length: 8 },
     { color: "#0e7a42", length: 6 }
@@ -120,5 +120,5 @@ function SwimLessonDarkly() {
   );
 }
 
-export default SwimLessonDarkly;
+export default SwimLesson;
 
