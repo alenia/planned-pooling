@@ -1,7 +1,7 @@
 import './SwimLessonDarkly.scss';
 import SwatchWithForm from '../SwatchWithForm';
 import Swatch from '../Swatch';
-import { StitchPattern, ColorSequenceArray, StaggerType } from '../types'
+import { StitchPattern, StaggerType } from '../types'
 import { Fragment, useState, useEffect } from "react";
 import DropdownInput from '../inputs/Dropdown';
 import { aSkeinerDarklyColorways, defaultASkeinerDarklyColorwayId } from '../colorways';
@@ -12,7 +12,7 @@ function SwimLessonDarkly() {
   const initialColorway = aSkeinerDarklyColorways[defaultASkeinerDarklyColorwayId]
   const initialColorSequence = duplicateColorSequenceArray(initialColorway.colorSequence)
   const [selectedColorway, setSelectedColorway] = useState(defaultASkeinerDarklyColorwayId)
-  const [staggerType, setStaggerType] = useState(StaggerType.colorStretched)
+  const [staggerType, setStaggerType] = useState(StaggerType.staggerLongestColor)
 
   const setStaggerTypeFromDropdown = (newStaggerType: string) => {
     //TODO: write some tests for this dropdown. The typecasting might be cargo culted and fail silently one day
@@ -114,6 +114,7 @@ function SwimLessonDarkly() {
             value={staggerType}
             setValue={setStaggerTypeFromDropdown}
             items={[
+              {label: 'Alternate Lengths of Longest Color', value: StaggerType.staggerLongestColor},
               {label: 'Color stretching', value: StaggerType.colorStretched},
               {label: 'Color swallowing', value: StaggerType.colorSwallowed},
             ]}

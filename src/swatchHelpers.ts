@@ -1,5 +1,5 @@
-import { StandardSwatchConfig, Color, ClusterConfiguration } from './types'
-import { flatColorSequenceArray } from './colorSequenceHelpers'
+import { StandardSwatchConfig, Color, ClusterConfiguration, StaggerType } from './types'
+import { flatColorSequenceArray, staggerLongestColor } from './colorSequenceHelpers'
 import { circularSlice } from './arrayHelpers'
 
 export function swatchMatrix({
@@ -9,24 +9,24 @@ export function swatchMatrix({
   colorShift,
   staggerLengths,
   staggerType
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : Array<Array<Color>>{
-  const flattenedColorSequence = flatColorSequenceArray(colorSequence)
-  function staggeredWithType(typeName: 'normal' | 'colorStretched' | 'colorSwallowed') {
+} : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
+  function staggeredWithType(typeName: StaggerType) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
+  const flattenedColorSequence = staggeredWithType(StaggerType.staggerLongestColor)? flatColorSequenceArray(staggerLongestColor(colorSequence)) : flatColorSequenceArray(colorSequence)
   const output = [] as Array<Array<Color>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const stitchesInThisRow = (staggeredWithType('normal') && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+    const stitchesInThisRow = (staggeredWithType(StaggerType.alternateRowLengths) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
 
     const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesInThisRow) as Array<Color>
 
     output.push(nextSlice)
 
-    if(staggeredWithType('colorStretched') && i % 2 === 1) {
+    if(staggeredWithType(StaggerType.colorStretched) && i % 2 === 1) {
       startingIndex += stitchesInThisRow - 1
-    } else if(staggeredWithType('colorSwallowed') && i % 2 === 1) {
+    } else if(staggeredWithType(StaggerType.colorSwallowed) && i % 2 === 1) {
       startingIndex += stitchesInThisRow + 1
     } else {
       startingIndex += stitchesInThisRow
@@ -42,8 +42,8 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
   colorShift,
   staggerLengths,
   staggerType
-} : StandardSwatchConfig & {staggerType: 'normal' | 'colorStretched' | 'colorSwallowed'}) : Array<Array<Color>>{
-  function staggeredWithType(typeName: 'normal' | 'colorStretched' | 'colorSwallowed') {
+} : StandardSwatchConfig & {staggerType: StaggerType}) : Array<Array<Color>>{
+  function staggeredWithType(typeName: StaggerType) {
     if (!staggerLengths) { return false }
     return staggerType === typeName
   }
@@ -51,15 +51,15 @@ export function swatchMatrixWithReversedEvenRows({ //TODO: This is the (unused) 
   const output = [] as Array<Array<Color>>
   let startingIndex = colorShift;
   for(let i = 0; i < numberOfRows; i++) {
-    const stitchesInThisRow = (staggeredWithType('normal') && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
+    const stitchesInThisRow = (staggeredWithType(StaggerType.alternateRowLengths) && i % 2 === 0) ? stitchesPerRow + 1 : stitchesPerRow;
 
     const nextSlice = circularSlice(flattenedColorSequence, startingIndex, stitchesInThisRow) as Array<Color>
 
     i % 2 === 0 ? output.push(nextSlice) : output.push(nextSlice.reverse())
 
-    if(staggeredWithType('colorStretched') && i % 2 === 1) {
+    if(staggeredWithType(StaggerType.colorStretched) && i % 2 === 1) {
       startingIndex += stitchesInThisRow - 1
-    } else if(staggeredWithType('colorSwallowed') && i % 2 === 1) {
+    } else if(staggeredWithType(StaggerType.colorSwallowed) && i % 2 === 1) {
       startingIndex += stitchesInThisRow + 1
     } else {
       startingIndex += stitchesInThisRow

@@ -4,7 +4,7 @@ import TogglableColorPicker from './inputs/TogglableColorPicker'
 import IntegerInput from './inputs/Integer'
 import { Color, SwatchConfig, StaggerType } from './types'
 import { getRandomNotWhiteColor } from './colorHelpers'
-import { totalColorSequenceLength, presetPickerColors } from './colorSequenceHelpers'
+import { totalColorSequenceLength, presetPickerColors, firstLongestColor } from './colorSequenceHelpers'
 import { mod } from './numberHelpers'
 
 type FormValue = keyof(SwatchConfig)
@@ -79,6 +79,9 @@ function Form(
       return "This will stretch the length of the color that ends an even row/starts an odd row.\n\nThat is, if you normally have 5 stitches of a color, this will make it 6 at that transition point."
     } else if (staggerType === "colorSwallowed") {
       return "This will contract the length of the color that starts an odd row.\n\nThat is, if you normally have 5 stitches of a color, this will make it 4 at that transition point."
+    } else if (staggerType === "staggerLongestColor") {
+      const longestColorLength = firstLongestColor(colorSequence).colorInSequence.length
+      return `This will adjust the length of the longest color in your swatch every other time you encounter it.\n\nThe highlighted color will alternate between ${longestColorLength} and ${longestColorLength + 1} stitches long`
     } else {
       return `This will make odd rows of your project one stitch longer than the even rows. \n\nWith your current settings, odd rows will be ${stitchesPerRow+1} stitches long.`
     }
@@ -89,10 +92,14 @@ function Form(
       return "Stretch Colors at row boundary"
     } else if (staggerType === "colorSwallowed") {
       return "Swallow Colors at row boundary"
+    } else if (staggerType === "staggerLongestColor") {
+      return "Stagger length of longest color"
     } else {
       return "Alternate Row Lengths"
     }
   }
+
+  const longestColorIndex = firstLongestColor(colorSequence).index
 
   return (
     <form
@@ -102,8 +109,12 @@ function Form(
       className={className}
     >
       <fieldset className='color-fields'>
-        {colorSequence.map((obj, index) => (
-          <div className='color-segment' key={index + 1}>
+        {colorSequence.map((obj, index) => {
+          const classNames = [
+            'color-segment',
+            index === longestColorIndex && staggerType === StaggerType.staggerLongestColor ? 'highlighted' : ''
+          ]
+          return ( <div className={classNames.join(' ')} key={index + 1}>
             <label>
               Color {(index + 1)}:
             </label>
@@ -122,7 +133,8 @@ function Form(
             />
             <button type="button" onClick={() => removeColorFromSequence(index)}>Remove color</button>
           </div>
-        ))}
+          )
+        })}
         <div className="buttons">
           <button type="button" onClick={addColorToSequence}>Add a color</button>
           { showExperimentalFeatures ? <button type="button" onClick={duplicateColorSequence}>Double the colors</button> : ''}

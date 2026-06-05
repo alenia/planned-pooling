@@ -3,7 +3,8 @@ import { DeepReadonly } from 'ts-essentials'
 export enum StaggerType {
   colorStretched = 'colorStretched',
   colorSwallowed = 'colorSwallowed',
-  normal = 'normal'
+  staggerLongestColor = 'staggerLongestColor',
+  alternateRowLengths = 'alternateRowLengths'
 }
 
 export enum StitchPattern {
